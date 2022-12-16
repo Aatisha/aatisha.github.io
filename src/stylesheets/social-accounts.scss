@@ -1,0 +1,148 @@
+$white: #fff;
+
+* {
+  &:focus {
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  &:active {
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+.social-wrapper {
+  display: flex;
+  list-style: none;
+  font-family: 'Font Awesome 6 Brands', sans-serif;
+  padding: 0;
+  margin-left: -10px;
+
+  .icon {
+    position: relative;
+    background: #fff;
+    border-radius: 50%;
+    padding: 15px;
+    margin: 10px;
+    width: 50px;
+    height: 50px;
+    font-size: 1.125rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    i {
+      font-style: normal !important;
+    }
+
+    a {
+      color: #000;
+    }
+
+    &:hover {
+      .tooltip {
+        top: -33px;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
+      }
+
+      span {
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+
+  .tooltip {
+    position: absolute;
+    top: 0;
+    font-size: 10px;
+    font-family: 'Lato', sans-serif;
+    background: #fff;
+    color: $white;
+    padding: 5px 8px;
+    border-radius: 5px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    &::before {
+      position: absolute;
+      content: "";
+      height: 8px;
+      width: 8px;
+      background: #fff;
+      bottom: -3px;
+      left: 50%;
+      transform: translate(-50%) rotate(45deg);
+      transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+  }
+
+  .linkedin {
+    &:hover {
+      background: #0077b5;
+
+      a {
+        color: $white;
+      }
+
+      .tooltip {
+        background: #0077b5;
+        color: $white;
+
+        &::before {
+          background: #0077b5;
+          color: $white;
+        }
+      }
+    }
+  }
+
+  .medium {
+    &:hover {
+      background: #000;
+
+      a {
+        color: $white;
+      }
+
+      .tooltip {
+        background: #000;
+        color: $white;
+
+        &::before {
+          background: #000;
+          color: $white;
+        }
+      }
+    }
+  }
+
+  .github {
+    &:hover {
+      background: #333;
+
+      a {
+        color: $white;
+      }
+
+      .tooltip {
+        background: #333;
+        color: $white;
+
+        &::before {
+          background: #333;
+          color: $white;
+        }
+      }
+    }
+  }
+}
