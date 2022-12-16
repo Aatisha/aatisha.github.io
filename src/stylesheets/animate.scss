@@ -1,0 +1,23 @@
+@keyframes rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes drop {
+  20% {
+    transform: translate(0, -3px);
+  }
+
+  80% {
+    transform: translate(0, 2px);
+  }
+
+  95% {
+    transform: translate(0, 0);
+  }
+}

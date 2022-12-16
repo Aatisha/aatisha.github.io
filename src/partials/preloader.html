@@ -1,0 +1,27 @@
+<!-- <div class="u-positionR" id="pre-loader">
+  <div class="u-fontSize-h4 u-text-white u-fontWeight-bold u-fontPlayfair u-positionA">
+    <span class="first-part">
+      Aatisha
+    </span>
+    <span class="last-part">
+      Cyrill
+    </span>
+  </div>
+</div> -->
+<div id="pre-loader">
+  <div class="pre-load-wrapper">
+    <div class="ball"></div>
+    <div class="ball"></div>
+    <div class="ball"></div>
+  </div>
+  <div class="pre-load-text">Loading...</div>
+  <svg>
+    <defs>
+      <filter id="pre-load-filter">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="18" result="blur" />
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 28 -10" result="pre-load-filter" />
+        <feComposite in="SourceGraphic" in2="pre-load-filter" operator="atop" />
+      </filter>
+    </defs>
+  </svg>
+</div>
