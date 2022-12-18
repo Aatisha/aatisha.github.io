@@ -73,18 +73,9 @@ const generateHTMLPlugins = () => glob.sync(`./${config.paths.src}/**/*.html`, {
   });
 });
 
-
-const htmlFilePaths = [];
-// const generatePurifyCss = () => glob.sync(`./${config.paths.src}/**/*.html`).map((dir) => {
-//   const filename = path.relative(config.paths.src, dir);
-//   htmlFilePaths.push(path.join(config.root, config.paths.src, filename));
-// });
-// generatePurifyCss();
-// console.log(htmlFilePaths);
-
 const purifyCss = new PurifyCSSPlugin({
   // Give paths to parse for rules. These should be absolute!
-  paths: glob.sync(`./${config.paths.src}/**/*.html`),
+  paths: glob.sync(`./${config.paths.src}/**/*(*.html|*.js)`),
 });
   
 // Sitemap
@@ -149,7 +140,7 @@ module.exports = [
   clean,
   stylelint,
   cssExtract,
-  // purifyCss,
+  purifyCss,
   ...generateHTMLPlugins(),
   fs.existsSync(config.favicon) && favicons,
   config.env === 'production' && optimizeCss,
