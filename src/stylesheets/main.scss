@@ -2536,19 +2536,42 @@ footer {
     padding: 20px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    flex-direction: column;
 
     .image-bg {
       background: url("../assets/images/hero-image.jpg") no-repeat center center;
       background-size: cover;
-      height: 450px;
-      max-width: 400px;
+      height: 550px;
+      max-width: 450px;
       width: 100%;
       border: solid #fff;
       border-radius: 10px;
       transform: rotate(-1deg);
-      border-width: 20px 20px 60px 20px;
-      box-shadow: 0 0 2px 3px rgba(211, 211, 211, 0.3);
+      border-width: 20px 20px 80px 20px;
+      box-shadow: 0 0 2px 3px rgba(211, 211, 211, 0.5);
+      margin-bottom: 50px;
+
+      &::after {
+        content: 'Aatisha Cyrill';
+        font-family: 'Corinthia', cursive;
+        font-size: 3rem;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        height: calc(100% + 15px);
+      }
+
+      &::before {
+        content: '\f521';
+        font-family: "Font Awesome 6 Free", sans-serif;
+        font-size: 2rem;
+        display: flex;
+        justify-content: flex-end;
+        background: radial-gradient(ellipse farthest-corner at right bottom, #ffd81f 0%, #ffb41d 8%, #e3ac36 30%, #d19716 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #fff 0%, #ffffac 8%, #d1b464 25%, #ffc036 62.5%, #a57c20 100%);
+        margin: 10px 16px;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
     }
   }
 
@@ -2558,6 +2581,7 @@ footer {
 
     p {
       margin: 10px 0;
+      text-align: justify;
     }
   }
 
@@ -2582,4 +2606,13 @@ footer {
       width: 100%;
     }
   }
+}
+
+.chip {
+  display: inline-flex;
+  padding: 6px 12px;
+  width: fit-content;
+  line-height: 1;
+  border-radius: 16px;
+  margin: 8px 10px;
 }
