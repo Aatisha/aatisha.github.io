@@ -166,9 +166,9 @@ const images = {
   use: [
     {
       loader: "file-loader",
-      query: {
-        name: "[name].[hash].[ext]",
-        outputPath: "assets/images/",
+      options: {
+        context: config.src,
+        name: '[path][name].[hash].[ext]'
       },
     },
   ],

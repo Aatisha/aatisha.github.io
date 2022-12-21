@@ -1890,7 +1890,8 @@ footer {
 
 // new page top
 .page-top {
-  height: 500px;
+  height: auto;
+  min-height: 500px;
   position: relative;
   overflow: hidden;
 
@@ -1912,8 +1913,6 @@ footer {
 
 @media screen and (max-width: 600px) {
   .page-top {
-    height: 400px;
-
     .page-heading {
       font-size: 6.5rem;
     }
@@ -2468,20 +2467,6 @@ footer {
     }
 
     &__button {
-      display: inline-flex;
-      // background-image: linear-gradient(147deg, #fe8a39 0%, #fd3838 74%);
-      padding: 12px 20px;
-      border-radius: 50px;
-      color: #000;
-      border: 1px solid #000;
-      margin-top: 20px;
-      // box-shadow: 0 14px 80px rgba(252, 56, 56, 0.4);
-      text-decoration: none;
-      font-weight: 400;
-      justify-content: center;
-      text-align: center;
-      letter-spacing: 1px;
-
       @media screen and (max-width: 576px) {
         width: 100%;
       }
@@ -2650,18 +2635,60 @@ footer {
       margin-top: 10px;
     }
   }
+
+  .custom-shape-divider-bottom-1671631390 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+  }
+
+  .custom-shape-divider-bottom-1671631390 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 22px;
+  }
+
+  .custom-shape-divider-bottom-1671631390 .shape-fill {
+    fill: #fff;
+  }
+
+  .feature-boxes {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    gap: 50px;
+
+    .feature-box-wrap {
+      border-radius: 4px;
+      padding: 30px;
+      flex: 0 0 calc(33.333% - 50px);
+      display: flex;
+
+      .feature-box {
+        display: flex;
+        flex-direction: column;
+        flex: 0 0 100%;
+
+        i {
+          font-size: 3.5rem;
+          text-align: center;
+          color: #565681;
+        }
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 769px) {
   .project {
     .page-top {
-      height: 700px !important;
-
-      .Container-flex--rev {
-        .hero-project-img {
-          height: 250px;
-          margin: 0 auto;
-        }
+      .hero-project-img {
+        height: 250px;
+        margin: 0 auto;
       }
     }
   }
@@ -2680,10 +2707,17 @@ footer {
     }
   }
 }
+
 // Online Assessment
 .project-online-assessment {
   .project-bg {
     background-color: #e5e5f7;
+  }
+
+  .hero-project-img {
+    background: url("../assets/images/online_assessment_thumbnail.jpg") no-repeat center center;
+    background-size: cover;
+    height: 350px;
   }
 
   .hero-online-assessment {
@@ -2700,4 +2734,20 @@ footer {
       animation: slide-top 10s ease-in infinite forwards;
     }
   }
+}
+
+.btn-primary {
+  display: inline-flex;
+  // background-image: linear-gradient(147deg, #fe8a39 0%, #fd3838 74%);
+  padding: 12px 20px;
+  border-radius: 50px;
+  color: #000;
+  border: 1px solid #000;
+  margin-top: 20px;
+  // box-shadow: 0 14px 80px rgba(252, 56, 56, 0.4);
+  text-decoration: none;
+  font-weight: 400;
+  justify-content: center;
+  text-align: center;
+  letter-spacing: 1px;
 }
