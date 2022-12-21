@@ -779,8 +779,9 @@ html {
 }
 
 .Container-wrapper--alt {
-  width: 95%;
-  max-width: 1300px;
+  width: 90%;
+  margin: 0 auto;
+  max-width: 1100px;
 }
 
 .Container-overlay {
@@ -800,6 +801,27 @@ html {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
+}
+
+.Container-flex--rev {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  z-index: 100;
+  position: relative;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 769px) {
+  .Container-flex--rev {
+    flex-direction: column-reverse;
+  }
+
+  .Container-flex {
+    flex-direction: column;
+  }
 }
 
 .Home .Container-text h5,
@@ -1283,11 +1305,6 @@ html {
   CASE STUDY
 
   *****/
-
-  .Container-wrapper--alt {
-    width: 90%;
-  }
-
   .Container--caseStudy,
   .Container--description {
     width: 100%;
@@ -1589,6 +1606,7 @@ html {
 // Footer
 footer {
   position: relative;
+  margin-top: 10px;
 
   .footer-wrapper {
     padding-top: calc(50px + 110px);
@@ -2615,4 +2633,71 @@ footer {
   line-height: 1;
   border-radius: 16px;
   margin: 8px 10px;
+}
+
+// Projects
+
+.project {
+  .full-divider {
+    height: 200px;
+    padding: 50px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    p {
+      font-size: 1.25rem;
+      margin-top: 10px;
+    }
+  }
+}
+
+@media screen and (max-width: 769px) {
+  .project {
+    .page-top {
+      height: 700px !important;
+
+      .Container-flex--rev {
+        .hero-project-img {
+          height: 250px;
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .project {
+    .project-info {
+      .Container-flex {
+        flex-direction: column;
+
+        .u-fontSize-p4 {
+          font-size: 1.25rem;
+        }
+      }
+    }
+  }
+}
+// Online Assessment
+.project-online-assessment {
+  .project-bg {
+    background-color: #e5e5f7;
+  }
+
+  .hero-online-assessment {
+    &::before {
+      content: '';
+      opacity: 0.8;
+      background-image: linear-gradient(0deg, #e0e0f1 50%, #d9daef 50%);
+      background-size: 10px 10px;
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      height: 10000vw;
+      width: 200vw;
+      animation: slide-top 10s ease-in infinite forwards;
+    }
+  }
 }

@@ -54,13 +54,15 @@ document.getElementById('nav-contact').addEventListener('click', () => {
   }, 0);
 });
 
-const resumeDownloadBtn = document.getElementById('resume-btn-download');
-resumeDownloadBtn.addEventListener('click', () => {
-  resumeDownloadBtn.classList.toggle('downloaded');
-  setTimeout(() => {
+if (window.location.pathname === '/' || window.location.pathname === 'about') {
+  const resumeDownloadBtn = document.getElementById('resume-btn-download');
+  resumeDownloadBtn.addEventListener('click', () => {
     resumeDownloadBtn.classList.toggle('downloaded');
-  }, 5000);
-});
+    setTimeout(() => {
+      resumeDownloadBtn.classList.toggle('downloaded');
+    }, 5000);
+  });
+}
 
 document.getElementById('nav-hamburger').addEventListener('click', () => {
   document.getElementById('nav-hamburger').classList.toggle('collapsed');
