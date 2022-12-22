@@ -857,12 +857,15 @@ html {
 
 .Container-pic img {
   width: 100%;
-  height: auto;
+  // height: auto;
   -webkit-animation-delay: 0.25s !important;
   animation-delay: 0.25s !important;
   -webkit-transition: all 0.65s;
   -o-transition: all 0.65s;
   transition: all 0.65s;
+  object-fit: cover;
+  border-radius: 0;
+  height: 100%;
 }
 
 .Home .Container-pic img:hover,
@@ -1623,7 +1626,7 @@ footer {
     }
 
     .footer-text {
-      font-size: 2vw;
+      font-size: 1.8vw;
     }
 
     // .Container--social {
@@ -1667,7 +1670,7 @@ footer {
       }
 
       .footer-text {
-        font-size: 20px;
+        font-size: 18px;
       }
     }
   }
@@ -2665,7 +2668,7 @@ footer {
     .feature-box-wrap {
       border-radius: 4px;
       padding: 30px;
-      flex: 0 0 calc(33.333% - 50px);
+      flex: 0 0 calc(33.333% - 35px);
       display: flex;
 
       .feature-box {
@@ -2691,6 +2694,14 @@ footer {
         margin: 0 auto;
       }
     }
+
+    .feature-boxes {
+      gap: 20px;
+
+      .feature-box-wrap {
+        flex: 0 0 calc(50% - 10px);
+      }
+    }
   }
 }
 
@@ -2703,6 +2714,18 @@ footer {
         .u-fontSize-p4 {
           font-size: 1.25rem;
         }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .project {
+    .feature-boxes {
+      gap: 30px;
+
+      .feature-box-wrap {
+        flex: 0 0 100%;
       }
     }
   }
@@ -2750,4 +2773,21 @@ footer {
   justify-content: center;
   text-align: center;
   letter-spacing: 1px;
+}
+
+figure {
+  margin: 0 !important;
+
+  figcaption {
+    margin-top: 20px;
+  }
+}
+
+.project-card {
+  display: flex;
+  background: white;
+  // padding: 50px;
+  margin: 150px 0;
+  border-radius: 12px;
+  overflow: hidden;
 }
