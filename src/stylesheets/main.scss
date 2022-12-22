@@ -28,6 +28,13 @@ $share-menu-border-pseudo: transparent $share_menu_tip_bg transparent transparen
 
 // background: linear-gradient(50deg, #2a48bd 0%, #35e0e0 100%);
 // linear-gradient(35deg, #ef9a25 0%, #ddbc23 100%); // #fac722
+
+// project base color
+
+$online_assessment: #d9daef;
+$plant_health: #a6d6d6;
+$deal_management: #ef9a53;
+
 * {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -2731,16 +2738,35 @@ footer {
   }
 }
 
+.online_assessment_color {
+  color: $online_assessment;
+}
+
+.plant_health_color {
+  color: $plant_health;
+}
+
+.deal_management_color {
+  color: $deal_management;
+}
+
+.project-online-assessment,
+.project-plant-health,
+.project-deal-management {
+  .hero-project-img {
+    background-size: cover;
+    height: 350px;
+  }
+}
+
 // Online Assessment
 .project-online-assessment {
   .project-bg {
-    background-color: #e5e5f7;
+    background-color: $online_assessment;
   }
 
   .hero-project-img {
     background: url("../assets/images/online_assessment_thumbnail.jpg") no-repeat center center;
-    background-size: cover;
-    height: 350px;
   }
 
   .hero-online-assessment {
@@ -2759,15 +2785,69 @@ footer {
   }
 }
 
+// Plant Health
+.project-plant-health {
+  .project-bg {
+    background-color: $plant_health;
+  }
+
+  .hero-project-img {
+    background: url("../assets/images/plant_health_thumbnail.jpg") no-repeat center center;
+  }
+
+  .hero-plant-health {
+    &::before {
+      content: '';
+      opacity: 0.5;
+      background-image: linear-gradient(135deg, #a6d6d6 25%, transparent 25%), linear-gradient(225deg, #a6d6d6 25%, transparent 25%), linear-gradient(45deg, #a6d6d6 25%, transparent 25%), linear-gradient(315deg, #a6d6d6 25%, #c5eeee 25%);
+      background-position: 10px 0, 10px 0, 0 0, 0 0;
+      background-size: 20px 20px;
+      background-repeat: repeat;
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      height: 100vh;
+      width: 100000vh;
+      animation: marquee 15s ease-in infinite forwards;
+    }
+  }
+}
+
+// Deal Management
+.project-deal-management {
+  .project-bg {
+    background-color: $deal_management;
+  }
+
+  .hero-project-img {
+    background: url("../assets/images/plant_health_thumbnail.jpg") no-repeat center center;
+  }
+
+  .hero-deal-management {
+    &::before {
+      content: '';
+      opacity: 0.4;
+      background-image: linear-gradient(135deg, #ef9a53 25%, transparent 25%), linear-gradient(225deg, #ef9a53 25%, transparent 25%), linear-gradient(45deg, #ef9a53 25%, transparent 25%), linear-gradient(315deg, #ef9a53 25%, #f1b380 25%);
+      background-position: 10px 0, 10px 0, 0 0, 0 0;
+      background-size: 10px 10px;
+      background-repeat: repeat;
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      height: 200vw;
+      width: 200vw;
+      animation: rotate 700s linear infinite;
+    }
+  }
+}
+
 .btn-primary {
   display: inline-flex;
-  // background-image: linear-gradient(147deg, #fe8a39 0%, #fd3838 74%);
   padding: 12px 20px;
   border-radius: 50px;
   color: #000;
   border: 1px solid #000;
   margin-top: 20px;
-  // box-shadow: 0 14px 80px rgba(252, 56, 56, 0.4);
   text-decoration: none;
   font-weight: 400;
   justify-content: center;
@@ -2790,4 +2870,5 @@ figure {
   margin: 150px 0;
   border-radius: 12px;
   overflow: hidden;
+  min-height: 460px;
 }
