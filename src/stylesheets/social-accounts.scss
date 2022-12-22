@@ -1,3 +1,5 @@
+@import "./_variable.scss";
+
 $white: #fff;
 
 * {
@@ -22,7 +24,7 @@ $white: #fff;
   .icon {
     position: relative;
     background: #fff;
-    border-radius: 50%;
+    border-radius: $main-shape_border_radius;
     padding: 15px;
     margin: 10px;
     width: 50px;
