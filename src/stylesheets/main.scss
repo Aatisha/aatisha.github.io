@@ -78,11 +78,6 @@ p {
   font-weight: 300;
 }
 
-ul {
-  list-style-type: none;
-  margin: 0;
-}
-
 ul li a {
   color: #fff;
   text-decoration: none;
@@ -2753,7 +2748,7 @@ footer {
 .project-plant-health,
 .project-deal-management {
   .hero-project-img {
-    background-size: cover;
+    background-size: cover !important;
     height: 350px;
   }
 }
@@ -2791,7 +2786,7 @@ footer {
   }
 
   .hero-project-img {
-    background: url("../assets/images/plant_health_thumbnail.jpg") no-repeat center center;
+    background: url("../assets/images/plant-health/thumbnail.jpg") no-repeat center center;
   }
 
   .hero-plant-health {
@@ -2819,7 +2814,7 @@ footer {
   }
 
   .hero-project-img {
-    background: url("../assets/images/plant_health_thumbnail.jpg") no-repeat center center;
+    background: url("../assets/images/plant-health/thumbnail.jpg") no-repeat center center;
   }
 
   .hero-deal-management {
@@ -2870,4 +2865,9 @@ figure {
   border-radius: 12px;
   overflow: hidden;
   min-height: 460px;
+}
+
+ul {
+  list-style-type: disc;
+  margin: 50px 0;
 }
