@@ -80,7 +80,7 @@ $navbar_height: 65px;
   position: fixed;
   top: 0;
   height: $navbar_height;
-  width: 100%;
+  width: 100vw;
   z-index: 1000;
 
   .pretty-nav-wrapper {
@@ -149,9 +149,8 @@ $navbar_height: 65px;
       background: #000;
       transition: all 0.2s ease-in-out;
       width: 26px;
-      height: 3px;
-      border: 1px solid white;
-      margin-bottom: 7px;
+      height: 2px;
+      margin-bottom: 8px;
       display: block;
       border-radius: 2px;
 
