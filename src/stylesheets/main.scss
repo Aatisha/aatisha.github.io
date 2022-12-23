@@ -85,7 +85,6 @@ ul li a {
 
 p {
   letter-spacing: 0.01em;
-  text-align: justify;
 }
 
 html {
@@ -252,7 +251,7 @@ html {
 
 // Hero Section
 .hero-section {
-  height: 700px;
+  min-height: 700px;
   box-sizing: border-box;
   background-color: $hero_section_bg;
 

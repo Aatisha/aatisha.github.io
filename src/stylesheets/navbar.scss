@@ -92,12 +92,12 @@ $navbar_height: 65px;
   #logo-dot {
     background: none;
     position: absolute;
-    left: 115%;
+    left: 110%;
     border-radius: 70% 30% 30% 70%/60% 40% 60% 40%;
-    top: 50%;
+    margin-top: 22%;
 
     &[data-animate="true"] {
-      background: $logo_dot; // some gradiant dot ??
+      background: $logo_dot;
       animation: drop 1s forwards linear 0.2s 1;
     }
   }
