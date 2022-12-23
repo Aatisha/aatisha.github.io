@@ -813,7 +813,7 @@ html {
 }
 
 .Home .Container-pic img:hover,
-.Home .hasLink:hover {
+.Home .has-link:hover {
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
@@ -840,27 +840,11 @@ html {
   bottom: 0;
 }
 
-.hasLink {
+.has-link {
   -webkit-transition: all 0.65s !important;
   -o-transition: all 0.65s !important;
   transition: all 0.65s !important;
   display: block;
-}
-
-#radical,
-.radical {
-  background: url("../assets/images/radical-1.png") no-repeat center center;
-  background-size: cover;
-
-  /* height: 350px !important; */
-  padding-bottom: 71.01%;
-}
-
-#cullop,
-.cullop {
-  background: url("../assets/images/dailyui-5.png") no-repeat left center;
-  background-size: 750px;
-  padding-bottom: 70.7%;
 }
 
 .Container--AboutMe {
@@ -927,10 +911,6 @@ html {
 
 .Container-article {
   height: 275px;
-}
-
-.Container-grid-image {
-  height: 100%;
 }
 
 #font-mobile {
@@ -1206,20 +1186,10 @@ html {
     margin-bottom: 0;
   }
 
-  #Container--logos .u-width45,
-  #Container--logos_2 .u-width45,
-  #Container--logos_3 .u-width45 {
+  #Container--logos_2 .u-width45 {
     display: block;
     width: 100%;
     margin: 0;
-  }
-
-  #Container--logos_2 {
-    padding-top: 0;
-  }
-
-  #Container--5 {
-    padding-bottom: 0;
   }
 
   /* MISC */
@@ -2622,7 +2592,6 @@ footer {
         i {
           font-size: 3.5rem;
           text-align: center;
-          color: #565681;
         }
       }
     }
@@ -2719,6 +2688,16 @@ footer {
       animation: slide-top 10s ease-in infinite forwards;
     }
   }
+
+  .feature-boxes {
+    .feature-box-wrap {
+      .feature-box {
+        i {
+          color: #565681;
+        }
+      }
+    }
+  }
 }
 
 // Plant Health
@@ -2756,7 +2735,7 @@ footer {
   }
 
   .hero-project-img {
-    background: url("../assets/images/plant-health/thumbnail.jpg") no-repeat center center;
+    background: url("../assets/images/deal-management/thumbnail.jpg") no-repeat center center;
   }
 
   .hero-deal-management {
@@ -2770,9 +2749,19 @@ footer {
       position: absolute;
       top: -50%;
       left: -50%;
-      height: 10000vw;
-      width: 200vw;
-      animation: rotate 700s linear infinite;
+      height: 600vw;
+      width: 600vw;
+      animation: rotate 2600s linear infinite;
+    }
+  }
+
+  .feature-boxes {
+    .feature-box-wrap {
+      .feature-box {
+        i {
+          color: #df883f;
+        }
+      }
     }
   }
 }
