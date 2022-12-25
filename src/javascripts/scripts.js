@@ -144,20 +144,45 @@ async function fetchMediumBlogs() {
   return blogDetails;
 }
 
-// eslint-disable-next-line no-unused-expressions
-fetchMediumBlogs().catch((error) => {
-  // eslint-disable-next-line no-console
-  console.error(error);
-  const bodyContent = disableBodyContent();
-  preloader(bodyContent);
-});
+function designWorkGallery() {
+  const filterContainer = document.querySelector('.design-work-gallery-filter');
+  const galleryItems = document.querySelectorAll('.design-work-gallery-item');
+
+  filterContainer.addEventListener('click', (event) => {
+    if (event.target.classList.contains('design-work-filter-item')) {
+      // deactivate existing active 'design-work-filter-item'
+      filterContainer.querySelector('.active').classList.remove('active');
+      // activate new 'design-work-filter-item'
+      event.target.classList.add('active');
+      const filterValue = event.target.getAttribute('data-filter');
+      galleryItems.forEach((item) => {
+        if (item.classList.contains(filterValue) || filterValue === 'all') {
+          item.classList.remove('hide');
+          item.classList.add('show');
+        } else {
+          item.classList.remove('show');
+          item.classList.add('hide');
+        }
+      });
+    }
+  });
+}
 
 window.onload = async () => {
   const bodyContent = disableBodyContent();
-  // console.log(window.location.pathname);
   if (window.location.pathname === '/') {
-    const response = await fetchMediumBlogs();
-    addBlogDetailsToDom(response);
+    const response = await fetchMediumBlogs().catch((error) => {
+      // eslint-disable-next-line no-console
+      console.error(error);
+      preloader(bodyContent);
+    });
+    if (response) {
+      addBlogDetailsToDom(response);
+    }
+  }
+
+  if (window.location.pathname === '/design-work') {
+    designWorkGallery();
   }
   preloader(bodyContent);
 };

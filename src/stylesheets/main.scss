@@ -1,39 +1,5 @@
 @import "./_variable.scss";
 
-$secondary: #a58faa;
-$primary: #363062;
-$pre_loader_bg: #363062;
-// $pre_loader_bubble_2: #ebd3d8;
-// $pre_loader_bubble: #E9D5DA;
-$pre_loader_bubble_2: #c0c9eb;
-$pre_loader_bubble: #b1bce6;
-$pre_loader_text: #fff;
-$radius: 60px;
-$hero_section_bg: #fff;
-$hero_img_back_animation: liquid 8s ease-in-out infinite;
-$hero_img_back_shade_1: #9a86a4;
-$hero_img_back_shade_2: #b1bce6;
-
-// share blog
-
-$share_menu_color: #979799;
-$share_menu_hover_color: #b1b1b9;
-$share_menu_tip_color: #fff;
-$share_menu_link_color: #979799;
-$share_menu_drop_bg: #36393e;
-$share_menu_tip_bg: rgb(24, 24, 24);
-$share_menu_divider: #656970;
-$share-menu-border-pseudo: transparent $share_menu_tip_bg transparent transparent;
-
-// background: linear-gradient(50deg, #2a48bd 0%, #35e0e0 100%);
-// linear-gradient(35deg, #ef9a25 0%, #ddbc23 100%); // #fac722
-
-// project base color
-
-$online_assessment: #d9daef;
-$plant_health: #a6d6d6;
-$deal_management: #ef9a53;
-
 * {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -716,6 +682,11 @@ html {
   position: relative;
 }
 
+.Container-flex-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .Container-wrapper {
   width: 95%;
   margin: 0 auto;
@@ -1280,46 +1251,12 @@ html {
     margin-bottom: 50px;
   }
 
-  #Elliewood-Container--4 .Container-flex {
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-  }
-
-  #Elliewood-Container--4 .Container-infoBlock {
-    width: 40%;
-    margin: 0 auto;
-    margin-bottom: 50px;
-  }
-
-  #Container--interviews .Container-infoBlock {
-    height: auto;
-    width: 50% !important;
-  }
-
-  #Container--interviews .Container-infoBlock p {
-    width: 100% !important;
-  }
-
-  .Container--secondary_infoBlocks .Container-infoBlock:last-child,
-  #Elliewood-Container--4 .Container-infoBlock:nth-child(3),
-  #Elliewood-Container--4 .Container-infoBlock:nth-child(4) {
-    margin-bottom: 0;
-  }
-
   .Container-line {
     display: none;
   }
 
   .Container-infoBlock-title {
     display: none;
-  }
-
-  .Container--secondary_caseStudy .Container-wrapper {
-    width: 90%;
   }
 
   .Container--secondary_infoBlocks-sm .Container-flex .Container-infoBlock {
@@ -2540,6 +2477,11 @@ footer {
 // Projects
 
 .project {
+  .hero-project-img {
+    background-size: cover !important;
+    height: 350px;
+  }
+
   .full-divider {
     min-height: 200px;
     padding: 50px 0;
@@ -2552,6 +2494,7 @@ footer {
     }
   }
 
+  // Project works
   .custom-shape-divider-bottom-1671631390 {
     position: absolute;
     bottom: 0;
@@ -2569,6 +2512,28 @@ footer {
   }
 
   .custom-shape-divider-bottom-1671631390 .shape-fill {
+    fill: #fff;
+  }
+
+  // Other works
+  .custom-shape-divider-bottom-1671992588 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+  }
+
+  .custom-shape-divider-bottom-1671992588 svg {
+    position: relative;
+    display: block;
+    width: calc(127% + 1.3px);
+    height: 83px;
+  }
+
+  .custom-shape-divider-bottom-1671992588 .shape-fill {
     fill: #fff;
   }
 
@@ -2655,13 +2620,8 @@ footer {
   color: $deal_management;
 }
 
-.project-online-assessment,
-.project-plant-health,
-.project-deal-management {
-  .hero-project-img {
-    background-size: cover !important;
-    height: 350px;
-  }
+.design_work_color {
+  color: $design_work;
 }
 
 // Online Assessment
@@ -2752,6 +2712,49 @@ footer {
       height: 600vw;
       width: 600vw;
       animation: rotate 2600s linear infinite;
+    }
+  }
+
+  .feature-boxes {
+    .feature-box-wrap {
+      .feature-box {
+        i {
+          color: #df883f;
+        }
+      }
+    }
+  }
+}
+
+// Design Work
+.project-design-work {
+  .project-bg {
+    background-color: $design_work;
+  }
+
+  .hero-project-img {
+    background: url("../assets/images/deal-management/thumbnail.jpg") no-repeat center center;
+  }
+
+  .hero-design-work {
+    &::before {
+      content: '';
+      opacity: 0.4;
+      // background-image: linear-gradient(135deg, #ef9a53 25%, transparent 25%), linear-gradient(225deg, #ef9a53 25%, transparent 25%), linear-gradient(45deg, #ef9a53 25%, transparent 25%), linear-gradient(315deg, #ef9a53 25%, #f1b380 25%);
+      // background-position: 10px 0, 10px 0, 0 0, 0 0;
+      // background-size: 10px 10px;
+      // background-repeat: repeat;
+      background:
+        radial-gradient(circle at 100% 50%, transparent 20%, rgba(255, 255, 255, 0.3) 21%, rgba(255, 255, 255, 0.3) 34%, transparent 35%, transparent),
+        radial-gradient(circle at 0% 50%, transparent 20%, rgba(255, 255, 255, 0.3) 21%, rgba(255, 255, 255, 0.3) 34%, transparent 35%, transparent) 0 -50px;
+      // background-color: slategray;
+      background-size: 75px 100px;
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      height: 600vw;
+      width: 600vw;
+      animation: slide-down 10s ease-in infinite forwards;
     }
   }
 
