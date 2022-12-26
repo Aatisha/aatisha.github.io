@@ -149,7 +149,6 @@ function designWorkGallery() {
   const filterContainer = document.getElementById('design-work-filter');
   const galleryItems = document.querySelectorAll('.design-work-gallery-item');
   filterContainer.addEventListener('click', (event) => {
-    console.log(event);
     if (event.target.classList.contains('design-work-filter-item')) {
       // deactivate existing active 'design-work-filter-item'
       filterContainer.querySelector('.active').classList.remove('active');
@@ -182,7 +181,7 @@ window.onload = async () => {
     }
   }
 
-  if (window.location.pathname === '/design-work') {
+  if (window.location.pathname.includes('design-work')) {
     designWorkGallery();
   }
   preloader(bodyContent);
