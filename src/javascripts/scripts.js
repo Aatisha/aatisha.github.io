@@ -2,6 +2,7 @@ import Swiper from 'swiper';
 import {
   removeContentByIdAfter, stringInject, removeTags, getFirstNWords,
 } from './utilities';
+import './design-work';
 import { BlogTemplateProperties, BLOG_SLIDE_TEMPLATE, MEDIUM_USERNAME } from './constant';
 
 function reveal() {
@@ -145,10 +146,10 @@ async function fetchMediumBlogs() {
 }
 
 function designWorkGallery() {
-  const filterContainer = document.querySelector('.design-work-gallery-filter');
+  const filterContainer = document.getElementById('design-work-filter');
   const galleryItems = document.querySelectorAll('.design-work-gallery-item');
-
   filterContainer.addEventListener('click', (event) => {
+    console.log(event);
     if (event.target.classList.contains('design-work-filter-item')) {
       // deactivate existing active 'design-work-filter-item'
       filterContainer.querySelector('.active').classList.remove('active');

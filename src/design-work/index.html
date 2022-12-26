@@ -3,6 +3,8 @@
 
 <head>
   <include src="../partials/head.html"/>
+  <!-- <link type="text/css" rel="stylesheet" href="~/lightgallery/css/lightgallery-bundle.css"/> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.0/css/lightgallery-bundle.min.css" integrity="sha512-nUqPe0+ak577sKSMThGcKJauRI7ENhKC2FQAOOmdyCYSrUh0GnwLsZNYqwilpMmplN+3nO3zso8CWUgu33BDag==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -35,7 +37,7 @@
       <section class="design-work-gallery main-pad-lr">
         <div class="Container-wrapper">
           <div class="Container-flex-row">
-            <div class="design-work-gallery-filter Container-flex-row gap-10 u-justify-center">
+            <div class="design-work-gallery-filter Container-flex-row gap-10 u-justify-center" id="design-work-filter">
               <span class="design-work-filter-item active" data-filter="all">All</span>
               <span class="design-work-filter-item" data-filter="certificate">Certificate</span>
               <span class="design-work-filter-item" data-filter="brochure">Brochure</span>
@@ -45,128 +47,134 @@
               <span class="design-work-filter-item" data-filter="book">Book Cover</span>
             </div>
           </div>
-          <div class="Container-flex-row">
-            <div class="design-work-gallery-item cd">
-              <div class="design-work-gallery-item-inner">
+          <!-- <div id="design-work-gallery">
+              <a href="https://1.bp.blogspot.com/-pEh6HYKdNtc/YS_DSTsTrVI/AAAAAAAACbk/ND95Y8qxhPUQlUE0N38GNUx207fkzTR2QCNcBGAsYHQ/s0/headphone-2.jpg">
+                  <img src="https://1.bp.blogspot.com/-pEh6HYKdNtc/YS_DSTsTrVI/AAAAAAAACbk/ND95Y8qxhPUQlUE0N38GNUx207fkzTR2QCNcBGAsYHQ/s0/headphone-2.jpg" />
+              </a>
+              <a href="https://1.bp.blogspot.com/-wX4lusii0OE/YS_DC2BpADI/AAAAAAAACbA/tTGcB7QUQnshvW8hbEtf1-Nnj6dl3wSzgCNcBGAsYHQ/s0/phone-1.jpg">
+                  <img src="https://1.bp.blogspot.com/-wX4lusii0OE/YS_DC2BpADI/AAAAAAAACbA/tTGcB7QUQnshvW8hbEtf1-Nnj6dl3wSzgCNcBGAsYHQ/s0/phone-1.jpg" />
+              </a>
+          </div> -->
+          <div class="Container-flex-row" id="design-work-gallery">
+            <a href="../assets/images/design-work/cd_cover/big_data.png" class="design-work-gallery-item cd">
+              <div class="design-work-gallery-item-inner u-border-charcoal">
                 <img
                   src="../assets/images/design-work/cd_cover/big_data.png"
                   loading="lazy"
                   alt="cd">
               </div>
-            </div>
-            <div class="design-work-gallery-item certificate">
-              <div class="design-work-gallery-item-inner">
+            </a>
+            <a href="../assets/images/design-work/certificate/big_data_organizer.JPG" class="design-work-gallery-item certificate">
+              <div class="design-work-gallery-item-inner u-border-charcoal">
                 <img
                   src="../assets/images/design-work/certificate/big_data_organizer.JPG"
                   loading="lazy"
                   alt="certificate">
               </div>
-            </div>
-            <div class="design-work-gallery-item certificate">
-              <div class="design-work-gallery-item-inner">
+            </a>
+            <a href="../assets/images/design-work/certificate/big_data_participant.jpg" class="design-work-gallery-item certificate">
+              <div class="design-work-gallery-item-inner u-border-charcoal">
                 <img
                   src="../assets/images/design-work/certificate/big_data_participant.jpg"
                   loading="lazy"
                   alt="certificate">
               </div>
-            </div>
-            <div class="design-work-gallery-item certificate">
-              <div class="design-work-gallery-item-inner">
+            </a>
+            <a href="../assets/images/design-work/certificate/big_data_speakers.jpg" class="design-work-gallery-item certificate">
+              <div class="design-work-gallery-item-inner u-border-charcoal">
                 <img
                   src="../assets/images/design-work/certificate/big_data_speakers.jpg"
                   loading="lazy"
                   alt="certificate">
               </div>
-            </div>
-            <div class="design-work-gallery-item certificate">
-              <div class="design-work-gallery-item-inner">
+            </a>
+            <!-- <a href="" class="design-work-gallery-item certificate">
+              <div class="design-work-gallery-item-inner u-border-charcoal">
                 <img
                   src="../assets/images/design-work/certificate/big_data_winners.jpg"
                   loading="lazy"
                   alt="certificate">
               </div>
-            </div>
-            <div class="design-work-gallery-item banner">
-              <div class="design-work-gallery-item-inner">
+            </a>
+            <a href="" class="design-work-gallery-item banner">
+              <div class="design-work-gallery-item-inner u-border-charcoal">
                 <img
                   src="../assets/images/design-work/banner/big_data.jpg"
                   loading="lazy"
                   alt="banner">
               </div>
-            </div>
-            <div class="design-work-gallery-item brochure">
-              <div class="design-work-gallery-item-inner">
+            </a>
+            <a href="" class="design-work-gallery-item brochure">
+              <div class="design-work-gallery-item-inner u-border-charcoal">
                 <img
                   src="../assets/images/design-work/brochure/big_data_front.jpg"
                   loading="lazy"
                   alt="brochure">
               </div>
-            </div>
-            <div class="design-work-gallery-item brochure">
-              <div class="design-work-gallery-item-inner">
+            </a>
+            <a href="" class="design-work-gallery-item brochure">
+              <div class="design-work-gallery-item-inner u-border-charcoal">
                 <img
                   src="../assets/images/design-work/brochure/big_data_back.jpg"
                   loading="lazy"
                   alt="brochure">
               </div>
-            </div>
-            <div class="design-work-gallery-item certificate">
-              <div class="design-work-gallery-item-inner">
+            </a>
+            <a href="" class="design-work-gallery-item certificate">
+              <div class="design-work-gallery-item-inner u-border-charcoal">
                 <img
                   src="https://1.bp.blogspot.com/-pEh6HYKdNtc/YS_DSTsTrVI/AAAAAAAACbk/ND95Y8qxhPUQlUE0N38GNUx207fkzTR2QCNcBGAsYHQ/s0/headphone-2.jpg"
                   loading="lazy"
                   alt="certificate">
               </div>
-            </div>
-            <div class="design-work-gallery-item banner">
-              <div class="design-work-gallery-item-inner">
+            </a>
+            <a href="" class="design-work-gallery-item banner">
+              <div class="design-work-gallery-item-inner u-border-charcoal">
                 <img
                   src="https://1.bp.blogspot.com/--7JZU9HynIU/YS_DH53WPiI/AAAAAAAACbY/ivcZm6OVbTgSfc9JWX1OE4WwKmvhcY07wCNcBGAsYHQ/s0/camera-2.jpg"
                   loading="lazy"
                   alt="banner">
               </div>
-            </div>
-            <div class="design-work-gallery-item poster">
-              <div class="design-work-gallery-item-inner">
+            </a>
+            <a href="" class="design-work-gallery-item poster">
+              <div class="design-work-gallery-item-inner u-border-charcoal">
                 <img
                   src="https://1.bp.blogspot.com/-wX4lusii0OE/YS_DC2BpADI/AAAAAAAACbA/tTGcB7QUQnshvW8hbEtf1-Nnj6dl3wSzgCNcBGAsYHQ/s0/phone-1.jpg"
                   loading="lazy"
                   alt="poster">
               </div>
-            </div>
-
-            <div class="design-work-gallery-item banner">
-              <div class="design-work-gallery-item-inner">
+            </a>
+            <a href="" class="design-work-gallery-item banner">
+              <div class="design-work-gallery-item-inner u-border-charcoal">
                 <img
                   src="https://1.bp.blogspot.com/-12xO4l2QXGM/YS_DDwhwSYI/AAAAAAAACbI/OyLyIX89tnwmpwxcYoVED-x8uRWq56TawCNcBGAsYHQ/s0/camera-3.jpg"
                   loading="lazy"
                   alt="banner">
               </div>
-            </div>
-
-            <div class="design-work-gallery-item book">
-              <div class="design-work-gallery-item-inner">
+            </a>
+            <a href="" class="design-work-gallery-item book">
+              <div class="design-work-gallery-item-inner u-border-charcoal">
                 <img
                   src="https://1.bp.blogspot.com/-rAOuebpUc6E/YS_C1gP9q2I/AAAAAAAACa4/emX-5ZEz-MUeUr11_iaj_BkEYbs-FH8kQCNcBGAsYHQ/s0/watch-1.jpg"
                   loading="lazy"
                   alt="book">
               </div>
-            </div>
-
-            <div class="design-work-gallery-item book">
-              <div class="design-work-gallery-item-inner">
+            </a>
+            <a href="" class="design-work-gallery-item book">
+              <div class="design-work-gallery-item-inner u-border-charcoal">
                 <img
                   src="https://1.bp.blogspot.com/-sBZvlxLrXL8/YS_DDZdTaJI/AAAAAAAACbE/RKImX4fKJIs7NJV_SAj1bIGYjx1-acB8wCNcBGAsYHQ/s0/watch-2.jpg"
                   loading="lazy"
                   alt="book">
               </div>
-            </div>
+            </a> -->
           </div>
         </div>
       </section>
     </main>
     <include src="../partials/footer.html"/>
   </div>
+  <!-- <script src="../javascripts/design-work.js"></script> -->
 </body>
 
 </html>

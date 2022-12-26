@@ -66,6 +66,7 @@
     "figlet": "^1.2.3",
     "ftp-deploy": "^2.4.1",
     "jquery": "^3.6.0",
+    "lightgallery": "^2.7.0",
     "normalize.css": "^8.0.1",
     "reset-css": "^5.0.1",
     "sanitize.css": "^12.0.0",

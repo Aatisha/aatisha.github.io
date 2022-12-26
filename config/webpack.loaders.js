@@ -59,6 +59,16 @@ const html = {
     {
       loader: "html-loader",
       options: {
+        attributes: {
+          list: [
+            '...',
+            {
+              tag: 'a',
+              attribute: 'href',
+              type: 'src'
+            }
+          ]
+        },
         preprocessor: processHtmlLoader
       },
     },
