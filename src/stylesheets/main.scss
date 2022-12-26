@@ -740,8 +740,6 @@ html {
 }
 
 .Home .Container-text h5,
-.CaseStudy .Container-text h5,
-#CaseStudy--mindbrush .Container-text h5,
 .About .Container-text h5 {
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -816,6 +814,7 @@ html {
   -o-transition: all 0.65s !important;
   transition: all 0.65s !important;
   display: block;
+  object-fit: cover;
 }
 
 .Container--AboutMe {
@@ -1691,6 +1690,8 @@ footer {
 // Downlaod btn animationactive
 #resume-btn-download {
   -webkit-tap-highlight-color: transparent;
+  color: $primary;
+  font-weight: 500;
 
   &:hover {
     background: rgba(34, 50, 84, 0.03);
@@ -2771,7 +2772,7 @@ footer {
 
 .btn-primary {
   display: inline-flex;
-  padding: 12px 20px;
+  padding: 10px 20px;
   border-radius: 50px;
   color: #000;
   border: 1px solid #000;

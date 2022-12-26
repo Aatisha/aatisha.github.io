@@ -56,7 +56,7 @@ export const BLOG_SLIDE_TEMPLATE = `<div class="blog-slider__item swiper-slide">
   </div>
   <div class="blog-slider__text">{blogContent}</div>
   <div class="u-displayFlex u-alignItems-center u-justify-end">
-    <a href="{blogUrl}" target="_blank" class="blog-slider__button btn-primary">READ MORE</a>
+    <a href="{blogUrl}" target="_blank" class="blog-slider__button btn-primary">Read more</a>
   </div>
 </div>
 </div>`;

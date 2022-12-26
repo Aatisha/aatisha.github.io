@@ -149,27 +149,6 @@ const less = {
   ],
 };
 
-// Image loaders
-const imageLoader = {
-  loader: "image-webpack-loader",
-  options: {
-    bypassOnDebug: true,
-    gifsicle: {
-      interlaced: false,
-    },
-    optipng: {
-      optimizationLevel: 7,
-    },
-    pngquant: {
-      quality: "65-90",
-      speed: 4,
-    },
-    mozjpeg: {
-      progressive: true,
-    },
-  },
-};
-
 const images = {
   test: /\.(gif|png|jpe?g|webp|svg|pdf)$/i,
   exclude: /assets\/fonts/,
@@ -181,6 +160,25 @@ const images = {
         name: '[path][name].[hash].[ext]'
       },
     },
+    {
+      loader: "image-webpack-loader",
+      options: {
+        bypassOnDebug: true,
+        gifsicle: {
+          interlaced: false,
+        },
+        optipng: {
+          optimizationLevel: 7,
+        },
+        pngquant: {
+          quality: "65-90",
+          speed: 4,
+        },
+        mozjpeg: {
+          progressive: true,
+        },
+      },
+    }
   ],
 };
 
