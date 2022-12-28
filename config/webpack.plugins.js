@@ -140,7 +140,7 @@ module.exports = [
   clean,
   stylelint,
   cssExtract,
-  purifyCss,
+  // purifyCss,
   ...generateHTMLPlugins(),
   fs.existsSync(config.favicon) && favicons,
   config.env === 'production' && optimizeCss,
