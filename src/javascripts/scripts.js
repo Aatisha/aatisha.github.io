@@ -3,6 +3,7 @@ import {
   removeContentByIdAfter, stringInject, removeTags, getFirstNWords,
 } from './utilities';
 import './design-work';
+import './contact';
 import { BlogTemplateProperties, BLOG_SLIDE_TEMPLATE, MEDIUM_USERNAME } from './constant';
 
 function reveal() {

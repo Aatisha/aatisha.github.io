@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <include src="../partials/head.html"/>
+</head>
+
+<body>
+  <include src="../partials/preloader.html"/>
+  <div id="body-content">
+    <include src="../partials/navbar.html"/>
+    <main class="Contact">
+      <section class="hero-contact main-pad-lr u-paddingV50 page-top">
+        <div class="page-heading">
+          Contact
+        </div>
+        <div class="custom-shape-divider-bottom-1670576129">
+          <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M741,116.23C291,117.43,0,27.57,0,6V120H1200V6C1200,27.93,1186.4,119.83,741,116.23Z"
+              class="shape-fill"></path>
+          </svg>
+        </div>
+      </section>
+      <section class="main-pad-lr u-marginV150">
+        <div class="Container-wrapper">
+          <h1 class="u-fontWeight-bold u-marginB50 u-textCenter">Let's talk about everything design!</h1>
+          <div class="Container-flex gap-50 u-marginV150">
+            <div class="u-flex1 u-displayFlex u-alignItems-center u-justify-center u-flex-col">
+              <img class="u-width100" src="../assets/images/contact/contact-illustration.svg"
+                alt="cotact illustration"/>
+              <ul class="social-wrapper">
+                <li class="icon linkedin">
+                  <span class="tooltip">LinkedIn</span>
+                  <span>
+                    <a href="https://www.linkedin.com/in/aatisha-cyrill/" target="_blank">
+                      <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                  </span>
+                </li>
+                <li class="icon github">
+                  <span class="tooltip">Github</span>
+                  <span>
+                    <a href="https://github.com/Aatisha" target="_blank">
+                      <i class="fa-brands fa-github"></i>
+                    </a>
+                  </span>
+                </li>
+                <li class="icon medium">
+                  <span class="tooltip">Medium</span>
+                  <span>
+                    <a href="https://medium.com/@cyrillaatisha" target="_blank">
+                      <i class="fa-brands fa-medium"></i>
+                    </a>
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <div class="u-flex1  u-marginV50">
+              <form id="contact-form" class="gform u-width100" method="post"
+                action="https://script.google.com/macros/s/AKfycbwwu8AaZvlQ25X_n6AiqTsTCmaSEHOQJKMayUkJLsKK0PbJjoLiiXRkAwKQ5laFpFcq/exec">
+                <div class="form-elements">
+                  <label for="name">Name</label>
+                  <input type="text" id="name" name="name" placeholder="Your Name" required>
+                  <label for="email">Email</label>
+                  <input type="email" id="email" name="email" placeholder="Your Email" required>
+                  <label for="message">Message</label>
+                  <textarea rows="6" placeholder="Your Message" id="message" name="message" required></textarea>
+                  <div class="honeypot">
+                    <label for="honeypot">To help avoid spam, utilize a Honeypot technique with a hidden text field;must be empty to submit the form! Otherwise, we assume the user is a spam bot.</label>
+                    <input id="honeypot" type="text" name="honeypot" value=""/>
+                  </div>
+
+                  <button type="submit" class="btn-primary">Send</button>
+                </div>
+
+                <!-- Customise the Thankyou Message People See when they submit the form: -->
+                <div class="thankyou_message" style="display:none;">
+                  <i class="fa-solid fa-envelope-circle-check"></i>
+                  <h2 class="u-fontWeight-black">Thank you for contacting! </h2>
+                  <h3 class="u-marginT20 u-fontWeight-medium">
+                    I will get back to you soon!
+                  </h3>
+                </div>
+              </form>
+              <!-- <form class="gform" method="POST"
+                action="https://script.google.com/macros/s/AKfycbwwu8AaZvlQ25X_n6AiqTsTCmaSEHOQJKMayUkJLsKK0PbJjoLiiXRkAwKQ5laFpFcq/exec">
+                <div class="form-elements">
+                  <fieldset class="pure-group">
+                    <label for="name">Name: </label>
+                    <input id="name" name="name" placeholder="What your Mom calls you"/>
+                  </fieldset>
+
+                  <fieldset class="pure-group">
+                    <label for="message">Message: </label>
+                    <textarea id="message" name="message" rows="10"
+                      placeholder="Tell us what's on your mind..."></textarea>
+                  </fieldset>
+
+                  <fieldset class="pure-group">
+                    <label for="email"><em>Your</em> Email Address:</label>
+                    <input id="email" name="email" type="email" value="" required placeholder="your.name@email.com"/>
+                  </fieldset>
+
+                  <fieldset class="pure-group">
+                    <label for="color">Favourite Color: </label>
+                    <input id="color" name="color" placeholder="green"/>
+                  </fieldset>
+
+                  <fieldset class="pure-group honeypot-field">
+                    <label for="honeypot">To help avoid spam, utilize a Honeypot technique with a hidden text field;
+                      must be
+                      empty to submit the form! Otherwise, we assume the user is a spam bot.</label>
+                    <input id="honeypot" type="text" name="honeypot" value=""/>
+                  </fieldset>
+
+                  <button class="button-success pure-button button-xlarge">
+                    <i class="fa fa-paper-plane"></i>&nbsp;Send</button>
+                </div>
+                <div class="thankyou_message" style="display:none;">
+                  <h2><em>Thanks</em> for contacting us!
+                    We will get back to you soon!</h2>
+                </div>
+
+              </form> -->
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <include src="../partials/footer.html"/>
+  </div>
+</body>
+
+</html>
