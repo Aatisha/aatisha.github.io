@@ -22,14 +22,6 @@ body {
   }
 }
 
-a {
-  color: #111;
-  text-decoration: none;
-  -webkit-transition: all 0.25s;
-  -o-transition: all 0.25s;
-  transition: all 0.25s;
-}
-
 b {
   font-weight: 700 !important;
 }
@@ -1659,7 +1651,7 @@ footer {
 
 .fill::before {
   content: "";
-  border: 1px solid black;
+  border: 1px solid $primary;
   background-color: transparent;
   width: 100%;
   z-index: 0;
@@ -1922,7 +1914,6 @@ footer {
 
       @media screen and (max-width: 768px) {
         margin-top: -80px;
-        text-align: center;
         padding: 0 30px;
       }
 
@@ -2301,7 +2292,7 @@ footer {
     &__title {
       font-size: 24px;
       font-weight: 700;
-      color: #0d0925;
+      color: $black;
       margin-bottom: 20px;
       display: -webkit-box;
       -webkit-line-clamp: 1;
@@ -2310,7 +2301,7 @@ footer {
     }
 
     &__text {
-      color: #4e4a67;
+      color: $black;
       margin-bottom: 30px;
       margin-top: 20px;
       line-height: 1.5em;
@@ -2320,6 +2311,7 @@ footer {
       overflow: hidden;
       text-align: justify;
       font-size: 1.1rem;
+      text-overflow: ellipsis;
     }
 
     &__button {
@@ -2715,9 +2707,9 @@ footer {
       position: absolute;
       top: -50%;
       left: -50%;
-      height: 200vw;
-      width: 200vw;
-      animation: rotate 300s linear infinite;
+      height: 500vw;
+      width: 500vw;
+      animation: rotate 1000s linear infinite;
     }
   }
 
@@ -2746,8 +2738,8 @@ footer {
     &::before {
       content: '';
       position: absolute;
-      height: 10000vw;
-      width: 1000vw;
+      height: 700vw;
+      width: 700vw;
       top: -50%;
       left: -50%;
       background-color: #edfcf6;
@@ -2755,7 +2747,7 @@ footer {
       background-image: linear-gradient(30deg, #99bbad 12%, transparent 12.5%, transparent 87%, #99bbad 87.5%, #99bbad), linear-gradient(150deg, #99bbad 12%, transparent 12.5%, transparent 87%, #99bbad 87.5%, #99bbad), linear-gradient(30deg, #99bbad 12%, transparent 12.5%, transparent 87%, #99bbad 87.5%, #99bbad), linear-gradient(150deg, #99bbad 12%, transparent 12.5%, transparent 87%, #99bbad 87.5%, #99bbad), linear-gradient(60deg, #99bbad77 25%, transparent 25.5%, transparent 75%, #99bbad77 75%, #99bbad77), linear-gradient(60deg, #99bbad77 25%, transparent 25.5%, transparent 75%, #99bbad77 75%, #99bbad77);
       background-size: 24px 42px;
       background-position: 0 0, 0 0, 12px 21px, 12px 21px, 0 0, 12px 21px;
-      animation: rotate 60000s linear infinite;
+      animation: rotate 1500s linear infinite;
     }
   }
 
@@ -2773,7 +2765,7 @@ footer {
 // Design Work
 .project-design-work {
   .project-bg {
-    background-color: $literati_women;
+    background-color: $design_work;
   }
 
   .hero-project-img {
@@ -2817,8 +2809,8 @@ footer {
   display: inline-flex;
   padding: 10px 20px;
   border-radius: 50px;
-  color: #000;
-  border: 1px solid #000;
+  color: $primary;
+  border: 1px solid $primary;
   margin-top: 20px;
   text-decoration: none;
   font-weight: 400;
@@ -2826,6 +2818,41 @@ footer {
   text-align: center;
   letter-spacing: 1px;
   cursor: pointer;
+
+  &:hover {
+    color: white;
+    background: $primary;
+    border-color: white;
+    transition: all 0.2s linear;
+  }
+}
+
+// link style
+a {
+  color: #111;
+  text-decoration: none;
+  -webkit-transition: all 0.25s;
+  -o-transition: all 0.25s;
+  transition: all 0.25s;
+
+  &.link-style {
+    text-decoration: none;
+    border-bottom: 0.025em solid $secondary;
+    box-shadow: inset 0 -0.125em 0 $secondary;
+    transition: box-shadow 270ms cubic-bezier(0.77, 0, 0.175, 1), color 270ms cubic-bezier(0.77, 0, 0.175, 1);
+
+    &:hover {
+      box-shadow: inset 0 -1.125em 0 $secondary;
+      color: $black;
+    }
+
+    &:focus {
+      outline: none;
+      background: $secondary;
+      color: white;
+      box-shadow: 8px 8px 24px rgba(0, 0, 0, 0.2);
+    }
+  }
 }
 
 figure {

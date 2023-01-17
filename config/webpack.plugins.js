@@ -63,7 +63,7 @@ const generateHTMLPlugins = () => glob.sync(`./${config.paths.src}/**/*.html`, {
   if (filename !== '404.html') {
     paths.push(filename);
   }
-  console.log(path.join(config.root, config.paths.src, filename), 'Pluginnn');
+  // console.log(path.join(config.root, config.paths.src, filename), 'Pluginnn');
   return new HTMLWebpackPlugin({
     filename,
     template: path.join(config.root, config.paths.src, filename),

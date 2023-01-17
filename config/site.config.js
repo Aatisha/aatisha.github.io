@@ -15,7 +15,7 @@ const config = {
   site_description: 'A personal web portfolio',
 
   // Your website's URL, used for sitemap
-  site_url: 'https://aatishacyrill.com',
+  site_url: 'https://aatisha.github.io',
 
   // Google Analytics tracking ID (leave blank to disable)
   googleAnalyticsUA: '',

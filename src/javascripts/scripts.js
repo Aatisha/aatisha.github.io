@@ -3,6 +3,8 @@ import {
   removeContentByIdAfter, stringInject, removeTags, getFirstNWords,
 } from './utilities';
 import './design-work';
+import './online-assessment';
+import './deal-management';
 import './contact';
 import { BlogTemplateProperties, BLOG_SLIDE_TEMPLATE, MEDIUM_USERNAME } from './constant';
 
