@@ -174,11 +174,12 @@ function designWorkGallery() {
 
 window.onload = async () => {
   const bodyContent = disableBodyContent();
+  preloader(bodyContent);
   if (window.location.pathname === '/') {
     const response = await fetchMediumBlogs().catch((error) => {
       // eslint-disable-next-line no-console
       console.error(error);
-      preloader(bodyContent);
+      // preloader(bodyContent);
     });
     if (response) {
       addBlogDetailsToDom(response);
@@ -188,5 +189,4 @@ window.onload = async () => {
   if (window.location.pathname.includes('design-work')) {
     designWorkGallery();
   }
-  preloader(bodyContent);
 };
