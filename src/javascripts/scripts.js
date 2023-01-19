@@ -6,6 +6,7 @@ import './design-work';
 import './online-assessment';
 import './deal-management';
 import './literati-women';
+import './ux-research';
 import './contact';
 import { BlogTemplateProperties, BLOG_SLIDE_TEMPLATE, MEDIUM_USERNAME } from './constant';
 

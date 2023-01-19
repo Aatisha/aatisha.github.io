@@ -96,7 +96,7 @@
 }
 
 .u-flex1-25 {
-  flex: 1.5;
+  flex: 1.25;
 }
 
 .u-flex2 {
@@ -158,6 +158,10 @@
 /**
 ----- COLORS -----
 **/
+
+.u-transparent {
+  color: transparent;
+}
 
 /** Background Colors **/
 
@@ -1102,4 +1106,8 @@
   .u-paddingV125 {
     padding: 60px 0;
   }
+}
+
+.u-separator {
+  border-bottom: 1px solid #e5e5e5;
 }
