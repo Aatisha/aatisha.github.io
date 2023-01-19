@@ -56,6 +56,16 @@
   }
 }
 
+@keyframes diagonal-right-bottom {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(100px, 100px);
+  }
+}
+
 @keyframes fadeIn {
   0% {
     opacity: 0;

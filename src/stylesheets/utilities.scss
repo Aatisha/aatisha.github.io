@@ -1015,7 +1015,7 @@
   width: 55%;
 }
 
-.u-width60 {
+.u-width60-stretch-mob {
   width: 60%;
 }
 
@@ -1031,7 +1031,7 @@
   width: 75%;
 }
 
-.u-width80 {
+.u-width80-stretch-mob {
   width: 80%;
 }
 
@@ -1105,6 +1105,17 @@
 
   .u-paddingV125 {
     padding: 60px 0;
+  }
+
+  .u-width60-stretch-mob {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .u-width60-stretch-mob,
+  .u-width80-stretch-mob {
+    width: 100%;
   }
 }
 
