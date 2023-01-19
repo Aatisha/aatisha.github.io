@@ -2837,24 +2837,6 @@ footer {
   .feature-boxes {
     .feature-box-wrap {
       .feature-box {
-        .custom-tailor-bullet {
-          padding: 0;
-
-          li {
-            list-style: none;
-            position: relative;
-          }
-
-          li::before {
-            content: url('../assets/images/ux-research/wool-bullet.png');
-            display: inline-block;
-            left: -48px;
-            top: -21px;
-            position: absolute;
-            transform: scale(0.3);
-          }
-        }
-
         i {
           color: #df883f;
         }
