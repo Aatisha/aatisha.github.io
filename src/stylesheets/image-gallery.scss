@@ -1,0 +1,80 @@
+@import "./_variable.scss";
+
+.image-gallery {
+  transition: 0.3s;
+  column-gap: 0.5em;
+  -moz-column-count: 5;
+  -webkit-column-count: 5;
+  column-count: 5;
+
+  .image-gallery-item {
+    margin: 0 0 0.25em;
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  &:hover &__image {
+    filter: grayscale(1);
+  }
+
+  &__link {
+    overflow: hidden;
+
+    &:hover {
+      .image-gallery__image {
+        filter: grayscale(0);
+      }
+
+      .image-gallery__caption {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__thumb {
+    position: relative;
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    transition: 0.3s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .image-gallery {
+    -moz-column-count: 4;
+    -webkit-column-count: 4;
+    column-count: 4;
+  }
+}
+
+@media (max-width: 1000px) {
+  .image-gallery {
+    -moz-column-count: 3;
+    -webkit-column-count: 3;
+    column-count: 3;
+  }
+}
+
+@media (max-width: 800px) {
+  .image-gallery {
+    -moz-column-count: 2;
+    -webkit-column-count: 2;
+    column-count: 2;
+  }
+}
+
+@media (max-width: 400px) {
+  .image-gallery {
+    -moz-column-count: 1;
+    -webkit-column-count: 1;
+    column-count: 1;
+  }
+}

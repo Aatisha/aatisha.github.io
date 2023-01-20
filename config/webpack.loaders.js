@@ -170,7 +170,7 @@ const imageCompress = {
 };
 
 const images = {
-  test: /\.(gif|png|jpe?g|webp|svg|pdf)$/i,
+  test: /\.(gif|png|jpe?g|webp|svg|pdf|HEIC)$/i,
   exclude: /assets\/fonts/,
   use: [
     {

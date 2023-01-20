@@ -7,6 +7,7 @@ import './online-assessment';
 import './deal-management';
 import './literati-women';
 import './ux-research';
+import './image-gallery';
 import './contact';
 import { BlogTemplateProperties, BLOG_SLIDE_TEMPLATE, MEDIUM_USERNAME } from './constant';
 
@@ -127,7 +128,7 @@ function disableBodyContent() {
 }
 
 function preloader(bodyContent) {
-  removeContentByIdAfter('pre-loader', 200, () => {
+  removeContentByIdAfter('pre-loader', 500, () => {
     // eslint-disable-next-line no-param-reassign
     bodyContent.style.display = 'block';
     // nav activate
