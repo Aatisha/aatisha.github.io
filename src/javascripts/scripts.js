@@ -39,11 +39,13 @@ function switchNavigation() {
 }
 
 function updateActiveNavigation() {
-  const currentPath = window.location.href;
+  let currentPath = window.location.href;
+  if (currentPath.at(-1) === '/') {
+    currentPath = currentPath.slice(0, -1);
+  }
   const navLinks = document
     .getElementById('nav-links')
     .getElementsByTagName('a');
-  console.log(currentPath, navLinks);
   Array.from(navLinks).forEach((link) => {
     if (link.href === currentPath) {
       link.classList.add('active');
