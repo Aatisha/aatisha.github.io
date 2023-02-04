@@ -52,3 +52,17 @@ export function returnWordList(strValue) {
 export function getFirstNWords(str, number) {
   return returnWordList(str).splice(0, number);
 }
+
+function removeTrailingSlash(url) {
+  if (url && url.length > 1 && url.at(-1) === '/') {
+    return url.slice(0, -1);
+  }
+  return url;
+}
+
+export function isEqualURLs(url1, url2) {
+  return (
+    url1 && url2
+    && removeTrailingSlash(new URL(url1).pathname) === removeTrailingSlash(new URL(url2).pathname)
+  );
+}

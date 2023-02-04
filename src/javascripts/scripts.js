@@ -1,6 +1,6 @@
 import Swiper from 'swiper';
 import {
-  removeContentByIdAfter, stringInject, removeTags, getFirstNWords,
+  removeContentByIdAfter, stringInject, removeTags, getFirstNWords, isEqualURLs,
 } from './utilities';
 import './design-work';
 import './online-assessment';
@@ -40,26 +40,18 @@ function switchNavigation() {
 }
 
 function updateActiveNavigation() {
-  const currentPath = window.location.href;
+  const currentURL = window.location.href;
   const navLinks = document
     .getElementById('nav-links')
     .getElementsByTagName('a');
   Array.from(navLinks).forEach((link) => {
-    if (link.href === currentPath) {
+    if (isEqualURLs(link.href, currentURL)) {
       link.classList.add('active');
     } else {
       link.classList.remove('active');
     }
   });
 }
-
-document.getElementById('nav-contact').addEventListener('click', () => {
-  setTimeout(() => {
-    updateActiveNavigation();
-    document.getElementById('nav-hamburger').className = '';
-    document.getElementById('nav-links').className = '';
-  }, 0);
-});
 
 if (window.location.pathname === '/' || window.location.pathname === 'about') {
   const resumeDownloadBtn = document.getElementById('resume-btn-download');
