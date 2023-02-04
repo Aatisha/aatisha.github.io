@@ -43,6 +43,7 @@ function updateActiveNavigation() {
   const navLinks = document
     .getElementById('nav-links')
     .getElementsByTagName('a');
+  console.log(currentPath, navLinks);
   Array.from(navLinks).forEach((link) => {
     if (link.href === currentPath) {
       link.classList.add('active');
@@ -51,14 +52,6 @@ function updateActiveNavigation() {
     }
   });
 }
-
-document.getElementById('nav-contact').addEventListener('click', () => {
-  setTimeout(() => {
-    updateActiveNavigation();
-    document.getElementById('nav-hamburger').className = '';
-    document.getElementById('nav-links').className = '';
-  }, 0);
-});
 
 if (window.location.pathname === '/' || window.location.pathname === 'about') {
   const resumeDownloadBtn = document.getElementById('resume-btn-download');
