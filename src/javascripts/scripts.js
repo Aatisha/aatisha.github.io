@@ -1,6 +1,6 @@
 import Swiper from 'swiper';
 import {
-  removeContentByIdAfter, stringInject, removeTags, getFirstNWords,
+  removeContentByIdAfter, stringInject, removeTags, getFirstNWords, isEqualURLs,
 } from './utilities';
 import './design-work';
 import './online-assessment';
@@ -39,15 +39,12 @@ function switchNavigation() {
 }
 
 function updateActiveNavigation() {
-  let currentPath = window.location.href;
-  if (currentPath.at(-1) === '/') {
-    currentPath = currentPath.slice(0, -1);
-  }
+  const currentURL = window.location.href;
   const navLinks = document
     .getElementById('nav-links')
     .getElementsByTagName('a');
   Array.from(navLinks).forEach((link) => {
-    if (link.href === currentPath) {
+    if (isEqualURLs(link.href, currentURL)) {
       link.classList.add('active');
     } else {
       link.classList.remove('active');
