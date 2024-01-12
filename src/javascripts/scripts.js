@@ -119,7 +119,7 @@ function disableBodyContent() {
 }
 
 function preloader(bodyContent) {
-  removeContentByIdAfter('pre-loader', 200, () => {
+  removeContentByIdAfter('pre-loader', 500, () => {
     // eslint-disable-next-line no-param-reassign
     bodyContent.style.display = 'block';
     // nav activate
