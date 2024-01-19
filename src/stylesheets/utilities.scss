@@ -91,6 +91,16 @@
   flex: 1;
 }
 
+.u-flex50p {
+  flex: 0 0 calc(50% - 25px);
+}
+
+@media (max-width: 650px) {
+  .u-flex50p {
+    flex: 0 0 100%;
+  }
+}
+
 .u-flex1-5 {
   flex: 1.5;
 }

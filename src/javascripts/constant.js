@@ -62,6 +62,7 @@ export const BLOG_SLIDE_TEMPLATE = `<div class="blog-slider__item swiper-slide">
 </div>`;
 
 export const MEDIUM_USERNAME = '@cyrillaatisha';
+export const STARRED_BLOG_ID = '17befb37e735';
 
 export class BlogTemplateProperties {
   constructor(blogImage, blogImageAlt, blogTitle, datePublished, clapCount,

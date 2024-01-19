@@ -8,7 +8,9 @@ import './deal-management';
 import './literati-women';
 import './ux-research';
 import './contact';
-import { BlogTemplateProperties, BLOG_SLIDE_TEMPLATE, MEDIUM_USERNAME } from './constant';
+import {
+  BlogTemplateProperties, BLOG_SLIDE_TEMPLATE, MEDIUM_USERNAME, STARRED_BLOG_ID,
+} from './constant';
 
 function reveal() {
   const reveals = document.querySelectorAll('.reveal');
@@ -90,10 +92,20 @@ function instantiateSwiper() {
   });
 }
 
+function customBlogSort(a, b) {
+  // Keep the object with the specific ID at the first position
+  if (a.guid.includes(STARRED_BLOG_ID)) return -1;
+  if (b.guid.includes(STARRED_BLOG_ID)) return 1;
+
+  // Sort by pubDate for other objects
+  return new Date(b.pubDate) - new Date(a.pubDate);
+}
+
 function addBlogDetailsToDom(blogDetails) {
   const blogSection = document.getElementById('blog-section');
   const blogWrapper = document.getElementById('blog-wrapper');
   let blogSlideContent = '';
+  blogDetails.items.sort(customBlogSort);
   blogDetails.items.forEach((item, index) => {
     const {
       thumbnail, title, pubDate, guid, stats, content, link,
