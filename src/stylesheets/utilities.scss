@@ -91,6 +91,16 @@
   flex: 1;
 }
 
+.u-flex50p {
+  flex: 0 0 calc(50% - 25px);
+}
+
+@media (max-width: 650px) {
+  .u-flex50p {
+    flex: 0 0 100%;
+  }
+}
+
 .u-flex1-5 {
   flex: 1.5;
 }
@@ -576,6 +586,10 @@
 
 .u-fontSize-h3 {
   font-size: 2.5rem;
+}
+
+.u-fontSize-h3--alt {
+  font-size: 1.5rem;
 }
 
 .u-fontSize-h4 {
@@ -1121,4 +1135,20 @@
 
 .u-separator {
   border-bottom: 1px solid #e5e5e5;
+}
+
+.u-italics {
+  font-style: italic;
+}
+
+.u-color-primary {
+  color: $primary;
+}
+
+.u-color-secondary {
+  color: $secondary;
+}
+
+.u-bg-primary-alt {
+  background: $primary_alt;
 }
