@@ -2769,6 +2769,36 @@ footer {
   }
 }
 
+// Trader Joe's
+.project-trader-joes {
+  .project-bg {
+    background-color: $literati_women;
+  }
+
+  .hero-project-img {
+    background: url("../assets/images/trader-joes/grocery-store.jpg") no-repeat center center;
+  }
+
+  .hero-trader-joes {
+    &::before {
+      content: '';
+      position: absolute;
+      height: 700vw;
+      width: 700vw;
+      top: -50%;
+      left: -50%;
+      // opacity: 0.12;
+      background-color: #aad0e1;
+      opacity: 0.2;
+      background-image: linear-gradient(30deg, #6badcc 12%, transparent 12.5%, transparent 87%, #6badcc 87.5%, #6badcc), linear-gradient(150deg, #6badcc 12%, transparent 12.5%, transparent 87%, #6badcc 87.5%, #6badcc), linear-gradient(30deg, #6badcc 12%, transparent 12.5%, transparent 87%, #6badcc 87.5%, #6badcc), linear-gradient(150deg, #6badcc 12%, transparent 12.5%, transparent 87%, #6badcc 87.5%, #6badcc), linear-gradient(60deg, #6badcc77 25%, transparent 25.5%, transparent 75%, #6badcc77 75%, #6badcc77), linear-gradient(60deg, #6badcc77 25%, transparent 25.5%, transparent 75%, #6badcc77 75%, #6badcc77);
+      // background-image: linear-gradient(30deg, #99bbad 12%, transparent 12.5%, transparent 87%, #99bbad 87.5%, #99bbad), linear-gradient(150deg, #99bbad 12%, transparent 12.5%, transparent 87%, #99bbad 87.5%, #99bbad), linear-gradient(30deg, #99bbad 12%, transparent 12.5%, transparent 87%, #99bbad 87.5%, #99bbad), linear-gradient(150deg, #99bbad 12%, transparent 12.5%, transparent 87%, #99bbad 87.5%, #99bbad), linear-gradient(60deg, #99bbad77 25%, transparent 25.5%, transparent 75%, #99bbad77 75%, #99bbad77), linear-gradient(60deg, #99bbad77 25%, transparent 25.5%, transparent 75%, #99bbad77 75%, #99bbad77);
+      background-size: 24px 42px;
+      background-position: 0 0, 0 0, 12px 21px, 12px 21px, 0 0, 12px 21px;
+      animation: diagonal-right-bottom 20s linear infinite;
+    }
+  }
+}
+
 // Design Work
 .project-design-work {
   .project-bg {
