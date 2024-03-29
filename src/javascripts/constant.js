@@ -79,3 +79,60 @@ export class BlogTemplateProperties {
     this.blogContent = blogContent;
   }
 }
+
+export const URL_PATHS = {
+  home: '/',
+  about: '/about',
+  contact: '/contact',
+  deal_management: '/deal-management',
+  design_work: '/design-work',
+  literati_women: '/literati-women',
+  online_assessment: '/online-assessment',
+  plant_health: '/plant-health',
+  trader_joes: '/trader-joes',
+  ux_research: '/ux-research',
+};
+
+export const DESIGN_ARTICLE_NAVS = [
+  {
+    name: 'Trader Joe\'s - User Research Plan',
+    path: URL_PATHS.trader_joes,
+    class: 'trader_joes_color',
+  },
+  {
+    name: 'Literati Women',
+    path: URL_PATHS.literati_women,
+    class: 'literati_women_color',
+  },
+  {
+    name: 'UX Research',
+    path: URL_PATHS.ux_research,
+    class: 'ux_research_color',
+  },
+  {
+    name: 'University Design Work',
+    path: URL_PATHS.design_work,
+    class: 'design_work_color',
+  },
+];
+
+export const DEV_ARTICLE_NAVS = [
+  {
+    name: 'Online Assessment',
+    path: URL_PATHS.online_assessment,
+    class: 'online_assessment_color',
+  },
+  {
+    name: 'Plant health monitoring',
+    path: URL_PATHS.plant_health,
+    class: 'plant_health_color',
+  },
+  {
+    name: 'Deal management',
+    path: URL_PATHS.deal_management,
+    class: 'deal_management_color',
+  },
+];
+
+export const DESIGN_URLS = DESIGN_ARTICLE_NAVS.map((nav) => nav.path);
+export const DEV_URLS = DEV_ARTICLE_NAVS.map((nav) => nav.path);
