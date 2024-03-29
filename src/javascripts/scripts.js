@@ -1,7 +1,9 @@
 import Swiper from 'swiper';
 import {
   removeContentByIdAfter, stringInject, removeTags, getFirstNWords, isEqualURLs,
+  removeTrailingSlash, getAdjacentItems,
 } from './utilities';
+import './home';
 import './design-work';
 import './online-assessment';
 import './deal-management';
@@ -10,6 +12,7 @@ import './ux-research';
 import './contact';
 import {
   BlogTemplateProperties, BLOG_SLIDE_TEMPLATE, MEDIUM_USERNAME, STARRED_BLOG_ID,
+  DESIGN_URLS, DEV_URLS, DESIGN_ARTICLE_NAVS, DEV_ARTICLE_NAVS,
 } from './constant';
 
 function reveal() {
@@ -17,7 +20,7 @@ function reveal() {
   reveals.forEach((element) => {
     const windowheight = window.innerHeight;
     const revealTop = element.getBoundingClientRect().top;
-    const revealPoint = 100;
+    const revealPoint = 0;
 
     if (revealTop < windowheight - revealPoint) {
       element.classList.add('show-item');
@@ -177,6 +180,39 @@ function designWorkGallery() {
   });
 }
 
+function updateArticleNavigator(currentPath, navs) {
+  const articleNav = document.getElementById('article-nav');
+  if (articleNav) {
+    const { prev, next } = getAdjacentItems(currentPath, navs);
+
+    const prevArticle = document.getElementById('article-nav-previous');
+    prevArticle.innerHTML = prev.name;
+    prevArticle.classList.add(prev.class);
+    const prevArticleUrl = document.getElementById('article-nav-previous-url');
+    prevArticleUrl.setAttribute('href', prev.path);
+
+    const nextArticle = document.getElementById('article-nav-next');
+    nextArticle.innerHTML = next.name;
+    nextArticle.classList.add(next.class);
+    const nextArticleUrl = document.getElementById('article-nav-next-url');
+    nextArticleUrl.setAttribute('href', next.path);
+
+    articleNav.style.display = 'block';
+  }
+}
+
+function adjustArticleNavigator() {
+  const currentPath = removeTrailingSlash(window.location.pathname);
+  if (currentPath) {
+    if (DESIGN_URLS.includes(currentPath)) {
+      updateArticleNavigator(currentPath, DESIGN_ARTICLE_NAVS);
+    }
+    if (DEV_URLS.includes(currentPath)) {
+      updateArticleNavigator(currentPath, DEV_ARTICLE_NAVS);
+    }
+  }
+}
+
 window.onload = async () => {
   const bodyContent = disableBodyContent();
   preloader(bodyContent);
@@ -193,5 +229,9 @@ window.onload = async () => {
 
   if (window.location.pathname.includes('design-work')) {
     designWorkGallery();
+  }
+
+  if (document.getElementById('article-nav')) {
+    adjustArticleNavigator();
   }
 };

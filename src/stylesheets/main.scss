@@ -2637,6 +2637,10 @@ footer {
   color: $trader_joes;
 }
 
+.sustainable_ux_color {
+  color: $sustainable_ux;
+}
+
 .ux_research_color {
   color: $ux_research;
 }
@@ -2800,6 +2804,33 @@ footer {
   }
 }
 
+// Sustainable UX
+.project-sustainable-ux {
+  .project-bg {
+    background-color: $sustainable_ux;
+  }
+
+  .hero-project-img {
+    background: url("../assets/images/sustainable-ux/hero.jpg") no-repeat center center;
+  }
+
+  .hero-sustainable-ux {
+    &::before {
+      content: '';
+      position: absolute;
+      height: 50vw;
+      width: 200vw;
+      top: -50%;
+      left: -50%;
+      background-color: #c0efbd;
+      opacity: 0.8;
+      background-image: repeating-radial-gradient(circle at 0 0, transparent 0, #c0efbd 9px), repeating-linear-gradient(#6aa96555, #6aa965);
+      // background-position: 0 0, 0 0, 12px 21px, 12px 21px, 0 0, 12px 21px;
+      animation: diagonal-right-bottom 20s linear infinite;
+    }
+  }
+}
+
 // Design Work
 .project-design-work {
   .project-bg {
@@ -2927,6 +2958,11 @@ footer {
     border-color: white;
     transition: all 0.2s linear;
   }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
 }
 
 // link style
@@ -3025,4 +3061,26 @@ ul {
     right: -5%;
     bottom: -88%;
   }
+}
+
+#article-nav {
+  display: none;
+}
+
+.other-work-card {
+  display: none;
+}
+
+.info-banner {
+  background-color: $secondary;
+  color: $white;
+  position: absolute;
+  display: flex;
+  top: 20px;
+  font-size: 1.2rem;
+  align-items: center;
+  padding: 5px 10px;
+  font-weight: 700;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }

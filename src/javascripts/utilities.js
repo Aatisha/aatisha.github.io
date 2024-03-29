@@ -53,7 +53,7 @@ export function getFirstNWords(str, number) {
   return returnWordList(str).splice(0, number);
 }
 
-function removeTrailingSlash(url) {
+export function removeTrailingSlash(url) {
   if (url && url.length > 1 && url.at(-1) === '/') {
     return url.slice(0, -1);
   }
@@ -65,4 +65,21 @@ export function isEqualURLs(url1, url2) {
     url1 && url2
     && removeTrailingSlash(new URL(url1).pathname) === removeTrailingSlash(new URL(url2).pathname)
   );
+}
+
+export function getAdjacentItems(path, arr) {
+  // Find the index of the item with the given path
+  const index = arr.findIndex((item) => item.path === path);
+
+  // If the item was not found, return null
+  if (index === -1) {
+    return null;
+  }
+
+  // Calculate the indices of the previous and next items
+  const prevIndex = (index - 1 + arr.length) % arr.length;
+  const nextIndex = (index + 1) % arr.length;
+
+  // Return the previous and next items
+  return { prev: arr[prevIndex], next: arr[nextIndex] };
 }
