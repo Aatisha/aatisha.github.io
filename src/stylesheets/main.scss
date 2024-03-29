@@ -2791,10 +2791,9 @@ footer {
       width: 700vw;
       top: -50%;
       left: -50%;
-      background-color: #f3b5c5;
-      opacity: 0.9;
-      background-image: repeating-radial-gradient(circle at 0 0, transparent 0, #f3b5c5 12px), repeating-linear-gradient(#d5547555, #d55475);
-      // background-size: 24px 42px;
+      background-color: #e6c6ce;
+      opacity: 0.8;
+      background-image: repeating-radial-gradient(circle at 0 0, transparent 0, #e6c6ce 10px), repeating-linear-gradient(#d593a355, #d593a3);      // background-size: 24px 42px;
       background-position: 0 0, 0 0, 12px 21px, 12px 21px, 0 0, 12px 21px;
       animation: diagonal-right-bottom 20s linear infinite;
     }
