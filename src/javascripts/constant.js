@@ -91,9 +91,15 @@ export const URL_PATHS = {
   plant_health: '/plant-health',
   trader_joes: '/trader-joes',
   ux_research: '/ux-research',
+  sustainable_ux: '/sustainable-ux',
 };
 
 export const DESIGN_ARTICLE_NAVS = [
+  {
+    name: 'UX for Sustainability',
+    path: URL_PATHS.sustainable_ux,
+    class: 'sustainable_ux_color',
+  },
   {
     name: 'Trader Joe\'s - User Research Plan',
     path: URL_PATHS.trader_joes,

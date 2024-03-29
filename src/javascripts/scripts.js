@@ -3,6 +3,7 @@ import {
   removeContentByIdAfter, stringInject, removeTags, getFirstNWords, isEqualURLs,
   removeTrailingSlash, getAdjacentItems,
 } from './utilities';
+import './home';
 import './design-work';
 import './online-assessment';
 import './deal-management';
@@ -19,7 +20,7 @@ function reveal() {
   reveals.forEach((element) => {
     const windowheight = window.innerHeight;
     const revealTop = element.getBoundingClientRect().top;
-    const revealPoint = 100;
+    const revealPoint = 0;
 
     if (revealTop < windowheight - revealPoint) {
       element.classList.add('show-item');
