@@ -2818,7 +2818,7 @@ footer {
     &::before {
       content: '';
       position: absolute;
-      height: 50vw;
+      height: 200vw;
       width: 200vw;
       top: -50%;
       left: -50%;
@@ -3083,4 +3083,32 @@ ul {
   font-weight: 700;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
+}
+
+.quote-blog {
+  blockquote {
+    background: whitesmoke;
+    padding: 80px 32px;
+    position: relative;
+  }
+
+  blockquote::before {
+    position: absolute;
+    content: '“';
+    font-family: "Georgia", serif;
+    font-size: 60px;
+    color: gray;
+    top: 0;
+    left: 16px;
+  }
+
+  blockquote::after {
+    position: absolute;
+    content: '”';
+    font-family: "Georgia", serif;
+    font-size: 60px;
+    color: gray;
+    bottom: -10px;
+    right: 16px;
+  }
 }
