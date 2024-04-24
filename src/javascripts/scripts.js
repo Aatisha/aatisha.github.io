@@ -10,6 +10,7 @@ import './deal-management';
 import './literati-women';
 import './ux-research';
 import './contact';
+import './sustainable-ux';
 import {
   BlogTemplateProperties, BLOG_SLIDE_TEMPLATE, MEDIUM_USERNAME, STARRED_BLOG_ID,
   DESIGN_URLS, DEV_URLS, DESIGN_ARTICLE_NAVS, DEV_ARTICLE_NAVS,
