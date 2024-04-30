@@ -96,7 +96,7 @@ export const URL_PATHS = {
 
 export const DESIGN_ARTICLE_NAVS = [
   {
-    name: 'UX for Sustainability',
+    name: 'App Design for Sustain Dane',
     path: URL_PATHS.sustainable_ux,
     class: 'sustainable_ux_color',
   },

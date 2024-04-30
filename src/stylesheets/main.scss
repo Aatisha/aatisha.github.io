@@ -2811,7 +2811,7 @@ footer {
   }
 
   .hero-project-img {
-    background: url("../assets/images/sustainable-ux/hero.jpg") no-repeat center center;
+    background: url("../assets/images/sustainable-ux/hero.png") no-repeat center center;
   }
 
   .hero-sustainable-ux {
@@ -3111,4 +3111,8 @@ ul {
     bottom: -10px;
     right: 16px;
   }
+}
+
+.u-object-fit-cover {
+  object-fit: cover;
 }
