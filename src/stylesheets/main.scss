@@ -257,62 +257,50 @@ html {
       position: relative;
       align-items: center;
 
-      .liquid-shape {
-        background: linear-gradient(35deg, $hero_img_back_shade_1 0%, $hero_img_back_shade_2 100%); // #fac722
-        width: 400px;
-        height: 400px;
-        position: absolute;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 10;
-      }
+      .hero-image-container {
+        position: relative;
 
-      .liquid-shape::before,
-      .liquid-shape::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        border-radius: $main-shape_border_radius;
-        box-shadow: 0 0 0 100px $hero_section_bg;
-        clip-path: inset(50% -10px -10px);
-
-        /* cut the top */
-        z-index: 10;
-        animation: $hero_img_back_animation;
-      }
-
-      .liquid-shape::after {
-        clip-path: inset(-10px -10px 50%);
-
-        /* cut the bottom */
-        z-index: -1;
-      }
-
-      @keyframes liquid {
-        0% {
-          border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-          background-size: 100% 100%;
+        .liquid-shape {
+          background: linear-gradient(35deg, $hero_img_back_shade_1 0%, $hero_img_back_shade_2 100%); // #fac722
+          width: 400px;
+          height: 400px;
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 10;
+          border-radius: $main-shape_border_radius;
+          animation: $hero_img_back_animation;
+          overflow: hidden;
         }
 
-        50% {
-          border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
-          background-size: 300% 150%;
+        @keyframes liquid {
+          0% {
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            background-size: 100% 100%;
+          }
+
+          50% {
+            border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+            background-size: 300% 150%;
+          }
+
+          100% {
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            background-size: 100% 100%;
+          }
         }
 
-        100% {
-          border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-          background-size: 100% 100%;
+        img {
+          height: 500px;
+          position: absolute;
+          top: -90px;
         }
-      }
 
-      img {
-        height: 500px;
-        position: absolute;
-        top: -90px;
+        .hero-img-replica {
+          clip-path: inset(0 0 50% 0);
+          z-index: 11;
+        }
       }
     }
   }
@@ -330,15 +318,16 @@ html {
       }
 
       .hero-image {
-        .liquid-shape {
-          width: 380px;
-          height: 380px;
-        }
+        .hero-image-container {
+          .liquid-shape {
+            width: 380px;
+            height: 380px;
+          }
 
-        img {
-          height: 460px;
-          position: absolute;
-          top: -72px;
+          img {
+            height: 460px;
+            top: -72px;
+          }
         }
       }
     }
@@ -357,15 +346,16 @@ html {
       }
 
       .hero-image {
-        .liquid-shape {
-          width: 350px;
-          height: 350px;
-        }
+        .hero-image-container {
+          .liquid-shape {
+            width: 350px;
+            height: 350px;
+          }
 
-        img {
-          height: 440px;
-          position: absolute;
-          top: -90px;
+          img {
+            height: 440px;
+            top: -90px;
+          }
         }
       }
     }
@@ -384,15 +374,16 @@ html {
       }
 
       .hero-image {
-        .liquid-shape {
-          width: 320px;
-          height: 320px;
-        }
+        .hero-image-container {
+          .liquid-shape {
+            width: 320px;
+            height: 320px;
+          }
 
-        img {
-          height: 400px;
-          position: absolute;
-          top: -70px;
+          img {
+            height: 400px;
+            top: -70px;
+          }
         }
       }
     }
@@ -411,22 +402,51 @@ html {
       }
 
       .hero-image {
-        .liquid-shape {
-          width: 300px;
-          height: 300px;
-        }
+        .hero-image-container {
+          .liquid-shape {
+            width: 300px;
+            height: 300px;
+          }
 
-        img {
-          height: 375px;
-          position: absolute;
-          top: -66px;
+          img {
+            height: 375px;
+            top: -66px;
+          }
         }
       }
     }
   }
 }
 
-@media screen and (max-width: 670px) {
+@media screen and (max-width: 720px) {
+  .hero-section {
+    .hero-wrapper {
+      .hero-textual-data {
+        margin-right: 60px;
+
+        h1 {
+          font-size: 4.7rem;
+        }
+      }
+
+      .hero-image {
+        .hero-image-container {
+          .liquid-shape {
+            width: 280px;
+            height: 280px;
+          }
+
+          img {
+            height: 350px;
+            top: -50px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 695px) {
   .hero-section {
     .hero-wrapper {
       .hero-textual-data {
@@ -437,27 +457,28 @@ html {
         background-image: none;
 
         h1 {
-          font-size: 4.7rem;
+          font-size: 4.55rem;
         }
       }
 
       .hero-image {
-        .liquid-shape {
-          width: 280px;
-          height: 280px;
-        }
+        .hero-image-container {
+          .liquid-shape {
+            width: 240px;
+            height: 240px;
+          }
 
-        img {
-          height: 330px;
-          position: absolute;
-          top: -40px;
+          img {
+            height: 325px;
+            top: -45px;
+          }
         }
       }
     }
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 620px) {
   .hero-section {
     padding: 50px 2rem;
 
@@ -479,22 +500,19 @@ html {
         display: block;
         z-index: 0;
         top: 100px;
-        right: 250px;
+        right: 0;
 
-        .liquid-shape {
-          width: 250px;
-          height: 250px;
-          border-radius: $main-shape_border_radius;
-          animation: $hero_img_back_animation;
-        }
+        .hero-image-container {
+          .liquid-shape {
+            width: 250px;
+            height: 250px;
+            border-radius: $main-shape_border_radius;
+            animation: $hero_img_back_animation;
+          }
 
-        .liquid-shape::before,
-        .liquid-shape::after {
-          content: none;
-        }
-
-        img {
-          display: none;
+          img {
+            display: none;
+          }
         }
       }
     }
