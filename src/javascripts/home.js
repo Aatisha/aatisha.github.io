@@ -18,5 +18,18 @@ document.addEventListener('DOMContentLoaded', () => {
         loadMore.style.display = 'none';
       }
     });
+
+    // hover effect for background animation
+    const heroImage = document.getElementById('hero-image');
+
+    heroImage.addEventListener('mouseenter', () => {
+      document.body.classList.add('contrast-mode');
+    });
+
+    heroImage.addEventListener('mouseleave', () => {
+      document.body.classList.remove('contrast-mode');
+    });
+
+    const today = 'abc'
   }
 });
