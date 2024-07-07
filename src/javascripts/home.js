@@ -1,3 +1,10 @@
+// Function to check if today's date is even or odd
+function getClassByDate() {
+  const today = new Date();
+  const date = today.getDate();
+  return date % 2 === 0 ? 'cosmos-bg' : 'galaxy-bg';
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   if (window.location.pathname === '/') {
     const contents = Array.from(document.querySelectorAll('.other-work-card'));
@@ -21,15 +28,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // hover effect for background animation
     const heroImage = document.getElementById('hero-image');
+    const bgAnimation = document.querySelector('#bg-animation');
 
     heroImage.addEventListener('mouseenter', () => {
+      bgAnimation.classList.add(getClassByDate());
+      bgAnimation.style.display = 'block';
       document.body.classList.add('contrast-mode');
     });
 
     heroImage.addEventListener('mouseleave', () => {
+      bgAnimation.style.display = 'none';
       document.body.classList.remove('contrast-mode');
     });
-
-    const today = 'abc'
   }
 });

@@ -48,6 +48,49 @@ p {
 
 html {
   font-size: 16px;
+
+  body {
+    &.contrast-mode {
+      #body-content {
+        .pretty-nav {
+          .pretty-nav-wrapper {
+            div {
+              a {
+                color: $white;
+              }
+
+              #logo-dot {
+                background: $white;
+              }
+            }
+
+            button#nav-hamburger span {
+              background: $white;
+            }
+
+            #nav-links li a {
+              color: $white;
+            }
+          }
+        }
+
+        .Home {
+          #bg-animation {
+            display: block;
+          }
+
+          .hero-section {
+            .hero-wrapper {
+              .hero-textual-data.gradient-text {
+                color: $white;
+                background: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 @media (max-width: 1100px) {
@@ -3137,55 +3180,18 @@ ul {
 .Home {
   #bg-animation {
     display: none;
-    background: url('../assets/images/galaxy1.gif') no-repeat center center;
     position: absolute;
     width: 100%;
     height: 100%;
-    background-size: cover;
+    background-size: cover !important;
     z-index: -2;
-  }
-}
 
-//contrast color for text
-html {
+    &.galaxy-bg {
+      background: url('../assets/images/galaxy1.gif') no-repeat center center;
+    }
 
-  body {
-    &.contrast-mode {
-      #body-content {
-        .pretty-nav {
-          .pretty-nav-wrapper {
-            div {
-              a {
-                color: $white;
-              }
-              #logo-dot {
-                background: $white;
-              }
-            }
-            button#nav-hamburger span {
-              background: $white;
-            }
-            #nav-links li a {
-              color: $white;
-            }
-
-          }
-        }
-        .Home {
-          #bg-animation {
-            display: block;
-          }
-          .hero-section {
-            .hero-wrapper {
-              .hero-textual-data.gradient-text {
-                color: $white;
-                background: none;
-
-              }
-            }
-          }
-        }
-      }
-    } 
+    &.cosmos-bg {
+      background: url('../assets/images/cosmos.gif') no-repeat center center;
+    }
   }
 }
