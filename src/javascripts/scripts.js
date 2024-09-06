@@ -58,7 +58,7 @@ function updateActiveNavigation() {
   });
 }
 
-if (window.location.pathname === '/' || window.location.pathname === 'about') {
+if (window.location.pathname === '/' || window.location.pathname === '/about') {
   const resumeDownloadBtn = document.getElementById('resume-btn-download');
   resumeDownloadBtn.addEventListener('click', () => {
     resumeDownloadBtn.classList.toggle('downloaded');

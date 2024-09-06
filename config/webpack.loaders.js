@@ -7,19 +7,19 @@ const fs = require('fs');
 const sourceMap = config.env !== "production";
 
 // function processNestedHtml(content, loaderContext, resourcePath = "") {
-//   console.log(resourcePath, 'Resouurce aPath');
+//   console.log(resourcePath, 'Resource aPath');
 //   let fileDir = (resourcePath === "") ? path.dirname(loaderContext.resourcePath) : path.dirname(resourcePath)
 //   console.log(fileDir, 'fileDir');
 //   const INCLUDE_PATTERN = /\<include src=\"(\.\/)?(.+)\"\/?\>(?:\<\/include\>)?/gi;
   
 //   function replaceHtml(match, pathRule, src) {
-//     console.log(pathRule, 'Path rile', src, 'srcccc', match, 'match');
+//     console.log(pathRule, 'Path rile', src, 'src', match, 'match');
 //     if(pathRule === "./"){
 //       fileDir = loaderContext.context
 //     }
 //     console.log(fileDir, 'file dir 22');
 //     const filePath = path.resolve(fileDir, src)
-//     console.log(filePath, 'file pathh');
+//     console.log(filePath, 'file path');
 //     loaderContext.dependency(filePath)
 //     const html = fs.readFileSync(filePath, 'utf8')
 //     return processNestedHtml(html, loaderContext, filePath)
@@ -38,11 +38,7 @@ const processNestedHtml = (content, loaderContext) => {
     return content;
   } else {
     return content.replace(INCLUDE_PATTERN, (m, src) => {
-      // // console.log(fs.readFileSync(path.resolve(loaderContext.context, src), "utf8"), 'FSSSSSSSSSSSSSS');
-      // console.log(loaderContext.context, 'context');
-      // console.log(src, 'SRCCCCCCCCCCCCCCCCCC');
-      // console.log('---------------------------------------------------------------------------------------------------------------------------');
-      return processNestedHtml(fs.readFileSync(path.resolve(loaderContext.context, src), "utf8"), loaderContext);
+           return processNestedHtml(fs.readFileSync(path.resolve(loaderContext.context, src), "utf8"), loaderContext);
     });
   }
 }
@@ -67,7 +63,18 @@ const html = {
               attribute: 'href',
               type: 'src'
             }
-          ]
+          ],
+          urlFilter: (attribute, value, resourcePath) => {
+            // The `attribute` argument contains a name of the HTML attribute.
+            // The `value` argument contains a value of the HTML attribute.
+            // The `resourcePath` argument contains a path to the loaded HTML file.
+
+            if (/\.pdf$/.test(value)) {
+              return false;
+            }
+  
+            return true;
+          },
         },
         preprocessor: processHtmlLoader
       },
@@ -170,7 +177,7 @@ const imageCompress = {
 };
 
 const images = {
-  test: /\.(gif|png|jpe?g|webp|svg|pdf)$/i,
+  test: /\.(gif|png|jpe?g|webp|svg)$/i,
   exclude: /assets\/fonts/,
   use: [
     {

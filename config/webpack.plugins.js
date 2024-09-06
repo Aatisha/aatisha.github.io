@@ -14,6 +14,7 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const RobotstxtPlugin = require('robotstxt-webpack-plugin');
 const SitemapPlugin = require('sitemap-webpack-plugin').default;
 const PurifyCSSPlugin = require('purifycss-webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const config = require('./site.config');
 
@@ -63,7 +64,7 @@ const generateHTMLPlugins = () => glob.sync(`./${config.paths.src}/**/*.html`, {
   if (filename !== '404.html') {
     paths.push(filename);
   }
-  // console.log(path.join(config.root, config.paths.src, filename), 'Pluginnn');
+  // console.log(path.join(config.root, config.paths.src, filename), 'Plugin');
   return new HTMLWebpackPlugin({
     filename,
     template: path.join(config.root, config.paths.src, filename),
@@ -142,6 +143,14 @@ module.exports = [
   cssExtract,
   // purifyCss,
   ...generateHTMLPlugins(),
+  new CopyWebpackPlugin({
+    patterns: [
+      {
+        from: path.resolve(__dirname, '../src/assets/resume'),
+        to: 'assets/resume',
+      },
+    ],
+  }),
   fs.existsSync(config.favicon) && favicons,
   config.env === 'production' && optimizeCss,
   config.env === 'production' && robots,
