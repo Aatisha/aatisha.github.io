@@ -561,6 +561,11 @@
   font-weight: 700;
 }
 
+.u-fontInter {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+}
+
 .u-fontCinzel {
   font-family: 'Cinzel Decorative', cursive;
   font-weight: 700;
@@ -676,6 +681,10 @@
 
 .u-height450px {
   height: 450px;
+}
+
+.u-minHeigh-fullScreen {
+  min-height: 100vh;
 }
 
 /**

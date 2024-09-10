@@ -8,7 +8,8 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Lato', sans-serif;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
   font-weight: 300;
   -webkit-transition: all 0.25s;
   -o-transition: all 0.25s;
@@ -737,6 +738,12 @@ html {
 
 .Container {
   position: relative;
+}
+
+.max-w70-center {
+  max-width: 70%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .Container-flex-row {
@@ -1643,10 +1650,26 @@ footer {
   padding-right: 6rem !important;
 }
 
+.main-margin {
+  margin: 6rem !important;
+}
+
+.u-minHeigh-calcMainMar {
+  min-height: calc(100vh - 12rem) !important;
+}
+
 @media screen and (max-width: 900px) {
   .main-pad-lr {
     padding-left: 4rem !important;
     padding-right: 4rem !important;
+  }
+
+  .main-margin {
+    margin: 4rem !important;
+  }
+
+  .u-minHeigh-calcMainMar {
+    min-height: calc(100vh - 8rem) !important;
   }
 }
 
@@ -1655,12 +1678,28 @@ footer {
     padding-left: 3rem !important;
     padding-right: 3rem !important;
   }
+
+  .main-margin {
+    margin: 3rem !important;
+  }
+
+  .u-minHeigh-calcMainMar {
+    min-height: calc(100vh - 6rem) !important;
+  }
 }
 
 @media screen and (max-width: 769px) {
   .main-pad-lr {
     padding-left: 2rem !important;
     padding-right: 2rem !important;
+  }
+
+  .main-margin {
+    margin: 2rem !important;
+  }
+
+  .u-minHeigh-calcMainMar {
+    min-height: calc(100vh - 4rem) !important;
   }
 }
 
@@ -2887,6 +2926,277 @@ footer {
       background-image: repeating-radial-gradient(circle at 0 0, transparent 0, #c0efbd 9px), repeating-linear-gradient(#6aa96555, #6aa965);
       // background-position: 0 0, 0 0, 12px 21px, 12px 21px, 0 0, 12px 21px;
       animation: diagonal-right-bottom 20s linear infinite;
+    }
+  }
+}
+
+// SSEC products
+.project-ssec-products {
+  // .project-bg {
+  //   position: relative;
+  //   z-index: 1;
+  //   background: linear-gradient(70deg, #e2e2ea 0%, #88c4ea 75%, #1d5264 100%);
+  //   overflow: hidden;
+
+  //   .text-container {
+  //     z-index: 2;
+  //     position: relative;
+  //   }
+
+  //   .gradients-container {
+  //     filter: url(#goo) blur(40px);
+  //     position: absolute;
+  //     top: 0;
+  //     left: 0;
+  //     width: 100%;
+  //     height: 100%;
+  //     z-index: 0; /* Ensure gradients stay behind text */
+  //     pointer-events: none; /* Disable interaction with gradients */
+  //   }
+
+  //   .g1, .g2, .g3, .g4, .g5 {
+  //     position: absolute;
+  //     background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0, rgba(255, 255, 255, 0) 50%);
+  //     mix-blend-mode: screen;
+  //     width: calc(80%);
+  //     height: calc(80%);
+  //     opacity: 0.8;
+  //   }
+
+  //   .g1 {
+  //     background: radial-gradient(circle at center, rgba(226, 226, 234, 0.8) 0, rgba(226, 226, 234, 0) 50%);
+  //     top: 10%;
+  //     left: 15%;
+  //     animation: moveInCircle 30s linear infinite;
+  //   }
+
+  //   .g2 {
+  //     background: radial-gradient(circle at center, rgba(136, 196, 234, 0.8) 0, rgba(136, 196, 234, 0) 50%);
+  //     top: 30%;
+  //     left: 60%;
+  //     animation: moveInCircle 40s linear infinite reverse;
+  //   }
+
+  //   .g3 {
+  //     background: radial-gradient(circle at center, rgba(88, 175, 200, 0.8) 0, rgba(88, 175, 200, 0) 50%);
+  //     top: 70%;
+  //     left: 30%;
+  //     animation: moveVertical 50s ease-in-out infinite;
+  //   }
+
+  //   .g4 {
+  //     background: radial-gradient(circle at center, rgba(60, 145, 165, 0.8) 0, rgba(60, 145, 165, 0) 50%);
+  //     top: 60%;
+  //     left: 75%;
+  //     animation: moveHorizontal 60s linear infinite;
+  //   }
+
+  //   .g5 {
+  //     background: radial-gradient(circle at center, rgba(29, 82, 100, 0.8) 0, rgba(29, 82, 100, 0) 50%);
+  //     top: 50%;
+  //     left: 50%;
+  //     width: calc(50% * 2);
+  //     height: calc(50% * 2);
+  //     mix-blend-mode: hard-light;
+  //     animation: moveInCircle 20s ease infinite;
+  //   }
+
+  //   .interactive {
+  //     position: absolute;
+  //     background: radial-gradient(circle, rgba(97, 164, 252, 0.656) 0, rgba(140, 100, 255, 0) 50%);
+  //     width: 100%;
+  //     height: 100%;
+  //     mix-blend-mode: hard-light;
+  //     pointer-events: none; /* Disable interaction with the interactive element */
+  //   }
+  // }
+
+  // /* Animations */
+  // @keyframes moveInCircle {
+  //   0% {
+  //     transform: rotate(0deg);
+  //   }
+  //   50% {
+  //     transform: rotate(180deg);
+  //   }
+  //   100% {
+  //     transform: rotate(360deg);
+  //   }
+  // }
+
+  // @keyframes moveVertical {
+  //   0% {
+  //     transform: translateY(-50%);
+  //   }
+  //   50% {
+  //     transform: translateY(50%);
+  //   }
+  //   100% {
+  //     transform: translateY(-50%);
+  //   }
+  // }
+
+  // @keyframes moveHorizontal {
+  //   0% {
+  //     transform: translateX(-50%) translateY(-10%);
+  //   }
+  //   50% {
+  //     transform: translateX(50%) translateY(10%);
+  //   }
+  //   100% {
+  //     transform: translateX(-50%) translateY(-10%);
+  //   }
+  // }
+  // Define your color scheme here
+  $color-bg1: #e2e2ea;
+  $color-bg2: #88c4ea;
+  $color-bg3: #1d5264;
+  $color1: #e2e2ea;
+  $color2: #88c4ea;
+  $color3: #88c4ea;
+  $color4: #42add1;
+  $color5: #a2d5f5;
+  $color-interactive: rgb(83, 204, 252);
+  $circle-size: 80%;
+  $blending: hard-light;
+
+  .hero-ssec-products {
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(70deg, $color-bg1 0%, $color-bg2 75%, $color-bg3 100%);
+    overflow: hidden;
+    border-radius: 24px;
+
+    .text-container {
+      z-index: 2;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .gradients-container {
+      filter: url(#goo) blur(40px);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;  // Ensure the gradient is behind the text
+      pointer-events: none;  // Disable pointer events on gradients
+    }
+
+    .g1,
+    .g2,
+    .g3,
+    .g4,
+    .g5 {
+      position: absolute;
+      width: $circle-size;
+      height: $circle-size;
+      opacity: 1;
+    }
+
+    .g5,
+    .interactive {
+      mix-blend-mode: $blending;
+    }
+
+    mix-blend-mode: $blending;
+
+    .g1 {
+      background: radial-gradient(circle, $color1 0%, transparent 50%);
+      top: calc(50% - #{$circle-size} / 2);
+      left: calc(50% - #{$circle-size} / 2);
+      transform-origin: center;
+      animation: moveVertical 30s ease infinite;
+    }
+
+    .g2 {
+      background: radial-gradient(circle, $color2 0%, transparent 50%);
+      top: calc(50% - #{$circle-size} / 2);
+      left: calc(50% - #{$circle-size} / 2);
+      transform-origin: calc(50% - 400px);
+      animation: moveInCircle 20s reverse infinite;
+    }
+
+    .g3 {
+      background: radial-gradient(circle, $color3 0%, transparent 50%);
+      top: calc(50% - #{$circle-size} / 2 + 200px);
+      left: calc(50% - #{$circle-size} / 2 - 500px);
+      transform-origin: calc(50% + 400px);
+      animation: moveInCircle 40s linear infinite;
+    }
+
+    .g4 {
+      background: radial-gradient(circle, $color4 0%, transparent 50%);
+      top: calc(50% - #{$circle-size} / 2);
+      left: calc(50% - #{$circle-size} / 2);
+      transform-origin: calc(50% - 200px);
+      animation: moveHorizontal 40s ease infinite;
+    }
+
+    .g5 {
+      background: radial-gradient(circle, $color5 0%, transparent 50%);
+      width: calc(#{$circle-size} * 2);
+      height: calc(#{$circle-size} * 2);
+      top: calc(50% - #{$circle-size});
+      left: calc(50% - #{$circle-size});
+      transform-origin: calc(50% - 800px) calc(50% + 200px);
+      animation: moveInCircle 20s ease infinite;
+    }
+
+    .interactive {
+      position: absolute;
+      background: radial-gradient(circle, $color-interactive 0%, transparent 50%);
+      width: 100%;
+      height: 100%;
+      top: -50%;
+      left: -50%;
+      opacity: 0.7;
+    }
+  }
+
+  // Animations
+  @keyframes moveInCircle {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    50% {
+      transform: rotate(180deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes moveVertical {
+    0% {
+      transform: translateY(-50%);
+    }
+
+    50% {
+      transform: translateY(50%);
+    }
+
+    100% {
+      transform: translateY(-50%);
+    }
+  }
+
+  @keyframes moveHorizontal {
+    0% {
+      transform: translateX(-50%) translateY(-10%);
+    }
+
+    50% {
+      transform: translateX(50%) translateY(10%);
+    }
+
+    100% {
+      transform: translateX(-50%) translateY(-10%);
     }
   }
 }
