@@ -43,3 +43,22 @@ $ssec_products: #a2d5f5;
 $design_work: #ffcbcb;
 $literati_women: #aad0e1;
 $ux_research: #cea7d1;
+
+$secondary_font_color: #6b6666;
+
+// Global variables
+$container-max-width: 1300px;
+$container-max-width-alt: 1100px;
+
+// Variables for column configuration
+$grid-columns: 12;
+$gutter-width: 30px; // Default gutter width
+$vertical-gap: 15px; // Default vertical gap for stacked columns
+$breakpoints: (
+  'xs': 0,
+  'sm': 576px,
+  'md': 768px,
+  'lg': 992px,
+  'xl': 1200px,
+  'xxl': 1400px
+);

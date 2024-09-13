@@ -561,11 +561,6 @@
   font-weight: 700;
 }
 
-.u-fontInter {
-  font-family: "Inter", sans-serif;
-  font-optical-sizing: auto;
-}
-
 .u-fontCinzel {
   font-family: 'Cinzel Decorative', cursive;
   font-weight: 700;
@@ -732,6 +727,13 @@
 }
 
 /**
+---- COLORS -----
+**/
+.u-secondaryTextColor {
+  color: $secondary_font_color;
+}
+
+/**
 ----- MARGINS -----
 **/
 
@@ -821,6 +823,11 @@
 
 .u-marginT200 {
   margin-top: 200px;
+}
+
+.u-marginV10 {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .u-marginV20 {
@@ -1168,4 +1175,144 @@
 
 .u-bg-primary-alt {
   background: $primary_alt;
+}
+
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+// Mixin to create the grid column
+@mixin make-col($size) {
+  flex: 0 0 percentage($size / $grid-columns);
+  max-width: percentage($size / $grid-columns);
+}
+
+// Mixin to create gutter padding (for all col classes)
+@mixin apply-gutter($gutter: $gutter-width) {
+  padding-right: $gutter / 2;
+  padding-left: $gutter / 2;
+  margin-bottom: $vertical-gap; // Apply vertical gap for stacking
+}
+
+// Container class to handle max-width and padding
+.container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: $gutter-width / 2;
+  padding-left: $gutter-width / 2;
+
+  @each $breakpoint, $value in $breakpoints {
+    @if $value > 0 {
+      @media (min-width: $value) {
+        max-width: $value;
+      }
+    }
+  }
+}
+
+// Row class to handle negative margins for gutter compensation
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -($gutter-width / 2);  // Compensate for column gutter
+  margin-left: -($gutter-width / 2);   // Compensate for column gutter
+}
+
+// Generate responsive grid columns with gutter and vertical gap applied
+@mixin generate-grid {
+  @each $breakpoint, $value in $breakpoints {
+    @if $value == 0 {
+      .col {
+        @for $i from 1 through $grid-columns {
+          &-#{$i} {
+            @include make-col($i);
+            @include apply-gutter(); // Apply gutter and vertical gap automatically
+          }
+        }
+      }
+    }
+
+    @else {
+      @media (min-width: $value) {
+        .col-#{$breakpoint} {
+          @for $i from 1 through $grid-columns {
+            &-#{$i} {
+              @include make-col($i);
+              @include apply-gutter(); // Apply gutter and vertical gap automatically
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Include the grid generation
+@include generate-grid();
+
+// Optional: Utility classes for custom vertical gap control
+.row-gap-0 {
+  margin-right: 0;
+  margin-left: 0;
+
+  .col {
+    padding-right: 0;
+    padding-left: 0;
+    margin-bottom: 0; // No vertical gap when stacked
+  }
+}
+
+.row-gap-sm {
+  margin-right: -5px;
+  margin-left: -5px;
+
+  .col {
+    padding-right: 5px;
+    padding-left: 5px;
+    margin-bottom: 5px; // Small vertical gap when stacked
+  }
+}
+
+.row-gap-lg {
+  margin-right: -30px;
+  margin-left: -30px;
+
+  .col {
+    padding-right: 30px;
+    padding-left: 30px;
+    margin-bottom: 30px; // Large vertical gap when stacked
+  }
+}
+
+// Flex 1 Column class to take up equal space
+.col {
+  flex: 1;  // Take up equal space
+  min-width: 0; // Prevent columns from overflowing if content is large
+
+  @include apply-gutter(); // Apply gutter for spacing
+
+  box-sizing: border-box; // Include padding in width calculation
+}
+
+// Custom overrides for xs screens (less than 576px)
+// Override for 3 columns in a row
+@media (max-width: 575.98px) {
+  .col-xs-1_3 {
+    flex: 0 0 33.33%;  // 3 columns per row
+    max-width: 33.33%;
+
+    @include apply-gutter();
+  }
+
+  // Override for 2 columns in a row
+  .col-xs-1_2 {
+    flex: 0 0 50%;  // 2 columns per row
+    max-width: 50%;
+
+    @include apply-gutter();
+  }
 }
