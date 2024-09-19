@@ -32,15 +32,15 @@
   <include src="../partials/preloader.html"/>
   <div id="body-content">
     <include src="../partials/navbar.html"/>
-    <main class="project project-ssec-products">
-      <section class="hero-ssec-products u-minHeigh-calcMainMar main-margin u-paddingV80 page-top gradient-bg">
-        <div class="text-container">
+    <main class="project project-ssec-products" id="ssec-products-images">
+      <section class="hero-ssec-products project-hero">
+        <div class="text-container u-paddingV80 project-hero-main-mar">
           <div class="Container-wrapper">
             <div class="Container">
               <div class="max-w70-center u-textCenter">
-                <h3 class="u-fontSize-h2 u-fontLato u-fontWeight-semiBold u-marginT20">SSEC's Product Platform</h3>
+                <h3 class="u-fontSize-h2 u-fontLato u-fontWeight-semiBold u-marginT20">SSEC's Products Platform</h3>
                 <p class="u-fontSize-p3 u-marginT10 u-lineHeight-1_75">
-                  A unified platform to study satellite data from polar regions.
+                  A walkthrough of my designs for Space Science and Engineering Center, UW Madison.
                 </p>
               </div>
               <div class="u-width100 u-marginT150">
@@ -49,51 +49,52 @@
             </div>
           </div>
         </div>
-      
-        <!-- SVG filter inside the section -->
-        <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute; top:0; left:0; width:0; height:0; z-index: 0;">
-          <defs>
-            <filter id="goo">
-              <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-              <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
-              <feBlend in="SourceGraphic" in2="goo" />
-            </filter>
-          </defs>
-        </svg>
-      
-        <!-- Gradient bubbles -->
-        <div class="gradients-container">
-          <div class="g1"></div>
-          <div class="g2"></div>
-          <div class="g3"></div>
-          <div class="g4"></div>
-          <div class="g5"></div>
-          <div class="interactive"></div>
+        <div class="hero-ssec-products-gradient u-paddingV80 gradient-bg-animate">  
+          <!-- SVG filter inside the section -->
+          <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute; top:0; left:0; width:0; height:0; z-index: 0;">
+            <defs>
+              <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
+                <feBlend in="SourceGraphic" in2="goo" />
+              </filter>
+            </defs>
+          </svg>
+        
+          <!-- Gradient bubbles -->
+          <div class="gradients-container">
+            <div class="g1"></div>
+            <div class="g2"></div>
+            <div class="g3"></div>
+            <div class="g4"></div>
+            <div class="g5"></div>
+            <div class="interactive"></div>
+          </div>
         </div>
       </section>
       
-      <section class="main-pad-lr u-marginV150">
-        <div class="Container-wrapper--alt">
-          <div class="u-marginV150">
-            <h5 class="u-textUpper u-secondaryTextColor u-fontWeight-regular u-lineHeight-1_75">Process Highlight</h5>
+      <section class="main-pad-lr u-marginV100">
+        <div class="container">
+          <div class="u-marginV100">
+            <h5 class="u-textUpper u-secondaryTextColor u-fontWeight-regular u-lineHeight-1_75 u-marginB5">Process Highlight</h5>
             <h2 class="u-fontWeight-bold u-marginB20">Design challenge and responsibilities overview</h2>
             <hr/>
-            <div class="row u-marginV50">
+            <div class="row u-marginV30">
               <div class="col-12 col-sm-6">
                 <h3 class="u-fontWeight-semiBold u-lineHeight-1_75">Challenges</h3>
-                <p class="u-textJustify u-fontSize-p4 u-marginB10">
-                  This project was undertaken within the Information Science program at the University of Wisconsin, Madison, specifically as part of the User Experience Design (LIS 612) course.
+                <p class="u-textJustify u-fontSize-p4">
+                  Design a web platform to study near real-time satellite data from polar regions for climate analysis.
                 </p>
               </div>
               <div class="col-12 col-sm-6">
                 <h3 class="u-fontWeight-semiBold u-lineHeight-1_75">Opportunities</h3>
                 <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4">
-                  Following the course guidelines, the project involved selecting a local organization in Madison and undertaking the task of designing or reimagining its mobile app or website.
+                  Create a platform that allows scientists to efficiently access, navigate, and compare high-resolution satellite near real-time data on snow, ice, and polar winds, while supporting data sharing and future scalability.
                 </p>
               </div>
             </div>
             <hr/>
-            <div class="row u-marginV50">
+            <div class="row u-marginV30">
               <div class="col-md-3 col-6">
                 <h3 class="u-fontWeight-semiBold u-lineHeight-1_75">Timeline</h3>
                 <p class="u-textJustify u-fontSize-p4 u-marginB10">
@@ -105,9 +106,9 @@
                 <p class="u-textJustify u-fontSize-p4 u-marginB10">User Experience Research</p>
                 <p class="u-textJustify u-fontSize-p4 u-marginB10">User Experience Design</p>
                 <p class="u-textJustify u-fontSize-p4 u-marginB10">User Interface Design</p>
-                <p class="u-textJustify u-fontSize-p4 u-marginB10">Web Data Design</p>
-                <p class="u-textJustify u-fontSize-p4 u-marginB10">Wireframe</p>
-                <p class="u-textJustify u-fontSize-p4 u-marginB10">Prototype</p>
+                <p class="u-textJustify u-fontSize-p4 u-marginB10">Interaction Design</p>
+                <p class="u-textJustify u-fontSize-p4 u-marginB10">Wireframing</p>
+                <p class="u-textJustify u-fontSize-p4 u-marginB10">Prototyping</p>
               </div>
               <div class="col-md-3 col-6">
                 <h3 class="u-fontWeight-semiBold u-lineHeight-1_75">Role</h3>
@@ -124,100 +125,139 @@
         </div>
       </section>
       
-      <section class="main-pad-lr u-marginV150">
-        <div class="Container-wrapper--alt">
-          <div class="u-marginV150">
+      <section class="main-pad-lr u-marginV100">
+        <div class="container">
+          <div class="u-marginV100">
+            <h5 class="u-textUpper u-secondaryTextColor u-fontWeight-regular u-lineHeight-1_75 u-marginB5">Problem</h5>
+            <h2 class="u-fontWeight-bold u-marginB20">Scientists at SSEC lack a unified platform to study climate data from various satellites.</h2>
+            <hr/>
+            <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4">
+              The SSEC scientists collect extensive data on snow, ice, and polar winds from various satellites and instruments in the Arctic and Antarctic regions. This data is curated and presented as images that can be generated on a daily, weekly, or monthly basis which are then closely monitored to study climate patterns. However, the current mechanism stores the images in folders and hence lacks effective navigation and flexibility for accommodating future products needed to allow for the efficient study of both recent and historical climate data and be flexible enough to accommodate future products.
+            </p>
+            <div class="quote-blog u-marginV50">
+              <blockquote class="u-textJustify u-lineHeight-1_5 u-fontSize-p1 u-marginB20 u-fontWeight-semiBold">
+                How might we allow scientists to efficiently navigate, compare, and analyze snow, ice and polar winds data across different timeframes and regions.
+              </blockquote>
+            </div>
+            <div class="u-displayFlex u-justify-center">
+              <a class="ssec-products-thumbnail" href="../assets/images/ssec-products/problem-visualized.png">
+                <figure>
+                  <img src="../assets/images/ssec-products/problem-visualized.png"
+                  class="u-width80-stretch-mob u-boxShadow3 u-borderR5 " alt="Problem Visualized"/>
+                  <figcaption class="u-textCenter">Problem Visualized</figcaption>
+                </figure>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="main-pad-lr u-marginV100">
+        <div class="container">
+          <div class="u-marginV100">
+            <h5 class="u-textUpper u-secondaryTextColor u-fontWeight-regular u-lineHeight-1_75 u-marginB5">Research</h5>
+            <h2 class="u-fontWeight-bold u-marginB20">User Interviews</h2>
+            <hr/>
+            <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4">
+              To better understand the needs, pain points, and current workflows of the scientists at SSEC, I conducted interviews with four scientists who regularly work with snow, ice, and polar winds data. The objective was to uncover challenges they face in accessing and analyzing satellite data, as well as to gain insights into their expectations for an improved data visualization platform.
+            </p>
+            <div class="row u-marginV30 u-displayFlex u-alignItems-center">
+              <div class="col-sm-12 col-md-6 col-lg-8">
+                <h3 class="u-fontWeight-semiBold u-fontSize-p4 u-marginB20">Interview Questions</h3>
+                <ul class="u-textJustify u-lineHeight-1_5 u-fontSize-p4 u-margin0">
+                    <li>
+                        <strong>How do you currently access satellite data for snow, ice, or polar winds?</strong>
+                        <p>The goal here was to understand the tools or processes used to gather data and their efficiency.</p>
+                    </li>
+                    <li>
+                        <strong>What challenges do you face when comparing data from different satellites, regions, or timeframes?</strong>
+                        <p>This question helped identify pain points in their data comparison methods and the limitations of the tools they currently use.</p>
+                    </li>
+                    <li>
+                        <strong>What features or functionalities would make the process of exploring and analyzing climate data easier for you?</strong>
+                        <p>This question was crucial in gathering their expectations for the new platform—what they wished for but didn't currently have.</p>
+                    </li>
+                    <li>
+                        <strong>Are there any specific tools or platforms you've used that you found particularly useful or limiting?</strong>
+                        <p>This helped in benchmarking the current platform's usability against competitors like NOAA and NASA.</p>
+                    </li>
+                </ul>
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-4 u-displayFlex -alignItems-center u-justify-center">
+                <img src="../assets/images/ssec-products/interviewees.png" class="u-width60-stretch-mob" alt="Interviewee avatar">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section class="main-pad-lr u-marginV100">
+        <div class="container">
+          <div>
             <h2 class="u-fontWeight-bold u-marginB20">The Process</h2>
             <hr/>
-            <div class="row u-marginV50 u-justify-center u-alignItems-center">
+            <div class="row u-marginV50 u-justify-center u-alignItems-start">
               <div class="col col-xs-1_3 u-displayFlex u-justify-center u-alignItems-center u-flex-col">
                 <div class="u-width50">
                   <div class="circle project-bg u-fontWeight-black u-fontSize-h4--alt">1</div>
                 </div>
                 <h3 class="u-fontWeight-semiBold u-lineHeight-1_75 u-marginV10">Research</h3>
                 <p class="u-fontSize-p4 u-marginB10 u-textCenter">
-                  Identifying Problems
-                </p>
-                <p class="u-fontSize-p4 u-marginB10 u-textCenter">
-                  Identifying Problems
-                </p>
-                <p class="u-fontSize-p4 u-marginB10 u-textCenter">
-                  Desk Research
+                  User Interviews
                 </p>
                 <p class="u-fontSize-p4 u-marginB10 u-textCenter">
                   Competitor Analysis
+                </p>
+                <p class="u-fontSize-p4 u-marginB10 u-textCenter">
+                  Identifying Problems
                 </p>
               </div>
               <div class="col col-xs-1_3 u-displayFlex u-justify-center u-alignItems-center u-flex-col">
                 <div class="u-width50">
                   <div class="circle project-bg u-fontWeight-black u-fontSize-h4--alt">2</div>
                 </div>
-                <h3 class="u-fontWeight-semiBold u-lineHeight-1_75 u-marginV10">Research</h3>
+                <h3 class="u-fontWeight-semiBold u-lineHeight-1_75 u-marginV10">Synthesis</h3>
                 <p class="u-fontSize-p4 u-marginB10 u-textCenter">
-                  Identifying Problems
+                  Persona
                 </p>
                 <p class="u-fontSize-p4 u-marginB10 u-textCenter">
-                  Identifying Problems
-                </p>
-                <p class="u-fontSize-p4 u-marginB10 u-textCenter">
-                  Desk Research
-                </p>
-                <p class="u-fontSize-p4 u-marginB10 u-textCenter">
-                  Competitor Analysis
+                  User Journey
                 </p>
               </div>
               <div class="col col-xs-1_3 u-displayFlex u-justify-center u-alignItems-center u-flex-col">
                 <div class="u-width50">
                   <div class="circle project-bg u-fontWeight-black u-fontSize-h4--alt">3</div>
                 </div>
-                <h3 class="u-fontWeight-semiBold u-lineHeight-1_75 u-marginV10">Research</h3>
+                <h3 class="u-fontWeight-semiBold u-lineHeight-1_75 u-marginV10">Ideation</h3>
                 <p class="u-fontSize-p4 u-marginB10 u-textCenter">
-                  Identifying Problems
+                  Developing a solution
                 </p>
                 <p class="u-fontSize-p4 u-marginB10 u-textCenter">
-                  Identifying Problems
-                </p>
-                <p class="u-fontSize-p4 u-marginB10 u-textCenter">
-                  Desk Research
-                </p>
-                <p class="u-fontSize-p4 u-marginB10 u-textCenter">
-                  Competitor Analysis
+                  Low Fidelity
                 </p>
               </div>
               <div class="col col-xs-1_3 u-displayFlex u-justify-center u-alignItems-center u-flex-col">
                 <div class="u-width50">
                   <div class="circle project-bg u-fontWeight-black u-fontSize-h4--alt">4</div>
                 </div>
-                <h3 class="u-fontWeight-semiBold u-lineHeight-1_75 u-marginV10">Research</h3>
+                <h3 class="u-fontWeight-semiBold u-lineHeight-1_75 u-marginV10">Final Designs</h3>
                 <p class="u-fontSize-p4 u-marginB10 u-textCenter">
-                  Identifying Problems
+                  Design System
                 </p>
                 <p class="u-fontSize-p4 u-marginB10 u-textCenter">
-                  Identifying Problems
-                </p>
-                <p class="u-fontSize-p4 u-marginB10 u-textCenter">
-                  Desk Research
-                </p>
-                <p class="u-fontSize-p4 u-marginB10 u-textCenter">
-                  Competitor Analysis
+                  Prototype
                 </p>
               </div>
               <div class="col col-xs-1_3 u-displayFlex u-justify-center u-alignItems-center u-flex-col">
                 <div class="u-width50">
                   <div class="circle project-bg u-fontWeight-black u-fontSize-h4--alt">5</div>
                 </div>
-                <h3 class="u-fontWeight-semiBold u-lineHeight-1_75 u-marginV10">Research</h3>
+                <h3 class="u-fontWeight-semiBold u-lineHeight-1_75 u-marginV10">Reflection</h3>
                 <p class="u-fontSize-p4 u-marginB10 u-textCenter">
-                  Identifying Problems
+                  Learnings
                 </p>
                 <p class="u-fontSize-p4 u-marginB10 u-textCenter">
-                  Identifying Problems
-                </p>
-                <p class="u-fontSize-p4 u-marginB10 u-textCenter">
-                  Desk Research
-                </p>
-                <p class="u-fontSize-p4 u-marginB10 u-textCenter">
-                  Competitor Analysis
+                  Next Steps
                 </p>
               </div>
             </div>
@@ -226,7 +266,7 @@
       </section>
       
       <section class="main-pad-lr u-marginV150">
-        <div class="Container-wrapper--alt">
+        <div class="container">
           <div class="u-marginV150">
             <h2 class="u-fontWeight-bold u-marginB20">The Process</h2>
             <hr/>
@@ -261,13 +301,13 @@
       </section>
       <section class="full-divider project-bg u-marginV150">
         <div class="main-pad-lr">
-          <div class="Container-wrapper--alt">
+          <div class="container">
             <h2 class="u-fontWeight-bold u-lineHeight-1_5 u-textUpper">How it started?</h2>
           </div>
         </div>
       </section>
       <section class="main-pad-lr u-marginV150">
-        <div class="Container-wrapper--alt">
+        <div class="container">
           <div class="u-marginV150">
             <h2 class="u-fontWeight-bold u-marginB20">The Challenge</h2>
             <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4 u-marginB10">
@@ -299,7 +339,7 @@
       </section>
       <div id="sustainable-ux-screenshots">
         <section class="main-pad-lr u-marginV150">
-          <div class="Container-wrapper--alt">
+          <div class="container">
             <div class="u-marginV150">
               <h2 class="u-fontWeight-bold u-marginB20">Initial Problem Discovery</h2>
               <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4">
@@ -309,14 +349,14 @@
             <a class="sustainable-ux-thumbnail" href="../assets/images/sustainable-ux/problem-statement.png">
               <figure>
                 <img src="../assets/images/sustainable-ux/problem-statement.png"
-                class="u-boxShadow3 u-borderR5" alt="Initial Problem Discovery"/>
+                class="u-boxShadow3 u-borderR5 " alt="Initial Problem Discovery"/>
                 <figcaption class="u-textCenter">Problem Discovery</figcaption>
               </figure>
             </a>
           </div>
         </section>
         <section class="main-pad-lr u-marginV150">
-          <div class="Container-wrapper--alt">
+          <div class="container">
             <div class="u-marginV150">
               <h2 class="u-fontWeight-bold u-marginB20">Secondary Research Insights</h2>
               <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4 u-marginB20">
@@ -337,7 +377,7 @@
           </div>
         </section>
         <section class="main-pad-lr u-marginV150">
-          <div class="Container-wrapper--alt">
+          <div class="container">
             <div class="u-marginV150">
               <h2 class="u-fontWeight-bold u-marginB20">How Might We</h2>
               <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4 u-marginB30">
@@ -352,7 +392,7 @@
           </div>
         </section>
         <section class="main-pad-lr u-marginV150">
-          <div class="Container-wrapper--alt">
+          <div class="container">
             <div class="u-marginV150">
               <h2 class="u-fontWeight-bold u-marginB20">Inception of Sustain Dane Mobile App</h2>
               <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4 u-marginB10">
@@ -473,13 +513,13 @@
         </section>
         <section class="full-divider project-bg u-marginV150">
           <div class="main-pad-lr">
-            <div class="Container-wrapper--alt">
+            <div class="container">
               <h2 class="u-fontWeight-bold u-lineHeight-1_5 u-textUpper">System Design</h2>
             </div>
           </div>
         </section>
         <section class="main-pad-lr u-marginV150">
-          <div class="Container-wrapper--alt">
+          <div class="container">
             <div class="u-marginV150">
               <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4 u-marginB50">
                 The system design reflected the platform's core idea of representing minimalism and greenery. The colors and other components were refined with the various iterations of the design cycle. 
@@ -496,13 +536,13 @@
         </section>
         <section class="full-divider project-bg u-marginV150">
           <div class="main-pad-lr">
-            <div class="Container-wrapper--alt">
+            <div class="container">
               <h2 class="u-fontWeight-bold u-lineHeight-1_5 u-textUpper">Wireframes</h2>
             </div>
           </div>
         </section>
         <section class="main-pad-lr u-marginV150">
-          <div class="Container-wrapper--alt">
+          <div class="container">
             <div class="u-marginV150">
               <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4 u-marginB50">
                 With the system design and screen designs in place, I created the wireframes for all the required screens in the task flows using Figma. The wireframes depicted the overall looks and functionalities of the application.  Finally, I annotated each screen. These annotations included relevant information and decisions about the design.
@@ -519,13 +559,13 @@
         </section>
         <section class="full-divider project-bg u-marginV150">
           <div class="main-pad-lr">
-            <div class="Container-wrapper--alt">
+            <div class="container">
               <h2 class="u-fontWeight-bold u-lineHeight-1_5 u-textUpper">Final Mockup</h2>
             </div>
           </div>
         </section>
         <section class="main-pad-lr u-marginV150">
-          <div class="Container-wrapper--alt">
+          <div class="container">
             <div class="u-marginV150">
               <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4 u-marginB50">
                 The final stage consisted of designing the mockups. With multiple design iterations and feedback I worked on creating the final mockups. I focussed on curating an experience that was clear and easy to follow.<br><br>
@@ -619,13 +659,13 @@
         </section>
         <section class="full-divider project-bg u-marginV150">
           <div class="main-pad-lr">
-            <div class="Container-wrapper--alt">
+            <div class="container">
               <h2 class="u-fontWeight-bold u-lineHeight-1_5 u-textUpper">Lessons Learned</h2>
             </div>
           </div>
         </section>
         <section class="main-pad-lr u-marginV150">
-          <div class="Container-wrapper--alt">
+          <div class="container">
             <div class="u-marginV150">
               <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4 u-marginB50">
                 The entire journey of designing the UX for the Sustainability mobile app platform taught me to take a holistic approach to designing solutions to contribute to the climate crisis. Providing users with personalized experiences motivates them more to accomplish a goal. From a design perspective, information architecture plays a very vital role in defining the entire design journey.
@@ -641,7 +681,7 @@
           </div>
         </section>
         <!-- <section class="main-pad-lr u-marginV150">
-          <div class="Container-wrapper--alt">
+          <div class="container">
             <div class="u-marginV150">
               <h3 class="u-fontWeight-bold u-marginB20">The design process is still in progress. Come here later for the final design solution.</h3>
             </div>

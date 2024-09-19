@@ -305,6 +305,10 @@
   background-color: #bf5700;
 }
 
+.u-bg-transparent {
+  background-color: transparent !important;
+}
+
 .u-bg-minnesota {
   background-color: #7a0019;
 }
@@ -753,6 +757,10 @@
   margin-bottom: 0;
 }
 
+.u-marginB5 {
+  margin-bottom: 5px;
+}
+
 .u-marginB10 {
   margin-bottom: 10px;
 }
@@ -833,6 +841,11 @@
 .u-marginV20 {
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.u-marginV30 {
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 .u-marginV50 {
@@ -1218,8 +1231,8 @@ hr {
 .row {
   display: flex;
   flex-wrap: wrap;
-  margin-right: -($gutter-width / 2);  // Compensate for column gutter
-  margin-left: -($gutter-width / 2);   // Compensate for column gutter
+  // margin-right: -($gutter-width / 2);  // Compensate for column gutter
+  // margin-left: -($gutter-width / 2);   // Compensate for column gutter
 }
 
 // Generate responsive grid columns with gutter and vertical gap applied

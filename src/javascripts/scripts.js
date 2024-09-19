@@ -11,25 +11,26 @@ import './literati-women';
 import './ux-research';
 import './contact';
 import './sustainable-ux';
+import './ssec-products';
 import {
-  BlogTemplateProperties, BLOG_SLIDE_TEMPLATE, MEDIUM_USERNAME, STARRED_BLOG_ID,
-  DESIGN_URLS, DEV_URLS, DESIGN_ARTICLE_NAVS, DEV_ARTICLE_NAVS,
+  BlogTemplateProperties, BLOG_SLIDE_TEMPLATE, MEDIUM_USERNAME,
+  STARRED_BLOG_ID, DESIGN_URLS, DEV_URLS, DESIGN_ARTICLE_NAVS, DEV_ARTICLE_NAVS, URL_PATHS,
 } from './constant';
 
-function reveal() {
-  const reveals = document.querySelectorAll('.reveal');
-  reveals.forEach((element) => {
-    const windowheight = window.innerHeight;
-    const revealTop = element.getBoundingClientRect().top;
-    const revealPoint = 0;
+// function reveal() {
+//   const reveals = document.querySelectorAll('.reveal');
+//   reveals.forEach((element) => {
+//     const windowheight = window.innerHeight;
+//     const revealTop = element.getBoundingClientRect().top;
+//     const revealPoint = 0;
 
-    if (revealTop < windowheight - revealPoint) {
-      element.classList.add('show-item');
-    } else {
-      element.classList.remove('show-item');
-    }
-  });
-}
+//     if (revealTop < windowheight - revealPoint) {
+//       element.classList.add('show-item');
+//     } else {
+//       element.classList.remove('show-item');
+//     }
+//   });
+// }
 
 function switchNavigation() {
   const navbar = document.getElementById('navigation-bar');
@@ -58,15 +59,17 @@ function updateActiveNavigation() {
   });
 }
 
-if (window.location.pathname === '/' || window.location.pathname === '/about') {
-  const resumeDownloadBtn = document.getElementById('resume-btn-download');
-  resumeDownloadBtn.addEventListener('click', () => {
-    resumeDownloadBtn.classList.toggle('downloaded');
-    setTimeout(() => {
-      resumeDownloadBtn.classList.toggle('downloaded');
-    }, 5000);
-  });
-}
+// if (window.location.pathname === URL_PATHS.home
+//     || window.location.pathname === URL_PATHS.about
+//     || window.location.pathname === URL_PATHS.tech.home) {
+//   const resumeDownloadBtn = document.getElementById('resume-btn-download');
+//   resumeDownloadBtn.addEventListener('click', () => {
+//     resumeDownloadBtn.classList.toggle('downloaded');
+//     setTimeout(() => {
+//       resumeDownloadBtn.classList.toggle('downloaded');
+//     }, 5000);
+//   });
+// }
 
 document.getElementById('nav-hamburger').addEventListener('click', () => {
   document.getElementById('nav-hamburger').classList.toggle('collapsed');
@@ -144,7 +147,7 @@ function preloader(bodyContent) {
     const logoDot = document.getElementById('logo-dot');
     logoDot.dataset.animate = 'true';
     window.addEventListener('scroll', switchNavigation);
-    window.addEventListener('scroll', reveal);
+    // window.addEventListener('scroll', reveal);
   });
 }
 
@@ -217,7 +220,7 @@ function adjustArticleNavigator() {
 window.onload = async () => {
   const bodyContent = disableBodyContent();
   preloader(bodyContent);
-  if (window.location.pathname === '/') {
+  if (window.location.pathname === URL_PATHS.home) {
     const response = await fetchMediumBlogs().catch((error) => {
       // eslint-disable-next-line no-console
       console.error(error);
@@ -228,7 +231,7 @@ window.onload = async () => {
     }
   }
 
-  if (window.location.pathname.includes('design-work')) {
+  if (window.location.pathname === URL_PATHS.design_work) {
     designWorkGallery();
   }
 

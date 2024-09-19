@@ -1,3 +1,5 @@
+import { URL_PATHS } from './constant';
+
 // Function to check if today's date is even or odd
 function getClassByDate() {
   const today = new Date();
@@ -6,7 +8,7 @@ function getClassByDate() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  if (window.location.pathname === '/') {
+  if (window.location.pathname === URL_PATHS.home) {
     const contents = Array.from(document.querySelectorAll('.other-work-card'));
     /* eslint no-param-reassign: "error" */
     contents.slice(0, 4).forEach((content) => {
@@ -25,7 +27,10 @@ document.addEventListener('DOMContentLoaded', () => {
         loadMore.style.display = 'none';
       }
     });
+  }
 
+  if (window.location.pathname === URL_PATHS.home
+      || window.location.pathname === URL_PATHS.tech.home) {
     // hover effect for background animation
     const heroImage = document.getElementById('hero-image');
     const bgAnimation = document.querySelector('#bg-animation');

@@ -46,6 +46,10 @@ $ux_research: #cea7d1;
 
 $secondary_font_color: #6b6666;
 
+// Project Hero
+$project-hero-circle-size: 80%;
+$project-hero-blending: hard-light;
+
 // Global variables
 $container-max-width: 1300px;
 $container-max-width-alt: 1100px;
@@ -62,3 +66,12 @@ $breakpoints: (
   'xl': 1200px,
   'xxl': 1400px
 );
+
+// Navbar
+$black: $black;
+$logo_dot: $primary;
+$nav_hover: $primary_alt;
+$nav_active: $primary;
+// $logo_dot: #E9D5DA;
+$navbar_bg: rgba(255, 255, 255, 0.97);
+$navbar_height: 65px;

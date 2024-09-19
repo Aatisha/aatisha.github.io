@@ -57,7 +57,7 @@ const cssExtract = new MiniCssExtractPlugin({
 
 // HTML generation
 const paths = [];
-const generateHTMLPlugins = () => glob.sync(`./${config.paths.src}/**/*.html`, { ignore: [`./${config.paths.src}/partials/*.html`] }).map((dir) => {
+const generateHTMLPlugins = () => glob.sync(`./${config.paths.src}/**/*.html`, { ignore: [`./${config.paths.src}/partials/*.html`, `./${config.paths.src}/tech/partials/*.html`] }).map((dir) => {
 //   let filename = path.basename(dir);
 //   filename = dir.substring(6);
   const filename = path.relative(config.paths.src, dir);
