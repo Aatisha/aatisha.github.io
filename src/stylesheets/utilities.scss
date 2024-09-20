@@ -91,6 +91,10 @@
   flex: 1;
 }
 
+.u-flex1-mob {
+  flex: 1;
+}
+
 .u-flex50p {
   flex: 0 0 calc(50% - 25px);
 }
@@ -411,6 +415,10 @@
 
 .u-borderR5 {
   border-radius: 5px;
+}
+
+.u-borderR50p {
+  border-radius: 50%;
 }
 
 /** Border Colors **/
@@ -838,6 +846,11 @@
   margin-bottom: 10px;
 }
 
+.u-marginV15 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
 .u-marginV20 {
   margin-top: 20px;
   margin-bottom: 20px;
@@ -905,6 +918,10 @@
 
 .u-marginL10p {
   margin-left: 10%;
+}
+
+.u-maringR5 {
+  margin-right: 5px;
 }
 
 @media screen and (max-width: 400px) {
@@ -1313,7 +1330,7 @@ hr {
 
 // Custom overrides for xs screens (less than 576px)
 // Override for 3 columns in a row
-@media (max-width: 575.98px) {
+@media (max-width: 576px) {
   .col-xs-1_3 {
     flex: 0 0 33.33%;  // 3 columns per row
     max-width: 33.33%;
@@ -1325,6 +1342,14 @@ hr {
   .col-xs-1_2 {
     flex: 0 0 50%;  // 2 columns per row
     max-width: 50%;
+
+    @include apply-gutter();
+  }
+
+  .col-xs-1 {
+    flex: 0 0 100%;  // 1 columns per row
+    max-width: 100%;
+    width: 100%;
 
     @include apply-gutter();
   }
