@@ -3513,9 +3513,10 @@ $star-background: #f1c40f;
   font-size: $star-size;
   line-height: 1;
   justify-self: start;
+  margin-top: -5px;
 
   &::before {
-    content: '★★★★★';
+    content: '⭐️⭐️⭐️⭐️⭐️';
     letter-spacing: 3px;
     background: linear-gradient(90deg, $star-background $percent, $star-color $percent);
     -webkit-background-clip: text;
