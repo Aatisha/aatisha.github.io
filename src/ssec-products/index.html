@@ -7,32 +7,11 @@
 </head>
 
 <body>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const section = document.querySelector('.hero-ssec-products');
-      const interBubble = document.querySelector('.interactive');
-      let curX = 0, curY = 0, tgX = 0, tgY = 0;
-    
-      function move() {
-        curX += (tgX - curX) / 20;
-        curY += (tgY - curY) / 20;
-        interBubble.style.transform = `translate(${Math.round(curX)}px, ${Math.round(curY)}px)`;
-        requestAnimationFrame(move);
-      }
-    
-      section.addEventListener('mousemove', (event) => {
-        const rect = section.getBoundingClientRect();
-        tgX = event.clientX - rect.left;  // Fix offset to use relative positioning
-        tgY = event.clientY - rect.top;   // Fix offset to use relative positioning
-      });
-    
-      move();  // Start animation
-    });    
-  </script>
   <include src="../partials/preloader.html"/>
   <div id="body-content">
     <include src="../partials/navbar.html"/>
     <main class="project project-ssec-products" id="ssec-products-images">
+      <div class="scroll-watcher project-bg"></div>
       <section class="hero-ssec-products project-hero">
         <div class="text-container u-paddingV80 project-hero-main-mar">
           <div class="Container-wrapper">
@@ -49,7 +28,7 @@
             </div>
           </div>
         </div>
-        <div class="hero-ssec-products-gradient u-paddingV80 gradient-bg-animate">  
+        <div class="u-paddingV80 gradient-bg-animate">  
           <!-- SVG filter inside the section -->
           <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute; top:0; left:0; width:0; height:0; z-index: 0;">
             <defs>
@@ -134,12 +113,7 @@
             <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4">
               The SSEC scientists collect extensive data on snow, ice, and polar winds from various satellites and instruments in the Arctic and Antarctic regions. This data is curated and presented as images that can be generated on a daily, weekly, or monthly basis which are then closely monitored to study climate patterns. However, the current mechanism stores the images in folders and hence lacks effective navigation and flexibility for accommodating future products needed to allow for the efficient study of both recent and historical climate data and be flexible enough to accommodate future products.
             </p>
-            <div class="quote-blog u-marginV50">
-              <blockquote class="u-lineHeight-1_5 u-fontSize-p1 u-marginB20 u-fontWeight-semiBold">
-                How might we allow scientists to efficiently navigate, compare, and analyze snow, ice and polar winds data across different timeframes and regions.
-              </blockquote>
-            </div>
-            <div class="u-displayFlex u-justify-center">
+            <div class="u-displayFlex u-justify-center u-marginV50">
               <a class="ssec-products-thumbnail" href="../assets/images/ssec-products/problem-visualized.png">
                 <figure>
                   <img src="../assets/images/ssec-products/problem-visualized.png"
@@ -175,13 +149,21 @@
               </div>
               <div class="col-xs-1 col-sm-12 col-md-6 u-displayFlex u-alignItems-center u-justify-center u-positionR u-margin50 sm-w100">
                 <div class="mockup-liquid-shape project-bg"></div>
-                <img src="../assets/images/ssec-products/homepage.png" class="u-width80-stretch-mob u-positionA" alt="Homepage Screen">
+                <a class="ssec-products-thumbnail u-positionA" href="../assets/images/ssec-products/homepage.png">
+                  <figure>
+                    <img src="../assets/images/ssec-products/homepage.png" class="u-width80-stretch-mob" alt="Homepage Screen">
+                  </figure>
+                </a>
               </div>
             </div>
             <div class="row u-marginV30 u-displayFlex u-alignItems-center">
               <div class="col-xs-1 col-sm-12 col-md-6 u-displayFlex u-alignItems-center u-justify-center u-positionR u-margin50">
                 <div class="mockup-liquid-shape project-bg"></div>
-                <img src="../assets/images/ssec-products/comparison.png" class="u-width80-stretch-mob u-positionA" alt="Comparison Screen">
+                <a class="ssec-products-thumbnail u-positionA" href="../assets/images/ssec-products/comparison.png">
+                  <figure>
+                    <img src="../assets/images/ssec-products/comparison.png" class="u-width80-stretch-mob" alt="Comparison Screen">
+                  </figure>
+                </a>
               </div>
               <div class="col-sm-12 col-md-6">
                 <h3 class="u-fontWeight-semiBold u-fontSize-p2 u-marginB30 underline-effect">Data analysis through comparisons</h3>
@@ -215,13 +197,21 @@
               </div>
               <div class="col-xs-1 col-sm-12 col-md-6 u-displayFlex u-alignItems-center u-justify-center u-positionR u-margin50 sm-w100">
                 <div class="mockup-liquid-shape project-bg"></div>
-                <img src="../assets/images/ssec-products/viirs-configuration.png" class="u-width80-stretch-mob u-positionA" alt="VIIRS configuration Screen">
+                <a class="ssec-products-thumbnail u-positionA" href="../assets/images/ssec-products/viirs-configuration.png">
+                  <figure>
+                    <img src="../assets/images/ssec-products/viirs-configuration.png" class="u-width80-stretch-mob" alt="VIIRS configuration Screen">
+                  </figure>
+                </a>
               </div>
             </div>
             <div class="row u-marginV30 u-displayFlex u-alignItems-center">
               <div class="col-xs-1 col-sm-12 col-md-6 u-displayFlex u-alignItems-center u-justify-center u-positionR u-margin50">
                 <div class="mockup-liquid-shape project-bg"></div>
-                <img src="../assets/images/ssec-products/historical-view.png" class="u-width80-stretch-mob u-positionA" alt="Historical View Screen">
+                <a class="ssec-products-thumbnail u-positionA" href="../assets/images/ssec-products/historical-view.png">
+                  <figure>
+                    <img src="../assets/images/ssec-products/historical-view.png" class="u-width80-stretch-mob" alt="Historical View Screen">
+                  </figure>
+                </a>
               </div>
               <div class="col-sm-12 col-md-6">
                 <h3 class="u-fontWeight-semiBold u-fontSize-p2 u-marginB30 underline-effect">Historical data for study and analysis</h3>
@@ -257,7 +247,10 @@
                   Competitor Analysis
                 </p>
                 <p class="u-fontSize-p4 u-marginB10 u-textCenter">
-                  Identifying Problems
+                  Generating Insights
+                </p>
+                <p class="u-fontSize-p4 u-marginB10 u-textCenter">
+                  Defining the Problem
                 </p>
               </div>
               <div class="col col-xs-1_3 u-displayFlex u-justify-center u-alignItems-center u-flex-col">
@@ -281,7 +274,10 @@
                   Developing a solution
                 </p>
                 <p class="u-fontSize-p4 u-marginB10 u-textCenter">
-                  Low Fidelity
+                  Screen Designs
+                </p>
+                <p class="u-fontSize-p4 u-marginB10 u-textCenter">
+                  Wireframe
                 </p>
               </div>
               <div class="col col-xs-1_3 u-displayFlex u-justify-center u-alignItems-center u-flex-col">
@@ -320,7 +316,7 @@
             <h2 class="u-fontWeight-bold u-marginB20">User Interviews</h2>
             <hr/>
             <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4">
-              To better understand the needs, pain points, and current workflows of the scientists at SSEC, I conducted interviews with four scientists who regularly work with snow, ice, and polar winds data. The objective was to uncover challenges they face in accessing and analyzing satellite data, as well as to gain insights into their expectations for an improved data visualization platform.
+              To better understand the needs, pain points, and current workflows of the scientists at SSEC, I conducted interviews with five scientists who regularly work with snow, ice, and polar winds data. The objective was to uncover challenges they face in accessing and analyzing satellite data, as well as to gain insights into their expectations for an improved data visualization platform.
             </p>
             <div class="row u-marginV30 u-displayFlex u-alignItems-center">
               <div class="col-sm-12 col-md-6 col-lg-8">
@@ -345,8 +341,159 @@
                 </ul>
               </div>
               <div class="col-sm-12 col-md-6 col-lg-4 u-displayFlex u-alignItems-center u-justify-center">
-                <img src="../assets/images/ssec-products/interviewees.png" class="u-width60-stretch-mob" alt="Interviewee avatar">
+                <img src="../assets/images/ssec-products/interviewees.jpg" class="u-width80-stretch-mob u-boxShadow3 u-borderR5" alt="Interviewee avatar">
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="main-pad-lr u-marginV100">
+        <div class="container">
+          <div class="u-marginV100">
+            <h5 class="u-textUpper u-secondaryTextColor u-fontWeight-regular u-lineHeight-1_75 u-marginB5">Research</h5>
+            <h2 class="u-fontWeight-bold u-marginB20">Competitor Analysis</h2>
+            <hr/>
+            <div class="row u-marginV30 u-displayFlex u-alignItems-center row-rev-sm">
+              <div class="col-sm-12 col-md-6">
+                <h3 class="u-fontWeight-semiBold u-fontSize-p2 u-marginB30 underline-effect">NASA's Eyes on Earth</h3>
+                <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4">This interactive app allows users to view different environmental phenomena across time and locations, with a 3D global visualization.</p>
+                <h4 class="u-lineHeight-1_5 u-fontSize-p4 u-marginV10 u-fontWeight-medium">Pros:</h4>
+                <ul class="u-lineHeight-1_5 u-fontSize-p4 u-margin0">
+                    <li>
+                        <strong>Visual Appeal:</strong> The interface is highly visual and engaging, making use of 3D imagery and real-time animation.
+                    </li>
+                    <li>
+                        <strong>Interactive Features:</strong> Users can zoom in and out, explore global events, and watch animations of environmental changes.
+                    </li>
+                    <li>
+                        <strong>Wide Coverage:</strong> Provides a global perspective on climate events.
+                    </li>
+                </ul>
+                <h4 class="u-lineHeight-1_5 u-fontSize-p4 u-marginV10 u-fontWeight-medium">Cons:</h4>
+                <ul class="u-lineHeight-1_5 u-fontSize-p4 u-margin0">
+                    <li>
+                        <strong>Complex Navigation:</strong> Navigating through layers and events requires a learning curve, which may be inefficient for busy researchers.
+                    </li>
+                    <li>
+                        <strong>Limited Filtering Options:</strong> It doesn't allow users to filter data based on specific variables like snow, ice, or polar winds - crucial for climate scientists in polar regions.
+                    </li>
+                </ul>
+              </div>
+              <div class="col-xs-1 col-sm-12 col-md-6 u-displayFlex u-alignItems-center u-justify-center u-positionR u-margin50 sm-w100">
+                <a class="ssec-products-thumbnail" href="../assets/images/ssec-products/nasa.png">
+                  <figure>
+                    <img src="../assets/images/ssec-products/nasa.png" class="u-width80-stretch-mob u-boxShadow3 u-borderR5" alt="NASA's Eyes on Earth Screen">
+                    <figcaption class="u-textCenter">NASA - Eyes on Earth</figcaption>
+                  </figure>
+                </a>
+              </div>
+            </div>
+            <div class="row u-marginV30 u-displayFlex u-alignItems-center">
+              <div class="col-xs-1 col-sm-12 col-md-6 u-displayFlex u-alignItems-center u-justify-center u-positionR u-margin50">
+                <a class="ssec-products-thumbnail" href="../assets/images/ssec-products/nsidc.png">
+                  <figure>
+                    <img src="../assets/images/ssec-products/nsidc.png" class="u-width80-stretch-mob u-boxShadow3 u-borderR5" alt="NSIDC's Sea Ice Today Screen">
+                    <figcaption class="u-textCenter">NSIDC - Sea Ice Today</figcaption>
+                  </figure>
+                </a>
+              </div>
+              <div class="col-sm-12 col-md-6">
+                <h3 class="u-fontWeight-semiBold u-fontSize-p2 u-marginB30 underline-effect">NSIDC's Sea Ice Today</h3>
+                <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4">NSIDC's "Sea Ice Today" provides a more data-centric approach for tracking Arctic and Antarctic sea ice. It presents real-time and historical data on sea ice extent, charts, and downloadable data sets for in-depth analysis.</p>
+                <h4 class="u-lineHeight-1_5 u-fontSize-p4 u-marginV10 u-fontWeight-medium">Pros:</h4>
+                <ul class="u-lineHeight-1_5 u-fontSize-p4 u-margin0">
+                    <li>
+                        <strong>Data-Rich Interface:</strong> The website focuses on providing scientifically accurate, up-to-date data.
+                    </li>
+                    <li>
+                        <strong>Downloadable Data:</strong> Researchers can download data for offline analysis, which is critical for long-term research studies.
+                    </li>
+                </ul>
+                <h4 class="u-lineHeight-1_5 u-fontSize-p4 u-marginV10 u-fontWeight-medium">Cons:</h4>
+                <ul class="u-lineHeight-1_5 u-fontSize-p4 u-margin0">
+                    <li>
+                        <strong>Limited Interactivity:</strong> The platform lacks interactivity, with static graphs and charts dominating the interface. 
+                    </li>
+                    <li>
+                        <strong>Lacking Historical Data:</strong> While informative, the interface lacks  historical data with the ability to view trends over time.
+                    </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="main-pad-lr u-marginV100">
+        <div class="container">
+          <div class="u-marginV100">
+            <h5 class="u-textUpper u-secondaryTextColor u-fontWeight-regular u-lineHeight-1_75 u-marginB5">Research</h5>
+            <h2 class="u-fontWeight-bold u-marginB20">Generating Insights</h2>
+            <hr/>
+            <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4">
+              By diving deep into the scientists' workflows and pain points, I was able to gather actionable insights that shaped the direction of the platform's design.
+              These interviews were invaluable in ensuring that the final product would meet the scientists' current needs and remain scalable for future data products.
+            </p>
+            <div class="row u-marginV50 u-justify-center u-alignItems-stretch">
+              <div class="u-displayFlex u-alignItems-stretch u-marginV10 col-md-4 col-sm-6">
+                <div class="u-padding30 persona-card">
+                  <h3 class="u-lineHeight-1_5 u-fontSize-p3 u-fontWeight-medium u-marginB20">Difficulty in Navigating Data</h3>
+                  <p class="u-lineHeight-1_5 u-fontSize-p4">
+                    The scientists shared that it was often challenging to find relevant images quickly.
+                  </p>
+                </div>
+              </div>
+              <div class="u-displayFlex u-alignItems-stretch u-marginV10 col-md-4 col-sm-6">
+                <div class="u-padding30 persona-card">
+                  <h3 class="u-lineHeight-1_5 u-fontSize-p3 u-fontWeight-medium u-marginB20">Need for High-Resolution Images with Zoom Functionality</h3>
+                  <p class="u-lineHeight-1_5 u-fontSize-p4">
+                    They wanted a more <strong>streamlined comparison</strong> feature that allowed them to easily analyze trends and changes in the data.
+                  </p>
+                </div>
+              </div>
+              <div class="u-displayFlex u-alignItems-stretch u-marginV10 col-md-4 col-sm-6">
+                <div class="u-padding30 persona-card">
+                  <h3 class="u-lineHeight-1_5 u-fontSize-p3 u-fontWeight-medium u-marginB20">Inefficiency in Comparing Data</h3>
+                  <p class="u-lineHeight-1_5 u-fontSize-p4">
+                    They wanted a more <strong>streamlined comparison</strong> feature that allowed them to easily analyze trends and changes in the data.
+                  </p>
+                </div>
+              </div>
+              <div class="u-displayFlex u-alignItems-stretch u-marginV10 col-md-4 col-sm-6">
+                <div class="u-padding30 persona-card">
+                  <h3 class="u-lineHeight-1_5 u-fontSize-p3 u-fontWeight-medium u-marginB20">Preference for Variable-Based Categorization</h3>
+                  <p class="u-lineHeight-1_5 u-fontSize-p4">
+                    In the beginning of their user journey scientists know which <strong>variables</strong> (snow, ice, polar winds) they want to study and then select other components. 
+                  </p>
+                </div>
+              </div>
+              <div class="u-displayFlex u-alignItems-stretch u-marginV10 col-md-4 col-sm-6">
+                <div class="u-padding30 persona-card">
+                  <h3 class="u-lineHeight-1_5 u-fontSize-p3 u-fontWeight-medium u-marginB20">Sharing and Downloading Data</h3>
+                  <p class="u-lineHeight-1_5 u-fontSize-p4">
+                    They need the ability to easily share high-resolution images with colleagues and <strong>download</strong> them for further offline analysis.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="main-pad-lr u-marginV100">
+        <div class="container">
+          <div class="u-marginV100">
+            <h5 class="u-textUpper u-secondaryTextColor u-fontWeight-regular u-lineHeight-1_75 u-marginB5">Research</h5>
+            <h2 class="u-fontWeight-bold u-marginB20">Defining the Problem</h2>
+            <hr/>
+            <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4">
+              After conducting user interviews, performing competitor analysis, and studying the current process, I framed the HMW statement to define the problem.
+            </p>
+            <div class="quote-blog u-marginV50">
+              <blockquote class="u-lineHeight-1_5 u-fontSize-p1 u-marginB20 u-fontWeight-semiBold">
+                How might we allow scientists to efficiently navigate, compare, and analyze snow, ice and polar winds data across different timeframes and regions.
+              </blockquote>
             </div>
           </div>
         </div>
@@ -359,12 +506,12 @@
             <h2 class="u-fontWeight-bold u-marginB20">User Persona</h2>
             <hr/>
             <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4">
-              I created this user persona to represent the primary user of the SSEC Products Platform based on extensive research and user interviews. Dr. Lee’s profile embodies the needs, frustrations, and expectations of scientists working with satellite data for polar and cryospheric research. By synthesizing these insights, I aim to design a platform that optimally supports the scientific community's data visualization and analysis needs.
+              I created this user persona to represent the primary user of the SSEC Products Platform based on extensive research and user interviews. Dr. Lee's profile embodies the needs, frustrations, and expectations of scientists working with satellite data for polar and cryospheric research. By synthesizing these insights, I aim to design a platform that optimally supports the scientific community's data visualization and analysis needs.
             </p>
             <div class="row u-marginV30 u-displayFlex persona-card">
                 <div class="col-md-5 col-sm-12 bio-section project-bg u-lineHeight-1_5">
                     <img src="../assets/images/ssec-products/user-persona-avatar.jpg" alt="User Persona Avatar" class="u-borderR50p">
-                    <h3 class="u-fontWeight-semiBold u-fontSize-p2 u-marginV20">Dr. David Lee (58 M)</h3>
+                    <h3 class="u-fontWeight-semiBold u-fontSize-p2 u-marginV20">Dr. David Lee, 58</h3>
                     <div class="u-marginV10 u-fontSize-p4">
                         <i class="fas fa-id-badge u-maringR5"></i> Chief Scientist, Cryospheric Research
                     </div>
@@ -408,437 +555,111 @@
                         <span class="rating-label">Engagement:</span>
                         <div class="Stars" style="--rating: 3;" aria-label="Engagement Rating is 3 out of 5."></div>
                     </div>
-                </div>                
+                  </div>
                 </div>
             </div>
           </div>
         </div>
       </section>
 
-      
-      <section class="main-pad-lr u-marginV150">
+      <section class="main-pad-lr u-marginV100">
         <div class="container">
-          <div class="u-marginV150">
-            <h2 class="u-fontWeight-bold u-marginB20">The Process</h2>
+          <div class="u-marginV100">
+            <h5 class="u-textUpper u-secondaryTextColor u-fontWeight-regular u-lineHeight-1_75 u-marginB5">Synthesis</h5>
+            <h2 class="u-fontWeight-bold u-marginB20">User Journey</h2>
             <hr/>
-            <div class="row u-marginV50 u-justify-center u-alignItems-center">
-              <div class="col col-xs-1_2 u-displayFlex u-justify-center u-alignItems-center u-flex-col">
-                <div class="circle project-bg u-flex-col u-padding20">
-                  <h2 class="u-fontWeight-semiBold u-lineHeight-1_75 u-marginV10">80%</h2>
-                  <p class="u-fontSize-p4 u-marginB10 u-textCenter">
-                    of consumers are willing to pay more for a better customer experience.
-                  </p>
-                </div>
-              </div>
-              <div class="col col-xs-1_2 u-displayFlex u-justify-center u-alignItems-center u-flex-col">
-                <div class="circle project-bg u-flex-col u-padding20">
-                  <h2 class="u-fontWeight-semiBold u-lineHeight-1_75 u-marginV10">80%</h2>
-                  <p class="u-fontSize-p4 u-marginB10 u-textCenter">
-                    of consumers are willing to pay more for a better customer experience.
-                  </p>
-                </div>
-              </div>
-              <div class="col col-xs-1_2 u-displayFlex u-justify-center u-alignItems-center u-flex-col">
-                <div class="circle project-bg u-flex-col u-padding20">
-                  <h2 class="u-fontWeight-semiBold u-lineHeight-1_75 u-marginV10">80%</h2>
-                  <p class="u-fontSize-p4 u-marginB10 u-textCenter">
-                    of consumers are willing to pay more for a better customer experience.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="full-divider project-bg u-marginV150">
-        <div class="main-pad-lr">
-          <div class="container">
-            <h2 class="u-fontWeight-bold u-lineHeight-1_5 u-textUpper">How it started?</h2>
-          </div>
-        </div>
-      </section>
-      <section class="main-pad-lr u-marginV150">
-        <div class="container">
-          <div class="u-marginV150">
-            <h2 class="u-fontWeight-bold u-marginB20">The Challenge</h2>
-            <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4 u-marginB10">
-              Climate change is an urgent global challenge that demands our collective attention. As we witness its profound impacts on our planet, it's clear that action is needed at every level – from world leaders to individual citizens.<br><br>
-            </p>
             <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4">
-              Reading articles about climate change and watching the news makes people wonder what they can do about it. Because not everyone has the same resources, opportunities, and abilities to make contributions, the cause gets forgotten and unattended. But the fact that the majority of the population uses digital platforms in their daily lives, the platform itself could be leveraged to encourage people to make simple yet effective contributions.
+              I created this user journey to illustrate how Dr. David Lee, a lead scientist at SSEC, navigates the current manual process of accessing and analyzing satellite data stored in folders, before the new platform is developed. This journey focuses on the emotional highs and lows as Dr. Lee manually searches, compares, and shares climate data, emphasizing the key pain points and inefficiencies.
             </p>
+            <div class="row u-marginV30 u-displayFlex persona-card u-alignItems-center u-justify-center">
+                <div class="col-md-3 col-sm-4 u-displayFlex u-alignItems-center u-justify-center">
+                    <img src="../assets/images/ssec-products/user-persona-avatar.jpg" alt="User Persona Avatar" class="u-borderR50p u-width70">
+                </div>
+                <div class="col-md-9 col-sm-8 u-paddingR-5p">
+                  <h3 class="u-fontWeight-semiBold u-fontSize-p2 u-marginB20  u-lineHeight-1_5">Dr. David Lee</h3>
+                  <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4">
+                    As a senior climate scientist, I need to analyze polar satellite data manually stored in various folders and shared through outdated processes, which makes it difficult to compare, analyze, and collaborate efficiently.
+                  </p>
+                </div>
+            </div>
+            <div class="u-displayFlex u-justify-center">
+              <a class="ssec-products-thumbnail" href="../assets/images/ssec-products/user-journey.png">
+                <figure>
+                  <img src="../assets/images/ssec-products/user-journey.png"
+                  class="u-width100 u-borderR5" alt="User Journey"/>
+                </figure>
+              </a>
+            </div>
           </div>
-          <div class="Container-flex gap-50 u-marginT50 u-marginB20">
-            <div class="u-flex1">
-              <figure>
-                <img src="../assets/images/sustainable-ux/intro_1.jpg" class="u-boxShadow3" alt="images for climate crisis">
-              </figure>
-            </div>
-            <div class="u-flex1">
-              <figure>
-                <img src="../assets/images/sustainable-ux/intro_2.jpg" class="u-boxShadow3" alt="images for climate crisis">
-              </figure>
-            </div>
-            <div class="u-flex1">
-              <figure>
-                <img src="../assets/images/sustainable-ux/intro_3.jpg" class="u-boxShadow3" alt="images for climate crisis">
-              </figure>
-            </div>
-          </div>
-          <figcaption class="u-textCenter">Photo: Unsplash</figcaption>
         </div>
       </section>
-      <div id="sustainable-ux-screenshots">
-        <section class="main-pad-lr u-marginV150">
-          <div class="container">
-            <div class="u-marginV150">
-              <h2 class="u-fontWeight-bold u-marginB20">Initial Problem Discovery</h2>
-              <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4">
-                There exists a disparity between individuals' desires to contribute to environmental conservation and the tangible actions and contributions made toward this goal.
-              </p>
-            </div>
-            <a class="sustainable-ux-thumbnail" href="../assets/images/sustainable-ux/problem-statement.png">
-              <figure>
-                <img src="../assets/images/sustainable-ux/problem-statement.png"
-                class="u-boxShadow3 u-borderR5 " alt="Initial Problem Discovery"/>
-                <figcaption class="u-textCenter">Problem Discovery</figcaption>
-              </figure>
-            </a>
-          </div>
-        </section>
-        <section class="main-pad-lr u-marginV150">
-          <div class="container">
-            <div class="u-marginV150">
-              <h2 class="u-fontWeight-bold u-marginB20">Secondary Research Insights</h2>
-              <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4 u-marginB20">
-                The initial problem discovery led to exploring white paper research to understand the climate crisis and the dire need for everyday personal contributions, as well as to understand how UX finds its place in driving this toward an effective solution.
-              </p>
-              <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4 u-marginB10">
-                The major problem lies in the inability of users to pursue their motivations toward environment-friendly actions. These are mainly because of the lack of: 
-              </p>
-              <ul class="u-lineHeight-1_5 u-fontSize-p4">
-                <li>Resources</li><br>
-                <li>Opportunities</li><br>
-                <li>Awareness</li><br>
-                <li>Fun and accountability</li><br>
-                <li>Sense of achievement</li><br>
-                <li>Abilities</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-        <section class="main-pad-lr u-marginV150">
-          <div class="container">
-            <div class="u-marginV150">
-              <h2 class="u-fontWeight-bold u-marginB20">How Might We</h2>
-              <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4 u-marginB30">
-                The complete understanding of the situation helped me frame the "how might we" statement to narrow down my problem statement in a way that fits a vast area of the underlying problem to provide an efficient solution.  It focuses on making the process of making an impact more personal and fun.
-              </p>
-              <div class="quote-blog">
-                <blockquote class="u-lineHeight-1_5 u-fontSize-p4 u-marginB20">
-                  How might we make people more aware of climate change issues through a digital platform so they make more sustainable life decisions in a fun yet accountable way.
-                </blockquote>
+
+      <section class="main-pad-lr u-marginV100">
+        <div class="container">
+          <div class="u-marginV100">
+            <h5 class="u-textUpper u-secondaryTextColor u-fontWeight-regular u-lineHeight-1_75 u-marginB5">Ideation</h5>
+            <h2 class="u-fontWeight-bold u-marginB20">Developing a Solution</h2>
+            <hr/>
+            <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4">
+              With the goal of creating a unified platform for accessing, navigating, and analyzing polar climate data, I designed the <strong>SSEC Products Platform</strong> to address the unique challenges faced by researchers. This platform simplifies data access for scientists studying snow, ice, and polar winds, offering a user-friendly interface to handle both current and future data needs.
+            </p>
+            <div class="row u-marginV30 u-displayFlex u-alignItems-center row-rev-sm">
+              <div class="col-sm-12 col-md-6">
+                <h3 class="u-fontWeight-semiBold u-fontSize-p2 u-marginB30 underline-effect">Redesign Goals</h3>
+                <ul class="u-lineHeight-1_5 u-fontSize-p4 u-margin0">
+                    <li>
+                        Help scientists operate from a unified web platform to access climate data.
+                    </li>
+                    <li>
+                        Easy to use configuration panel to filter images based on satellite, region, date and parameters.
+                    </li>
+                    <li>
+                        Allow flexibility for future product additions like sea ice.
+                    </li>
+                    <li>
+                        Zoom in and share capabilities for the curated images from all satellites and instruments.
+                    </li>
+                    <li>
+                        Able to compare  images based on regions (Arctic and Antarctic) and time.
+                    </li>
+                </ul>
+                <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4 u-marginT30">
+                  This solution provides a clear and scalable method for accessing vast amounts of data, allowing scientists to focus on their research rather than struggling with data navigation.
+                </p>
               </div>
-            </div>
-          </div>
-        </section>
-        <section class="main-pad-lr u-marginV150">
-          <div class="container">
-            <div class="u-marginV150">
-              <h2 class="u-fontWeight-bold u-marginB20">Inception of Sustain Dane Mobile App</h2>
-              <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4 u-marginB10">
-                The core idea of the design solution is to curate an application is to make people make sustainable and eco-friendly life choices through setting up individual or team goals and make the process of achieving these goals accountable and fun.
-              </p><br><br>
-              <a class="sustainable-ux-thumbnail" href="../assets/images/sustainable-ux/why-mob-app.png">
-                <figure>
-                  <img src="../assets/images/sustainable-ux/why-mob-app.png"
-                  class="u-borderR5" alt="Why Mobile App"/>
-                </figure>
-              </a>
-            </div>
-            <div class="u-marginV150">
-              <h2 class="u-fontWeight-bold u-marginB20">Brainstorming</h2>
-              <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4 u-marginB50">
-                Based on the research insights, I brainstormed several ideas. The ideas are showcased below:
-              </p>
-              <a class="sustainable-ux-thumbnail" href="../assets/images/sustainable-ux/brainstorming.png">
-                <figure>
-                  <img src="../assets/images/sustainable-ux/brainstorming.png"
-                  class="u-boxShadow3 u-borderR5" alt="Brainstormed Ideas"/>
-                  <figcaption class="u-textCenter">Brainstormed Ideas</figcaption>
-                </figure>
-              </a>
-              <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4 u-marginV50">
-                From the various categories of brainstormed ideas ranging from plantations, food and lifestyle, achievements and metrics, and dashboard, I drilled down to three theme insights that could potentially help users facilitate greater engagement in everyday environmental efforts.
-              </p>
-              <ul class="u-textJustify u-lineHeight-1_5 u-fontSize-p4">
-                <li><strong>Collaboration and accountability drive motivation and fun:</strong> Making the entire journey accountable, fun, and feel more personal. This was done by allowing users to create individual or team sustainable goals and work on them within a deadline.</li><br>
-                <li><strong>Create awareness:</strong> Providing environmental awareness through articles and other resources at the tip of their touch to help them make more informed lifestyle choices.</li><br>
-                <li><strong>Creating a sense of achievement:</strong> Giving users a sense of accomplishment through goodies and offers or certificates.</li><br>
-              </ul>
-            </div>
-            <div class="u-marginV150">
-              <h2 class="u-fontWeight-bold u-marginB20">Story Board</h2>
-              <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4 u-marginB20">
-                Storyboards are a great way to visualize a problem scenario with the focus on the user navigating through their user journey with a specific solution.<br><br>
-                I utilised this tool to depict the problem inspired by a personal incident while living in Madison. This was when I experienced relatively higher temperatures in February which is usually not the case. This motivated me to contribute more towards the design solution I was trying to accomplish.
-              </p>
-              <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4 u-marginB50">
-                With a beginning, middle, and end, my storyboard stated the problem, a solution, and a final state.
-              </p>
-              <a class="sustainable-ux-thumbnail" href="../assets/images/sustainable-ux/story_board.png">
-                <figure>
-                  <img src="../assets/images/sustainable-ux/story_board.png"
-                  class="u-width80-stretch-mob u-boxShadow3 u-borderR5" alt="Story board showcasing design idea working in the context of the design problem"/>
-                  <figcaption class="u-textCenter">Story board showcasing design idea working in the context of the design problem</figcaption>
-                </figure>
-              </a>
-            </div>
-            <div class="u-marginV150">
-              <h2 class="u-fontWeight-bold u-marginB20">Task Flow</h2>
-              <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4 u-marginB50">
-                From the theme insights generated after brainstorming, I created three user task flows that closely fulfill the idea of creating a sense of contribution, achievement, and awareness. The three task flows are:
-              </p>
-              <h3 class="u-fontWeight-bold u-marginB30">Setting up individual sustainable goals</h3>
-              <a class="sustainable-ux-thumbnail" href="../assets/images/sustainable-ux/setting-individual-sustainable-goals.png">
-                <figure>
-                  <img src="../assets/images/sustainable-ux/setting-individual-sustainable-goals.png"
-                    class="u-width80-stretch-mob u-boxShadow3 u-borderR5" alt="Setting up individual sustainable goals"/>
-                </figure>
-              </a>
-              <h3 class="u-fontWeight-bold u-marginB30 u-marginT100">Setting up sustainable goals with a partner</h3>
-              <a class="sustainable-ux-thumbnail" href="../assets/images/sustainable-ux/setting-goal-with-partner.png">
-                <figure>
-                  <img src="../assets/images/sustainable-ux/setting-goal-with-partner.png"
-                    class="u-width80-stretch-mob u-boxShadow3 u-borderR5" alt="Setting up sustainable goals with a partner"/>
-                </figure>
-              </a>
-              <h3 class="u-fontWeight-bold u-marginB30 u-marginT100">Awarding users for their goal achievements</h3>
-              <a class="sustainable-ux-thumbnail" href="../assets/images/sustainable-ux/green-achievement.png">
-                <figure>
-                  <img src="../assets/images/sustainable-ux/green-achievement.png"
-                    class="u-width80-stretch-mob u-boxShadow3 u-borderR5" alt="Awarding users for their goal achievements"/>
-                </figure>
-              </a>
-            </div>
-            <div class="u-marginV150">
-              <h2 class="u-fontWeight-bold u-marginB20">Screen Design</h2>
-              <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4 u-marginB50">
-                I sketched the first screen designs for each task flow screen. The goal was to produce flexible designs with room for changes and modifications later. The process also focussed on the completeness of the design by sketching all of the necessary elements on each screen.
-              </p>
-              <div class="u-marginV50">
-                <a class="sustainable-ux-thumbnail" href="../assets/images/sustainable-ux/screen-design1-a.png">
+              <div class="col-xs-1 col-sm-12 col-md-6 u-displayFlex u-alignItems-center u-justify-center u-margin50 sm-w100">
+                <a class="ssec-products-thumbnail" href="../assets/images/ssec-products/defining-solution.jpg">
                   <figure>
-                    <img src="../assets/images/sustainable-ux/screen-design1-a.png"
-                      class="u-width80-stretch-mob u-boxShadow3 u-borderR5" alt="Task flow 1- Setting Sustainability Goals with Partner"/>
-                  </figure>
-                </a>
-                <a class="sustainable-ux-thumbnail" href="../assets/images/sustainable-ux/screen-design1-b.png">
-                  <figure>
-                    <img src="../assets/images/sustainable-ux/screen-design1-b.png"
-                      class="u-width80-stretch-mob u-boxShadow3 u-borderR5 u-marginT20" alt="Task flow 1 - Setting Sustainability Goals with Partner"/>
-                  </figure>
-                </a>
-                <figcaption class="u-textCenter u-marginT10">Task flow 1 - Setting Sustainability Goals with Partner</figcaption>
-              </div>
-              <div class="u-marginV50">
-                <a class="sustainable-ux-thumbnail" href="../assets/images/sustainable-ux/screen_design2.png">
-                  <figure>
-                    <img src="../assets/images/sustainable-ux/screen_design2.png"
-                      class="u-width80-stretch-mob u-boxShadow3 u-borderR5" alt="Task flow 2 - Setting Individual Sustainability Goals"/>
-                      <figcaption  class="u-textCenter u-marginT10">Task flow 2 - Setting Individual Sustainability Goals</figcaption>
-                  </figure>
-                </a>
-              </div>
-              <div class="u-marginV50">
-                <a class="sustainable-ux-thumbnail" href="../assets/images/sustainable-ux/screen-design3.png">
-                  <figure>
-                    <img src="../assets/images/sustainable-ux/screen-design3.png"
-                      class="u-width80-stretch-mob u-boxShadow3 u-borderR5" alt="Task flow 3 - Green Achievement"/>
-                      <figcaption  class="u-textCenter u-marginT10">Task flow 3 - Green Achievement</figcaption>
+                    <img src="../assets/images/ssec-products/defining-solution.jpg" class="u-width80-stretch-mob u-boxShadow3 u-borderR5" alt="An office space">
+                    <!-- <figcaption class="u-textCenter">NASA - Eyes on Earth</figcaption> -->
                   </figure>
                 </a>
               </div>
             </div>
           </div>
-        </section>
-        <section class="full-divider project-bg u-marginV150">
-          <div class="main-pad-lr">
-            <div class="container">
-              <h2 class="u-fontWeight-bold u-lineHeight-1_5 u-textUpper">System Design</h2>
-            </div>
-          </div>
-        </section>
-        <section class="main-pad-lr u-marginV150">
-          <div class="container">
-            <div class="u-marginV150">
-              <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4 u-marginB50">
-                The system design reflected the platform's core idea of representing minimalism and greenery. The colors and other components were refined with the various iterations of the design cycle. 
-              </p>
-              <a class="sustainable-ux-thumbnail" href="../assets/images/sustainable-ux/system-design.png">
+        </div>
+      </section>
+      <section class="main-pad-lr u-marginV100">
+        <div class="container">
+          <div class="u-marginV100">
+            <h5 class="u-textUpper u-secondaryTextColor u-fontWeight-regular u-lineHeight-1_75 u-marginB5">Ideation</h5>
+            <h2 class="u-fontWeight-bold u-marginB20">Screen Design</h2>
+            <hr/>
+            <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4">
+              Here are some of my screen designs regarding our research and the goals for the web platform. These screen  designs provided us with the initial thoughts about  how the platform  could potentially help in alleviating discovered pain points.
+            </p>
+            <div class="u-displayFlex u-justify-center u-marginV50"></div>
+              <a class="ssec-products-thumbnail" href="../assets/images/ssec-products/screen-design.png">
                 <figure>
-                  <img src="../assets/images/sustainable-ux/system-design.png"
-                    class="u-boxShadow3 u-borderR5" alt="Design paradigm"/>
-                  </figure>
-                </a>
-              <figcaption class="u-textCenter u-marginT10">Design paradigm. Link to <a href="https://www.figma.com/file/SrzhIZ8LRxsfm3IKjaOaQr/UX-2?type=design&node-id=125-4&mode=design" class="link-style" target="_blank">Figma</a>.</figcaption>
+                  <img src="../assets/images/ssec-products/screen-design.png"
+                  class="u-width100 u-boxShadow3 u-borderR5 u-bg-white u-padding10" alt="Screen Design"/>
+                  <figcaption class="u-textCenter">Screen Design</figcaption>
+                </figure>
+              </a>
             </div>
           </div>
-        </section>
-        <section class="full-divider project-bg u-marginV150">
-          <div class="main-pad-lr">
-            <div class="container">
-              <h2 class="u-fontWeight-bold u-lineHeight-1_5 u-textUpper">Wireframes</h2>
-            </div>
-          </div>
-        </section>
-        <section class="main-pad-lr u-marginV150">
-          <div class="container">
-            <div class="u-marginV150">
-              <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4 u-marginB50">
-                With the system design and screen designs in place, I created the wireframes for all the required screens in the task flows using Figma. The wireframes depicted the overall looks and functionalities of the application.  Finally, I annotated each screen. These annotations included relevant information and decisions about the design.
-              </p>
-              <a class="sustainable-ux-thumbnail" href="../assets/images/sustainable-ux/wireframe.png">
-                <figure>
-                  <img src="../assets/images/sustainable-ux/wireframe.png"
-                    class="u-boxShadow3 u-borderR5" alt="Wireframes"/>
-                  </figure>
-                </a>
-              <figcaption class="u-textCenter u-marginT10">Wireframes. Link to <a href="https://www.figma.com/file/SrzhIZ8LRxsfm3IKjaOaQr/UX-2?type=design&node-id=279%3A1584&mode=design&t=1nHMAhpfK1K0vfyD-1" class="link-style" target="_blank">Figma</a>.</figcaption>
-            </div>
-          </div>
-        </section>
-        <section class="full-divider project-bg u-marginV150">
-          <div class="main-pad-lr">
-            <div class="container">
-              <h2 class="u-fontWeight-bold u-lineHeight-1_5 u-textUpper">Final Mockup</h2>
-            </div>
-          </div>
-        </section>
-        <section class="main-pad-lr u-marginV150">
-          <div class="container">
-            <div class="u-marginV150">
-              <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4 u-marginB50">
-                The final stage consisted of designing the mockups. With multiple design iterations and feedback I worked on creating the final mockups. I focussed on curating an experience that was clear and easy to follow.<br><br>
-                 Below are the final mockup designs for the task flows.
-              </p>
-              <div class="u-marginV50 feature-boxes">
-                <div class="feature-box-wrap">
-                  <div class="feature-box">
-                    <a class="sustainable-ux-thumbnail" href="../assets/images/sustainable-ux/mockups/homepage.png">
-                      <figure>
-                        <img src="../assets/images/sustainable-ux/mockups/homepage.png" alt="Homepage"/>
-                      </figure>
-                    </a>
-                  </div>
-                </div>
-                <div class="feature-box-wrap">
-                  <div class="feature-box">
-                    <a class="sustainable-ux-thumbnail" href="../assets/images/sustainable-ux/mockups/menu.png">
-                      <figure>
-                        <img src="../assets/images/sustainable-ux/mockups/menu.png" alt="Menu"/>
-                      </figure>
-                    </a>
-                  </div>
-                </div>
-                <div class="feature-box-wrap">
-                  <div class="feature-box">
-                    <a class="sustainable-ux-thumbnail" href="../assets/images/sustainable-ux/mockups/goal-type.png">
-                      <figure>
-                        <img src="../assets/images/sustainable-ux/mockups/goal-type.png" alt="Goal Type"/>
-                      </figure>
-                    </a>
-                  </div>
-                </div>
-                <div class="feature-box-wrap">
-                  <div class="feature-box">
-                    <a class="sustainable-ux-thumbnail" href="../assets/images/sustainable-ux/mockups/partner-profile.png">
-                      <figure>
-                        <img src="../assets/images/sustainable-ux/mockups/partner-profile.png" alt="Partner profile"/>
-                      </figure>
-                    </a>
-                  </div>
-                </div>
-                <div class="feature-box-wrap">
-                  <div class="feature-box">
-                    <a class="sustainable-ux-thumbnail" href="../assets/images/sustainable-ux/mockups/goals.png">
-                      <figure>
-                        <img src="../assets/images/sustainable-ux/mockups/goals.png" alt="Goals"/>
-                      </figure>
-                    </a>
-                  </div>
-                </div>
-                <div class="feature-box-wrap">
-                  <div class="feature-box">
-                    <a class="sustainable-ux-thumbnail" href="../assets/images/sustainable-ux/mockups/team-up.png">
-                      <figure>
-                        <img src="../assets/images/sustainable-ux/mockups/team-up.png" alt="Team Up"/>
-                      </figure>
-                    </a>
-                  </div>
-                </div>
-                <div class="feature-box-wrap">
-                  <div class="feature-box">
-                    <a class="sustainable-ux-thumbnail" href="../assets/images/sustainable-ux/mockups/all-goals.png">
-                      <figure>
-                        <img src="../assets/images/sustainable-ux/mockups/all-goals.png" alt="All Goals"/>
-                      </figure>
-                    </a>
-                  </div>
-                </div>
-                <div class="feature-box-wrap">
-                  <div class="feature-box">
-                    <a class="sustainable-ux-thumbnail" href="../assets/images/sustainable-ux/mockups/certificate.png">
-                      <figure>
-                        <img src="../assets/images/sustainable-ux/mockups/certificate.png" alt="Certificate"/>
-                      </figure>
-                    </a>
-                  </div>
-                </div>
-                <div class="feature-box-wrap">
-                  <div class="feature-box">
-                    <a class="sustainable-ux-thumbnail" href="../assets/images/sustainable-ux/mockups/success.png">
-                      <figure>
-                        <img src="../assets/images/sustainable-ux/mockups/success.png" alt="Success"/>
-                      </figure>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section class="full-divider project-bg u-marginV150">
-          <div class="main-pad-lr">
-            <div class="container">
-              <h2 class="u-fontWeight-bold u-lineHeight-1_5 u-textUpper">Lessons Learned</h2>
-            </div>
-          </div>
-        </section>
-        <section class="main-pad-lr u-marginV150">
-          <div class="container">
-            <div class="u-marginV150">
-              <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4 u-marginB50">
-                The entire journey of designing the UX for the Sustainability mobile app platform taught me to take a holistic approach to designing solutions to contribute to the climate crisis. Providing users with personalized experiences motivates them more to accomplish a goal. From a design perspective, information architecture plays a very vital role in defining the entire design journey.
-              </p>
-              <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4 u-marginB50">
-                <strong>If I Had More Time:</strong> For future work and enhancement, I would like to further incorporate a few features in the app:
-              </p>
-              <ul class="u-lineHeight-1_5 u-fontSize-p4">
-                <li>A way to track the carbon footprints of each user.</li><br>
-                <li>A better visualization of the contributions through dashboards and graphs.</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-        <!-- <section class="main-pad-lr u-marginV150">
-          <div class="container">
-            <div class="u-marginV150">
-              <h3 class="u-fontWeight-bold u-marginB20">The design process is still in progress. Come here later for the final design solution.</h3>
-            </div>
-          </div>
-        </section> -->
-      </div>
+        </div>
+      </section>
       <include src="../partials/article-navigator.html"/>
     </main>
     <include src="../partials/footer.html"/>

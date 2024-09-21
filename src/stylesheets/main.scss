@@ -1696,14 +1696,6 @@ footer {
 }
 
 @media screen and (max-width: 900px) {
-  // .main-pad-lr {
-  //   padding-left: 4rem !important;
-  //   padding-right: 4rem !important;
-  // }
-
-  // .project-hero-main-mar {
-  //   margin: 4rem !important;
-  // }
   :root {
     --project-hero-main-mar: #{$navbar_height};
     --main-pad: 4rem;
@@ -1711,28 +1703,12 @@ footer {
 }
 
 @media screen and (max-width: 800px) {
-  // .main-pad-lr {
-  //   padding-left: 3rem !important;
-  //   padding-right: 3rem !important;
-  // }
-
-  // .project-hero-main-mar {
-  //   margin: 3rem !important;
-  // }
   :root {
     --main-pad: 3rem;
   }
 }
 
 @media screen and (max-width: 769px) {
-  // .main-pad-lr {
-  //   padding-left: 2rem !important;
-  //   padding-right: 2rem !important;
-  // }
-
-  // .project-hero-main-mar {
-  //   margin: 2rem !important;
-  // }
   :root {
     --main-pad: 2rem;
   }
@@ -3098,7 +3074,7 @@ footer {
   $ssec-color-interactive: rgb(83, 204, 252);
 
   .hero-ssec-products {
-    .hero-ssec-products-gradient {
+    .gradient-bg-animate {
       background: linear-gradient(70deg, $ssec-color-bg1 0%, $ssec-color-bg2 75%, $ssec-color-bg3 100%);
 
       .g1 {
@@ -3522,12 +3498,21 @@ $star-background: #f1c40f;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+
+  @media (max-width: 500px) {
+    font-size: 20px;
+  }
 }
 
 .rating {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 10px;
+
+  // Media query for smaller screens
+  @media (max-width: 500px) {
+    grid-template-columns: 1fr; // Stack items vertically
+  }
 }
 
 .rating-row {
@@ -3538,4 +3523,25 @@ $star-background: #f1c40f;
   justify-self: start;
   text-align: left;
   margin-right: 25px;
+
+  // Media query for smaller screens
+  @media (max-width: 500px) {
+    margin-right: 0; // Remove margin for smaller screens
+  }
+}
+
+.scroll-watcher {
+  height: 5px;
+  position: fixed;
+  top: 0;
+  z-index: 10000000;
+  width: 100%;
+  scale: 0 1;
+  transform-origin: left;
+  animation: scroll-watcher linear;
+  animation-timeline: scroll();
+}
+
+@keyframes scroll-watcher {
+  to { scale: 1 1; }
 }

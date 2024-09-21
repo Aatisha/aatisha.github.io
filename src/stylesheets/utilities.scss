@@ -75,6 +75,10 @@
   align-items: center;
 }
 
+.u-alignItems-stretch {
+  align-items: stretch;
+}
+
 .u-alignItems-start {
   align-items: flex-start;
 }
@@ -935,12 +939,20 @@
 ----- PADDING -----
 **/
 
+.u-paddingR-5p {
+  padding-right: 10% !important;
+}
+
 .u-padding10 {
   padding: 10px;
 }
 
 .u-padding20 {
   padding: 20px;
+}
+
+.u-padding30 {
+  padding: 30px;
 }
 
 .u-padding50 {
@@ -1225,6 +1237,7 @@ hr {
   padding-right: $gutter / 2;
   padding-left: $gutter / 2;
   margin-bottom: $vertical-gap; // Apply vertical gap for stacking
+  margin-top: $vertical-gap; // Apply vertical gap for stacking
 }
 
 // Container class to handle max-width and padding
@@ -1293,6 +1306,7 @@ hr {
     padding-right: 0;
     padding-left: 0;
     margin-bottom: 0; // No vertical gap when stacked
+    margin-top: 0; // No vertical gap when stacked
   }
 }
 
@@ -1304,6 +1318,7 @@ hr {
     padding-right: 5px;
     padding-left: 5px;
     margin-bottom: 5px; // Small vertical gap when stacked
+    margin-top: 5px; // Small vertical gap when stacked
   }
 }
 
@@ -1315,6 +1330,7 @@ hr {
     padding-right: 30px;
     padding-left: 30px;
     margin-bottom: 30px; // Large vertical gap when stacked
+    margin-top: 30px; // Large vertical gap when stacked
   }
 }
 

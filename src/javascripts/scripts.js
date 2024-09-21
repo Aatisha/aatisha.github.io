@@ -12,6 +12,7 @@ import './ux-research';
 import './contact';
 import './sustainable-ux';
 import './ssec-products';
+import './project-hero-bg-animation';
 import {
   BlogTemplateProperties, BLOG_SLIDE_TEMPLATE, MEDIUM_USERNAME,
   STARRED_BLOG_ID, DESIGN_URLS, DEV_URLS, DESIGN_ARTICLE_NAVS, DEV_ARTICLE_NAVS, URL_PATHS,
