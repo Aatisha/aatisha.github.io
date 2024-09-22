@@ -6,6 +6,10 @@
   display: block;
 }
 
+.u-displayGrid {
+  display: grid;
+}
+
 .u-displayFlex {
   display: flex;
 }
@@ -686,6 +690,10 @@
   height: auto !important;
 }
 
+.u-heightFitContent {
+  height: fit-content !important;
+}
+
 .u-height300px {
   height: 300px;
 }
@@ -953,6 +961,10 @@
 
 .u-padding30 {
   padding: 30px;
+}
+
+.u-padding40 {
+  padding: 40px;
 }
 
 .u-padding50 {

@@ -45,5 +45,19 @@ document.addEventListener('DOMContentLoaded', () => {
       bgAnimation.style.display = 'none';
       document.body.classList.remove('contrast-mode');
     });
+
+    document.querySelectorAll('.new-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const glow = card.querySelector('.interactive-glow');
+        glow.style.opacity = '0.7';
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left - glow.offsetWidth / 2;
+        const y = e.clientY - rect.top - glow.offsetHeight / 2;
+        glow.style.transform = `translate(${x}px, ${y}px)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.querySelector('.interactive-glow').style.opacity = '0';
+      });
+    });
   }
 });

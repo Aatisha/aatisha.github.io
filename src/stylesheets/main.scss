@@ -3545,3 +3545,49 @@ $star-background: #f1c40f;
 @keyframes scroll-watcher {
   to { scale: 1 1; }
 }
+
+// New card design
+.new-card {
+  background: white;
+  // padding: 50px;
+  margin: 150px 0;
+  border-radius: 12px;
+  overflow: hidden;
+  min-height: 460px;
+  grid-template-rows: 0.5fr 5fr;
+
+  .org-logo {
+    width: 40px;
+    height: 40px;
+    -webkit-filter: grayscale(1);
+    filter: grayscale(1);
+    margin-left: 50px;
+  }
+
+  .image-container {
+    display: flex;
+    align-items: center;
+    img {
+      z-index: -1;
+      width: 100%;
+    }
+  }
+
+  .card-text {
+    flex-direction: column;
+    padding: 50px !important;
+  }
+
+  .interactive-glow {
+    width: 350px;
+    height: 350px;
+    background-color: $ssec_products;
+    filter: blur(180px);
+    border-radius: 50%;
+    opacity: 0;
+    position: absolute;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+    z-index: -2;
+  }
+}
