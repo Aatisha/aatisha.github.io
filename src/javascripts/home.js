@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.classList.remove('contrast-mode');
     });
 
-    document.querySelectorAll('.new-card').forEach(card => {
+    document.querySelectorAll('.new-card').forEach((card) => {
       card.addEventListener('mousemove', (e) => {
         const glow = card.querySelector('.interactive-glow');
         glow.style.opacity = '0.7';

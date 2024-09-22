@@ -1,4 +1,5 @@
 import Swiper from 'swiper';
+import VanillaTilt from 'vanilla-tilt';
 import {
   removeContentByIdAfter, stringInject, removeTags, getFirstNWords, isEqualURLs,
   removeTrailingSlash, getAdjacentItems,
@@ -13,7 +14,6 @@ import './contact';
 import './sustainable-ux';
 import './ssec-products';
 import './project-hero-bg-animation';
-import VanillaTilt from 'vanilla-tilt';
 import {
   BlogTemplateProperties, BLOG_SLIDE_TEMPLATE, MEDIUM_USERNAME,
   STARRED_BLOG_ID, DESIGN_URLS, DEV_URLS, DESIGN_ARTICLE_NAVS, DEV_ARTICLE_NAVS, URL_PATHS,
@@ -241,3 +241,14 @@ window.onload = async () => {
     adjustArticleNavigator();
   }
 };
+
+document.addEventListener('DOMContentLoaded', () => {
+  const tiltElements = document.querySelectorAll('.tilt-animation');
+  if (tiltElements.length > 0) {
+    VanillaTilt.init(tiltElements, {
+      speed: 4000,
+      max: 2,
+      perspective: 400,
+    });
+  }
+});
