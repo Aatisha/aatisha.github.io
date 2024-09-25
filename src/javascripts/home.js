@@ -47,16 +47,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.querySelectorAll('.new-card').forEach((card) => {
+      const glow = card.querySelector('.interactive-glow');
       card.addEventListener('mousemove', (e) => {
-        const glow = card.querySelector('.interactive-glow');
-        glow.style.opacity = '0.7';
+        // glow.style.opacity = '0.7';
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left - glow.offsetWidth / 2;
         const y = e.clientY - rect.top - glow.offsetHeight / 2;
-        glow.style.transform = `translate(${x}px, ${y}px)`;
+        glow.style.top = `${y}px`;
+        glow.style.left = `${x}px`;
       });
       card.addEventListener('mouseleave', () => {
-        card.querySelector('.interactive-glow').style.opacity = '0';
+        // glow.style.top = 0;
+        // glow.style.left = 'inherit';
       });
     });
   }

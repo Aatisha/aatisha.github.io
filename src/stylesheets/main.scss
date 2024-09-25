@@ -3601,16 +3601,20 @@ $star-background: #f1c40f;
   }
 
   .interactive-glow {
-    width: 350px;
-    height: 350px;
+    $glow-dimension: 300px;
+
+    width: $glow-dimension;
+    height: $glow-dimension;
     background-color: $ssec_products;
-    filter: blur(180px);
+    filter: blur(120px);
     border-radius: 50%;
-    opacity: 0;
+    opacity: 1;
     position: absolute;
     transition: opacity 0.3s ease, transform 0.3s ease;
     pointer-events: none;
     z-index: -2;
+    top: 0;
+    left: calc(100% - #{$glow-dimension * 0.75});
   }
 }
 
