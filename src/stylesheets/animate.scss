@@ -96,10 +96,15 @@
 @keyframes header-animation {
   25% { opacity: 1; }
 
-  85%,
+  85% {
+    opacity: 0;
+    scale: 2;
+  }
+
   100% {
     opacity: 0;
     scale: 2;
+    display: none;
   }
 }
 
