@@ -3565,7 +3565,22 @@ $star-background: #f1c40f;
 
       &:first-child {
         margin-left: 25px;
+        padding-left: 0;
       }
+
+      @media screen and (max-width: 566px) {
+        padding: 0 6px;
+        height: 25px;
+        &:first-child {
+          margin-left: 8px;
+        }
+      }
+    }
+
+    @media screen and (max-width: 566px) {
+      max-width: 40%;
+      display: flex;
+      justify-content: flex-end;
     }
   }
 
@@ -3602,4 +3617,20 @@ $star-background: #f1c40f;
 .lg-outer .lg-thumb-item.active,
 .lg-outer .lg-thumb-item:hover {
   border-color: $secondary;
+}
+
+.ssec-selected-wireframe-img {
+  padding: 17.5px 10px;
+}
+
+.ssec-wireframe-option {
+  @media screen and (max-width: 566px) {
+    margin-top: 50px !important;
+  }
+}
+
+@media screen and (max-width: 566px) {
+  .u-mob-marginT50 {
+    margin-top: 50px !important;
+  }
 }
