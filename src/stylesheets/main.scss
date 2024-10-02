@@ -3555,11 +3555,15 @@ $star-background: #f1c40f;
 // New card design
 .new-card {
   background: white;
-  margin: 100px 0;
+  margin: 150px 0;
   overflow: hidden;
   min-height: 460px;
   grid-template-rows: 0.5fr 5fr;
   position: relative;
+
+  &:first-child {
+    margin-top: 100px;
+  }
 
   .org-logos {
     &.amz-shp {
@@ -3646,14 +3650,14 @@ $star-background: #f1c40f;
   }
 
   .interactive-glow {
-    $glow-dimension: 300px;
+    $glow-dimension: 250px;
 
     width: $glow-dimension;
     height: $glow-dimension;
     background-color: $secondary;
-    filter: blur(120px);
+    filter: blur(80px);
     border-radius: 50%;
-    opacity: 1;
+    opacity: 0.6;
     position: absolute;
     transition: opacity 0.3s ease, transform 0.3s ease;
     pointer-events: none;
