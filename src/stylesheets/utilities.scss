@@ -107,8 +107,16 @@
   flex: 0 0 calc(50% - 25px);
 }
 
+.u-flex33p {
+  flex: 0 0 calc(33.333% - 25px);
+}
+
 @media (max-width: 650px) {
   .u-flex50p {
+    flex: 0 0 100%;
+  }
+
+  .u-flex33p {
     flex: 0 0 100%;
   }
 }
@@ -423,6 +431,10 @@
 
 .u-borderR5 {
   border-radius: 5px;
+}
+
+.u-borderR12 {
+  border-radius: 12px;
 }
 
 .u-borderR50p {
@@ -1389,4 +1401,12 @@ hr {
 
 ol li::marker {
   font-weight: 500;
+}
+
+.u-top0 {
+  top: 0 !important;
+}
+
+.u-overflowHidden {
+  overflow: hidden;
 }

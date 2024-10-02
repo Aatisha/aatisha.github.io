@@ -2774,6 +2774,10 @@ footer {
   color: $ux_research;
 }
 
+.amazon_shopbop_color {
+  color: $amazon_shopbop;
+}
+
 // Online Assessment
 .project-online-assessment {
   .project-bg {
@@ -3359,22 +3363,24 @@ ul {
 }
 
 .other-work-card {
-  display: none;
   position: relative;
+  background-color: $white;
 }
 
 .info-banner {
-  background-color: $secondary;
+  background-color: $black;
   color: $white;
   position: absolute;
   display: flex;
-  top: 20px;
+  // top: 20px;
   font-size: 1.2rem;
   align-items: center;
-  padding: 5px 10px;
+  padding: 5px 35px;
   font-weight: 700;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  bottom: 30px;
+  right: 0;
 }
 
 .quote-blog {
@@ -3549,15 +3555,32 @@ $star-background: #f1c40f;
 // New card design
 .new-card {
   background: white;
-  // padding: 50px;
-  margin: 150px 0;
-  border-radius: 12px;
+  margin: 100px 0;
   overflow: hidden;
   min-height: 460px;
   grid-template-rows: 0.5fr 5fr;
   position: relative;
 
   .org-logos {
+    &.amz-shp {
+      .org-logo {
+        height: 25px;
+
+        &:first-child {
+          padding-top: 12px;
+        }
+
+        @media screen and (max-width: 566px) {
+          padding: 0 6px;
+          height: 12px;
+
+          &:first-child {
+            padding-top: 3px;
+          }
+        }
+      }
+    }
+
     .org-logo {
       width: auto;
       height: 50px;
@@ -3627,7 +3650,7 @@ $star-background: #f1c40f;
 
     width: $glow-dimension;
     height: $glow-dimension;
-    background-color: $ssec_products;
+    background-color: $secondary;
     filter: blur(120px);
     border-radius: 50%;
     opacity: 1;
@@ -3637,6 +3660,30 @@ $star-background: #f1c40f;
     z-index: -2;
     top: 0;
     left: calc(100% - #{$glow-dimension * 0.75});
+  }
+
+  &.ssec-card {
+    .interactive-glow {
+      background-color: $ssec_products;
+    }
+  }
+
+  &.sustainable-ux-card {
+    .interactive-glow {
+      background-color: $sustainable_ux;
+    }
+  }
+
+  &.trader-joes-card {
+    .interactive-glow {
+      background-color: $trader_joes;
+    }
+  }
+
+  &.amazon-shopbop-card {
+    .interactive-glow {
+      background-color: $amazon_shopbop;
+    }
   }
 
   @media screen and (max-width: 950px) {
