@@ -56,10 +56,18 @@ document.addEventListener('DOMContentLoaded', () => {
         glow.style.top = `${y}px`;
         glow.style.left = `${x}px`;
       });
-      card.addEventListener('mouseleave', () => {
-        // glow.style.top = 0;
-        // glow.style.left = 'inherit';
+      card.addEventListener('touchmove', (e) => {
+        // glow.style.opacity = '0.7';
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left - glow.offsetWidth / 2;
+        const y = e.clientY - rect.top - glow.offsetHeight / 2;
+        glow.style.top = `${y}px`;
+        glow.style.left = `${x}px`;
       });
+      // card.addEventListener('mouseleave', () => {
+      //   glow.style.top = 0;
+      //   glow.style.left = 'inherit';
+      // });
     });
   }
 });

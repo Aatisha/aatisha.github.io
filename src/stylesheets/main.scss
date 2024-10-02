@@ -597,6 +597,12 @@ html {
   }
 }
 
+@media screen and (max-width: 576px) {
+  .row-rev-xs {
+    flex-direction: column-reverse;
+  }
+}
+
 // ABOUT
 .hero-about {
   background-color: #fbfacd;
@@ -3549,6 +3555,7 @@ $star-background: #f1c40f;
   overflow: hidden;
   min-height: 460px;
   grid-template-rows: 0.5fr 5fr;
+  position: relative;
 
   .org-logos {
     .org-logo {
@@ -3593,11 +3600,26 @@ $star-background: #f1c40f;
       z-index: -1;
       width: 100%;
     }
+
+    &.ssec-img {
+      justify-content: center;
+
+      img {
+        position: absolute;
+        width: auto;
+        height: 400px;
+        bottom: 0;
+      }
+    }
   }
 
   .card-text {
     flex-direction: column;
     padding: 50px !important;
+
+    &.ssec-text {
+      height: 350px;
+    }
   }
 
   .interactive-glow {
@@ -3615,6 +3637,76 @@ $star-background: #f1c40f;
     z-index: -2;
     top: 0;
     left: calc(100% - #{$glow-dimension * 0.75});
+  }
+
+  @media screen and (max-width: 950px) {
+    .image-container {
+      &.ssec-img {
+        img {
+          height: 350px;
+        }
+      }
+    }
+
+    .card-text {
+      &.ssec-text {
+        height: calc(100% - 50px);
+      }
+    }
+  }
+
+  @media screen and (max-width: 850px) {
+    .image-container {
+      &.ssec-img {
+        img {
+          height: 300px;
+        }
+      }
+    }
+
+    .card-text {
+      padding: 30px !important;
+      // &.ssec-text {
+      //   height: 250px;
+      // }
+    }
+  }
+
+  @media screen and (max-width: 680px) {
+    .image-container {
+      &.ssec-img {
+        img {
+          height: 250px;
+        }
+      }
+    }
+
+    .card-text {
+      padding: 40px !important;
+      // &.ssec-text {
+      //   height: 300px;
+      // }
+    }
+  }
+
+  @media screen and (max-width: 576px) {
+    .image-container {
+      &.ssec-img {
+        height: 180px;
+
+        img {
+          height: 225px;
+        }
+      }
+    }
+
+    .card-text {
+      padding: 30px 0 !important;
+
+      &.ssec-text {
+        height: auto;
+      }
+    }
   }
 }
 
