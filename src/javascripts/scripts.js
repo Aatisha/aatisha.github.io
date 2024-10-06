@@ -113,24 +113,26 @@ function customBlogSort(a, b) {
 function addBlogDetailsToDom(blogDetails) {
   const blogSection = document.getElementById('blog-section');
   const blogWrapper = document.getElementById('blog-wrapper');
-  let blogSlideContent = '';
-  blogDetails.items.sort(customBlogSort);
-  blogDetails.items.forEach((item, index) => {
-    const {
-      thumbnail, title, pubDate, guid, stats, content, link,
-    } = item;
-    const publishDateFormatted = new Date(pubDate).toLocaleDateString('en-us', { year: 'numeric', month: 'short' });
-    const sanitizeContent = getFirstNWords(removeTags(content), 50).join(' ');
-    const blogTemplate = new BlogTemplateProperties(thumbnail, title, title, publishDateFormatted,
-      stats.claps.toString(), stats.comments.toString(),
-      index.toString(), guid, link, sanitizeContent);
-    blogSlideContent += stringInject(BLOG_SLIDE_TEMPLATE, blogTemplate);
-  });
-  blogWrapper.innerHTML = blogSlideContent;
-  blogSection.style.display = 'block';
-  setTimeout(() => {
-    instantiateSwiper();
-  }, 500);
+  if (blogSection && blogWrapper) {
+    let blogSlideContent = '';
+    blogDetails.items.sort(customBlogSort);
+    blogDetails.items.forEach((item, index) => {
+      const {
+        thumbnail, title, pubDate, guid, stats, content, link,
+      } = item;
+      const publishDateFormatted = new Date(pubDate).toLocaleDateString('en-us', { year: 'numeric', month: 'short' });
+      const sanitizeContent = getFirstNWords(removeTags(content), 50).join(' ');
+      const blogTemplate = new BlogTemplateProperties(thumbnail, title, title, publishDateFormatted,
+        stats.claps.toString(), stats.comments.toString(),
+        index.toString(), guid, link, sanitizeContent);
+      blogSlideContent += stringInject(BLOG_SLIDE_TEMPLATE, blogTemplate);
+    });
+    blogWrapper.innerHTML = blogSlideContent;
+    blogSection.style.display = 'block';
+    setTimeout(() => {
+      instantiateSwiper();
+    }, 500);
+  }
 }
 
 function disableBodyContent() {
