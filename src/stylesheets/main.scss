@@ -2768,6 +2768,7 @@ footer {
 
 .ssec_products_color {
   color: $ssec_products;
+  --link-hover-color: #{$ssec_products};
 }
 
 .ux_research_color {
@@ -3104,7 +3105,7 @@ footer {
       }
 
       .g4 {
-        background: radial-gradient(circle, $ssec-color4 0%, transparent 50%);
+        background: radial-gradient(circle, $ssec-color4 20%, transparent 50%);
       }
 
       .g5 {
@@ -3254,7 +3255,7 @@ footer {
 
 // link style
 a {
-  color: #111;
+  color: #222 !important;
   text-decoration: none;
   -webkit-transition: all 0.25s;
   -o-transition: all 0.25s;
@@ -3262,18 +3263,18 @@ a {
 
   &.link-style {
     text-decoration: none;
-    border-bottom: 0.025em solid $primary_alt;
-    box-shadow: inset 0 -0.125em 0 $primary_alt;
+    border-bottom: 0.025em solid var(--link-hover-color, $primary_alt);
+    box-shadow: inset 0 -0.125em 0 var(--link-hover-color, $primary_alt);
     transition: box-shadow 270ms cubic-bezier(0.77, 0, 0.175, 1), color 270ms cubic-bezier(0.77, 0, 0.175, 1);
 
     &:hover {
-      box-shadow: inset 0 -1.125em 0 $primary_alt;
+      box-shadow: inset 0 -1.125em 0 var(--link-hover-color, $primary_alt);
       color: $black;
     }
 
     &:focus {
       outline: none;
-      background: $primary_alt;
+      background: var(--link-hover-color, $primary_alt);
       color: white;
       box-shadow: 8px 8px 24px rgba(0, 0, 0, 0.2);
     }
