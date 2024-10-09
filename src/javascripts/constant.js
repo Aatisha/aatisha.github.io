@@ -80,6 +80,8 @@ export class BlogTemplateProperties {
   }
 }
 
+const TECH_BASE_PATH = '/tech';
+
 export const URL_PATHS = {
   home: '/',
   about: '/about',
@@ -92,11 +94,25 @@ export const URL_PATHS = {
   trader_joes: '/trader-joes',
   ux_research: '/ux-research',
   sustainable_ux: '/sustainable-ux',
+  ssec_products: '/ssec-products',
+  tech: {
+    home: TECH_BASE_PATH,
+    about: `${TECH_BASE_PATH}/about`,
+    contact: `${TECH_BASE_PATH}/contact`,
+    deal_management: `${TECH_BASE_PATH}/deal-management`,
+    online_assessment: `${TECH_BASE_PATH}/online-assessment`,
+    plant_health: `${TECH_BASE_PATH}/plant-health`,
+  },
 };
 
 export const DESIGN_ARTICLE_NAVS = [
   {
-    name: 'App Design for Sustain Dane',
+    name: 'SSEC\'s Products Platform',
+    path: URL_PATHS.ssec_products,
+    class: 'ssec_products_color',
+  },
+  {
+    name: 'Sustain Dane - App Design For Environmental Good',
     path: URL_PATHS.sustainable_ux,
     class: 'sustainable_ux_color',
   },
@@ -122,20 +138,27 @@ export const DESIGN_ARTICLE_NAVS = [
   },
 ];
 
+export function isTechPath() {
+  return window.location.href.includes(TECH_BASE_PATH);
+}
+
 export const DEV_ARTICLE_NAVS = [
   {
     name: 'Online Assessment',
-    path: URL_PATHS.online_assessment,
+    path: (isTechPath()) ? URL_PATHS.tech.online_assessment : URL_PATHS.online_assessment,
+    // tech_path: URL_PATHS.tech.online_assessment,
     class: 'online_assessment_color',
   },
   {
     name: 'Plant health monitoring',
-    path: URL_PATHS.plant_health,
+    path: (isTechPath()) ? URL_PATHS.tech.plant_health : URL_PATHS.plant_health,
+    // tech_path: URL_PATHS.tech.plant_health,
     class: 'plant_health_color',
   },
   {
     name: 'Deal management',
-    path: URL_PATHS.deal_management,
+    path: (isTechPath()) ? URL_PATHS.tech.deal_management : URL_PATHS.deal_management,
+    // tech_path: URL_PATHS.tech.deal_management,
     class: 'deal_management_color',
   },
 ];

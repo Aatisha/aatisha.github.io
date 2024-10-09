@@ -6,6 +6,10 @@
   display: block;
 }
 
+.u-displayGrid {
+  display: grid;
+}
+
 .u-displayFlex {
   display: flex;
 }
@@ -75,6 +79,10 @@
   align-items: center;
 }
 
+.u-alignItems-stretch {
+  align-items: stretch;
+}
+
 .u-alignItems-start {
   align-items: flex-start;
 }
@@ -91,12 +99,24 @@
   flex: 1;
 }
 
+.u-flex1-mob {
+  flex: 1;
+}
+
 .u-flex50p {
   flex: 0 0 calc(50% - 25px);
 }
 
+.u-flex33p {
+  flex: 0 0 calc(33.333% - 25px);
+}
+
 @media (max-width: 650px) {
   .u-flex50p {
+    flex: 0 0 100%;
+  }
+
+  .u-flex33p {
     flex: 0 0 100%;
   }
 }
@@ -117,7 +137,7 @@
   flex: 2.5;
 }
 
-.u-flex-colrev {
+.u-flex-col-rev {
   flex-direction: column-reverse;
 }
 
@@ -305,6 +325,10 @@
   background-color: #bf5700;
 }
 
+.u-bg-transparent {
+  background-color: transparent !important;
+}
+
 .u-bg-minnesota {
   background-color: #7a0019;
 }
@@ -407,6 +431,14 @@
 
 .u-borderR5 {
   border-radius: 5px;
+}
+
+.u-borderR12 {
+  border-radius: 12px;
+}
+
+.u-borderR50p {
+  border-radius: 50%;
 }
 
 /** Border Colors **/
@@ -647,7 +679,7 @@
 }
 
 .u-fontWeight-medium {
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .u-fontWeight-semiBold {
@@ -670,12 +702,20 @@
   height: auto !important;
 }
 
+.u-heightFitContent {
+  height: fit-content !important;
+}
+
 .u-height300px {
   height: 300px;
 }
 
 .u-height450px {
   height: 450px;
+}
+
+.u-minHeigh-fullScreen {
+  min-height: 100vh;
 }
 
 /**
@@ -723,6 +763,13 @@
 }
 
 /**
+---- COLORS -----
+**/
+.u-secondaryTextColor {
+  color: $secondary_font_color;
+}
+
+/**
 ----- MARGINS -----
 **/
 
@@ -740,6 +787,10 @@
 
 .u-marginB0 {
   margin-bottom: 0;
+}
+
+.u-marginB5 {
+  margin-bottom: 5px;
 }
 
 .u-marginB10 {
@@ -814,9 +865,24 @@
   margin-top: 200px;
 }
 
+.u-marginV10 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.u-marginV15 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
 .u-marginV20 {
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.u-marginV30 {
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 .u-marginV50 {
@@ -878,6 +944,10 @@
   margin-left: 10%;
 }
 
+.u-marginR5 {
+  margin-right: 5px;
+}
+
 @media screen and (max-width: 400px) {
   .u-marginV150 {
     margin-top: 100px;
@@ -889,12 +959,28 @@
 ----- PADDING -----
 **/
 
+.u-paddingR-5p {
+  padding-right: 10% !important;
+}
+
 .u-padding10 {
   padding: 10px;
 }
 
+.u-padding15 {
+  padding: 15px;
+}
+
 .u-padding20 {
   padding: 20px;
+}
+
+.u-padding30 {
+  padding: 30px;
+}
+
+.u-padding40 {
+  padding: 40px;
 }
 
 .u-padding50 {
@@ -1159,4 +1245,172 @@
 
 .u-bg-primary-alt {
   background: $primary_alt;
+}
+
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+// Mixin to create the grid column
+@mixin make-col($size) {
+  flex: 0 0 percentage($size / $grid-columns);
+  max-width: percentage($size / $grid-columns);
+}
+
+// Mixin to create gutter padding (for all col classes)
+@mixin apply-gutter($gutter: $gutter-width) {
+  padding-right: $gutter / 2;
+  padding-left: $gutter / 2;
+  margin-bottom: $vertical-gap; // Apply vertical gap for stacking
+  margin-top: $vertical-gap; // Apply vertical gap for stacking
+}
+
+// Container class to handle max-width and padding
+.container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: $gutter-width / 2;
+  padding-left: $gutter-width / 2;
+
+  @each $breakpoint, $value in $breakpoints {
+    @if $value > 0 {
+      @media (min-width: $value) {
+        max-width: $value;
+      }
+    }
+  }
+}
+
+// Row class to handle negative margins for gutter compensation
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  // margin-right: -($gutter-width / 2);  // Compensate for column gutter
+  // margin-left: -($gutter-width / 2);   // Compensate for column gutter
+}
+
+// Generate responsive grid columns with gutter and vertical gap applied
+@mixin generate-grid {
+  @each $breakpoint, $value in $breakpoints {
+    @if $value == 0 {
+      .col {
+        @for $i from 1 through $grid-columns {
+          &-#{$i} {
+            @include make-col($i);
+            @include apply-gutter(); // Apply gutter and vertical gap automatically
+          }
+        }
+      }
+    }
+
+    @else {
+      @media (min-width: $value) {
+        .col-#{$breakpoint} {
+          @for $i from 1 through $grid-columns {
+            &-#{$i} {
+              @include make-col($i);
+              @include apply-gutter(); // Apply gutter and vertical gap automatically
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Include the grid generation
+@include generate-grid();
+
+// Optional: Utility classes for custom vertical gap control
+.row-gap-0 {
+  margin-right: 0;
+  margin-left: 0;
+
+  .col {
+    padding-right: 0;
+    padding-left: 0;
+    margin-bottom: 0; // No vertical gap when stacked
+    margin-top: 0; // No vertical gap when stacked
+  }
+}
+
+.row-gap-sm {
+  margin-right: -5px;
+  margin-left: -5px;
+
+  .col {
+    padding-right: 5px;
+    padding-left: 5px;
+    margin-bottom: 5px; // Small vertical gap when stacked
+    margin-top: 5px; // Small vertical gap when stacked
+  }
+}
+
+.row-gap-lg {
+  margin-right: -30px;
+  margin-left: -30px;
+
+  .col {
+    padding-right: 30px;
+    padding-left: 30px;
+    margin-bottom: 30px; // Large vertical gap when stacked
+    margin-top: 30px; // Large vertical gap when stacked
+  }
+}
+
+// Flex 1 Column class to take up equal space
+.col {
+  flex: 1;  // Take up equal space
+  min-width: 0; // Prevent columns from overflowing if content is large
+
+  @include apply-gutter(); // Apply gutter for spacing
+
+  box-sizing: border-box; // Include padding in width calculation
+}
+
+// Custom overrides for xs screens (less than 576px)
+// Override for 3 columns in a row
+@media (max-width: 576px) {
+  .col-xs-1_3 {
+    flex: 0 0 33.33%;  // 3 columns per row
+    max-width: 33.33%;
+
+    @include apply-gutter();
+  }
+
+  // Override for 2 columns in a row
+  .col-xs-1_2 {
+    flex: 0 0 50%;  // 2 columns per row
+    max-width: 50%;
+
+    @include apply-gutter();
+  }
+
+  .col-xs-1 {
+    flex: 0 0 100%;  // 1 columns per row
+    max-width: 100%;
+    width: 100%;
+
+    @include apply-gutter();
+  }
+}
+
+ol li::marker {
+  font-weight: 500;
+}
+
+.u-top0 {
+  top: 0 !important;
+}
+
+.u-overflowHidden {
+  overflow: hidden;
+}
+
+.u-minHeight60 {
+  min-height: 60px;
 }

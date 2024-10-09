@@ -1,5 +1,7 @@
+import { URL_PATHS } from './constant';
+
 /* eslint-disable */
-if (window.location.pathname.includes('contact')) {
+if (window.location.pathname.includes(URL_PATHS.contact)) {
   (function () {
     // get all data in form and return object
     function getFormData(form) {

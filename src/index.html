@@ -10,9 +10,10 @@
   <div id="body-content">
     <include src="./partials/navbar.html"/>
     <main class="Home">
+      <div class="scroll-watcher"></div>
       <div id="bg-animation"></div>
       <section class="hero-section main-pad-lr u-paddingV50">
-        <div class="hero-wrapper Container-wrapper">
+        <div class="hero-wrapper container">
           <div class="hero-textual-data u-marginT75 gradient-text">
             <h1 class="u-fontPlayfair">Hello, I am Aatisha</h1>
             <p>
@@ -36,7 +37,7 @@
                 <li class="icon linkedin">
                   <span class="tooltip">LinkedIn</span>
                   <span>
-                    <a href="https://www.linkedin.com/in/aatisha-cyrill/" target="_blank">
+                    <a href="https://www.linkedin.com/in/aatisha-cyrill/" target="_blank" aria-label="LinkedIn">
                       <i class="fa-brands fa-linkedin"></i>
                     </a>
                   </span>
@@ -44,7 +45,7 @@
                 <li class="icon github">
                   <span class="tooltip">Github</span>
                   <span>
-                    <a href="https://github.com/Aatisha" target="_blank">
+                    <a href="https://github.com/Aatisha" target="_blank" aria-label="GitHub">
                       <i class="fa-brands fa-github"></i>
                     </a>
                   </span>
@@ -52,7 +53,7 @@
                 <li class="icon medium">
                   <span class="tooltip">Medium</span>
                   <span>
-                    <a href="https://medium.com/@cyrillaatisha" target="_blank">
+                    <a href="https://medium.com/@cyrillaatisha" target="_blank" aria-label="Medium Blogs">
                       <i class="fa-brands fa-medium"></i>
                     </a>
                   </span>
@@ -71,209 +72,183 @@
         </div>
       </section>
 
-      <section class="main-pad-lr u-paddingV150 u-positionR" id="quote-section">
-        <div class="Container-wrapper">
-          <div class="quote reveal">
+      <!-- <section class="main-pad-lr u-paddingV150 u-positionR" id="quote-section">
+        <div class="container">
+          <div class="quote">
             <blockquote class="u-color-primary">UX is more design than art. It is there to serve a purpose.</blockquote>
           </div>
         </div>
+      </section> -->
+
+      <section class="main-pad-lr u-paddingV150 u-positionR">
+        <div class="container">
+          <h5
+            class="Heading u-fontSize-h3 u-lineHeight-1_5 u-letterSpacing_3 u-displayInlineBlock u-textUpper u-color-primary">
+            Design Projects
+          </h5>
+          <div class="reveal">
+            <a href="https://www.figma.com/proto/SrzhIZ8LRxsfm3IKjaOaQr/UX-2?node-id=3358-5138&node-type=frame&t=ZGrMtm5qT9LHUyxN-0&scaling=scale-down&content-scaling=fixed&page-id=3358%3A5137" target="_blank" class="u-boxShadow1 u-positionR new-card u-borderR12 amazon-shopbop-card u-padding40 u-width100 u-displayGrid tilt-animation">
+              <div class="info-banner"> In progress</div>
+              <div class="u-displayFlex u-justify-spaceBetween u-alignItems-center">
+                <span class="u-textUpper">01 | Capstone Project</span>
+                <span class="org-logos amz-shp">
+                  <img src="./assets/images/amazon-shopbop/amazon-logo.png" alt="Amazon Logo" class="org-logo">
+                  <img src="./assets/images/amazon-shopbop/shopbop-logo.png" alt="Shopbop Logo" class="org-logo">
+                </span>
+              </div>
+              <div class="row row-rev-xs u-height100">
+                <div class="col-sm-5 image-container amz-shpbhp-img">
+                  <img src="./assets/images/amazon-shopbop/amazon-shopbop-hero.png" alt="Amazon Shopbop Homepage"/>
+                </div>
+                <div class="col-sm-7 u-displayFlex u-justify-center u-alignItem-center card-text ssec-text">
+                  <h3 class="u-fontSize-h3 u-fontWeight-black">Amazon Shopbop - App Design For Social Recommendations</h3>
+                  <p class="u-fontSize-p3 u-p-MW1 u-marginT20 u-lineHeight-1_75">
+                    Pairwise ranking design solution to crowdsource trending Shopbop products by category.
+                  </p>
+                </div>
+                <div class="interactive-glow"></div>
+              </div>
+            </a>
+          </div>
+          <div class="reveal">
+            <a href="/ssec-products" class="u-boxShadow1 new-card u-borderR12 ssec-card u-padding40 u-width100 u-displayGrid tilt-animation">
+              <div class="u-displayFlex u-justify-spaceBetween u-alignItems-center">
+                <span class="u-textUpper">02 | Summer '24 Internship</span>
+                <span class="org-logos">
+                  <img src="./assets/images/ssec-products/uw_logo.png" alt="University of Wisconsin, Madison Logo" class="org-logo">
+                  <img src="./assets/images/ssec-products/ssec-logo.png" alt="SSEC Logo" class="org-logo">
+                </span>
+              </div>
+              <div class="row row-rev-xs u-height100">
+                <div class="col-sm-5 image-container default-hero-mock-img">
+                  <img src="./assets/images/ssec-products/ssec-hero-card.png" alt="SSEC Products Homepage"/>
+                </div>
+                <div class="col-sm-7 u-displayFlex u-justify-center u-alignItem-center card-text ssec-text">
+                  <h3 class="u-fontSize-h3 u-fontWeight-black">SSEC - Products Platform</h3>
+                  <p class="u-fontSize-p3 u-p-MW1 u-marginT20 u-lineHeight-1_75">
+                   Design project to build a product platform for climate analysis at Space Science and Engineering Center at UW Madison.
+                  </p>
+                </div>
+                <div class="interactive-glow"></div>
+              </div>
+            </a>
+          </div>
+          <div class="reveal">
+            <a href="/sustainable-ux" class="u-boxShadow1 new-card u-borderR12 sustainable-ux-card u-padding40 u-width100 u-displayGrid tilt-animation">
+              <div class="u-displayFlex u-justify-spaceBetween u-alignItems-center">
+                <span class="u-textUpper">03 | Ideation and Design</span>
+                <span class="org-logos">
+                  <img src="./assets/images/sustainable-ux/sustain-dane-logo.png" alt="Sustain Dane Logo" class="org-logo">
+                </span>
+              </div>
+              <div class="row row-rev-xs u-height100">
+                <div class="col-sm-5 image-container default-hero-mock-img">
+                  <img src="./assets/images/sustainable-ux/sustain-dane-mockup.png" alt="Sustainable UX Hero Image"/>
+                </div>
+                <div class="col-sm-7 u-displayFlex u-justify-center u-alignItem-center card-text ssec-text">
+                  <h3 class="u-fontSize-h3 u-fontWeight-black">Sustain Dane - App Design For Environmental Good</h3>
+                  <p class="u-fontSize-p3 u-p-MW1 u-marginT20 u-lineHeight-1_75">
+                    First year Master's project leveraging UX to promote sustainability and environmental awareness.
+                  </p>
+                </div>
+                <div class="interactive-glow"></div>
+              </div>
+            </a>
+          </div>
+          <div class="reveal">
+            <a href="/trader-joes" class="u-boxShadow1 new-card u-borderR12 trader-joes-card u-padding40 u-width100 u-displayGrid tilt-animation">
+              <div class="u-displayFlex u-justify-spaceBetween u-alignItems-center">
+                <span class="u-textUpper">04 | Generative Research</span>
+                <span class="org-logos">
+                  <img src="./assets/images/trader-joes/trader-joes-logo.png" alt="Trader Joes Logo" class="org-logo">
+                </span>
+              </div>
+              <div class="row row-rev-xs u-height100">
+                <div class="col-sm-5 image-container trdr-jos-img">
+                  <img src="./assets/images/trader-joes/trader-joes-mockup.png" alt="Trader Joes Hero Image"/>
+                </div>
+                <div class="col-sm-7 u-displayFlex u-justify-center u-alignItem-center card-text ssec-text">
+                  <h3 class="u-fontSize-h3 u-fontWeight-black">Trader Joe's - User Research Plan</h3>
+                  <p class="u-fontSize-p3 u-p-MW1 u-marginT20 u-lineHeight-1_75">
+                    User research plan to enhance groceries shopping experience for Trader Joe's.
+                  </p>
+                </div>
+                <div class="interactive-glow"></div>
+              </div>
+            </a>
+          </div>
       </section>
 
       <section class="main-pad-lr u-bg-white  u-paddingV150">
-        <div class="Container-wrapper u-alignItems-center u-displayFlex u-flex-col">
+        <div class="container u-alignItems-center u-displayFlex u-flex-col">
           <h5
             class="Heading u-fontSize-h3 u-lineHeight-1_5 u-letterSpacing_3 u-displayInlineBlock u-textUpper u-color-primary">
-            Design Work
+            Technical Projects
           </h5>
-          <div class="u-paddingT150 Container-flex-row gap-50">
-            <div class="u-flex50p other-work-card reveal">
-              <a href="/sustainable-ux" class="has-link">
-                <div class="info-banner"> In progress</div>
-                <img src="assets/images/sustainable-ux/hero.png" alt="ux for sustainability project" class="u-height300px u-width100 u-boxShadow3 u-borderR5 u-object-fit-cover"/>
-              </a>
-              <h3 class="u-fontWeight-black u-fontSize-h4--alt u-marginT50 u-color-primary">App Design for Sustain Dane</h3>
-              <div class="Container-flex u-justify-start u-paddingT20 u-flex-row Container-text">
-                <h5 class="u-fontSize-h6 u-fontWeight-regular u-letterSpacing_1 u-bg-darkGrey u-borderR5 u-displayFlex u-justify-center u-alignItems-center u-textCenter">UX Design</h5>
-                <h5 class="u-fontSize-h6 u-fontWeight-regular u-letterSpacing_1 u-bg-darkGrey u-borderR5 u-displayFlex u-justify-center u-alignItems-center u-textCenter">Wireframe</h5>
-                <h5 class="u-fontSize-h6 u-fontWeight-regular u-letterSpacing_1 u-bg-darkGrey u-borderR5 u-displayFlex u-justify-center u-alignItems-center u-textCenter">Sustainability</h5>
+          <div class="u-paddingT100 row">
+            <div class="col-sm-4">
+              <div class="other-work-card u-boxShadow1 u-borderR12 u-overflowHidden tilt-animation u-height100">
+                <a href="/online-assessment">
+                  <img src="assets/images/online-assessment/thumbnail.jpg" alt="Online Assessment Thumbnail" class="u-height300px u-width100 u-object-fit-cover"/>
+                  <div class="u-padding30">
+                    <h3 class="u-fontWeight-black u-fontSize-h4--alt u-minHeight60">Online Assessment and Evaluation Platform</h3>
+                    <div class="Container-flex u-justify-start u-paddingT10 u-flex-row Container-text">
+                      <p class="u-fontSize-p3 u-p-MW1 u-marginT20 u-lineHeight-1_75">
+                        Final year undergrad project to enhance the user experience for coding for fellow students.
+                      </p>
+                    </div>
+                  </div>
+                </a>
               </div>
-              <a href="/sustainable-ux" class="btn-primary">View</a>
             </div>
-            <div class="u-flex50p other-work-card reveal">
-              <a href="/trader-joes" class="has-link">
-                <img src="assets/images/trader-joes/grocery-store.jpg" alt="trader joes project" class="u-height300px u-width100 u-boxShadow3 u-borderR5 u-object-fit-cover"/>
-              </a>
-              <h3 class="u-fontWeight-black u-fontSize-h4--alt u-marginT50 u-color-primary">Trader Joe's - User Research Plan</h3>
-              <div class="Container-flex u-justify-start u-paddingT20 u-flex-row Container-text">
-                <h5 class="u-fontSize-h6 u-fontWeight-regular u-letterSpacing_1 u-bg-darkGrey u-borderR5 u-displayFlex u-justify-center u-alignItems-center u-textCenter">UX Research</h5>
-                <h5 class="u-fontSize-h6 u-fontWeight-regular u-letterSpacing_1 u-bg-darkGrey u-borderR5 u-displayFlex u-justify-center u-alignItems-center u-textCenter">User Engagement</h5>
-                <h5 class="u-fontSize-h6 u-fontWeight-regular u-letterSpacing_1 u-bg-darkGrey u-borderR5 u-displayFlex u-justify-center u-alignItems-center u-textCenter">Grocery Shopping</h5>
+            <div class="col-sm-4">
+              <div class="other-work-card u-boxShadow1 u-borderR12 u-overflowHidden tilt-animation u-height100">
+                <a href="/plant-health">
+                  <img src="assets/images/plant-health/thumbnail.jpg" alt="Plant Health Thumbnail" class="u-height300px u-width100 u-object-fit-cover"/>
+                  <div class="u-padding30">
+                    <h3 class="u-fontWeight-black u-fontSize-h4--alt u-minHeight60">Plant Health Monitoring System</h3>
+                    <div class="Container-flex u-justify-start u-paddingT10 u-flex-row Container-text">
+                      <p class="u-fontSize-p3 u-p-MW1 u-marginT20 u-lineHeight-1_75">
+                        Third year undergrad academic project on Internet of Things to monitor plant's health.
+                      </p>
+                    </div>
+                  </div>
+                </a>
               </div>
-              <a href="/trader-joes" class="btn-primary">View</a>
             </div>
-            <div class="u-flex50p other-work-card reveal">
-              <a href="/literati-women" class="has-link">
-                <img src="assets/images/literati-women/thumbnail.jpg" alt="literati women project" class="u-height300px u-width100 u-boxShadow3 u-borderR5 u-object-fit-cover"/>
-              </a>
-              <h3 class="u-fontWeight-black u-fontSize-h4--alt u-marginT50 u-color-primary">Literati Women</h3>
-              <div class="Container-flex u-justify-start u-paddingT20 u-flex-row Container-text">
-                <h5 class="u-fontSize-h6 u-fontWeight-regular u-letterSpacing_1 u-bg-darkGrey u-borderR5 u-displayFlex u-justify-center u-alignItems-center u-textCenter">Branding</h5>
-                <h5 class="u-fontSize-h6 u-fontWeight-regular u-letterSpacing_1 u-bg-darkGrey u-borderR5 u-displayFlex u-justify-center u-alignItems-center u-textCenter">Mood Board</h5>
-                <h5 class="u-fontSize-h6 u-fontWeight-regular u-letterSpacing_1 u-bg-darkGrey u-borderR5 u-displayFlex u-justify-center u-alignItems-center u-textCenter">UI/UX</h5>
+            <div class="col-sm-4">
+              <div class="other-work-card u-boxShadow1 u-borderR12 u-overflowHidden tilt-animation u-height100">
+                <a href="/deal-management">
+                  <img src="assets/images/deal-management/thumbnail.jpg" alt="Deal Management Thumbnail" class="u-height300px u-width100 u-object-fit-cover"/>
+                  <div class="u-padding30">
+                    <h3 class="u-fontWeight-black u-fontSize-h4--alt u-minHeight60">Deal Management</h3>
+                    <div class="Container-flex u-justify-start u-paddingT10 u-flex-row Container-text">
+                      <p class="u-fontSize-p3 u-p-MW1 u-marginT20 u-lineHeight-1_75">
+                        Project for health sector done under Cognizant Students Club.
+                      </p>
+                    </div>
+                  </div>
+                </a>
               </div>
-              <a href="/literati-women" class="btn-primary">View</a>
-            </div>
-            <div class="u-flex50p other-work-card reveal">
-              <a href="/ux-research" class="has-link">
-                <img src="assets/images/ux-research/thumbnail.jpg" alt="ux research projects" class="u-height300px u-width100 u-boxShadow3 u-borderR5 u-object-fit-cover"/>
-              </a>
-              <h3 class="u-fontWeight-black u-fontSize-h4--alt u-marginT50 u-color-primary">UX Research</h3>
-              <div class="Container-flex u-justify-start u-paddingT20 u-flex-row Container-text">
-                <h5 class="u-fontSize-h6 u-fontWeight-regular u-letterSpacing_1 u-bg-darkGrey u-borderR5 u-displayFlex u-justify-center u-alignItems-center u-textCenter">Persona</h5>
-                <h5 class="u-fontSize-h6 u-fontWeight-regular u-letterSpacing_1 u-bg-darkGrey u-borderR5 u-displayFlex u-justify-center u-alignItems-center u-textCenter">User Story</h5>
-                <h5 class="u-fontSize-h6 u-fontWeight-regular u-letterSpacing_1 u-bg-darkGrey u-borderR5 u-displayFlex u-justify-center u-alignItems-center u-textCenter">Journey Map</h5>
-              </div>
-              <a href="/ux-research" class="btn-primary">View</a>
-            </div>
-            <div class="u-flex50p other-work-card reveal">
-              <a href="/design-work" class="has-link">
-                <img src="assets/images/design-work/thumbnail.jpg" alt="mood board" class="u-height300px u-width100 u-boxShadow3 u-borderR5 u-object-fit-cover"/>
-              </a>
-              <h3 class="u-fontWeight-black u-fontSize-h4--alt u-marginT50 u-color-primary">University Design Work</h3>
-              <div class="Container-flex u-justify-start u-paddingT20 u-flex-row Container-text">
-                <h5 class="u-fontSize-h6 u-fontWeight-regular u-letterSpacing_1 u-bg-darkGrey u-borderR5 u-displayFlex u-justify-center u-alignItems-center u-textCenter">Design</h5>
-                <h5 class="u-fontSize-h6 u-fontWeight-regular u-letterSpacing_1 u-bg-darkGrey u-borderR5 u-displayFlex u-justify-center u-alignItems-center u-textCenter">Creative</h5>
-                <h5 class="u-fontSize-h6 u-fontWeight-regular u-letterSpacing_1 u-bg-darkGrey u-borderR5 u-displayFlex u-justify-center u-alignItems-center u-textCenter">PhotoShop</h5>
-              </div>
-              <a href="/design-work" class="btn-primary">View</a>
             </div>
           </div>
-          <button type="button" id="load-more-other-work" class="btn-primary u-marginT50">Load More</button>
         </div>
       </section>
 
-      <section class="main-pad-lr u-paddingV150 u-positionR">
-        <div class="Container-wrapper">
-          <h5
-            class="Heading u-fontSize-h3 u-lineHeight-1_5 u-letterSpacing_3 u-displayInlineBlock u-textUpper u-color-primary">
-            Projects
-          </h5>
-          <div class="Container-flex--rev u-boxShadow1 reveal project-card">
-            <div class="Container-text u-width40 u-padding50 u-displayFlex u-flex u-flex-col u-justify-spaceBetween">
-              <h3 class="u-fontSize-h3 u-fontWeight-black u-color-primary">Online Assessment and Evaluation Platform</h3>
-              <p class="u-fontSize-p3 u-p-MW1 u-marginT20 u-lineHeight-1_75">
-                Final year undergrad project to enhance the user experience for coding for fellow students.
-              </p>
-              <!-- <div class="Container-flex u-justify-start u-paddingT20 u-flex-row">
-                <h5 class="u-fontSize-h6 u-fontWeight-regular u-letterSpacing_1 u-bg-darkGrey u-borderR5 u-displayFlex u-justify-center u-alignItems-center u-textCenter">Web Application</h5>
-                <h5 class="u-fontSize-h6 u-fontWeight-regular u-letterSpacing_1 u-bg-darkGrey u-borderR5 u-displayFlex u-justify-center u-alignItems-center u-textCenter">Education</h5>
-                <h5 class="u-fontSize-h6 u-fontWeight-regular u-letterSpacing_1 u-bg-darkGrey u-borderR5 u-displayFlex u-justify-center u-alignItems-center u-textCenter">Technical</h5>
-              </div> -->
-              <div class="u-displayFlex u-marginT20">
-                <a href="/online-assessment" class="btn-primary">Read more</a>
-                <a href="https://aatisha.github.io/CompilerUI/" target="_blank" class="btn-primary u-marginL20">Live Project</a>
-              </div>
-            </div>
-            <a class="Container-pic Container-pic--lg u-displayBlock" href="/online-assessment">
-              <img class="Container-picImg u-boxShadow3 u-borderR5" src="assets/images/online-assessment/thumbnail.jpg"/>
-            </a>
-          </div>
-          <div class="Container-flex u-boxShadow1 reveal project-card">
-            <a class="Container-pic Container-pic--lg u-displayBlock" href="/plant-health">
-              <img class="Container-picImg u-boxShadow3 u-borderR5" src="assets/images/plant-health/thumbnail.jpg"/>
-            </a>
-            <div class="Container-text u-width40 u-padding50 u-displayFlex u-flex u-flex-col u-justify-spaceBetween">
-              <h3 class="u-fontSize-h3 u-fontWeight-black u-color-primary">Plant Health Monitoring System</h3>
-              <p class="u-fontSize-p3 u-p-MW1 u-marginT20 u-lineHeight-1_75">
-                Third year undergrad academic project on Internet of Things to monitor plant's health.
-              </p>
-              <!-- <div class="Container-flex u-justify-start u-paddingT20 u-flex-row">
-                <h5 class="u-fontSize-h6 u-fontWeight-regular u-letterSpacing_1 u-bg-darkGrey u-borderR5 u-displayFlex u-justify-center u-alignItems-center u-textCenter">Internet of Things</h5>
-                <h5 class="u-fontSize-h6 u-fontWeight-regular u-letterSpacing_1 u-bg-darkGrey u-borderR5 u-displayFlex u-justify-center u-alignItems-center u-textCenter">Environment</h5>
-                <h5 class="u-fontSize-h6 u-fontWeight-regular u-letterSpacing_1 u-bg-darkGrey u-borderR5 u-displayFlex u-justify-center u-alignItems-center u-textCenter">Technical</h5>
-              </div> -->
-              <div class="u-displayFlex u-marginT20">
-                <a href="/plant-health" class="btn-primary">Read more</a>
-                <!-- <a href="https://aatisha.github.io/CompilerUI/" target="_blank" class="btn-primary u-marginL20">Live Project</a> -->
-              </div>
-            </div>
-          </div>
-          <div class="Container-flex--rev u-boxShadow1 reveal project-card">
-            <div class="Container-text u-width40 u-padding50 u-displayFlex u-flex u-flex-col u-justify-spaceBetween">
-              <h3 class="u-fontSize-h3 u-fontWeight-black u-color-primary">Deal Management</h3>
-              <p class="u-fontSize-p3 u-p-MW1 u-marginT20 u-lineHeight-1_75">
-                Project for health sector done under Cognizant Students Club.
-              </p>
-              <!-- <div class="Container-flex u-justify-start u-paddingT20 u-flex-row">
-                <h5 class="u-fontSize-h6 u-fontWeight-regular u-letterSpacing_1 u-bg-darkGrey u-borderR5 u-displayFlex u-justify-center u-alignItems-center u-textCenter">Web Application</h5>
-                <h5 class="u-fontSize-h6 u-fontWeight-regular u-letterSpacing_1 u-bg-darkGrey u-borderR5 u-displayFlex u-justify-center u-alignItems-center u-textCenter">Pharmaceutical</h5>
-                <h5 class="u-fontSize-h6 u-fontWeight-regular u-letterSpacing_1 u-bg-darkGrey u-borderR5 u-displayFlex u-justify-center u-alignItems-center u-textCenter">Technical</h5>
-              </div> -->
-              <div class="u-displayFlex u-marginT20">
-                <a href="/deal-management" class="btn-primary">Read more</a>
-                <a href="https://managetender.000webhostapp.com/" target="_blank" class="btn-primary u-marginL20">Live Project</a>
-              </div>
-            </div>
-            <a class="Container-pic Container-pic--lg u-displayBlock" href="/deal-management">
-              <img class="Container-picImg u-boxShadow3 u-borderR5" src="assets/images/deal-management/thumbnail.jpg"/>
-            </a>
-          </div>
-        </div>
-        <!-- <div class="custom-shape-divider-top-1670445370">
-          <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path
-              d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
-              opacity=".25" class="shape-fill"></path>
-            <path
-              d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z"
-              opacity=".5" class="shape-fill"></path>
-            <path
-              d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"
-              class="shape-fill"></path>
-          </svg>
-        </div> -->
-      </section>
-      <section class="main-pad-lr u-paddingV100 u-bg-lightGrey" id="blog-section">
+      <!-- <section class="main-pad-lr u-paddingV100 u-bg-lightGrey" id="blog-section">
         <div class="Container-wrapper">
           <h5
             class="Heading u-fontSize-h3 u-lineHeight-1_5 u-letterSpacing_3 u-displayInlineBlock u-textUpper u-marginB20 u-color-primary">
             Blogs
           </h5>
-          <div class="blog-slider reveal">
+          <div class="blog-slider reveals-blog">
             <div class="blog-slider__wrp swiper-wrapper" id="blog-wrapper"></div>
             <div class="blog-slider__pagination"></div>
           </div>
         </div>
-      </section>
-
-      <section class="main-pad-lr u-bg-white u-paddingV100 about-section">
-        <div class="u-displayFlex u-paddingV50 reveal u-alignItems-center about-section-wrapper Container-wrapper">
-          <div class="left-about u-flex1">
-            <img src="assets/images/about.svg" alt="about illustration" class="u-width100"/>
-          </div>
-          <div class="right-about u-flex1">
-            <h5
-              class="Heading u-fontSize-h3 u-lineHeight-1_5 u-letterSpacing_3 u-displayInlineBlock u-textUpper u-color-primary">
-              About Me
-            </h5>
-            <h3
-              class="u-fontSize-h3--alt u-italics u-lineHeight-1_5 u-letterSpacing_1 u-marginT50">
-              "I'm here to make more data-informed decisions in my design solutions. <br>
-               Also passionate about constructive amalgamation of UX and sustainability."
-            </h3>
-            <div class="Container-text">
-              <p class="u-fontSize-p3 u-fontWeight-light u-lineHeight-1_75 u-marginT30 u-p-MW2">
-                <br>
-                <br>
-                Let's get in touch! Read more about me <a href="/about" class="link-style">here</a>.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      </section> -->
     </main>
     <include src="./partials/footer.html"/>
   </div>
-  <!-- <script src="js/hoverEffect.js"></script> -->
 </body>
 </html>

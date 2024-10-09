@@ -1,13 +1,5 @@
 @import "./_variable.scss";
 
-$black: $black;
-$logo_dot: $primary;
-$nav_hover: $primary_alt;
-$nav_active: $primary;
-// $logo_dot: #E9D5DA;
-$navbar_bg: rgba(255, 255, 255, 0.97);
-$navbar_height: 65px;
-
 @keyframes drop {
   0% {
     top: 0%;

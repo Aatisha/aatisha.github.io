@@ -1,7 +1,7 @@
 $black: #000;
 $white: #fff;
 $main-shape_border_radius: 70% 30% 30% 70% / 60% 40% 60% 40%;
-
+$primary_font: Lato;
 $secondary: #e46795;
 $primary: #1103b0;
 $primary_alt: #7066dd;
@@ -14,6 +14,7 @@ $pre_loader_text: #fff;
 $radius: 60px;
 $hero_section_bg: #fff;
 $hero_img_back_animation: liquid 8s ease-in-out infinite;
+$mockup_back_animation: liquid linear forwards;
 $hero_img_back_shade_1: #1300ed;
 $hero_img_back_shade_2: #e46795;
 
@@ -31,15 +32,48 @@ $share-menu-border-pseudo: transparent $share_menu_tip_bg transparent transparen
 // background: linear-gradient(50deg, #2a48bd 0%, #35e0e0 100%);
 // linear-gradient(35deg, #ef9a25 0%, #ddbc23 100%); // #fac722
 
-// project base color
-
+// other tech projects base color
 $online_assessment: #d9daef;
 $plant_health: #a6d6d6;
 $deal_management: #ffdabd;
 
-// other work
+// design work
 $trader_joes: #d593a3;
 $sustainable_ux: #6aa965;
+$ssec_products: #91c8eb;
 $design_work: #ffcbcb;
 $literati_women: #aad0e1;
 $ux_research: #cea7d1;
+$amazon_shopbop: #c9404c;
+
+$secondary_font_color: #6b6666;
+
+// Project Hero
+$project-hero-circle-size: 80%;
+$project-hero-blending: hard-light;
+
+// Global variables
+$container-max-width: 1300px;
+$container-max-width-alt: 1100px;
+
+// Variables for column configuration
+$grid-columns: 12;
+$gutter-width: 30px; // Default gutter width
+$vertical-gap: 15px; // Default vertical gap for stacked columns
+$breakpoints: (
+  'xs': 0,
+  'sm': 576px,
+  'md': 768px,
+  'lg': 992px,
+  'xl': 1200px,
+  'xxl': 1400px
+);
+
+// Navbar
+$black: $black;
+$logo_dot: $primary;
+$nav_hover: $primary_alt;
+$nav_active: $primary;
+// $logo_dot: #E9D5DA;
+$navbar_bg: rgba(255, 255, 255, 0.97);
+$navbar_height: 65px;
