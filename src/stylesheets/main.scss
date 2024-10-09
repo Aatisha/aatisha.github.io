@@ -57,20 +57,20 @@ html {
           .pretty-nav-wrapper {
             div {
               a {
-                color: $white;
+                color: $white !important;
               }
 
               #logo-dot {
-                background: $white;
+                background: $white !important;
               }
             }
 
             button#nav-hamburger span {
-              background: $white;
+              background: $white !important;
             }
 
             #nav-links li a {
-              color: $white;
+              color: $white !important;
             }
           }
         }
@@ -83,7 +83,7 @@ html {
           .hero-section {
             .hero-wrapper {
               .hero-textual-data.gradient-text {
-                color: $white;
+                color: $white !important;
                 background: none;
               }
             }
