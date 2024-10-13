@@ -1,16 +1,27 @@
 <meta charset="utf-8">
 <title>Aatisha Cyrill | Web Portfolio</title>
 <base href="/">
-<meta name="description" content="A personal UX desinger web portfolio" />
+<meta name="description" content="A personal UX designer web portfolio" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-6V3R2CPPKF"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  // Check if the environment is local
+  const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
 
-  gtag('config', 'G-6V3R2CPPKF');
+  if (!isLocal) {
+    // Load GA only if not local
+    const script = document.createElement('script');
+    script.src = "https://www.googletagmanager.com/gtag/js?id=G-6V3R2CPPKF";
+    script.async = true;
+    document.head.appendChild(script);
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'G-6V3R2CPPKF');
+  }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
