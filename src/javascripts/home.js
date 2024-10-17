@@ -34,17 +34,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // hover effect for background animation
     const heroImage = document.getElementById('hero-image');
     const bgAnimation = document.querySelector('#bg-animation');
+    if (heroImage && bgAnimation) {
+      heroImage.addEventListener('mouseenter', () => {
+        bgAnimation.classList.add(getClassByDate());
+        bgAnimation.style.display = 'block';
+        document.body.classList.add('contrast-mode');
+      });
 
-    heroImage.addEventListener('mouseenter', () => {
-      bgAnimation.classList.add(getClassByDate());
-      bgAnimation.style.display = 'block';
-      document.body.classList.add('contrast-mode');
-    });
-
-    heroImage.addEventListener('mouseleave', () => {
-      bgAnimation.style.display = 'none';
-      document.body.classList.remove('contrast-mode');
-    });
+      heroImage.addEventListener('mouseleave', () => {
+        bgAnimation.style.display = 'none';
+        document.body.classList.remove('contrast-mode');
+      });
+    }
 
     document.querySelectorAll('.new-card').forEach((card) => {
       const glow = card.querySelector('.interactive-glow');

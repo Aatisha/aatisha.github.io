@@ -273,8 +273,70 @@ html {
 
 // Hero Section
 .hero-section {
-  min-height: 700px;
-  box-sizing: border-box;
+  // min-height: 700px;
+  // box-sizing: border-box;
+
+  .hero-logo {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    top: 15px;
+
+    a {
+      color: $white !important;
+    }
+
+    #logo-dot-hero {
+      background: none;
+      position: absolute;
+      left: 110%;
+      border-radius: 70% 30% 30% 70%/60% 40% 60% 40%;
+      margin-top: 22%;
+
+      &[data-animate="true"] {
+        background: $white;
+        animation: drop 1s forwards linear 0.2s 1;
+      }
+    }
+  }
+
+  .hero-text-wrapper {
+    text-align: center;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: $white;
+
+    h1 {
+      font-size: 6rem;
+      font-weight: 700;
+    }
+
+    p {
+      font-size: 2.25rem;
+      font-weight: 300;
+      margin-top: 15px;
+    }
+  }
+
+  .hero-gradient {
+    width: 100%;
+    height: 100vh;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: hsla(245, 100%, 84.52%, 1);
+    background-image:
+      radial-gradient(at 11% -7%, hsla(245, 51%, 21%, 1) 127px, hsla(245, 51%, 21%, 0) 55%),
+      radial-gradient(circle at 24% 95%, hsla(202, 82%, 85%, 1) 209px, hsla(202, 82%, 85%, 0) 50%),
+      radial-gradient(at 49% -15%, hsla(245, 51%, 21%, 1) 0, hsla(245, 51%, 21%, 0) 81%),
+      radial-gradient(at 92% 4%, hsla(260, 26%, 38%, 1) 0, hsla(260, 26%, 38%, 0) 52%),
+      radial-gradient(circle at 88% 51%, hsla(329, 61%, 90%, 1) 0, hsla(329, 61%, 90%, 0) 100%),
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 500 500' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='10' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
 
   .hero-wrapper {
     margin-top: 50px;
@@ -553,7 +615,7 @@ html {
 
 @media screen and (max-width: 620px) {
   .hero-section {
-    padding: 50px 2rem;
+    // padding: 50px 2rem;
 
     .hero-wrapper {
       position: relative;

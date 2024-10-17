@@ -36,14 +36,16 @@ import {
 
 function switchNavigation() {
   const navbar = document.getElementById('navigation-bar');
-  if (
-    document.body.scrollTop >= 65
-    || document.documentElement.scrollTop >= 65
-  ) {
-    // navbar height
-    navbar.classList.add('nav-with-bg');
+  const navbarHeight = navbar.offsetHeight;
+  const heroSection = document.querySelector('.hero-section');
+  const { scrollY } = window;
+  const logoDot = document.getElementById('logo-dot');
+  if (scrollY >= heroSection.offsetHeight - navbarHeight - 30) {
+    navbar.classList.add('nav-fixed');
+    logoDot.dataset.animate = 'true';
   } else {
-    navbar.classList.remove('nav-with-bg');
+    navbar.classList.remove('nav-fixed');
+    logoDot.dataset.animate = 'false';
   }
 }
 
@@ -148,9 +150,18 @@ function preloader(bodyContent) {
     // nav activate
     updateActiveNavigation();
     // change nav logo animation data attribute
-    const logoDot = document.getElementById('logo-dot');
-    logoDot.dataset.animate = 'true';
-    window.addEventListener('scroll', switchNavigation);
+    const navbar = document.getElementById('navigation-bar');
+    if (window.location.pathname === URL_PATHS.home
+      || window.location.pathname === URL_PATHS.tech.home) {
+      const logoDotHero = document.getElementById('logo-dot-hero');
+      logoDotHero.dataset.animate = 'true';
+      navbar.classList.add('nav-home');
+      window.addEventListener('scroll', switchNavigation);
+    } else {
+      navbar.classList.add('nav-fixed');
+      const logoDot = document.getElementById('logo-dot');
+      logoDot.dataset.animate = 'true';
+    }
     // window.addEventListener('scroll', reveal);
   });
 }
