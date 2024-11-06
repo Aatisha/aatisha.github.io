@@ -18,6 +18,7 @@ import {
   BlogTemplateProperties, BLOG_SLIDE_TEMPLATE, MEDIUM_USERNAME,
   STARRED_BLOG_ID, DESIGN_URLS, DEV_URLS, DESIGN_ARTICLE_NAVS, DEV_ARTICLE_NAVS, URL_PATHS,
 } from './constant';
+import { FluidApp } from './components/fluid-effect/FluidApp';
 
 // function reveal() {
 //   const reveals = document.querySelectorAll('.reveal');
@@ -139,8 +140,29 @@ function addBlogDetailsToDom(blogDetails) {
 
 function disableBodyContent() {
   const bodyContent = document.getElementById('body-content');
+  // const mainBody = document.querySelector('body');
+  // bodyContent.style.opacity = '0';
+  // bodyContent.style.height = '0';
   bodyContent.style.display = 'none';
+  // mainBody.style.overflowY = 'hidden';
   return bodyContent;
+}
+
+function navigationHandle() {
+  updateActiveNavigation();
+  // change nav logo animation data attribute
+  const navbar = document.getElementById('navigation-bar');
+  if (window.location.pathname === URL_PATHS.home
+    || window.location.pathname === URL_PATHS.tech.home) {
+    const logoDotHero = document.getElementById('logo-dot-hero');
+    logoDotHero.dataset.animate = 'true';
+    navbar.classList.add('nav-home');
+    window.addEventListener('scroll', switchNavigation);
+  } else {
+    navbar.classList.add('nav-fixed');
+    const logoDot = document.getElementById('logo-dot');
+    logoDot.dataset.animate = 'true';
+  }
 }
 
 function preloader(bodyContent) {
@@ -148,20 +170,7 @@ function preloader(bodyContent) {
     // eslint-disable-next-line no-param-reassign
     bodyContent.style.display = 'block';
     // nav activate
-    updateActiveNavigation();
-    // change nav logo animation data attribute
-    const navbar = document.getElementById('navigation-bar');
-    if (window.location.pathname === URL_PATHS.home
-      || window.location.pathname === URL_PATHS.tech.home) {
-      const logoDotHero = document.getElementById('logo-dot-hero');
-      logoDotHero.dataset.animate = 'true';
-      navbar.classList.add('nav-home');
-      window.addEventListener('scroll', switchNavigation);
-    } else {
-      navbar.classList.add('nav-fixed');
-      const logoDot = document.getElementById('logo-dot');
-      logoDot.dataset.animate = 'true';
-    }
+    navigationHandle();
     // window.addEventListener('scroll', reveal);
   });
 }
@@ -233,9 +242,8 @@ function adjustArticleNavigator() {
 }
 
 window.onload = async () => {
-  const bodyContent = disableBodyContent();
-  preloader(bodyContent);
-  if (window.location.pathname === URL_PATHS.home) {
+  const blogSection = document.getElementById('blog-section');
+  if (window.location.pathname === URL_PATHS.home && blogSection) {
     const response = await fetchMediumBlogs().catch((error) => {
       // eslint-disable-next-line no-console
       console.error(error);
@@ -245,6 +253,41 @@ window.onload = async () => {
       addBlogDetailsToDom(response);
     }
   }
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  const bodyContent = disableBodyContent();
+  // const mainBody = document.querySelector('body');
+  if (window.location.pathname !== URL_PATHS.home) {
+    preloader(bodyContent);
+  } else {
+    const logoAnimation = document.getElementById('logo-animation');
+    logoAnimation.style.display = 'none';
+    const fluidApp = new FluidApp();
+    // const stage = document.querySelector('.stage');
+    // stage.style.position = 'fixed';
+    setTimeout(() => {
+      // mainBody.style.overflowY = 'auto';
+      // bodyContent.style.height = 'auto';
+      // bodyContent.style.opacity = '1';
+      bodyContent.style.display = 'block';
+      // stage.style.position = 'absolute';
+      fluidApp.show(() => {
+        // bodyContent.style.opacity = '1';
+        navigationHandle();
+        logoAnimation.style.display = 'block';
+      });
+    }, 1000);
+
+    const tiltElements = document.querySelectorAll('.tilt-animation');
+    if (tiltElements.length > 0) {
+      VanillaTilt.init(tiltElements, {
+        speed: 4000,
+        max: 2,
+        perspective: 400,
+      });
+    }
+  }
 
   if (window.location.pathname === URL_PATHS.design_work) {
     designWorkGallery();
@@ -252,16 +295,5 @@ window.onload = async () => {
 
   if (document.getElementById('article-nav')) {
     adjustArticleNavigator();
-  }
-};
-
-document.addEventListener('DOMContentLoaded', () => {
-  const tiltElements = document.querySelectorAll('.tilt-animation');
-  if (tiltElements.length > 0) {
-    VanillaTilt.init(tiltElements, {
-      speed: 4000,
-      max: 2,
-      perspective: 400,
-    });
   }
 });

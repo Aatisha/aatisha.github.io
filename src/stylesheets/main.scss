@@ -19,7 +19,7 @@ body {
   overflow-x: hidden;
 
   #body-content {
-    display: none;
+    // display: none;
     // overflow-x: hidden;
   }
 }
@@ -281,6 +281,7 @@ html {
     left: 50%;
     transform: translate(-50%);
     top: 15px;
+    // z-index: 1;
 
     a {
       color: $white !important;
@@ -3972,3 +3973,62 @@ $star-background: #f1c40f;
     margin-top: 50px !important;
   }
 }
+
+// Fluid Effect
+
+/* Stage Class */
+.hero-main {
+  // background-color: #000;
+  width: 100vw;
+  height: 100vh;
+}
+
+.stage {
+  // position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #0b012b;
+  width: 100%;
+  height: 100%;
+}
+
+/* Main Class */
+.hero-fluid-text-container {
+  position: relative;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.hero-fluid-text-container ::selection {
+  background: #d8bfff;
+}
+
+// @media (min-width: 1024px) {
+//   .hero-fluid-text-container {
+//   }
+// }
+
+/* Main Inner */
+.wrapper {
+  pointer-events: none;
+  position: relative;
+}
+
+/* Inner 2 */
+.hero-fluid-text-wrapper {
+  opacity: 0;
+  height: 100%;
+  // outline: solid 1px deepskyblue;
+  // color: deepskyblue;
+}
+
+// .hero-fluid-text-wrapper._b67fa6 {
+//   height: 85vh;
+// }
+
+// /* Title Main */
+// .title-text {}
+
+// /* Secondary */
+// .secondary-text {
+// }

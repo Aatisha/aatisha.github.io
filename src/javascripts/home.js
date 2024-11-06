@@ -1,5 +1,4 @@
 import { URL_PATHS } from './constant';
-
 // Function to check if today's date is even or odd
 function getClassByDate() {
   const today = new Date();
