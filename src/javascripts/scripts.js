@@ -257,25 +257,20 @@ window.onload = async () => {
 
 document.addEventListener('DOMContentLoaded', () => {
   const bodyContent = disableBodyContent();
-  // const mainBody = document.querySelector('body');
   if (window.location.pathname !== URL_PATHS.home) {
     preloader(bodyContent);
   } else {
     const logoAnimation = document.getElementById('logo-animation');
+    const heroTextWrapper = document.querySelector('.hero-text');
     logoAnimation.style.display = 'none';
     const fluidApp = new FluidApp();
-    // const stage = document.querySelector('.stage');
-    // stage.style.position = 'fixed';
     setTimeout(() => {
-      // mainBody.style.overflowY = 'auto';
-      // bodyContent.style.height = 'auto';
-      // bodyContent.style.opacity = '1';
       bodyContent.style.display = 'block';
-      // stage.style.position = 'absolute';
+      heroTextWrapper.style.display = 'block';
       fluidApp.show(() => {
-        // bodyContent.style.opacity = '1';
         navigationHandle();
         logoAnimation.style.display = 'block';
+        heroTextWrapper.style.opacity = '0.75';
       });
     }, 1000);
 

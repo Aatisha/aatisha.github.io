@@ -178,7 +178,7 @@ const imageCompress = {
 
 const images = {
   test: /\.(gif|png|jpe?g|webp|svg)$/i,
-  exclude: /assets\/fluid-effect/,
+  exclude: /assets\/fonts/,
   use: [
     {
       loader: "file-loader",

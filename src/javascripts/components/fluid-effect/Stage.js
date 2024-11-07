@@ -1,28 +1,17 @@
 import {
-  LinearFilter,
   MathUtils,
   PerspectiveCamera,
   Scene,
-  TextureLoader,
   Vector2,
   WebGLRenderer,
 } from 'three';
 import { Easing, Group, Tween } from '@tweenjs/tween.js';
 import { Fluid } from './fluid/Fluid';
-
-import FluidTitleController from './fluidTitle/FluidTitleController';
-
 import { FakePointer } from './fluid/FakePointer';
-
-// import { delay } from './utils/delay';
-
-import RayCaster from './RayCaster';
 
 export class Stage {
   constructor(node, app) {
-    this.titles = new Map();
     this.movement = new Vector2();
-    this.activeTitles = [];
     this.pointer = new Vector2();
     this.devicePointer = new Vector2();
     this.lastPointer = new Vector2();
@@ -45,16 +34,12 @@ export class Stage {
     this.pointerMixTarget = 1;
     this.fluidDecay = 0.99;
     this.delta = 1 / 60;
-
-    this.node = node;
-    this.app = app;
     this.node = node;
     this.app = app;
     this.scene = new Scene();
     this.camera = new PerspectiveCamera();
     this.camera.position.z = 10;
     this.renderer = new WebGLRenderer({ antialias: true });
-    this.rayCaster = new RayCaster(this, app);
     this.fakePointer = new FakePointer(this);
     this.renderer.setPixelRatio(Math.min(2, window.devicePixelRatio));
     this.renderer.autoClear = false;
@@ -70,91 +55,7 @@ export class Stage {
     const observer = new ResizeObserver(this.resize.bind(this));
     observer.observe(this.node);
     this.resize();
-    // console.table(this.renderer.capabilities);
   }
-
-  async load(fluidTitles = []) {
-    await Promise.all([
-      this.loadSDFFont('regular'),
-      this.loadSDFFont('italic'),
-      this.loadSDFTexture('regular'),
-      this.loadSDFTexture('italic'),
-      // this.loadIcons()
-    ]);
-
-    const promises = [];
-
-    this.activeTitles = [];
-
-    fluidTitles.forEach((node) => {
-      let title = this.titles.get(node);
-      if (!title) {
-        title = new FluidTitleController(this, node);
-        this.titles.set(node, title);
-        promises.push(title.init());
-      }
-      this.activeTitles.push(title);
-    });
-    await Promise.all(promises);
-  }
-
-  async loadSDFTexture(type) {
-    if (this.sdfTextures.has(type)) return;
-
-    const texture = await new TextureLoader().loadAsync(
-      type === 'regular'
-        ? '../../../assets/fluid-effect/SourceSerif4Variable-DisplayL.png'
-        : '../../../assets/fluid-effect/SourceSerif4-LightItalic-BPAXV4MN.png',
-    );
-
-    texture.minFilter = LinearFilter;
-    texture.magFilter = LinearFilter;
-    texture.generateMipmaps = false;
-    this.sdfTextures.set(type, texture);
-  }
-
-  async loadSDFFont(type) {
-    if (this.sdfFonts.has(type)) return;
-    const response = await fetch(
-      type === 'regular'
-        ? '../../../assets/fluid-effect/SourceSerif4Variable-DisplayL.file.json'
-        : '../../../assets/fluid-effect/SourceSerif4-LightItalic.file.json',
-    );
-
-    const font = await response.json();
-    this.sdfFonts.set(type, font);
-  }
-
-  onHover() {
-    this.activeTitles.forEach((title) => title.setHover(this.rayCaster.hover));
-  }
-
-  async hide() {
-    const promises = [];
-    this.titles.forEach((title) => promises.push(title.hide()));
-    await Promise.all(promises);
-    this.activeTitles = [];
-  }
-
-  // eslint-disable-next-line no-return-assign
-  // async show(animate = false) {
-  //   if (animate) {
-  //     new Tween({ elapsed: 0 }, this.group)
-  //       .to({ elapsed: 1 }, 4000)
-  //       .easing(Easing.Exponential.InOut)
-  //       .onUpdate(({ elapsed }) => {
-  //         this.elapsed = elapsed;
-  //       })
-  //       .onComplete(() => {
-  //         this.elapsed = 1;
-  //       })
-  //       .start();
-  //     await delay(1500);
-  //   } else {
-  //     this.elapsed = 1;
-  //   }
-  //   await Promise.all(this.activeTitles.map((label) => label.show()));
-  // }
 
   async show(animate = false, callback = () => {}) {
     if (animate) {
@@ -166,14 +67,12 @@ export class Stage {
         })
         .onComplete(() => {
           this.elapsed = 1;
-          callback(); // Call the callback here once the animation is complete
+          callback();
         })
         .start();
-      // await delay(500); // You may want to check if this delay is necessary after the animation
     } else {
       this.elapsed = 1;
     }
-    await Promise.all(this.activeTitles.map((label) => label.show()));
   }
 
   resize() {
@@ -194,7 +93,6 @@ export class Stage {
     this.vFov = (this.camera.position.z * this.camera.getFilmHeight())
       / this.camera.getFocalLength();
     this.hFov = this.vFov * this.camera.aspect;
-    this.activeTitles.forEach((label) => label.resize());
     this.fluid.resize();
   }
 
@@ -242,19 +140,9 @@ export class Stage {
       this.landscape ? size / this.aspect : size,
       this.landscape ? size : size * this.aspect,
     );
-    this.rayCaster.update();
     this.fluid.update(time);
-    this.activeTitles.forEach((title) => title.update(time, this.fluid.outputTexture));
     this.fakePointer.update(time);
     this.renderer.render(this.scene, this.camera);
-  }
-
-  get scrollY() {
-    return this.app.scrollY;
-  }
-
-  get hover() {
-    return this.rayCaster.hover;
   }
 
   get isDesktop() {
