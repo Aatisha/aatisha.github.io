@@ -8,6 +8,7 @@ import {
 import { Easing, Group, Tween } from '@tweenjs/tween.js';
 import { Fluid } from './fluid/Fluid';
 import { FakePointer } from './fluid/FakePointer';
+import { delay } from '../../utilities';
 
 export class Stage {
   constructor(node, app) {
@@ -57,7 +58,7 @@ export class Stage {
     this.resize();
   }
 
-  async show(animate = false, callback = () => {}) {
+  async show(animate = false) {
     if (animate) {
       new Tween({ elapsed: 0 }, this.group)
         .to({ elapsed: 1 }, 4000)
@@ -67,9 +68,9 @@ export class Stage {
         })
         .onComplete(() => {
           this.elapsed = 1;
-          callback();
         })
         .start();
+      await delay(2000);
     } else {
       this.elapsed = 1;
     }

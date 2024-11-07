@@ -83,3 +83,5 @@ export function getAdjacentItems(path, arr) {
   // Return the previous and next items
   return { prev: arr[prevIndex], next: arr[nextIndex] };
 }
+
+export const delay = (delayInms) => new Promise((resolve) => setTimeout(resolve, delayInms));

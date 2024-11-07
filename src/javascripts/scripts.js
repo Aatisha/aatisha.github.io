@@ -3,6 +3,7 @@ import VanillaTilt from 'vanilla-tilt';
 import {
   removeContentByIdAfter, stringInject, removeTags, getFirstNWords, isEqualURLs,
   removeTrailingSlash, getAdjacentItems,
+  delay,
 } from './utilities';
 import './home';
 import './design-work';
@@ -255,7 +256,7 @@ window.onload = async () => {
   }
 };
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   const bodyContent = disableBodyContent();
   if (window.location.pathname !== URL_PATHS.home) {
     preloader(bodyContent);
@@ -264,15 +265,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroTextWrapper = document.querySelector('.hero-text');
     logoAnimation.style.display = 'none';
     const fluidApp = new FluidApp();
-    setTimeout(() => {
-      bodyContent.style.display = 'block';
-      heroTextWrapper.style.display = 'block';
-      fluidApp.show(() => {
-        navigationHandle();
-        logoAnimation.style.display = 'block';
-        heroTextWrapper.style.opacity = '0.75';
-      });
-    }, 1000);
+    await fluidApp.show();
+    bodyContent.style.display = 'block';
+    heroTextWrapper.style.display = 'block';
+    await delay(100);
+    navigationHandle();
+    logoAnimation.style.display = 'block';
+    heroTextWrapper.style.opacity = '0.75';
 
     const tiltElements = document.querySelectorAll('.tilt-animation');
     if (tiltElements.length > 0) {

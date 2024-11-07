@@ -18,8 +18,8 @@ export class FluidApp {
     requestAnimationFrame(this.update);
   }
 
-  async show(callback = () => {}) {
-    await this.stage.show(true, callback);
+  async show() {
+    await this.stage.show(true);
   }
 
   update(time) {
