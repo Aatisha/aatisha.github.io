@@ -3,9 +3,10 @@ $white: #fff;
 $main-shape_border_radius: 70% 30% 30% 70% / 60% 40% 60% 40%;
 $primary_font: Lato;
 $secondary: #e46795;
-$primary: #1103b0;
+$primary: #30138b;
 $primary_alt: #7066dd;
-$pre_loader_bg: #1103b0;
+$hero_bg: #0b012b;
+$pre_loader_bg: #0b012b;
 // $pre_loader_bubble_2: #ebd3d8;
 // $pre_loader_bubble: #E9D5DA;
 $pre_loader_bubble_2: #f999bc;
@@ -72,7 +73,7 @@ $breakpoints: (
 // Navbar
 $black: $black;
 $logo_dot: $primary;
-$nav_hover: $primary_alt;
+$nav_hover: $primary;
 $nav_active: $primary;
 // $logo_dot: #E9D5DA;
 $navbar_bg: rgba(255, 255, 255, 0.8);
