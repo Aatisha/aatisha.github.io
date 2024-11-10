@@ -87,7 +87,6 @@ document.getElementById('hamburger').addEventListener('click', () => {
   navWrapper.classList.toggle('u-heightAuto');
   if (navLinks.classList.contains('expanded')) {
     document.getElementById('logo-dot').dataset.animate = 'true';
-    document.querySelector('.menu').style.display = 'none';
   }
 });
 

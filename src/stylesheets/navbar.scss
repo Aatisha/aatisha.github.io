@@ -256,6 +256,10 @@
     }
   }
 
+  :has(#nav-hamburger.collapsed) .menu {
+    display: none;
+  }
+
   .pretty-nav.u-heightAuto {
     background-color: $navbar_bg_mob !important;
     border-radius: 0;
