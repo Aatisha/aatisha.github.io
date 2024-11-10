@@ -77,15 +77,18 @@ function updateActiveNavigation() {
 //   });
 // }
 
-document.getElementById('nav-hamburger').addEventListener('click', () => {
+document.getElementById('hamburger').addEventListener('click', () => {
   document.getElementById('nav-hamburger').classList.toggle('collapsed');
   document.getElementById('navigation-bar').classList.toggle('u-heightAuto');
   const navLinks = document.getElementById('nav-links');
   navLinks.classList.toggle('expanded');
-  navLinks.style.display = 'flex';
   const navWrapper = document.getElementsByClassName('pretty-nav-wrapper')[0];
   navWrapper.classList.toggle('u-marginT4');
   navWrapper.classList.toggle('u-heightAuto');
+  if (navLinks.classList.contains('expanded')) {
+    document.getElementById('logo-dot').dataset.animate = 'true';
+    document.querySelector('.menu').style.display = 'none';
+  }
 });
 
 function instantiateSwiper() {

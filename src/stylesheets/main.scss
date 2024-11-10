@@ -618,6 +618,14 @@ html {
   .hero-section {
     // padding: 50px 2rem;
 
+    &.hero-main {
+      .hero-text {
+        .hero-title {
+          font-size: 3rem;
+        }
+      }
+    }
+
     .hero-wrapper {
       position: relative;
 
@@ -1761,6 +1769,7 @@ footer {
   --project-hero-main-mar: 6rem;
   --underline-effect-color: #{$primary};
   --scroll-watcher: #30138b;
+  --nav-fixed-top: 15px;
 }
 
 // For managing whole site left right padding
@@ -1792,11 +1801,12 @@ footer {
   }
 
   .project-hero-main-mar {
-    margin: var(--project-hero-main-mar) calc(var(--project-hero-main-mar) / 2) !important;
+    margin: calc(var(--project-hero-main-mar) + (var(--nav-fixed-top)) * 2) calc(var(--project-hero-main-mar) / 2) !important;
   }
 
   .project-hero .gradient-bg-animate {
     width: calc(100% - var(--project-hero-main-mar)) !important;
+    height: calc(100% - ((var(--project-hero-main-mar) + (var(--nav-fixed-top) * 2)) * 2)) !important;
   }
 }
 
