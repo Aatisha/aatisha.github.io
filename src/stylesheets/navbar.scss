@@ -163,10 +163,9 @@
 
     li {
       font-size: 1.1rem;
-      margin: 0 25px;
+      margin-left: 25px;
 
-      &:first-child,
-      &:last-child {
+      &:first-child {
         margin: 0;
       }
 
