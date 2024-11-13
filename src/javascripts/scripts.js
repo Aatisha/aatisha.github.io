@@ -262,6 +262,14 @@ document.addEventListener('DOMContentLoaded', async () => {
   const bodyContent = disableBodyContent();
   if (window.location.pathname !== URL_PATHS.home) {
     preloader(bodyContent);
+    if (window.location.pathname === URL_PATHS.about) {
+      const fluidApp = new FluidApp();
+      await fluidApp.show(false);
+      const heroTextWrapper = document.querySelector('.hero-text');
+      await delay(200);
+      heroTextWrapper.style.display = 'block';
+      heroTextWrapper.style.opacity = '0.75';
+    }
   } else {
     const logoAnimation = document.getElementById('logo-animation');
     const heroTextWrapper = document.querySelector('.hero-text');
