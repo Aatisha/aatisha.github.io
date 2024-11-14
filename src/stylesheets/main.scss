@@ -748,6 +748,13 @@ html {
           &:last-child {
             border: none;
           }
+
+          img {
+            width: 60px;
+            height: auto;
+            margin-right: 5px;
+            margin-top: -10px;
+          }
         }
       }
     }
