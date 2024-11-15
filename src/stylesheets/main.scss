@@ -615,16 +615,14 @@ html {
 }
 
 @media screen and (max-width: 620px) {
+  .hero-text {
+    .hero-title {
+      font-size: 3rem;
+    }
+  }
+
   .hero-section {
     // padding: 50px 2rem;
-
-    &.hero-main {
-      .hero-text {
-        .hero-title {
-          font-size: 3rem;
-        }
-      }
-    }
 
     .hero-wrapper {
       position: relative;
@@ -676,19 +674,95 @@ html {
 
 // ABOUT
 .hero-about {
-  background-color: #fbfacd;
+  height: 450px;
+  width: 100%;
+  position: relative;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+  overflow: hidden;
 
-  &::before {
-    content: '';
-    background-repeat: repeat;
-    background-image: radial-gradient(rgba(222, 186, 206, 0.3) 2px, #fbfacd 2px);
-    background-size: 30px 30px;
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    height: 200vw;
-    width: 200vw;
-    animation: rotate 300s linear infinite;
+  .hero-text {
+    .hero-title {
+      font-size: 6rem;
+    }
+
+    .hero-secondary-text {
+      font-size: 2rem;
+    }
+  }
+  // background-color: #fbfacd;
+
+  // &::before {
+  //   content: '';
+  //   background-repeat: repeat;
+  //   background-image: radial-gradient(rgba(222, 186, 206, 0.3) 2px, #fbfacd 2px);
+  //   background-size: 30px 30px;
+  //   position: absolute;
+  //   top: -50%;
+  //   left: -50%;
+  //   height: 200vw;
+  //   width: 200vw;
+  //   animation: rotate 300s linear infinite;
+  // }
+}
+
+.resume-section {
+  .resume-card {
+    background: $white;
+    border-radius: 10px;
+    min-height: 250px;
+    padding: 50px;
+
+    .logo {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+
+      img {
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+
+    .info {
+      margin-left: 20px;
+
+      h3 {
+        font-size: 1.5rem;
+        margin-bottom: 4px;
+      }
+
+      p {
+        span {
+          &:nth-child(odd) {
+            padding-right: 20px;
+            border-right: 1px solid #ccc;
+          }
+
+          &:nth-child(even) {
+            margin-left: 20px;
+          }
+
+          &:last-child {
+            border: none;
+          }
+
+          img {
+            width: 60px;
+            height: auto;
+            margin-right: 5px;
+            margin-top: -10px;
+          }
+        }
+      }
+    }
+
+    &.certification-card {
+      height: 180px;
+      min-height: auto;
+    }
   }
 }
 
@@ -2607,7 +2681,7 @@ footer {
     flex-direction: column;
 
     .image-bg {
-      background: url("../assets/images/hero-image.jpg") no-repeat center center;
+      background: url("../assets/images/hero-image.jpg") no-repeat center bottom;
       background-size: cover;
       height: 550px;
       max-width: 450px;
@@ -2617,29 +2691,30 @@ footer {
       transform: rotate(-1deg);
       border-width: 20px 20px 80px 20px;
       box-shadow: 0 0 2px 3px rgba(211, 211, 211, 0.5);
-      margin-bottom: 50px;
+      // margin-bottom: 50px;
 
       &::after {
         content: 'Aatisha Cyrill';
-        font-family: 'Corinthia', cursive;
+        // font-family: 'Corinthia', cursive;
+        font-family: 'Cedarville Cursive', cursive;
         font-size: 3rem;
         display: flex;
         align-items: flex-end;
         justify-content: center;
-        height: calc(100% + 15px);
+        height: calc(100% + 65px);
       }
 
-      &::before {
-        content: '\f521';
-        font-family: "Font Awesome 6 Free", sans-serif;
-        font-size: 2rem;
-        display: flex;
-        justify-content: flex-end;
-        background: radial-gradient(ellipse farthest-corner at right bottom, #ffd81f 0%, #ffb41d 8%, #e3ac36 30%, #d19716 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #fff 0%, #ffffac 8%, #d1b464 25%, #ffc036 62.5%, #a57c20 100%);
-        margin: 10px 16px;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
+      // &::before {
+      //   content: '\f521';
+      //   font-family: "Font Awesome 6 Free", sans-serif;
+      //   font-size: 2rem;
+      //   display: flex;
+      //   justify-content: flex-end;
+      //   background: radial-gradient(ellipse farthest-corner at right bottom, #ffd81f 0%, #ffb41d 8%, #e3ac36 30%, #d19716 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #fff 0%, #ffffac 8%, #d1b464 25%, #ffc036 62.5%, #a57c20 100%);
+      //   margin: 10px 16px;
+      //   -webkit-background-clip: text;
+      //   -webkit-text-fill-color: transparent;
+      // }
     }
   }
 
@@ -3994,48 +4069,48 @@ $star-background: #f1c40f;
 
 // Fluid Effect
 
+.stage {
+  top: 0;
+  left: 0;
+  background-color: $hero_bg;
+  width: 100%;
+  height: 100%;
+}
+
 /* Stage Class */
 .hero-main {
   // background-color: #000;
   width: 100vw;
   height: 100vh;
   position: relative;
+}
 
-  .stage {
-    top: 0;
-    left: 0;
-    background-color: $hero_bg;
-    width: 100%;
-    height: 100%;
+.hero-text {
+  color: #e7e7e7;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  display: none;
+  text-align: center;
+  transition: opacity 0.5s ease-in-out;
+
+  .hero-title {
+    font-family: "Cedarville Cursive", cursive;
+    font-size: 4rem;
+    margin-bottom: 50px;
+    font-style: normal;
+    font-weight: 400;
+
+    svg {
+      width: 3.5rem;
+      height: auto;
+      fill: currentColor;
+    }
   }
 
-  .hero-text {
-    color: #e7e7e7;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    display: none;
-    text-align: center;
-    transition: opacity 0.5s ease-in-out;
-
-    .hero-title {
-      font-family: "Cedarville Cursive", cursive;
-      font-size: 4rem;
-      margin-bottom: 50px;
-      font-style: normal;
-      font-weight: 400;
-
-      svg {
-        width: 3.5rem;
-        height: auto;
-        fill: currentColor;
-      }
-    }
-
-    .hero-secondary-text {
-      font-size: 2.2rem;
-    }
+  .hero-secondary-text {
+    font-size: 2.2rem;
   }
 }
