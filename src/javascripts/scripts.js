@@ -262,7 +262,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const bodyContent = disableBodyContent();
   if (window.location.pathname !== URL_PATHS.home) {
     preloader(bodyContent);
-    if (window.location.pathname === URL_PATHS.about) {
+    if (window.location.pathname.includes(URL_PATHS.about)) {
       const fluidApp = new FluidApp();
       await fluidApp.show(false);
       const heroTextWrapper = document.querySelector('.hero-text');
@@ -293,7 +293,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
-  if (window.location.pathname === URL_PATHS.design_work) {
+  if (window.location.pathname.includes(URL_PATHS.design_work)) {
     designWorkGallery();
   }
 
