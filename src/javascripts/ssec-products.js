@@ -25,7 +25,7 @@ lightGallery(document.getElementById('ssec-products-images'), {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  const video = document.getElementById('demoVideo');
+  const video = document.getElementById('ssecDemoVideo');
   if (video) {
     const observerOptions = {
       root: null, // This means observing the viewport
