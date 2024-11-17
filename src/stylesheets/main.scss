@@ -15,7 +15,7 @@ body {
   -webkit-transition: all 0.25s;
   -o-transition: all 0.25s;
   transition: all 0.25s;
-  color: #222;
+  color: $main_text;
   overflow-x: hidden;
 
   #body-content {
@@ -2919,7 +2919,13 @@ footer {
 }
 
 .sustainable_ux_color {
-  color: $sustainable_ux;
+  color: $sustainable_ux_dark;
+
+  --link-hover-color: #{$sustainable_ux_dark};
+
+  &:hover {
+    color: $white !important;
+  }
 }
 
 .ssec_products_color {
@@ -3097,8 +3103,12 @@ footer {
 
 // Sustainable UX
 .project-sustainable-ux {
+  --underline-effect-color: #{$sustainable_ux};
+  --scroll-watcher: #{$sustainable_ux};
+
   .project-bg {
     background-color: $sustainable_ux;
+    color: $sustainable_ux_dark;
   }
 
   .hero-project-img {
@@ -3106,18 +3116,87 @@ footer {
   }
 
   .hero-sustainable-ux {
-    &::before {
-      content: '';
-      position: absolute;
-      height: 200vw;
-      width: 200vw;
-      top: -50%;
-      left: -50%;
-      background-color: #c0efbd;
-      opacity: 0.8;
-      background-image: repeating-radial-gradient(circle at 0 0, transparent 0, #c0efbd 9px), repeating-linear-gradient(#6aa96555, #6aa965);
-      // background-position: 0 0, 0 0, 12px 21px, 12px 21px, 0 0, 12px 21px;
-      animation: diagonal-right-bottom 20s linear infinite;
+    // &::before {
+    //   content: '';
+    //   position: absolute;
+    //   height: 200vw;
+    //   width: 200vw;
+    //   top: -50%;
+    //   left: -50%;
+    //   background-color: #c0efbd;
+    //   opacity: 0.8;
+    //   background-image: repeating-radial-gradient(circle at 0 0, transparent 0, #c0efbd 9px), repeating-linear-gradient(#6aa96555, #6aa965);
+    //   // background-position: 0 0, 0 0, 12px 21px, 12px 21px, 0 0, 12px 21px;
+    //   animation: diagonal-right-bottom 20s linear infinite;
+    // }
+
+    .bento-grid {
+      display: grid;
+      gap: 1.5rem;
+      grid-auto-columns: 1fr;
+      grid-template-areas:
+        'world title title heart'
+        'world mobile mobile handplant'
+        'sustainability sustainability yellowplant handplant';
+      padding-block: 2rem;
+      height: calc(100vh - 53px);
+      margin-bottom: 15px !important;
+    }
+
+    .bento-item:nth-child(1) {
+      grid-area: world;
+      background: #e1edba;
+
+      video {
+        object-fit: cover;
+      }
+    }
+
+    .bento-item:nth-child(2) {
+      grid-area: title;
+      background: #bbd79e;
+    }
+
+    .bento-item:nth-child(3) {
+      grid-area: heart;
+      background: #efedff;
+    }
+
+    .bento-item:nth-child(4) {
+      grid-area: mobile;
+      background: #e9e9e9;
+    }
+
+    .bento-item:nth-child(5) {
+      grid-area: handplant;
+      background: #ffe7c4;
+
+      video {
+        object-fit: cover;
+      }
+    }
+
+    .bento-item:nth-child(6) {
+      grid-area: sustainability;
+      background: #29722a;
+    }
+
+    .bento-item:nth-child(7) {
+      grid-area: yellowplant;
+      background: #fcd048;
+    }
+
+    .bento-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .bento-item img,
+    .bento-item video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
   }
 }
@@ -3412,7 +3491,7 @@ footer {
 
 // link style
 a {
-  color: #222;
+  color: $main_text;
   text-decoration: none;
   -webkit-transition: all 0.25s;
   -o-transition: all 0.25s;
