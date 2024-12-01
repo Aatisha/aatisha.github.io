@@ -3303,6 +3303,58 @@ footer {
   }
 }
 
+// rover-usability-study
+.project-rover {
+  --underline-effect-color: #{$ssec_products};
+  --scroll-watcher: #{$ssec_products};
+
+  .project-bg {
+    background-color: $ssec_products;
+    color: #1d5264;
+  }
+
+  // Define your color scheme here
+  $ssec-color-bg1: #e2e2ea;
+  $ssec-color-bg2: #88c4ea;
+  $ssec-color-bg3: #1d5264;
+  $ssec-color1: #e2e2ea;
+  $ssec-color2: #88c4ea;
+  $ssec-color3: #88c4ea;
+  $ssec-color4: #42add1;
+  $ssec-color5: #a2d5f5;
+  $ssec-color-interactive: rgb(83, 204, 252);
+
+  .hero-rover-platform {
+    .gradient-bg-animate {
+      background: linear-gradient(70deg, $ssec-color-bg1 0%, $ssec-color-bg2 75%, $ssec-color-bg3 100%);
+
+      .g1 {
+        background: radial-gradient(circle, $ssec-color1 0%, transparent 50%);
+      }
+
+      .g2 {
+        background: radial-gradient(circle, $ssec-color2 0%, transparent 50%);
+      }
+
+      .g3 {
+        background: radial-gradient(circle, $ssec-color3 0%, transparent 50%);
+      }
+
+      .g4 {
+        background: radial-gradient(circle, $ssec-color4 20%, transparent 50%);
+      }
+
+      .g5 {
+        background: radial-gradient(circle, $ssec-color5 0%, transparent 50%);
+      }
+
+      .interactive {
+        background: radial-gradient(circle, $ssec-color-interactive 0%, transparent 50%);
+      }
+    }
+  }
+}
+
 // SSEC products
 .project-ssec-products {
   --underline-effect-color: #{$ssec_products};
