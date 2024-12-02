@@ -14,6 +14,7 @@ import './ux-research';
 import './contact';
 import './sustainable-ux';
 import './ssec-products';
+import './rover-usability';
 import './project-hero-bg-animation';
 import {
   BlogTemplateProperties, BLOG_SLIDE_TEMPLATE, MEDIUM_USERNAME,

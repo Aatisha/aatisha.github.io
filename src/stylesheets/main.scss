@@ -2928,6 +2928,16 @@ footer {
   }
 }
 
+.usability_study_rover_color {
+  color: $rover_usability;
+
+  --link-hover-color: #{$rover_usability};
+
+  &:hover {
+    color: $white !important;
+  }
+}
+
 .ssec_products_color {
   color: $ssec_products;
 
@@ -3303,6 +3313,97 @@ footer {
   }
 }
 
+.project-rover {
+  --underline-effect-color: #{$rover_usability};
+  --scroll-watcher: #{$rover_usability};
+
+  .project-bg {
+    background-color: $rover_usability;
+    color: $rover_usability_dark;
+  }
+
+  .hero-rover-usability {
+    .bento-grid {
+      display: grid;
+      gap: 1.5rem;
+      grid-auto-columns: 1fr;
+      grid-template-areas:
+        'catp title title dogp'
+        'catp dogwalking dogfeed dogp'
+        'womandog dogwalking catpaws catpaws';
+      padding-block: 2rem;
+      height: calc(100vh - 53px);
+      margin-bottom: 15px !important;
+    }
+
+    .bento-item:nth-child(1) {
+      grid-area: catp;
+
+      video {
+        object-fit: cover;
+      }
+    }
+
+    .bento-item:nth-child(2) {
+      grid-area: title;
+      background: #00a570;
+    }
+
+    .bento-item:nth-child(3) {
+      grid-area: dogp;
+
+      video {
+        object-fit: cover;
+      }
+    }
+
+    .bento-item:nth-child(4) {
+      grid-area: dogwalking;
+
+      video {
+        object-fit: cover;
+      }
+    }
+
+    .bento-item:nth-child(5) {
+      grid-area: womandog;
+
+      img {
+        object-fit: cover;
+      }
+    }
+
+    .bento-item:nth-child(6) {
+      grid-area: dogfeed;
+
+      img {
+        object-fit: cover;
+      }
+    }
+
+    .bento-item:nth-child(7) {
+      grid-area: catpaws;
+
+      video {
+        object-fit: cover;
+      }
+    }
+
+    .bento-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .bento-item img,
+    .bento-item video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+}
+
 // SSEC products
 .project-ssec-products {
   --underline-effect-color: #{$ssec_products};
@@ -3310,13 +3411,13 @@ footer {
 
   .project-bg {
     background-color: $ssec_products;
-    color: #1d5264;
+    color: $ssec_products_dark;
   }
 
   // Define your color scheme here
   $ssec-color-bg1: #e2e2ea;
   $ssec-color-bg2: #88c4ea;
-  $ssec-color-bg3: #1d5264;
+  $ssec-color-bg3: $ssec_products_dark;
   $ssec-color1: #e2e2ea;
   $ssec-color2: #88c4ea;
   $ssec-color3: #88c4ea;
@@ -3839,12 +3940,20 @@ $star-background: #f1c40f;
         padding-left: 0;
       }
 
+      &.rover-logo {
+        height: 30px !important;
+      }
+
       @media screen and (max-width: 566px) {
         padding: 0 6px;
         height: 25px;
 
         &:first-child {
           margin-left: 8px;
+        }
+
+        &.rover-logo {
+          height: 20px !important;
         }
       }
     }
@@ -3934,6 +4043,12 @@ $star-background: #f1c40f;
   &.sustainable-ux-card {
     .interactive-glow {
       background-color: $sustainable_ux;
+    }
+  }
+
+  &.rover-usability-card {
+    .interactive-glow {
+      background-color: $rover_usability;
     }
   }
 
@@ -4192,4 +4307,32 @@ $star-background: #f1c40f;
   .hero-secondary-text {
     font-size: 2.2rem;
   }
+}
+
+/* Custom Blockquote */
+.custom-blockquote {
+  background: #f9f9f9;
+  border-left: 4px solid #4caf50;
+  padding: 10px 15px;
+  margin: 20px 0;
+  font-style: italic;
+  color: #555;
+}
+
+/* Severity Chips */
+.severity-chip {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.9em;
+  font-weight: bold;
+  color: #fff;
+}
+
+.severity-high {
+  background-color: #e63946;
+}
+
+.severity-medium {
+  background-color: #ffb703;
 }
