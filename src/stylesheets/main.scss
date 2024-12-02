@@ -2923,7 +2923,7 @@ footer {
 
   --link-hover-color: #{$sustainable_ux_dark};
 
-  &:hover {
+  &.link-style:hover {
     color: $white !important;
   }
 }
@@ -2933,7 +2933,7 @@ footer {
 
   --link-hover-color: #{$rover_usability};
 
-  &:hover {
+  &.link-style:hover {
     color: $white !important;
   }
 }
