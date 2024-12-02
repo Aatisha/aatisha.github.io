@@ -120,13 +120,13 @@ export const DESIGN_ARTICLE_NAVS = [
   {
     name: 'Usability Study - Rover Website',
     path: URL_PATHS.rover_usability_study,
-    class: 'usability_study_rover',
+    class: 'usability_study_rover_color',
   },
   {
     name: 'Trader Joe\'s - User Research Plan',
     path: URL_PATHS.trader_joes,
     class: 'trader_joes_color',
-  }
+  },
   // {
   //   name: 'Literati Women',
   //   path: URL_PATHS.literati_women,

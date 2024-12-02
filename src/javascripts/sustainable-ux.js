@@ -8,7 +8,7 @@ lightGallery(document.getElementById('sustainable-ux-images'), {
   autoplayFirstVideo: false,
   pager: false,
   selector: '.sustainable-ux-thumbnail',
-  galleryId: 'ssec-products-gallery',
+  galleryId: 'sustainable-ux-gallery',
   flipHorizontal: false,
   flipVertical: false,
   rotateLeft: false,
