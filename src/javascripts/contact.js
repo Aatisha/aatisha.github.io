@@ -2,120 +2,85 @@ import { URL_PATHS } from './constant';
 
 /* eslint-disable */
 if (window.location.pathname.includes(URL_PATHS.contact)) {
-  (function () {
-    // get all data in form and return object
-    function getFormData(form) {
-      const { elements } = form;
-      let honeypot;
+  const form = document.getElementById("contact-form");
+  const thankYouMessage = document.querySelector(".thankyou_message");
+  const errorMessages = {
+    name: "Name is required.",
+    email: "Please provide a valid email address.",
+    message: "Message cannot be empty.",
+  };
 
-      const fields = Object.keys(elements)
-        .filter((k) => {
-          if (elements[k].name === 'honeypot') {
-            honeypot = elements[k].value;
-            return false;
-          }
-          return true;
-        })
-        .map((k) => {
-          if (elements[k].name !== undefined) {
-            return elements[k].name;
-            // special case for Edge's html collection
-          }
-          if (elements[k].length > 0) {
-            return elements[k].item(0).name;
-          }
-        })
-        .filter((item, pos, self) => self.indexOf(item) === pos && item);
+  const validateForm = () => {
+    let isValid = true;
 
-      const formData = {};
-      fields.forEach((name) => {
-        const element = elements[name];
+    const nameInput = document.getElementById("name");
+    const nameError = document.getElementById("name-error");
+    if (!nameInput.value.trim()) {
+      nameError.textContent = errorMessages.name;
+      nameError.style.display = "block";
+      isValid = false;
+    } else {
+      nameError.style.display = "none";
+    }
 
-        // singular form elements just have one value
-        formData[name] = element.value;
+    const emailInput = document.getElementById("email");
+    const emailError = document.getElementById("email-error");
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailInput.value.trim() || !emailRegex.test(emailInput.value.trim())) {
+      emailError.textContent = errorMessages.email;
+      emailError.style.display = "block";
+      isValid = false;
+    } else {
+      emailError.style.display = "none";
+    }
 
-        // when our element has multiple items, get their values
-        if (element.length) {
-          const data = [];
-          for (let i = 0; i < element.length; i++) {
-            const item = element.item(i);
-            if (item.checked || item.selected) {
-              data.push(item.value);
-            }
-          }
-          formData[name] = data.join(', ');
-        }
+    const messageInput = document.getElementById("message");
+    const messageError = document.getElementById("message-error");
+    if (!messageInput.value.trim()) {
+      messageError.textContent = errorMessages.message;
+      messageError.style.display = "block";
+      isValid = false;
+    } else {
+      messageError.style.display = "none";
+    }
+
+    return isValid;
+  };
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // Validate form
+    if (!validateForm()) {
+      return;
+    }
+
+    // Honeypot field validation
+    const honeypot = document.getElementById("honeypot").value;
+    if (honeypot) {
+      console.warn("Spam bot detected.");
+      return;
+    }
+
+    const formData = new FormData(form);
+
+    try {
+      const res = await fetch("https://script.google.com/macros/s/AKfycbyH7yUEvdTDG9cZIxgkbW9keqt4U1-OXhC22KIpowMz8sZeUM2-fsrqlaqMxWQikrom/exec", {
+        method: "POST",
+        body: formData,
       });
 
-      // add form-specific values into the data
-      formData.formDataNameOrder = JSON.stringify(fields);
-      formData.formGoogleSheetName = form.dataset.sheet || 'responses'; // default sheet name
-      formData.formGoogleSendEmail = form.dataset.email || ''; // no email by default
-
-      return { data: formData, honeypot };
-    }
-
-    function handleFormSubmit(event) {
-      // handles form submit without any jquery
-      event.preventDefault(); // we are submitting via xhr below
-      const form = event.target;
-      const formData = getFormData(form);
-      const { data } = formData;
-
-      // If a honeypot field is filled, assume it was done so by a spam bot.
-      if (formData.honeypot) {
-        return false;
+      if (res.ok) {
+        form.reset();
+        form.style.display = "none";
+        thankYouMessage.style.display = "flex";
+      } else {
+        alert("Something went wrong. Please try again.");
       }
-
-      disableAllButtons(form);
-      const url = form.action;
-      const xhr = new XMLHttpRequest();
-      xhr.open('POST', url);
-      // xhr.withCredentials = true;
-      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-          form.reset();
-          const formElements = form.querySelector('.form-elements');
-          if (formElements) {
-            formElements.style.display = 'none'; // hide form
-          }
-          const thankYouMessage = form.querySelector('.thankyou_message');
-          if (thankYouMessage) {
-            thankYouMessage.style.display = 'flex'; // show thank you message
-          }
-          setTimeout(() => {
-            if (formElements) {
-              formElements.style.display = 'block'; // show form
-            }
-            if (thankYouMessage) {
-              thankYouMessage.style.display = 'none'; // hide thank you message
-            }
-          }, 5000);
-        }
-      };
-      // url encode form data for sending as post data
-      const encoded = Object.keys(data)
-        .map((k) => `${encodeURIComponent(k)}=${encodeURIComponent(data[k])}`)
-        .join('&');
-      xhr.send(encoded);
+    } catch (error) {
+      alert("Error: Unable to send your message. Please try again.");
     }
-
-    function loaded() {
-      // bind to the submit event of our form
-      const forms = document.querySelectorAll('form.gform');
-      for (let i = 0; i < forms.length; i++) {
-        forms[i].addEventListener('submit', handleFormSubmit, false);
-      }
-    }
-    document.addEventListener('DOMContentLoaded', loaded, false);
-
-    function disableAllButtons(form) {
-      const buttons = form.querySelectorAll('button');
-      for (let i = 0; i < buttons.length; i++) {
-        buttons[i].disabled = true;
-      }
-    }
-  })();
+  });
+  
 }
 /* eslint-enable */
