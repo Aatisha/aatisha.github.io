@@ -1828,8 +1828,9 @@ footer {
   --main-pad: 6rem;
   --project-hero-main-mar: 6rem;
   --underline-effect-color: #{$primary};
-  --scroll-watcher: #30138b;
+  --scroll-watcher: #{$primary};
   --nav-fixed-top: 15px;
+  --swiper-elements: #{$primary};
 }
 
 // For managing whole site left right padding
@@ -3302,6 +3303,7 @@ footer {
 .project-rover {
   --underline-effect-color: #{$rover_usability};
   --scroll-watcher: #{$rover_usability};
+  --swiper-elements: #{$rover_usability};
 
   .project-bg {
     background-color: $rover_usability;
@@ -3332,7 +3334,7 @@ footer {
 
     .bento-item:nth-child(2) {
       grid-area: title;
-      background: #00a570;
+      background: #01b07b;
     }
 
     .bento-item:nth-child(3) {
@@ -4321,4 +4323,20 @@ $star-background: #f1c40f;
 
 .severity-medium {
   background-color: #ffb703;
+}
+
+.swiper {
+  .swiper-button-next,
+  .swiper-button-prev {
+    cursor: pointer;
+    color: var(--swiper-elements) !important;
+    background-image: none !important;
+  }
+
+  .swiper-pagination {
+    .swiper-pagination-bullet-active {
+      cursor: pointer;
+      background: var(--swiper-elements) !important;
+    }
+  }
 }
