@@ -78,18 +78,21 @@ function updateActiveNavigation() {
 //   });
 // }
 
-document.getElementById('hamburger').addEventListener('click', () => {
-  document.getElementById('nav-hamburger').classList.toggle('collapsed');
-  document.getElementById('navigation-bar').classList.toggle('u-heightAuto');
-  const navLinks = document.getElementById('nav-links');
-  navLinks.classList.toggle('expanded');
-  const navWrapper = document.getElementsByClassName('pretty-nav-wrapper')[0];
-  navWrapper.classList.toggle('u-marginT4');
-  navWrapper.classList.toggle('u-heightAuto');
-  if (navLinks.classList.contains('expanded')) {
-    document.getElementById('logo-dot').dataset.animate = 'true';
-  }
-});
+const hamburger = document.getElementById('hamburger');
+if (hamburger) {
+  hamburger.addEventListener('click', () => {
+    document.getElementById('nav-hamburger').classList.toggle('collapsed');
+    document.getElementById('navigation-bar').classList.toggle('u-heightAuto');
+    const navLinks = document.getElementById('nav-links');
+    navLinks.classList.toggle('expanded');
+    const navWrapper = document.getElementsByClassName('pretty-nav-wrapper')[0];
+    navWrapper.classList.toggle('u-marginT4');
+    navWrapper.classList.toggle('u-heightAuto');
+    if (navLinks.classList.contains('expanded')) {
+      document.getElementById('logo-dot').dataset.animate = 'true';
+    }
+  });
+}
 
 function instantiateSwiper() {
   // eslint-disable-next-line no-unused-vars
@@ -140,16 +143,6 @@ function addBlogDetailsToDom(blogDetails) {
       instantiateSwiper();
     }, 500);
   }
-}
-
-function disableBodyContent() {
-  const bodyContent = document.getElementById('body-content');
-  // const mainBody = document.querySelector('body');
-  // bodyContent.style.opacity = '0';
-  // bodyContent.style.height = '0';
-  bodyContent.style.display = 'none';
-  // mainBody.style.overflowY = 'hidden';
-  return bodyContent;
 }
 
 function navigationHandle() {
@@ -260,46 +253,55 @@ window.onload = async () => {
 };
 
 document.addEventListener('DOMContentLoaded', async () => {
-  const bodyContent = disableBodyContent();
-  if (window.location.pathname !== URL_PATHS.home) {
-    preloader(bodyContent);
-    if (window.location.pathname.includes(URL_PATHS.about)
-        || window.location.pathname.includes(URL_PATHS.contact)) {
-      const fluidApp = new FluidApp();
-      await fluidApp.show(false);
+  const bodyContent = document.getElementById('body-content');
+  if (bodyContent) {
+    bodyContent.style.display = 'none';
+    if (window.location.pathname !== URL_PATHS.home) {
+      preloader(bodyContent);
+      if (window.location.pathname.includes(URL_PATHS.about)
+          || window.location.pathname.includes(URL_PATHS.contact)) {
+        const fluidApp = new FluidApp();
+        await fluidApp.show(false);
+        const heroTextWrapper = document.querySelector('.hero-text');
+        await delay(200);
+        heroTextWrapper.style.display = 'block';
+        heroTextWrapper.style.opacity = '0.75';
+      }
+    } else {
+      const logoAnimation = document.getElementById('logo-animation');
       const heroTextWrapper = document.querySelector('.hero-text');
-      await delay(200);
+      logoAnimation.style.display = 'none';
+      const fluidApp = new FluidApp();
+      await fluidApp.show();
+      bodyContent.style.display = 'block';
       heroTextWrapper.style.display = 'block';
+      await delay(100);
+      navigationHandle();
+      logoAnimation.style.display = 'block';
       heroTextWrapper.style.opacity = '0.75';
+
+      const tiltElements = document.querySelectorAll('.tilt-animation');
+      if (tiltElements.length > 0) {
+        VanillaTilt.init(tiltElements, {
+          speed: 4000,
+          max: 2,
+          perspective: 400,
+        });
+      }
+    }
+
+    if (window.location.pathname.includes(URL_PATHS.design_work)) {
+      designWorkGallery();
+    }
+
+    if (document.getElementById('article-nav')) {
+      adjustArticleNavigator();
     }
   } else {
-    const logoAnimation = document.getElementById('logo-animation');
-    const heroTextWrapper = document.querySelector('.hero-text');
-    logoAnimation.style.display = 'none';
-    const fluidApp = new FluidApp();
-    await fluidApp.show();
-    bodyContent.style.display = 'block';
-    heroTextWrapper.style.display = 'block';
-    await delay(100);
-    navigationHandle();
-    logoAnimation.style.display = 'block';
-    heroTextWrapper.style.opacity = '0.75';
-
-    const tiltElements = document.querySelectorAll('.tilt-animation');
-    if (tiltElements.length > 0) {
-      VanillaTilt.init(tiltElements, {
-        speed: 4000,
-        max: 2,
-        perspective: 400,
-      });
+    const is404 = document.getElementById('404Page');
+    if (is404) {
+      const fluidApp = new FluidApp();
+      await fluidApp.show(false);
     }
-  }
-
-  if (window.location.pathname.includes(URL_PATHS.design_work)) {
-    designWorkGallery();
-  }
-
-  if (document.getElementById('article-nav')) {
-    adjustArticleNavigator();
   }
 });
