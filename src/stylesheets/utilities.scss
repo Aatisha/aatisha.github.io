@@ -1155,6 +1155,10 @@
   width: 50%;
 }
 
+.u-width25-stretch-mob {
+  width: 25%;
+}
+
 .u-width65 {
   width: 65%;
 }
@@ -1250,11 +1254,19 @@
   .u-width50-stretch-mob {
     width: 60%;
   }
+
+  .u-width25-stretch-mob {
+    width: 30%;
+  }
 }
 
 @media screen and (max-width: 500px) {
   .u-width50-stretch-mob {
     width: 65%;
+  }
+
+  .u-width25-stretch-mob {
+    width: 30%;
   }
 
   .u-width60-stretch-mob,
