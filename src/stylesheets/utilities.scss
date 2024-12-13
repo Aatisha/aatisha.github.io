@@ -87,6 +87,10 @@
   align-items: flex-start;
 }
 
+.u-alignItems-end {
+  align-items: flex-end;
+}
+
 .u-flex-row {
   flex-direction: row !important;
 }
@@ -981,6 +985,14 @@
 
 .u-paddingR-5p {
   padding-right: 10% !important;
+}
+
+.u-paddingR-50 {
+  padding-right: 50px !important;
+}
+
+.u-paddingL-50 {
+  padding-left: 50px !important;
 }
 
 .u-padding10 {
