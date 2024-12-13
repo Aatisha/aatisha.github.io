@@ -3797,6 +3797,14 @@ ul {
   .info-section {
     padding: 50px 75px;
   }
+
+  .bottom-subtitle {
+    text-align: right;
+    font-size: 1.7rem;
+    font-weight: 900;
+    opacity: 0.3;
+    color: #838080;
+  }
 }
 
 @media (max-width: 1000px) {
