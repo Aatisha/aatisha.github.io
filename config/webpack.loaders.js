@@ -6,32 +6,6 @@ const fs = require('fs');
 // Define common loader constants
 const sourceMap = config.env !== "production";
 
-// function processNestedHtml(content, loaderContext, resourcePath = "") {
-//   console.log(resourcePath, 'Resource aPath');
-//   let fileDir = (resourcePath === "") ? path.dirname(loaderContext.resourcePath) : path.dirname(resourcePath)
-//   console.log(fileDir, 'fileDir');
-//   const INCLUDE_PATTERN = /\<include src=\"(\.\/)?(.+)\"\/?\>(?:\<\/include\>)?/gi;
-  
-//   function replaceHtml(match, pathRule, src) {
-//     console.log(pathRule, 'Path rile', src, 'src', match, 'match');
-//     if(pathRule === "./"){
-//       fileDir = loaderContext.context
-//     }
-//     console.log(fileDir, 'file dir 22');
-//     const filePath = path.resolve(fileDir, src)
-//     console.log(filePath, 'file path');
-//     loaderContext.dependency(filePath)
-//     const html = fs.readFileSync(filePath, 'utf8')
-//     return processNestedHtml(html, loaderContext, filePath)
-//   }
-
-//   if (!INCLUDE_PATTERN.test(content)) {
-//     return content
-//   } else {
-//     return content.replace(INCLUDE_PATTERN, replaceHtml);
-//   }
-// }
-
 const processNestedHtml = (content, loaderContext) => {
   const INCLUDE_PATTERN = /\<include src=\"(.+)\"\/?\>(?:\<\/include\>)?/gi;
   if (!INCLUDE_PATTERN.test(content)) {
@@ -72,7 +46,7 @@ const html = {
             if (/\.pdf$/.test(value)) {
               return false;
             }
-  
+
             return true;
           },
         },
@@ -141,21 +115,6 @@ const sass = {
   ],
 };
 
-const less = {
-  test: /\.less$/,
-  use: [
-    config.env === "production" ? MiniCssExtractPlugin.loader : styleLoader,
-    cssLoader,
-    postcssLoader,
-    {
-      loader: "less-loader",
-      options: {
-        sourceMap,
-      },
-    },
-  ],
-};
-
 const imageCompress = {
   loader: "image-webpack-loader",
   options: {
@@ -194,21 +153,6 @@ if (config.env === "production") {
   images.use.push(imageCompress);
 }
 
-// Font loaders
-const fonts = {
-  test: /\.(woff|woff2|eot|ttf|otf)$/,
-  exclude: /assets\/images/,
-  use: [
-    {
-      loader: "file-loader",
-      query: {
-        name: "[name].[hash].[ext]",
-        outputPath: "fonts/",
-      },
-    },
-  ],
-};
-
 // Video loaders
 const videos = {
   test: /\.(mp4|webm)$/,
@@ -223,4 +167,4 @@ const videos = {
   ],
 };
 
-module.exports = [html, js, css, sass, less, images, fonts, videos];
+module.exports = [html, js, css, sass, images, videos];

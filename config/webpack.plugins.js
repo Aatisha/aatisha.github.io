@@ -78,7 +78,7 @@ const purifyCss = new PurifyCSSPlugin({
   // Give paths to parse for rules. These should be absolute!
   paths: glob.sync(`./${config.paths.src}/**/*(*.html|*.js)`),
 });
-  
+
 // Sitemap
 const sitemap = new SitemapPlugin(config.site_url, paths, {
   priority: 1.0,
