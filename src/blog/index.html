@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <include src="../partials/head.html"/>
+</head>
+
+<body>
+  <include src="../partials/preloader.html"/>
+  <section class="hero-blog">
+    <div class="stage"></div>
+    <div class="hero-text container">
+      <h1 class="hero-title">
+        Blog
+      </h1>
+      <p class="hero-secondary-text">Welcome to my blog, where I share the stories behind my UX process.</p>
+    </div>
+  </section>
+  <div id="body-content">
+    <include src="../partials/navbar.html"/>
+    <main class="u-padding80 u-displayFlex u-justify-center u-alignItem-center">
+      <div class="scroll-watcher"></div>
+      <div class="fallback">
+        <div id="loader" class="loader" style="display: none;"></div>
+        <div id="no-data-message" class="no-data-message" style="display: none;">Oops, no stories to share right now!</div>
+      </div>
+      <div class="container" id="blog-section">
+        <div class="row u-marginV50 u-justify-center u-alignItems-stretch" id="blog-wrapper">
+        </div>
+        <div class="u-displayFlex u-justify-center">
+          <a 
+            href="https://medium.com/@cyrillaatisha" 
+            target="_blank" 
+            class="btn-primary"
+          >
+            View All
+          </a>
+        </div>        
+      </div>
+    </main>
+    <include src="../partials/footer.html"/>
+  </div>
+</body>
+
+</html>
