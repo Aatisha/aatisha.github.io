@@ -17,7 +17,7 @@ import './ssec-products';
 import './rover-usability';
 import './project-hero-bg-animation';
 import {
-  BlogTemplateProperties, BLOG_SLIDE_TEMPLATE, MEDIUM_USERNAME,
+  BlogTemplateProperties, BLOG_CARD_TEMPLATE, MEDIUM_USERNAME,
   STARRED_BLOG_ID, DESIGN_URLS, DEV_URLS, DESIGN_ARTICLE_NAVS, DEV_ARTICLE_NAVS, URL_PATHS,
 } from './constant';
 import { FluidApp } from './components/fluid-effect/FluidApp';
@@ -128,14 +128,22 @@ function addBlogDetailsToDom(blogDetails) {
     blogDetails.items.sort(customBlogSort);
     blogDetails.items.forEach((item, index) => {
       const {
-        thumbnail, title, pubDate, guid, stats, content, link,
+        thumbnail, title, pubDate, guid, stats, content, link, categories,
       } = item;
-      const publishDateFormatted = new Date(pubDate).toLocaleDateString('en-us', { year: 'numeric', month: 'short' });
+      const publishDateFormatted = new Date(pubDate).toLocaleDateString('en-us', { day: 'numeric', year: 'numeric', month: 'short' });
       const sanitizeContent = getFirstNWords(removeTags(content), 50).join(' ');
+      let firstCategory;
+      let secondCategory;
+      if (categories && categories.length) {
+        [firstCategory] = categories;
+        if (categories.length > 1) {
+          [, secondCategory] = categories;
+        }
+      }
       const blogTemplate = new BlogTemplateProperties(thumbnail, title, title, publishDateFormatted,
         stats.claps.toString(), stats.comments.toString(),
-        index.toString(), guid, link, sanitizeContent);
-      blogSlideContent += stringInject(BLOG_SLIDE_TEMPLATE, blogTemplate);
+        index.toString(), guid, link, sanitizeContent, firstCategory, secondCategory);
+      blogSlideContent += stringInject(BLOG_CARD_TEMPLATE, blogTemplate);
     });
     blogWrapper.innerHTML = blogSlideContent;
     blogSection.style.display = 'block';
@@ -173,13 +181,17 @@ function preloader(bodyContent) {
 }
 
 async function fetchMediumBlogs() {
-  const response = await fetch(`https://medium-apis.onrender.com/api/medium/user?id=${MEDIUM_USERNAME}`);
-  if (!response.ok) {
-    const message = `An error has occured: ${response.status}`;
-    throw new Error(message);
+  try {
+    const response = await fetch(`https://medium-apis.onrender.com/api/medium/user?id=${MEDIUM_USERNAME}`);
+    if (!response.ok) {
+      throw new Error(`An error has occurred: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error('Failed to fetch blogs:', error);
+    throw error;
   }
-  const blogDetails = await response.json();
-  return blogDetails;
 }
 
 function designWorkGallery() {
@@ -240,14 +252,32 @@ function adjustArticleNavigator() {
 
 window.onload = async () => {
   const blogSection = document.getElementById('blog-section');
-  if (window.location.pathname === URL_PATHS.home && blogSection) {
-    const response = await fetchMediumBlogs().catch((error) => {
+  const loader = document.getElementById('loader');
+  const noDataMessage = document.getElementById('no-data-message');
+  const blogWrapper = document.getElementById('blog-wrapper');
+
+  if (window.location.pathname.includes(URL_PATHS.blog) && blogSection) {
+    blogSection.style.display = 'none';
+    loader.style.display = 'block';
+    noDataMessage.style.display = 'none';
+
+    try {
+      const response = await fetchMediumBlogs();
+
+      if (response && response.items && response.items.length > 0) {
+        addBlogDetailsToDom(response);
+        loader.style.display = 'none';
+      } else {
+        loader.style.display = 'none';
+        noDataMessage.style.display = 'block';
+        blogWrapper.innerHTML = '';
+      }
+    } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error);
-      // preloader(bodyContent);
-    });
-    if (response) {
-      addBlogDetailsToDom(response);
+      loader.style.display = 'none';
+      noDataMessage.style.display = 'block';
+      blogWrapper.innerHTML = '';
     }
   }
 };
@@ -259,7 +289,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (window.location.pathname !== URL_PATHS.home) {
       preloader(bodyContent);
       if (window.location.pathname.includes(URL_PATHS.about)
-          || window.location.pathname.includes(URL_PATHS.contact)) {
+          || window.location.pathname.includes(URL_PATHS.contact)
+          || window.location.pathname.includes(URL_PATHS.blog)) {
         const fluidApp = new FluidApp();
         await fluidApp.show(false);
         const heroTextWrapper = document.querySelector('.hero-text');
