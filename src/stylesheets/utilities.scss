@@ -437,6 +437,10 @@
   border-radius: 5px;
 }
 
+.u-borderR40 {
+  border-radius: 40px;
+}
+
 .u-borderR12 {
   border-radius: 12px;
 }
@@ -582,6 +586,10 @@
   text-align: right;
 }
 
+.u-textLeft {
+  text-align: left;
+}
+
 .u-textJustify {
   text-align: justify;
 }
@@ -668,6 +676,14 @@
   font-size: 1.125rem;
 }
 
+.u-fontSize-p5 {
+  font-size: 1rem;
+}
+
+.u-fontSize-p6 {
+  font-size: 0.875rem;
+}
+
 /** Weights **/
 
 .u-fontWeight-extraLight {
@@ -708,6 +724,14 @@
 
 .u-heightFitContent {
   height: fit-content !important;
+}
+
+.u-height100px {
+  height: 100px;
+}
+
+.u-height100px-mobAuto {
+  height: 100px;
 }
 
 .u-height300px {
@@ -1023,6 +1047,10 @@
   padding: 80px;
 }
 
+.u-paddingT10 {
+  padding-top: 10px;
+}
+
 .u-paddingT20 {
   padding-top: 20px;
 }
@@ -1111,6 +1139,10 @@
 ----- WIDTHS -----
 **/
 
+.u-widthAuto {
+  width: auto;
+}
+
 .u-width10 {
   width: 10%;
 }
@@ -1181,6 +1213,10 @@
 
 .u-width75 {
   width: 75%;
+}
+
+.u-width80 {
+  width: 80%;
 }
 
 .u-width80-stretch-mob {
@@ -1269,6 +1305,10 @@
 
   .u-width25-stretch-mob {
     width: 30%;
+  }
+
+  .u-height100px-mobAuto {
+    height: auto;
   }
 }
 
@@ -1419,6 +1459,63 @@ hr {
     padding-left: 30px;
     margin-bottom: 30px; // Large vertical gap when stacked
     margin-top: 30px; // Large vertical gap when stacked
+  }
+}
+
+// New: Mixin to create custom row gutters
+@mixin apply-row-gutter($gutter: $gutter-width) {
+  margin-right: -($gutter / 2);
+  margin-left: -($gutter / 2);
+
+  > * {
+    padding-right: $gutter / 2;
+    padding-left: $gutter / 2;
+    margin-bottom: $gutter; // Apply vertical gap for stacking
+    margin-top: $gutter;    // Apply vertical gap for stacking
+  }
+}
+
+// New: Utility classes for dynamic row gutter
+.row-gutter-0 {
+  @include apply-row-gutter(0); // No gutter
+}
+
+.row-gutter-sm {
+  @include apply-row-gutter(20px); // Small gutter
+}
+
+.row-gutter-md {
+  @include apply-row-gutter(30px); // Medium gutter
+}
+
+.row-gutter-lg {
+  @include apply-row-gutter(40px); // Large gutter
+}
+
+.row-gutter-xl {
+  @include apply-row-gutter(50px); // Extra large gutter
+}
+
+// New: Breakpoint-specific gutter adjustments (optional)
+@each $breakpoint, $value in $breakpoints {
+  @if $value > 0 {
+    @media (min-width: $value) {
+      .row-gutter-#{$breakpoint}-sm {
+        @include apply-row-gutter(10px);
+      }
+
+      .row-gutter-#{$breakpoint}-md {
+        @include apply-row-gutter(20px);
+      }
+
+      .row-gutter-#{$breakpoint}-lg {
+        @include apply-row-gutter(30px);
+      }
+
+      .row-gutter-#{$breakpoint}-xl {
+        @include apply-row-gutter(40px);
+      }
+    }
   }
 }
 

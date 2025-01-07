@@ -1831,6 +1831,9 @@ footer {
   --scroll-watcher: #{$primary};
   --nav-fixed-top: 15px;
   --swiper-elements: #{$primary};
+  --swiper-navigation-size: 2.5rem;
+  --primary-btn-color: #{$primary};
+  --primary-btn-hover-color: #{$white};
 }
 
 // For managing whole site left right padding
@@ -2509,10 +2512,26 @@ footer {
 .project-sustainable-ux {
   --underline-effect-color: #{$sustainable_ux};
   --scroll-watcher: #{$sustainable_ux};
+  --swiper-elements: #{$sustainable_ux_dark};
+  --primary-btn-color: #{$sustainable_ux_dark};
+  --primary-btn-hover-color: #{$white};
 
   .project-bg {
     background-color: $sustainable_ux;
     color: $sustainable_ux_dark;
+  }
+
+  blockquote {
+    &.project-bg {
+      &::after,
+      &::before {
+        color: $sustainable_ux_dark;
+      }
+    }
+  }
+
+  .sustainable-ux-carousel-thumbnail {
+    width: calc(100% - (2 * (var(--swiper-navigation-size) + 0.8rem)));
   }
 
   .hero-project-img {
@@ -2962,8 +2981,8 @@ footer {
   display: inline-flex;
   padding: 10px 20px;
   border-radius: 50px;
-  color: $primary;
-  border: 1px solid $primary;
+  color: var(--primary-btn-color);
+  border: 1px solid var(--primary-btn-color);
   margin-top: 20px;
   text-decoration: none;
   font-weight: 400;
@@ -2973,9 +2992,9 @@ footer {
   cursor: pointer;
 
   &:hover {
-    color: white;
-    background: $primary;
-    border-color: white;
+    color: var(--primary-btn-hover-color);
+    background: var(--primary-btn-color);
+    border-color: var(--primary-btn-hover-color);
     transition: all 0.2s linear;
   }
 
@@ -3122,26 +3141,26 @@ ul {
     padding: 80px 45px;
     position: relative;
     border-radius: 24px;
-  }
 
-  blockquote::before {
-    position: absolute;
-    content: '“';
-    font-family: "Georgia", serif;
-    font-size: 72px;
-    color: gray;
-    top: 0;
-    left: 25px;
-  }
+    &::before,
+    &::after {
+      position: absolute;
+      font-family: "Georgia", serif;
+      font-size: 72px;
+      color: gray;
+    }
 
-  blockquote::after {
-    position: absolute;
-    content: '”';
-    font-family: "Georgia", serif;
-    font-size: 72px;
-    color: gray;
-    bottom: -25px;
-    right: 25px;
+    &::before {
+      content: '“';
+      top: 0;
+      left: 25px;
+    }
+
+    &::after {
+      content: '”';
+      bottom: -25px;
+      right: 25px;
+    }
   }
 }
 
