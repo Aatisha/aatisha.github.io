@@ -304,4 +304,50 @@ document.addEventListener('DOMContentLoaded', async () => {
       await fluidApp.show(false);
     }
   }
+
+  // 1) Select all your target videos
+  const videos = document.querySelectorAll('.autoplay-on-visible');
+
+  // 2) If there are no videos with that class, do nothing
+  if (!videos || videos.length === 0) {
+    return; // Stop execution here
+  }
+
+  const observerOptions = {
+    root: null,
+    threshold: 0.1,
+  };
+
+  // 3) This observer handles playing/pausing each video
+  const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const video = entry.target;
+
+      if (entry.isIntersecting && video.dataset.autoplay === 'false') {
+        video.play();
+        video.dataset.autoplay = 'true';
+      } else if (!entry.isIntersecting && video.dataset.autoplay === 'true') {
+        video.pause();
+        // video.currentTime = 0; // optional reset
+        video.dataset.autoplay = 'false';
+      }
+    });
+  }, observerOptions);
+
+  // 4) Optional "lazy load" observer
+  const lazyLoadObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        // start observing for playback
+        videoObserver.observe(entry.target);
+        // unobserve from lazy loading
+        lazyLoadObserver.unobserve(entry.target);
+      }
+    });
+  });
+
+  // 5) Attach the lazyLoadObserver to each video
+  videos.forEach((video) => {
+    lazyLoadObserver.observe(video);
+  });
 });

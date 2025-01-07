@@ -437,6 +437,10 @@
   border-radius: 5px;
 }
 
+.u-borderR40 {
+  border-radius: 40px;
+}
+
 .u-borderR12 {
   border-radius: 12px;
 }
@@ -580,6 +584,10 @@
 
 .u-textRight {
   text-align: right;
+}
+
+.u-textLeft {
+  text-align: left;
 }
 
 .u-textJustify {
@@ -1039,6 +1047,10 @@
   padding: 80px;
 }
 
+.u-paddingT10 {
+  padding-top: 10px;
+}
+
 .u-paddingT20 {
   padding-top: 20px;
 }
@@ -1127,6 +1139,10 @@
 ----- WIDTHS -----
 **/
 
+.u-widthAuto {
+  width: auto;
+}
+
 .u-width10 {
   width: 10%;
 }
@@ -1197,6 +1213,10 @@
 
 .u-width75 {
   width: 75%;
+}
+
+.u-width80 {
+  width: 80%;
 }
 
 .u-width80-stretch-mob {
