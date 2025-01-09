@@ -2534,25 +2534,7 @@ footer {
     width: calc(100% - (2 * (var(--swiper-navigation-size) + 0.8rem)));
   }
 
-  .hero-project-img {
-    background: url("../assets/images/sustainable-ux/hero.png") no-repeat center center;
-  }
-
   .hero-sustainable-ux {
-    // &::before {
-    //   content: '';
-    //   position: absolute;
-    //   height: 200vw;
-    //   width: 200vw;
-    //   top: -50%;
-    //   left: -50%;
-    //   background-color: #c0efbd;
-    //   opacity: 0.8;
-    //   background-image: repeating-radial-gradient(circle at 0 0, transparent 0, #c0efbd 9px), repeating-linear-gradient(#6aa96555, #6aa965);
-    //   // background-position: 0 0, 0 0, 12px 21px, 12px 21px, 0 0, 12px 21px;
-    //   animation: diagonal-right-bottom 20s linear infinite;
-    // }
-
     .bento-grid {
       display: grid;
       gap: 1.5rem;
