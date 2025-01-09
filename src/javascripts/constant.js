@@ -119,14 +119,14 @@ export const URL_PATHS = {
 
 export const DESIGN_ARTICLE_NAVS = [
   {
-    name: 'SSEC\'s Products Platform',
-    path: URL_PATHS.ssec_products,
-    class: 'ssec_products_color',
-  },
-  {
     name: 'Sustain Dane - App Design For Environmental Good',
     path: URL_PATHS.sustainable_ux,
     class: 'sustainable_ux_color',
+  },
+  {
+    name: 'SSEC\'s Products Platform',
+    path: URL_PATHS.ssec_products,
+    class: 'ssec_products_color',
   },
   {
     name: 'Usability Study - Rover Website',
