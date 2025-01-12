@@ -2347,6 +2347,12 @@ footer {
 
 .amazon_shopbop_color {
   color: $amazon_shopbop;
+
+  --link-hover-color: #{$amazon_shopbop};
+
+  &.link-style:hover {
+    color: $white !important;
+  }
 }
 
 // Online Assessment
@@ -2798,6 +2804,18 @@ footer {
       object-fit: contain;
     }
   }
+}
+
+// Amazon Shopbop
+.project-amazon-shopbop {
+  --underline-effect-color: #{$amazon_shopbop};
+  --scroll-watcher: #{$amazon_shopbop};
+  --swiper-elements: #{$amazon_shopbop};
+
+  .project-bg {
+    background-color: $amazon_shopbop;
+  }
+
 }
 
 // SSEC products
