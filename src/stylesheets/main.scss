@@ -2816,6 +2816,20 @@ footer {
     background-color: $amazon_shopbop;
   }
 
+  .hero-amazon-shopbop {
+    .hero-amazon-shopbop--video-aspect {
+      aspect-ratio: 4 / 2.64;
+      overflow: hidden;
+      border-radius: 20px;
+
+      video {
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+  }
+
 }
 
 // SSEC products

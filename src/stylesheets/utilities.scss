@@ -1107,6 +1107,11 @@
   padding: 80px 0;
 }
 
+.u-paddingH50 {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
 .u-paddingV125 {
   padding: 125px 0;
 }
@@ -1383,6 +1388,11 @@ hr {
       }
     }
   }
+}
+
+.hero-container {
+  width: calc(100% -(var(--project-hero-main-mar)* 2));
+  height: calc(100% -(var(--project-hero-main-mar)* 2));
 }
 
 // Row class to handle negative margins for gutter compensation
