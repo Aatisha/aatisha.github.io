@@ -6,6 +6,10 @@
   box-sizing: border-box;
 }
 
+[id] {
+  scroll-margin-top: calc(#{$navbar_height} + 30px);
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -49,6 +53,7 @@ p {
 
 html {
   font-size: 16px;
+  scroll-behavior: smooth;
 
   body {
     &.contrast-mode {
