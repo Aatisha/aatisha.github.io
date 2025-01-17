@@ -1,5 +1,6 @@
 import Swiper from 'swiper';
 import VanillaTilt from 'vanilla-tilt';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import {
   removeContentByIdAfter, stringInject, removeTags, getFirstNWords, isEqualURLs,
   removeTrailingSlash, getAdjacentItems,
@@ -16,11 +17,34 @@ import './sustainable-ux';
 import './ssec-products';
 import './rover-usability';
 import './project-hero-bg-animation';
+import './amazon-shopbop';
 import {
   BlogTemplateProperties, BLOG_CARD_TEMPLATE, MEDIUM_USERNAME,
   STARRED_BLOG_ID, DESIGN_URLS, DEV_URLS, DESIGN_ARTICLE_NAVS, DEV_ARTICLE_NAVS, URL_PATHS,
 } from './constant';
 import { FluidApp } from './components/fluid-effect/FluidApp';
+import 'swiper/swiper.min.css';
+import 'swiper/modules/pagination.min.css';
+import 'swiper/modules/navigation.min.css';
+
+// eslint-disable-next-line no-new
+new Swiper('.swiper', {
+  spaceBetween: 30,
+  centeredSlides: true,
+  autoplay: {
+    delay: 5000,
+    disableOnInteraction: false,
+  },
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+  },
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+  modules: [Navigation, Pagination, Autoplay],
+});
 
 // function reveal() {
 //   const reveals = document.querySelectorAll('.reveal');

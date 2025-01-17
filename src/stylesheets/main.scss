@@ -267,6 +267,11 @@ html {
   margin: 30px;
   animation-timeline: view();
   animation-range: contain;
+
+  &.laptop {
+    width: 80%;
+    height: 500px;
+  }
 }
 
 @media screen and (max-width: 1300px) {
@@ -2815,16 +2820,28 @@ footer {
 .project-amazon-shopbop {
   --underline-effect-color: #{$amazon_shopbop};
   --scroll-watcher: #{$amazon_shopbop};
-  --swiper-elements: #{$amazon_shopbop};
+  --swiper-elements: #{$amazon_shopbop_dark};
+  --primary-btn-color: #{$amazon_shopbop_dark};
+  --primary-btn-hover-color: #{$white};
 
   .project-bg {
     background-color: $amazon_shopbop;
+    color: $amazon_shopbop_dark;
   }
 
   .hero-amazon-shopbop {
     .hero-amazon-shopbop--video {
       overflow: hidden;
       border-radius: 20px;
+    }
+  }
+
+  blockquote {
+    &.project-bg {
+      &::after,
+      &::before {
+        color: $amazon_shopbop_dark;
+      }
     }
   }
 }
