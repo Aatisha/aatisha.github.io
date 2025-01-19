@@ -9,10 +9,10 @@ if (!ROOT) {
 
 const config = {
   // Your website's name, used for favicon meta tags
-  site_name: 'Aatisha Web Portfolio',
+  site_name: 'Aatisha Cyrill | UX Designer',
 
   // Your website's description, used for favicon meta tags
-  site_description: 'A personal web portfolio',
+  site_description: 'Aatisha Cyrill\'s UX designer and researcher web portfolio.',
 
   // Your website's URL, used for sitemap
   site_url: 'https://aatisha.github.io',
