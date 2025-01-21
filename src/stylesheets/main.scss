@@ -2917,6 +2917,17 @@ footer {
       }
     }
   }
+
+  .video-demo-aspect {
+    aspect-ratio: 14.7 / 9;
+    overflow: hidden;
+
+    video {
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
 }
 
 // SSEC products
