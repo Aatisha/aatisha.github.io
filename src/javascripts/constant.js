@@ -107,6 +107,7 @@ export const URL_PATHS = {
   sustainable_ux: '/sustainable-ux',
   ssec_products: '/ssec-products',
   rover_usability_study: '/rover-usability-study',
+  amazon_shopbop: '/amazon-shopbop',
   tech: {
     home: TECH_BASE_PATH,
     about: `${TECH_BASE_PATH}/about`,
@@ -118,6 +119,11 @@ export const URL_PATHS = {
 };
 
 export const DESIGN_ARTICLE_NAVS = [
+  {
+    name: 'Amazon Shopbop - App Design For Social Recommendations',
+    path: URL_PATHS.amazon_shopbop,
+    class: 'amazon_shopbop_color',
+  },
   {
     name: 'Sustain Dane - App Design For Environmental Good',
     path: URL_PATHS.sustainable_ux,
