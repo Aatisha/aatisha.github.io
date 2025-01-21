@@ -1398,9 +1398,14 @@ hr {
   }
 }
 
-.hero-container {
-  width: calc(100% - (var(--project-hero-main-mar) * 2));
-  height: calc(100% - (var(--project-hero-main-mar) * 2));
+.container-lg {
+  @each $breakpoint, $value in $breakpoints {
+    @if $value == 1400 {
+      @media (min-width: $value) {
+        max-width: 90%;
+      }
+    }
+  }
 }
 
 // Row class to handle negative margins for gutter compensation
