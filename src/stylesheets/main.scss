@@ -267,10 +267,41 @@ html {
   margin: 30px;
   animation-timeline: view();
   animation-range: contain;
+}
 
-  &.laptop {
-    width: 80%;
-    height: 500px;
+@media screen and (min-width: 1300px) {
+  .mockup-liquid-shape {
+    &.laptop {
+      width: 80%;
+      height: 500px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .mockup-liquid-shape {
+    &.laptop {
+      width: 90%;
+      height: 450px;
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .mockup-liquid-shape {
+    &.laptop {
+      width: 90%;
+      height: 325px;
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .mockup-liquid-shape {
+    &.laptop {
+      width: 100%;
+      height: 275px;
+    }
   }
 }
 

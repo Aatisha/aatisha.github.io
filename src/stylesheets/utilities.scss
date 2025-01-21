@@ -1216,6 +1216,10 @@
   width: 25%;
 }
 
+.u-width60 {
+  width: 60%;
+}
+
 .u-width65 {
   width: 65%;
 }
@@ -1322,6 +1326,19 @@
 
   .u-height100px-mobAuto {
     height: auto;
+  }
+
+  .u-width-shrink-sm-60 {
+    width: 60%;
+  }
+
+  .u-width-shrink-sm-80 {
+    width: 80%;
+  }
+
+  .u-sm-marginV30 {
+    margin-top: 30px;
+    margin-bottom: 30px;
   }
 }
 
