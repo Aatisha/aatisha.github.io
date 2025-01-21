@@ -1514,6 +1514,10 @@ hr {
   @include apply-row-gutter(50px); // Extra large gutter
 }
 
+.row-gutter-xxl {
+  @include apply-row-gutter(60px); // Extra large gutter
+}
+
 // New: Breakpoint-specific gutter adjustments (optional)
 @each $breakpoint, $value in $breakpoints {
   @if $value > 0 {
@@ -1532,6 +1536,10 @@ hr {
 
       .row-gutter-#{$breakpoint}-xl {
         @include apply-row-gutter(40px);
+      }
+
+      .row-gutter-#{$breakpoint}-xxl {
+        @include apply-row-gutter(50px);
       }
     }
   }
