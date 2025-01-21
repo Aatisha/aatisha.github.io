@@ -2822,6 +2822,29 @@ footer {
       object-fit: contain;
     }
   }
+
+  @media screen and (max-width: 576px) {
+    .hero-rover-usability {
+      .bento-grid {
+        grid-template-areas:
+          'title title'
+          'dogwalking womandog'
+          'catpaws catpaws';
+        height: calc(100vh - 53px) !important;
+      }
+
+      .bento-item:nth-child(1), .bento-item:nth-child(3), .bento-item:nth-child(6) {
+        display: none;
+      }
+    }
+  }
+  @media screen and (min-height: 577px) and (max-width: 1000px) {
+    .hero-rover-usability {
+      .bento-grid {
+        height: auto;
+      }
+    }
+  }
 }
 
 // Amazon Shopbop
@@ -2829,12 +2852,12 @@ footer {
   --underline-effect-color: #{$amazon_shopbop};
   --scroll-watcher: #{$amazon_shopbop};
   --swiper-elements: #{$amazon_shopbop_dark};
-  --swiper-nav-bg: #{$amazon_shopbop};
+  --swiper-nav-bg: #{$amazon_shopbop_light};
   --primary-btn-color: #{$amazon_shopbop_dark};
   --primary-btn-hover-color: #{$white};
 
   .project-bg {
-    background-color: $amazon_shopbop;
+    background-color: $amazon_shopbop_light;
     color: $amazon_shopbop_dark;
   }
 
