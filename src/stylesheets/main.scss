@@ -2627,6 +2627,29 @@ footer {
       object-fit: contain;
     }
   }
+
+  @media screen and (max-width: 576px) {
+    .hero-sustainable-ux {
+      .bento-grid {
+        grid-template-areas:
+        'title title'
+        'sustainability yellowplant'
+        'mobile mobile';
+        height: calc(100vh - 53px) !important;
+      }
+
+      .bento-item:nth-child(1), .bento-item:nth-child(3), .bento-item:nth-child(5) {
+        display: none;
+      }
+    }
+  }
+  @media screen and (min-height: 577px) and (max-width: 900px) {
+    .hero-sustainable-ux {
+      .bento-grid {
+        height: auto;
+      }
+    }
+  }
 }
 
 .project-hero {
