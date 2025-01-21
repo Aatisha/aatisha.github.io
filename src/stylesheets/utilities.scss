@@ -1572,6 +1572,22 @@ hr {
 
     @include apply-gutter();
   }
+
+  .mob-show {
+    display: block !important;
+  }
+
+  .mob-hide {
+    display: none !important;
+  }
+}
+
+.mob-show {
+  display: none;
+}
+
+.mob-hide {
+  display: block;
 }
 
 ol li::marker {
