@@ -637,7 +637,7 @@
 }
 
 .u-fontSize-h3--alt {
-  font-size: 1.5rem;
+  font-size: 1.875rem;
 }
 
 .u-fontSize-h4 {
@@ -654,6 +654,10 @@
 
 .u-fontSize-h5 {
   font-size: 1.125rem;
+}
+
+.u-fontSize-h5--alt {
+  font-size: 1.3rem;
 }
 
 .u-fontSize-h6 {
@@ -835,6 +839,10 @@
 
 .u-marginB20 {
   margin-bottom: 20px;
+}
+
+.u-marginB25 {
+  margin-bottom: 25px;
 }
 
 .u-marginB30 {
@@ -1107,6 +1115,11 @@
   padding: 80px 0;
 }
 
+.u-paddingH50 {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
 .u-paddingV125 {
   padding: 125px 0;
 }
@@ -1201,6 +1214,10 @@
 
 .u-width25-stretch-mob {
   width: 25%;
+}
+
+.u-width60 {
+  width: 60%;
 }
 
 .u-width65 {
@@ -1310,6 +1327,19 @@
   .u-height100px-mobAuto {
     height: auto;
   }
+
+  .u-width-shrink-sm-60 {
+    width: 60%;
+  }
+
+  .u-width-shrink-sm-80 {
+    width: 80%;
+  }
+
+  .u-sm-marginV30 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
 }
 
 @media screen and (max-width: 500px) {
@@ -1380,6 +1410,16 @@ hr {
     @if $value > 0 {
       @media (min-width: $value) {
         max-width: $value;
+      }
+    }
+  }
+}
+
+.container-lg {
+  @each $breakpoint, $value in $breakpoints {
+    @if $value == 1400 {
+      @media (min-width: $value) {
+        max-width: 90%;
       }
     }
   }
@@ -1496,6 +1536,10 @@ hr {
   @include apply-row-gutter(50px); // Extra large gutter
 }
 
+.row-gutter-xxl {
+  @include apply-row-gutter(60px); // Extra large gutter
+}
+
 // New: Breakpoint-specific gutter adjustments (optional)
 @each $breakpoint, $value in $breakpoints {
   @if $value > 0 {
@@ -1514,6 +1558,10 @@ hr {
 
       .row-gutter-#{$breakpoint}-xl {
         @include apply-row-gutter(40px);
+      }
+
+      .row-gutter-#{$breakpoint}-xxl {
+        @include apply-row-gutter(50px);
       }
     }
   }
@@ -1554,6 +1602,22 @@ hr {
 
     @include apply-gutter();
   }
+
+  .mob-show {
+    display: block !important;
+  }
+
+  .mob-hide {
+    display: none !important;
+  }
+}
+
+.mob-show {
+  display: none;
+}
+
+.mob-hide {
+  display: block;
 }
 
 ol li::marker {
