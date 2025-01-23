@@ -121,26 +121,31 @@ export const URL_PATHS = {
 export const DESIGN_ARTICLE_NAVS = [
   {
     name: 'Amazon Shopbop - App Design For Social Recommendations',
+    shortName: 'Amazon Shopbop',
     path: URL_PATHS.amazon_shopbop,
     class: 'amazon_shopbop_color',
   },
   {
     name: 'Sustain Dane - App Design For Environmental Good',
+    shortName: 'Sustain Dane',
     path: URL_PATHS.sustainable_ux,
     class: 'sustainable_ux_color',
   },
   {
     name: 'SSEC\'s Products Platform',
+    shortName: 'SSEC',
     path: URL_PATHS.ssec_products,
     class: 'ssec_products_color',
   },
   {
     name: 'Trader Joe\'s - User Research Plan',
+    shortName: 'Trader Joes\'s',
     path: URL_PATHS.trader_joes,
     class: 'trader_joes_color',
   },
   {
     name: 'Rover Website - Usability Study',
+    shortName: 'Rover Website',
     path: URL_PATHS.rover_usability_study,
     class: 'usability_study_rover_color',
   },
@@ -168,18 +173,21 @@ export function isTechPath() {
 export const DEV_ARTICLE_NAVS = [
   {
     name: 'Online Assessment',
+    shortName: 'Online Assessment',
     path: (isTechPath()) ? URL_PATHS.tech.online_assessment : URL_PATHS.online_assessment,
     // tech_path: URL_PATHS.tech.online_assessment,
     class: 'online_assessment_color',
   },
   {
     name: 'Plant health monitoring',
+    shortName: 'Plant Health',
     path: (isTechPath()) ? URL_PATHS.tech.plant_health : URL_PATHS.plant_health,
     // tech_path: URL_PATHS.tech.plant_health,
     class: 'plant_health_color',
   },
   {
     name: 'Deal management',
+    shortName: 'Deal Management',
     path: (isTechPath()) ? URL_PATHS.tech.deal_management : URL_PATHS.deal_management,
     // tech_path: URL_PATHS.tech.deal_management,
     class: 'deal_management_color',
@@ -188,3 +196,4 @@ export const DEV_ARTICLE_NAVS = [
 
 export const DESIGN_URLS = DESIGN_ARTICLE_NAVS.map((nav) => nav.path);
 export const DEV_URLS = DEV_ARTICLE_NAVS.map((nav) => nav.path);
+export const WORK_DROPDOWN_ITEMS = DESIGN_ARTICLE_NAVS;

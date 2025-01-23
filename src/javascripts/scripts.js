@@ -21,6 +21,7 @@ import './amazon-shopbop';
 import {
   BlogTemplateProperties, BLOG_CARD_TEMPLATE, MEDIUM_USERNAME,
   STARRED_BLOG_ID, DESIGN_URLS, DEV_URLS, DESIGN_ARTICLE_NAVS, DEV_ARTICLE_NAVS, URL_PATHS,
+  WORK_DROPDOWN_ITEMS,
 } from './constant';
 import { FluidApp } from './components/fluid-effect/FluidApp';
 import 'swiper/swiper.min.css';
@@ -46,21 +47,6 @@ new Swiper('.swiper', {
   modules: [Navigation, Pagination, Autoplay],
 });
 
-// function reveal() {
-//   const reveals = document.querySelectorAll('.reveal');
-//   reveals.forEach((element) => {
-//     const windowheight = window.innerHeight;
-//     const revealTop = element.getBoundingClientRect().top;
-//     const revealPoint = 0;
-
-//     if (revealTop < windowheight - revealPoint) {
-//       element.classList.add('show-item');
-//     } else {
-//       element.classList.remove('show-item');
-//     }
-//   });
-// }
-
 function switchNavigation() {
   const navbar = document.getElementById('navigation-bar');
   const navbarHeight = navbar.offsetHeight;
@@ -77,6 +63,48 @@ function switchNavigation() {
 }
 
 function updateActiveNavigation() {
+  const workNav = document.getElementById('work-nav');
+
+  if (WORK_DROPDOWN_ITEMS.length > 0) {
+    // Create the main anchor element with caret
+    const workLink = document.createElement('a');
+    workLink.href = '/'; // Main Work page link
+    workLink.innerHTML = 'Work<i class=\'fas fa-caret-down\'></i>';
+
+    // Create the dropdown container
+    const dropdownDiv = document.createElement('div');
+    dropdownDiv.classList.add('dropdown');
+
+    // Create the dropdown menu
+    const dropdownUl = document.createElement('ul');
+
+    // Populate the dropdown with items from the array
+    WORK_DROPDOWN_ITEMS.forEach((item) => {
+      const listItem = document.createElement('li');
+      listItem.classList.add('dropdown-link');
+
+      const anchor = document.createElement('a');
+      anchor.href = item.path; // Set URL path
+      anchor.textContent = item.shortName; // Set text content
+
+      listItem.appendChild(anchor);
+      dropdownUl.appendChild(listItem);
+    });
+
+    // Append the dropdown menu to the dropdown container
+    dropdownDiv.appendChild(dropdownUl);
+
+    // Append the main link and dropdown container to the nav link
+    workNav.appendChild(workLink);
+    workNav.appendChild(dropdownDiv);
+  } else {
+    // If no items, display just the Work link without dropdown
+    const workLink = document.createElement('a');
+    workLink.href = '/';
+    workLink.textContent = 'Work';
+    workNav.appendChild(workLink);
+  }
+
   const currentURL = window.location.href;
   const navLinks = document
     .getElementById('nav-links')
@@ -89,18 +117,6 @@ function updateActiveNavigation() {
     }
   });
 }
-
-// if (window.location.pathname === URL_PATHS.home
-//     || window.location.pathname === URL_PATHS.about
-//     || window.location.pathname === URL_PATHS.tech.home) {
-//   const resumeDownloadBtn = document.getElementById('resume-btn-download');
-//   resumeDownloadBtn.addEventListener('click', () => {
-//     resumeDownloadBtn.classList.toggle('downloaded');
-//     setTimeout(() => {
-//       resumeDownloadBtn.classList.toggle('downloaded');
-//     }, 5000);
-//   });
-// }
 
 const hamburger = document.getElementById('hamburger');
 if (hamburger) {
@@ -200,7 +216,6 @@ function preloader(bodyContent) {
     bodyContent.style.display = 'block';
     // nav activate
     navigationHandle();
-    // window.addEventListener('scroll', reveal);
   });
 }
 

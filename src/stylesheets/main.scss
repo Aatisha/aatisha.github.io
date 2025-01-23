@@ -755,13 +755,17 @@ html {
 
     .info {
       margin-left: 20px;
+    }
 
+    .info,
+    .info-alt {
       h3 {
         font-size: 1.5rem;
         margin-bottom: 4px;
       }
 
-      p {
+      p,
+      .row > * {
         span {
           &:nth-child(odd) {
             padding-right: 20px;
@@ -776,19 +780,41 @@ html {
             border: none;
           }
 
-          img {
+          .img-holder {
             width: 60px;
-            height: auto;
-            margin-right: 5px;
-            margin-top: -10px;
+            height: 60px;
+            display: inline-block;
+
+            img {
+              width: 100%;
+              height: auto;
+              margin-right: 5px;
+              margin-top: -10px;
+            }
+          }
+
+          .label-holder {
+            display: inline-block;
+            margin-left: 5px;
           }
         }
       }
     }
 
     &.certification-card {
-      height: 180px;
       min-height: auto;
+      height: 100%;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .resume-card {
+      padding: 25px;
+      margin-bottom: 25px;
+
+      &.certification-card {
+        height: auto;
+      }
     }
   }
 }
@@ -2158,6 +2184,7 @@ footer {
   }
 
   .right-part {
+    margin-top: -80px;
     line-height: 1.5;
     font-size: 1.3rem;
 
@@ -2613,7 +2640,7 @@ footer {
 
     .bento-item:nth-child(2) {
       grid-area: title;
-      background: #c3dca9;
+      background: #bedda1;
     }
 
     .bento-item:nth-child(3) {
@@ -2623,7 +2650,7 @@ footer {
 
     .bento-item:nth-child(4) {
       grid-area: mobile;
-      background: #ececec;
+      background: #e9e9e9;
     }
 
     .bento-item:nth-child(5) {
@@ -2643,6 +2670,10 @@ footer {
     .bento-item:nth-child(7) {
       grid-area: yellowplant;
       background: linear-gradient(62deg, rgb(253, 201, 20) 0%, rgb(255, 209, 76) 100%);
+
+      img {
+        object-fit: cover;
+      }
     }
 
     .bento-item {
@@ -3287,8 +3318,18 @@ ol {
   font-weight: 700;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
-  bottom: 30px;
+  bottom: 20px;
   right: 0;
+
+  @media screen and (max-width: 1100px) {
+    padding: 5px 20px;
+    font-size: 1rem;
+  }
+
+  @media screen and (max-width: 576px) {
+    padding: 5px 15px;
+    font-size: 0.9rem;
+  }
 }
 
 .quote-blog {
