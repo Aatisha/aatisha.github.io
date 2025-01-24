@@ -27,6 +27,7 @@ import { FluidApp } from './components/fluid-effect/FluidApp';
 import 'swiper/swiper.min.css';
 import 'swiper/modules/pagination.min.css';
 import 'swiper/modules/navigation.min.css';
+import fallbackData from '../assets/cache/blog.json';
 
 // eslint-disable-next-line no-new
 new Swiper('.swiper', {
@@ -219,17 +220,42 @@ function preloader(bodyContent) {
   });
 }
 
+async function fetchWithTimeout(url, options = {}, timeout = 2000) {
+  return new Promise((resolve, reject) => {
+    const timer = setTimeout(() => reject(new Error('Request timed out')), timeout);
+
+    fetch(url, options)
+      .then((response) => {
+        clearTimeout(timer);
+        if (response.ok) {
+          resolve(response.json());
+        } else {
+          reject(new Error(`An error occurred: ${response.status}`));
+        }
+      })
+      .catch((err) => {
+        clearTimeout(timer);
+        reject(err);
+      });
+  });
+}
+
 async function fetchMediumBlogs() {
+  const apiPromise = fetchWithTimeout(
+    `https://medium-apis.onrender.com/api/medium/user?id=${MEDIUM_USERNAME}`,
+    {},
+    3000, // Timeout in milliseconds
+  );
+
   try {
-    const response = await fetch(`https://medium-apis.onrender.com/api/medium/user?id=${MEDIUM_USERNAME}`);
-    if (!response.ok) {
-      throw new Error(`An error has occurred: ${response.status}`);
-    }
-    return await response.json();
+    // Try fetching from the API with timeout
+    return await apiPromise;
   } catch (error) {
     // eslint-disable-next-line no-console
-    console.error('Failed to fetch blogs:', error);
-    throw error;
+    console.warn('API failed or timed out. Using fallback JSON:', error);
+
+    // Use imported JSON data as fallback
+    return fallbackData;
   }
 }
 
