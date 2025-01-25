@@ -139,7 +139,7 @@ export const DESIGN_ARTICLE_NAVS = [
   },
   {
     name: 'Trader Joe\'s - User Research Plan',
-    shortName: 'Trader Joes\'s',
+    shortName: 'Trader Joe\'s',
     path: URL_PATHS.trader_joes,
     class: 'trader_joes_color',
   },
