@@ -74,6 +74,7 @@ $white: #fff;
     opacity: 0;
     pointer-events: none;
     transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    width: max-content;
 
     &::before {
       position: absolute;
@@ -122,6 +123,27 @@ $white: #fff;
 
         &::before {
           background: #000;
+          color: $white;
+        }
+      }
+    }
+  }
+
+  .mail {
+    &:hover {
+      background: $secondary;
+
+      a {
+        color: $white;
+      }
+
+      .tooltip {
+        background: $secondary;
+        color: $white;
+        width: max-content;
+
+        &::before {
+          background: $secondary;
           color: $white;
         }
       }
