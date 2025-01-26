@@ -2562,27 +2562,60 @@ footer {
 
 // Trader Joe's
 .project-trader-joes {
-  .project-bg {
-    background-color: $trader_joes;
-  }
+  --underline-effect-color: #{$trader_joes};
+  --scroll-watcher: #{$trader_joes};
+  --swiper-elements: #{$trader_joes_dark};
+  --swiper-nav-bg: #{$trader_joes_light};
+  --primary-btn-color: #{$trader_joes_dark};
+  --primary-btn-hover-color: #{$white};
 
-  .hero-project-img {
-    background: url("../assets/images/trader-joes/grocery-store.jpg") no-repeat center center;
+  .project-bg {
+    background-color: $trader_joes_light;
+    color: $trader_joes_dark;
   }
 
   .hero-trader-joes {
-    &::before {
-      content: '';
-      position: absolute;
-      height: 700vw;
-      width: 700vw;
-      top: -50%;
-      left: -50%;
-      background-color: #e6c6ce;
-      opacity: 0.8;
-      background-image: repeating-radial-gradient(circle at 0 0, transparent 0, #e6c6ce 10px), repeating-linear-gradient(#d593a355, #d593a3);      // background-size: 24px 42px;
-      background-position: 0 0, 0 0, 12px 21px, 12px 21px, 0 0, 12px 21px;
-      animation: diagonal-right-bottom 20s linear infinite;
+    .hero-trader-joes--video {
+      overflow: hidden;
+      border-radius: 20px;
+    }
+
+    .left {
+      padding: 50px 50px 50px 0;
+    }
+
+    .right {
+      padding: 20px 0 20px 20px;
+    }
+
+    @media screen and (max-width: 768px) {
+      .left {
+        padding: 20px 0;
+      }
+
+      .right {
+        padding: 10px 0;
+      }
+    }
+  }
+
+  blockquote {
+    &.project-bg {
+      &::after,
+      &::before {
+        color: $trader_joes_dark;
+      }
+    }
+  }
+
+  .video-demo-aspect {
+    aspect-ratio: 14.7 / 9;
+    overflow: hidden;
+
+    video {
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
     }
   }
 }

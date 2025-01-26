@@ -10,502 +10,869 @@
   <include src="../partials/preloader.html"/>
   <div id="body-content">
     <include src="../partials/navbar.html"/>
-    <main class="project project-trader-joes">
-      <section class="hero-trader-joes project-bg main-pad-lr u-paddingV80 page-top">
-        <div class="Container-wrapper">
-          <div class="Container-flex--rev gap-20">
-            <div class="u-flex1">
-              <h3 class="u-fontSize-h2 u-fontPlayfair u-fontWeight-black u-marginT20">Trader Joe's - User Research Plan</h3>
-              <p class="u-fontSize-p3 u-marginT50 u-lineHeight-1_75">
-                A user research study to understand users pain-points and enhance their user experience on Trader Joe's grocery shopping platforms.
-              </p>
-              <!-- <div class="u-marginT20">
-                <a href="https://app.visily.ai/projects/ca4841b6-7913-49d2-a271-5eb665d9b035/boards/423755/presenter?play-mode=Prototype" target="_blank" class="btn-primary">Wireframe</a>
-              </div> -->
-            </div>
-            <div class="u-flex1">
-              <div class="u-width100 u-boxShadow3 u-borderR5 hero-project-img"></div>
-            </div>
-          </div>
-        </div>
-        <div class="custom-shape-divider-bottom-1671992588">
-          <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path
-              d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-              class="shape-fill"></path>
-          </svg>
-        </div>
-      </section>
-      <section class="main-pad-lr u-marginV150 project-info">
-        <div class="Container-wrapper u-borderR5 u-paddingV50 u-border-charcoal">
-          <div class="Container-flex">
-            <div class="Container-text u-flex1 u-fontSize-h6 u-lineHeight-1_5 u-textCenter">
-              <div class="Container-flex u-flex-col">
-                <div class="u-fontSize-p3 u-fontWeight-bold u-textUpper u-marginT10">Role</div>
-                <div class="u-fontSize-p3 u-fontWeight-light u-marginT10">UX Researcher/ Lead</div>
-              </div>
-            </div>
-            <div class="Container-text u-flex1 u-fontSize-h6 u-lineHeight-1_5 u-textCenter">
-              <div class="Container-flex u-flex-col">
-                <div class="u-fontSize-p3 u-fontWeight-bold u-textUpper u-marginT10">Team</div>
-                <div class="u-fontSize-p3 u-fontWeight-light u-marginT10">Aatisha Cyrill</div>
-                <div class="u-fontSize-p3 u-fontWeight-light u-marginT10">Tsai Yi Lin (Maggie)</div>
-                <div class="u-fontSize-p3 u-fontWeight-light u-marginT10">Fu-Yi (Esther)</div>
-              </div>
-            </div>
-            <div class="Container-text u-flex1 u-fontSize-h6 u-lineHeight-1_5 u-textCenter">
-              <div class="Container-flex u-flex-col">
-                <div class="u-fontSize-p3 u-fontWeight-bold u-textUpper u-marginT10">Tools</div>
-                <div class="u-fontSize-p3 u-fontWeight-light u-marginT10">Figma</div>
-                <div class="u-fontSize-p3 u-fontWeight-light u-marginT10">FigJam</div>
-                <div class="u-fontSize-p3 u-fontWeight-light u-marginT10">Qualtrics</div>
-                <div class="u-fontSize-p3 u-fontWeight-light u-marginT10">Miro</div>
-              </div>
-            </div>
-            <div class="Container-text u-flex1 u-fontSize-h6 u-lineHeight-1_5 u-textCenter">
-              <div class="Container-flex u-flex-col">
-                <div class="u-fontSize-p3 u-fontWeight-bold u-textUpper u-marginT10">Skills</div>
-                <div class="u-fontSize-p3 u-fontWeight-light u-marginT10">Brainstorming</div>
-                <div class="u-fontSize-p3 u-fontWeight-light u-marginT10">Interviews</div>
-                <div class="u-fontSize-p3 u-fontWeight-light u-marginT10">Surveys</div>
-                <div class="u-fontSize-p3 u-fontWeight-light u-marginT10">Affinity Diagrams</div>
-                <div class="u-fontSize-p3 u-fontWeight-light u-marginT10">Journey Maps</div>
-              </div>
-            </div>
-            <div class="Container-text u-flex1 u-fontSize-h6 u-lineHeight-1_5 u-textCenter">
-              <div class="Container-flex u-flex-col">
-                <div class="u-fontSize-p3 u-fontWeight-bold u-textUpper u-marginT10">Timeline</div>
-                <div class="u-fontSize-p3 u-fontWeight-light u-marginT10">Oct 2023 - Dec 2023</div>
-                <div class="u-fontSize-p3 u-fontWeight-light u-marginT10">(3 months)</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="main-pad-lr u-marginV150">
-        <div class="Container-wrapper--alt">
-          <div class="u-marginV150">
-            <div class="Container-flex gap-50">
-              <div class="u-flex2-5">
-                <h2 class="u-fontWeight-bold u-marginB20">Initial Problem Discovery</h2>
-                <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p3">
-                  After landing in Madison, WI, as an international student, the first thing to do was to order some groceries from a reputed store. 
-                  After spending an hour on the Trader Joe's website, I came across the information that they do not sell products online. 
-                  This cumbersome user experience left me pondering the potential for improvement. I thought there must surely be a solution to bridge this gap and enhance the grocery shopping experience for newcomers like myself.
+    <main class="project project-trader-joes" id="trader-joes-images">
+      <div class="scroll-watcher"></div>
+      <section class="hero-trader-joes project-hero u-height100vh">
+        <div class="container container-lg u-paddingV80 project-hero-main-mar">
+          <div class="row u-displayFlex u-alignItems-center">
+            <div class="col-sm-12 col-md-6 u-displayFlex u-alignItems-center u-justify-center u-flex-col">
+              <div class="left">
+                <h3 class="u-fontSize-h2 u-fontLato u-fontWeight-semiBold u-marginT20">Trader Joe's - User Research Plan</h3>
+                <p class="u-fontSize-p3 u-marginT10 u-lineHeight-1_75">
+                  A user research study to understand users pain-points and enhance their user experience on Trader Joe's grocery shopping platforms.
                 </p>
               </div>
-              <div class="u-flex1 u-displayFlex u-alignItems-center u-justify-end">
-                <img src="../assets/images/trader-joes/initial-problem-discovery.png" alt="initial problem discovery sketch">
+            </div>
+            <div class="col-sm-12 col-md-6 right">
+              <div class="hero-trader-joes--video">
+                <video autoplay muted playsinline loop preload="auto" class="u-width100">
+                  <source src="../assets/images/amazon-shopbop/Amazon-Shopbop-Hero.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
               </div>
             </div>
           </div>
         </div>
       </section>
-      <section class="main-pad-lr u-marginV150">
-        <div class="Container-wrapper--alt">
-          <div class="u-marginV150">
-            <h2 class="u-fontWeight-bold u-marginB20">Problem</h2>
-            <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p3 u-marginB10">
-              A majority of potential shoppers meet a dead end on the Trader Joe's website while trying to checkout items. Other instore shoppers are not aware of the website and hence the user engagement on the website turns out to be quite low.<br><br>
-              
-              <div class="quote-blog">
-                <blockquote class="u-textJustify u-lineHeight-1_5 u-fontSize-p3 u-marginB20">
-                  Why is there a disconnect between Trader Joe's platform and other platforms in the same business domain
-                </blockquote>
+
+      <section class="main-pad-lr u-marginV100">
+        <div class="container">
+          <div class="u-marginV100">
+            <h5 class="u-textUpper u-secondaryTextColor u-fontWeight-regular u-lineHeight-1_75 u-marginB5">Process Highlight</h5>
+            <h2 class="u-fontWeight-bold u-marginB20">Design challenge and responsibilities overview</h2>
+            <hr/>
+            <div class="row u-marginV30">
+              <div class="col-12 col-sm-6">
+                <h3 class="u-fontWeight-semiBold u-lineHeight-1_75">Challenge</h3>
+                <p class="u-textJustify u-fontSize-p4">
+                  Enhance <strong>Shopbop's (US online fashion and accessories shop</strong>)  social and interactive shopping experience by creating an engaging platform to <strong>make fashion discovery easier</strong> for all users.
+                </p>
               </div>
-            </p>
-          </div>
-          <div class="u-marginV150">
-            <h2 class="u-fontWeight-bold u-marginB20">Objective</h2>
-            <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p3 u-marginB10">
-              The primary aim of our comprehensive research endeavor was driven by a commitment to understanding and addressing user pain-points on the Trader Joe's website with the overarching goal of enriching the online shopping journey and fostering greater satisfaction among customers.            
-            </p>
-          </div>
-          <div class="u-marginV150">
-            <h2 class="u-fontWeight-bold u-marginB20">White Paper Research</h2>
-            <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p3 u-marginB10">
-              We studied the industrial trends and data and found that the trend of combining in-store and online grocery shopping is expected to continue due to the convenience it provides to customers.
-              Also, in response to the post-pandemic grocery trends, enhancing the user experience through the website could be a potential approach. Below are few insights from McKinsey & Company reports:
-            </p>
-            <div class="Container-flex gap-50 u-marginV50">
-              <div class="u-flex1">
-                <figure>
-                  <img src="../assets/images/trader-joes/white-paper-research1.jpg" class="u-boxShadow3" alt="white paper research 1">
-                  <figcaption class="u-textCenter">Photo: McKinsey & Company</figcaption>
-                </figure>
-                <br>
-                <br>
-                <ul class="u-lineHeight-1_5">
-                  <li>According to McKinsey, online grocery spending is expected to increase to 7.2% in 2023, with a projected market penetration rate of 14-18% in the next 3-5 years.</li><br>
-                  <li>22% shoppers plan an in-store shopping trip combined with a prior online order, according to Nielsen IQ's research.</li>
-                </ul>
+              <div class="col-12 col-sm-6">
+                <h3 class="u-fontWeight-semiBold u-lineHeight-1_75">Opportunity</h3>
+                <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4">
+                  Design a <strong>pairwise ranking system</strong> for Shopbop, an Amazon company, that allows users to <strong>compare fashion items</strong> and contribute to dynamic leaderboards and personalized fashion recommendations.
               </div>
-              <div class="u-flex1">
-                <figure>
-                  <img src="../assets/images/trader-joes/white-paper-research2.webp" class="u-boxShadow3" alt="white paper research 2">
-                  <figcaption class="u-textCenter">Photo: McKinsey & Company</figcaption>
-                </figure>  
-                <br> 
-                <div style="margin-left: 23px">Importance of online interface features:</div>
-                <ul class="u-lineHeight-1_5">
-                  <li>Ease of use: product selection, saved preferences, and order history for reordering.</li><br><br>
-                  <li>Self-serve access to information: stockouts, progress updates, and changes to orders.</li>
-                </ul>
+              <div class="col-12 col-sm-12">
+                <h3 class="u-fontWeight-semiBold u-lineHeight-1_75">Background</h3>
+                <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4">
+                  This <strong>group project</strong> was undertaken as part of my Fall 2024 CS Capstone course and was executed <strong> in collaboration with the Shopbop-Amazon team.</strong></p>
+              </div>
+            </div>
+            <hr/>
+            <div class="row u-marginV30">
+              <div class="col-md-3 col-6">
+                <h3 class="u-fontWeight-semiBold u-lineHeight-1_75">Timeline</h3>
+                <p class="u-fontSize-p4 u-marginB10">
+                  Sept 2024 - Dec 2024
+                </p>
+              </div>
+              <div class="col-md-3 col-6">
+                <h3 class="u-fontWeight-semiBold u-lineHeight-1_75">Disciplines</h3>
+                <p class="u-fontSize-p4 u-marginB10">User Experience Research</p>
+                <p class="u-fontSize-p4 u-marginB10">User Experience Design</p>
+                <p class="u-fontSize-p4 u-marginB10">Visual Design</p>
+                <p class="u-fontSize-p4 u-marginB10">Design System</p>
+              </div>
+              <div class="col-md-3 col-6">
+                <h3 class="u-fontWeight-semiBold u-lineHeight-1_75">Role</h3>
+                <p class="u-fontSize-p4 u-marginB10">UI/UX Designer | Front-End Developer</p>
+              </div>
+              <div class="col-md-3 col-6">
+                <h3 class="u-fontWeight-semiBold u-lineHeight-1_75">Tools</h3>
+                <p class="u-fontSize-p4 u-marginB10">Figma</p>
+                <p class="u-fontSize-p4 u-marginB10">Slack</p>
+                <p class="u-fontSize-p4 u-marginB10">Miro</p>
+                <p class="u-fontSize-p4 u-marginB10">Freeform</p>
               </div>
             </div>
           </div>
         </div>
       </section>
-      <section class="full-divider project-bg u-marginV150">
-        <div class="main-pad-lr">
-          <div class="Container-wrapper--alt">
-            <h2 class="u-fontWeight-bold u-lineHeight-1_5 u-textUpper">Competitor Analysis</h2>
-            <!-- <p class="u-fontWeight-semiBold u-fontSize-p3">What did we learn as a team?</p> -->
-            <!-- <p class="u-fontSize-p3">It was a team project as part of the Cognizant Student Club. In the journey of completing the project, we learned about the importance of time management, strategic planning, and understanding each other's opinions.</p> -->
-          </div>
-        </div>
-      </section>
-      <section class="main-pad-lr u-marginV150">
-        <div class="Container-wrapper--alt">
-          <div class="u-marginV150">
-            <!-- <h2 class="u-fontWeight-bold u-marginB20">Mood Boards</h2> -->
-            <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p3 u-marginB10">
-              We started off with exploring and understanding two leading grocery firms, <strong>H-E-B</strong> and <strong>Kroger</strong> to find what factors impacted their success and how could we improve and reflect that in our own problem space.<br><br>
-              Our findings revealed, although implementing delivery services might be challenging, a great amount of competitors demonstrate good examples of how they work and how they are benefited from optimizing the user experiences on their websites.
+
+      <section class="main-pad-lr u-marginV100">
+        <div class="container">
+          <div class="u-marginV100">
+            <h5 class="u-textUpper u-secondaryTextColor u-fontWeight-regular u-lineHeight-1_75 u-marginB5">Problem</h5>
+            <h2 class="u-fontWeight-bold u-marginB20">Fashion needs a way to be easily discovered by everyone.</h2>
+            <hr/>
+            <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4">
+              Shopbop needed a new way to <strong>increase customer engagement</strong> and <strong>brand awareness</strong> by integrating social and gamified experiences into the shopping process. While the platform already offered a robust catalog, it lacked a system for users to actively engage and discover their products.
             </p>
-          </div>
-          <h2 class="u-fontWeight-bold u-marginB20">How do our competitors work?</h2>
-          <div class="u-marginV50">
-            <figure>
-              <img src="../assets/images/trader-joes/competitor_analysis.png"
-                class="u-width80-stretch-mob u-boxShadow3 u-borderR5" alt="Table showing competitors features"/>
-              <figcaption class="u-textCenter">Table showing competitors features</figcaption>
-            </figure>
-            <ul class="u-lineHeight-1_5 u-fontSize-p3">
-              <li>H-E-B Express is a fast delivery service that promises to deliver grocery essentials in two hours or less.</li><br>
-              <li>Kroger provides both delivery and ship services. While delivery service is mainly for weekly groceries, ship service is mainly for heavy items.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-      <section class="full-divider project-bg u-marginV150">
-        <div class="main-pad-lr">
-          <div class="Container-wrapper--alt">
-            <h2 class="u-fontWeight-bold u-lineHeight-1_5 u-textUpper">Research Methodology: Mixed Method</h2>
-            <!-- <p class="u-fontWeight-semiBold u-fontSize-p3">What did we learn as a team?</p> -->
-            <!-- <p class="u-fontSize-p3">It was a team project as part of the Cognizant Student Club. In the journey of completing the project, we learned about the importance of time management, strategic planning, and understanding each other's opinions.</p> -->
-          </div>
-        </div>
-      </section>
-      <section class="main-pad-lr u-marginV150">
-        <div class="Container-wrapper--alt">
-          <figure>
-            <img src="../assets/images/trader-joes/research-methodology.png"
-              class="u-width80-stretch-mob u-boxShadow3 u-borderR5" alt="research methodology"/>
-              <figcaption class="u-textCenter">Mixed method of research</figcaption>
-          </figure>
-          <div class="u-marginV150">
-            <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p3 u-marginB10">
-              After our white paper research and competitor analysis, we wanted the first hand target audience experiences to cater to their needs and understand their pain points.
-            </p>
-            <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p3 u-marginB10">
-              For this, we used mixed method of <strong>user interview</strong>, <strong>contextual inquiry</strong> and <strong>survey</strong>.
-            </p>
-            <h2 class="u-fontWeight-bold u-marginB20 u-marginT50">Who was our target population?</h2>
-            <ul class="u-lineHeight-1_5 u-fontSize-p3">
-              <li>
-                Who have either visited the Trader Joe's website or shopped at a physical Trader Joe's store at least once.
-              </li>
-              <li>
-                Who regularly engage in grocery shopping, both online and offline.
-              </li>
-              <li>
-                Who conduct grocery shopping at least once a month, regardless the location.
-              </li>
-            </ul>
-          </div>
-          <div class="u-marginV150">
-            <h2 class="u-fontWeight-bold u-marginB20 ">User Interviews</h2>
-            <div class="u-lineHeight-1_5 u-fontSize-p3   u-marginB10">Participants: 9</div>
-            <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p3 u-marginB10">
-              We utilized <strong>semi-structured</strong>, <strong>planned</strong>, and <strong>one-on-one</strong> interviews as our initial research methods to build a basic
-              understanding of individuals' shopping habits. We focused on the participants shopping experience at Trader Joe's store and studied their interactions and expectations of the website.
-            </p>
-            <div class="Container-flex gap-50 u-marginV50 u-alignItems-center">
-              <div class="u-flex1">
+            <div class="u-displayFlex u-justify-center u-marginV50">
+              <a class="trader-joes-thumbnail" href="../assets/images/amazon-shopbop/shopbop-problem.png">
                 <figure>
-                  <img src="../assets/images/trader-joes/user-interviews2.png"
-                    class="u-width80-stretch-mob u-boxShadow3 u-borderR5 u-marginB50" alt="Image from online interview session 1"/>
+                  <img src="../assets/images/amazon-shopbop/shopbop-problem.png" loading="lazy"
+                  class="u-width80-stretch-mob u-borderR5" alt="Shopbop problem visualized"/>
                 </figure>
-                <figure>
-                  <img src="../assets/images/trader-joes/user-interviews.png"
-                    class="u-width80-stretch-mob u-boxShadow3 u-borderR5" alt="Image from online interview session 2"/>
-                  <figcaption class="u-textCenter">Images from online interview sessions</figcaption>
-                </figure>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="main-pad-lr u-marginV100">
+        <div class="container">
+          <div class="u-marginV100">
+            <h5 class="u-textUpper u-secondaryTextColor u-fontWeight-regular u-lineHeight-1_75 u-marginB5">Solution</h5>
+            <h2 class="u-fontWeight-bold u-marginB20">Empowering Fashion Discovery Via Pairwise Ranking</h2>
+            <hr/>
+            <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4">
+              This <strong>pairwise ranking system</strong> creates an engaging and rewarding shopping experience. Users compare items and rank them to determine their preferences, which helps generate <trending>trending leaderboards</trending> and <strong>personalized style recommendations</strong>.
+            </p>
+            <div class="row u-marginV30 u-displayFlex u-alignItems-center row-rev-sm">
+              <div class="col-sm-12 col-md-6">
+                <h3 class="u-fontWeight-semiBold u-fontSize-p2 underline-effect">Pairwise Ranking Interface:</h3>
+                <ul class="u-lineHeight-1_5 u-fontSize-p4 u-marginT30">
+                    <li>
+                        Users <strong>compare two items</strong> in a category and pick their favorite.
+                    </li>
+                    <li>
+                        The ranking gets captured until a <strong>list of 10 items</strong> has been ranked.
+                      </li>
+                    <li>
+                        <strong>Customization on categorizing</strong> what to rank like clothing, gender etc.
+                    </li>
+                </ul>
               </div>
-              <div class="u-flex1 u-displayFlex u-alignItems-center u-justify-end">
-                <ul class="u-lineHeight-1_5 u-fontSize-p3 u-margin0">
-                  <li class="u-marginB30">
-                    How would you describe your most recent shopping experience?
-                  </li>
-                  <li class="u-marginB30">
-                    What are the criteria that make your shopping experience an ideal one?
-                  </li>
-                  <li class="u-marginB30">
-                    In what scenarios have you used Trader Joe's website?
-                  </li>
-                  <li class="u-marginB30">
-                    How often do you see yourself using Trader Joe's website?
-                  </li>
-                  <li class="u-marginB30">
-                    When you are on the Trader Joe's website are there any challenges you faced while accessing information?
-                  </li>
+              <div class="col-xs-1 col-sm-12 col-md-6 u-displayFlex u-alignItems-center u-justify-center u-positionR u-margin50 sm-w100">
+                <div class="mockup-liquid-shape laptop project-bg"></div>
+                <a class="trader-joes-thumbnail u-positionA" href="../assets/images/amazon-shopbop/solution1.png">
+                  <figure>
+                    <img src="../assets/images/amazon-shopbop/solution1.png" loading="lazy" alt="Homepage Screen of Shopbop">
+                  </figure>
+                </a>
+              </div>
+            </div>
+            <div class="row u-marginV30 u-displayFlex u-alignItems-center">
+              <div class="col-xs-1 col-sm-12 col-md-6 u-displayFlex u-alignItems-center u-justify-center u-positionR u-margin50">
+                <div class="mockup-liquid-shape laptop project-bg"></div>
+                <a class="trader-joes-thumbnail u-positionA" href="../assets/images/amazon-shopbop/solution2.png">
+                  <figure>
+                    <img src="../assets/images/amazon-shopbop/solution2.png" loading="lazy" alt="Leaderboard screen for dresses">
+                  </figure>
+                </a>
+              </div>
+              <div class="col-sm-12 col-md-6">
+                <h3 class="u-fontWeight-semiBold u-fontSize-p2 underline-effect">Leaderboards for What's Trending:</h3>
+                <ul class="u-lineHeight-1_5 u-fontSize-p4 u-marginT30">
+                    <li>
+                        Real-time updates <strong>show trending</strong> items based on user rankings.
+                    </li>
+                    <li>
+                        Filters allow users to <strong>explore trends</strong> by category and style.
+                    </li>
                 </ul>
               </div>
             </div>
-          </div>
-          <div class="u-marginV150">
-            <h2 class="u-fontWeight-bold u-marginB20 ">Contextual Inquiry</h2>
-            <div class="u-lineHeight-1_5 u-fontSize-p3   u-marginB10">Participants: 6</div>
-            <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p3 u-marginB10">
-              We conducted contextual inquiries on our participants and observed them while they shopped in-store and navigated through the Trader Joe's website to study their overall
-              behaviors and experiences. This was combined with asking <strong>open-ended questions</strong> and performing <strong>think-aloud</strong>. Their user stories, successes and breakdowns were documented
-              to be further leveraged for the downstream study. We ensured to have obtained <strong>informed consent</strong> from all participants for collecting their data. The observation methods used:
-            </p>
-            <div class="Container-flex gap-50 u-marginV50 u-alignItems-center">
-              <div class="u-flex1 u-displayFlex u-alignItems-center u-justify-end">
-                <ul class="u-lineHeight-1_5 u-fontSize-p3 u-margin0">
-                  <li class="u-marginB30">
-                    Observe/ Ask what the participants used do before the visit (e.g., making shopping list, visit website)
-                  </li>
-                  <li class="u-marginB30">
-                    Physical visit (Think aloud: Understand customers’s thoughts while making decisions with follow-up questions)
-                  </li>
-                  <li class="u-marginB30">
-                    Invite interviewees to surf the website of Trader Joe’s after a physical store visit
-                  </li>
+            <div class="row u-marginV30 u-displayFlex u-alignItems-center row-rev-sm">
+              <div class="col-sm-12 col-md-6">
+                <h3 class="u-fontWeight-semiBold u-fontSize-p2 underline-effect">Recommendation System:</h3>
+                <ul class="u-lineHeight-1_5 u-fontSize-p4 u-marginT30">
+                    <li>
+                        <strong>Personalized suggestions</strong> using ML models based on users'ranking history.
+                    </li>
+                    <li>
+                        Enhanced shopping experience with curated <strong>product recommendations.</strong>
+                    </li>
+                    <li>
+                        Helps <strong>users to save time</strong> from manually exploring products on the website.
+                    </li>
                 </ul>
               </div>
-              <div class="u-flex1">
-                <figure>
-                  <img src="../assets/images/trader-joes/contextual-inquiry.webp"
-                    class="u-width80-stretch-mob u-boxShadow3 u-borderR5" alt="Image from contextual inquiry at the store"/>
-                  <figcaption class="u-textCenter">Image from contextual inquiry at the store</figcaption>
-                </figure>
+              <div class="col-xs-1 col-sm-12 col-md-6 u-displayFlex u-alignItems-center u-justify-center u-positionR u-margin50 sm-w100">
+                <div class="mockup-liquid-shape laptop project-bg"></div>
+                <a class="trader-joes-thumbnail u-positionA" href="../assets/images/amazon-shopbop/solution3.png">
+                  <figure>
+                    <img src="../assets/images/amazon-shopbop/solution3.png" loading="lazy" alt="Recommendations page">
+                  </figure>
+                </a>
               </div>
             </div>
           </div>
-          <div class="u-marginV150">
-            <h2 class="u-fontWeight-bold u-marginB20 ">Survey</h2>
-            <div class="u-lineHeight-1_5 u-fontSize-p3   u-marginB10">Participants: Over 25 </div>
-            <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p3 u-marginB10">
-              We conducted a survey to determine the key priorities of our users and assist us in establishing a prioritization strategy. 
-              Particularly answering this question: What aspects do customers find important regarding the website of a grocery store and 
-              how focusing on enhancing those areas can benefit the business of Trader Joe’.
-              The survey was crafted on <strong>Qualtrics</strong>.<br>
-              The survey can be found <a href="https://uwmadison.co1.qualtrics.com/jfe/form/SV_bqPEr7TW3XQ2ySG" class="link-style" target="_blank">here</a>.
-            </p>
-            <div class="Container-flex gap-50 u-marginV50 u-alignItems-center">
-              <div class="u-flex1">
-                <figure>
-                  <img src="../assets/images/trader-joes/survey-landing-page.png"
-                    class="u-width80-stretch-mob u-boxShadow3 u-borderR5" alt="Image of the survey landing page"/>
-                  <figcaption class="u-textCenter">Image of the survey landing page</figcaption>
-                </figure>
+        </div>
+      </section>
+
+      <section class="main-pad-lr u-marginV100">
+        <div class="container">
+          <div>
+            <h2 class="u-fontWeight-bold u-marginB20">The Process</h2>
+            <hr/>
+            <div class="row u-marginV50 u-justify-center u-alignItems-start">
+              <div class="col col-xs-1_3 u-displayFlex u-justify-center u-alignItems-center u-flex-col">
+                <div class="u-width50">
+                  <div class="circle project-bg u-fontWeight-black u-fontSize-h4--alt">1</div>
+                </div>
+                <h3 class="u-fontWeight-semiBold u-lineHeight-1_75 u-marginV10">Research</h3>
+                <p class="u-fontSize-p4 u-marginB10 u-textCenter">
+                  User Interviews
+                </p>
+                <p class="u-fontSize-p4 u-marginB10 u-textCenter">
+                  Competitor Analysis
+                </p>
+                <p class="u-fontSize-p4 u-marginB10 u-textCenter">
+                  Affinity Mapping
+                </p>
+                <p class="u-fontSize-p4 u-marginB10 u-textCenter">
+                  Defining the Problem
+                </p>
+                <p class="u-fontSize-p4 u-marginB10 u-textCenter">
+                  Generating Insights
+                </p>
               </div>
-              <div class="u-flex1 u-displayFlex u-alignItems-center u-justify-end">
-                <ul class="u-lineHeight-1_5 u-fontSize-p3 u-margin0">
-                  <li class="u-marginB30">
-                    The survey questions were framed keeping in mind the insights gained from interviews and contextul inquiries.
-                  </li>
-                  <li class="u-marginB30">
-                    We focussed on gathering insights from individuals who have practical experience with grocery shopping, particularly at Trader Joe's.
-                  </li>
-                  <li class="u-marginB30">
-                    Each one of us recruited a minimum of five respondents to ensure a diverse and representative sample.
-                  </li>
-                  <li class="u-marginB30">
-                    Furthermore, we extended our reach by sharing the survey link on social media and chat apps.
-                  </li>
+              <div class="col col-xs-1_3 u-displayFlex u-justify-center u-alignItems-center u-flex-col">
+                <div class="u-width50">
+                  <div class="circle project-bg u-fontWeight-black u-fontSize-h4--alt">2</div>
+                </div>
+                <h3 class="u-fontWeight-semiBold u-lineHeight-1_75 u-marginV10">Synthesis</h3>
+                <p class="u-fontSize-p4 u-marginB10 u-textCenter">
+                  User Persona
+                </p>
+                <p class="u-fontSize-p4 u-marginB10 u-textCenter">
+                  User Journey
+                </p>
+              </div>
+              <div class="col col-xs-1_3 u-displayFlex u-justify-center u-alignItems-center u-flex-col">
+                <div class="u-width50">
+                  <div class="circle project-bg u-fontWeight-black u-fontSize-h4--alt">3</div>
+                </div>
+                <h3 class="u-fontWeight-semiBold u-lineHeight-1_75 u-marginV10">Ideation</h3>
+                <p class="u-fontSize-p4 u-marginB10 u-textCenter">
+                  Developing a solution
+                </p>
+                <p class="u-fontSize-p4 u-marginB10 u-textCenter">
+                  Workflow
+                </p>
+                <p class="u-fontSize-p4 u-marginB10 u-textCenter">
+                  Screen Designs
+                </p>
+                <p class="u-fontSize-p4 u-marginB10 u-textCenter">
+                  Wireframes
+                </p>
+              </div>
+              <div class="col col-xs-1_3 u-displayFlex u-justify-center u-alignItems-center u-flex-col">
+                <div class="u-width50">
+                  <div class="circle project-bg u-fontWeight-black u-fontSize-h4--alt">4</div>
+                </div>
+                <h3 class="u-fontWeight-semiBold u-lineHeight-1_75 u-marginV10">Final Designs</h3>
+                <p class="u-fontSize-p4 u-marginB10 u-textCenter">
+                  Final Screens
+                </p>
+                <p class="u-fontSize-p4 u-marginB10 u-textCenter">
+                  High Fidelity Prototype
+                </p>
+              </div>
+              <div class="col col-xs-1_3 u-displayFlex u-justify-center u-alignItems-center u-flex-col">
+                <div class="u-width50">
+                  <div class="circle project-bg u-fontWeight-black u-fontSize-h4--alt">5</div>
+                </div>
+                <h3 class="u-fontWeight-semiBold u-lineHeight-1_75 u-marginV10">Reflection</h3>
+                <p class="u-fontSize-p4 u-marginB10 u-textCenter">
+                  Learnings
+                </p>
+                <p class="u-fontSize-p4 u-marginB10 u-textCenter">
+                  Next Steps
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="main-pad-lr u-marginV100">
+        <div class="container">
+          <div class="u-marginV100">
+            <h5 class="u-textUpper u-secondaryTextColor u-fontWeight-regular u-lineHeight-1_75 u-marginB5">Research</h5>
+            <h2 class="u-fontWeight-bold u-marginB20">User Interviews</h2>
+            <hr/>
+            <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4">
+              To better understand the <strong>needs and expectations</strong> of potential users and stakeholders, I conducted interviews with two <strong>Shopbop stakeholders</strong> and a group of <strong>college students</strong>. The goal was to gather insights that would shape the design and functionality of the new feature.
+            </p>
+            <div class="row u-marginV30 u-displayFlex u-alignItems-center row-rev-sm">
+              <div class="col-md-8">
+                <h3 class="u-fontWeight-semiBold u-fontSize-p4 u-marginB20">Stakeholder Interviews</h3>
+                <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4 u-marginB25">
+                  I interviewed two representatives from Shopbop to uncover their <strong>business goals, challenges, and vision of Shopbop</strong>. This helped me a lot because the interviews provided a better picture of what they actually wanted and envisioned.
+                </p>
+                <h4 class="u-fontWeight-semiBold u-fontSize-p5 u-marginB10">Questions Asked</h4>
+                <ul class="u-lineHeight-1_5 u-fontSize-p4 u-margin0">
+                    <li>
+                      What are your <strong>key objectives</strong> for this platform in terms of user engagement and brand visibility?
+                    </li>
+                    <li>
+                      How do you envision this platform fitting within Shopbop's existing <strong>brand identity?</strong>
+                    </li>
+                    <li>
+                      What <strong>demographic</strong> are you targeting with this feature, and why?
+                    </li>
+                    <li>
+                      What <strong>challenges</strong> do you anticipate in implementing this feature?
+                    </li>
+                </ul>
+                <div class="u-displayFlex u-justify-center u-marginV30">
+                  <p class="u-width80-stretch-mob u-fontSize-h5--alt u-textJustify u-lineHeight-1_5 amazon_shopbop_dark_color">"We want to create something that will engage our customers with the <strong>constantly changing fashion industry.</strong>"</p>
+                </div>
+                <div class="u-displayFlex u-justify-center u-marginV30">
+                  <p class="u-width80-stretch-mob u-fontSize-h5--alt u-textJustify u-lineHeight-1_5 amazon_shopbop_dark_color">"This feature can help us <strong>expand brand awareness</strong> and encourage users to engage with our products in a unique way."</p>
+                </div>
+              </div>
+              <div class="col-md-4 u-displayFlex u-alignItems-center u-justify-center u-sm-marginV30">
+                <img src="../assets/images/amazon-shopbop/stakeholder-interviewee.png" loading="lazy" class="u-width-shrink-sm-80" alt="Stakeholder Interviewee avatar">
+              </div>
+            </div>
+            <div class="row u-marginV30 u-displayFlex u-alignItems-center">
+              <div class="col-md-4 u-displayFlex u-alignItems-center u-justify-center u-sm-marginV30">
+                <img src="../assets/images/amazon-shopbop/student-interviewee.png" loading="lazy" class="u-width-shrink-sm-60" alt="Student Interviewee avatar">
+              </div>
+              <div class="col-md-8">
+                <h3 class="u-fontWeight-semiBold u-fontSize-p4 u-marginB20">Customer Interviews</h3>
+                <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4 u-marginB25">
+                  I also <strong>interviewed college students</strong>, a target user group for the new platform. These interviews helped <strong>uncover user preferences and pain points</strong> related to online shopping and fashion.
+                </p>
+                <h4 class="u-fontWeight-semiBold u-fontSize-p5 u-marginB10">Questions Asked</h4>
+                <ul class="u-lineHeight-1_5 u-fontSize-p4 u-margin0">
+                    <li>
+                      <strong>How do you currently explore</strong> new styles and trends in fashion?
+                    </li>
+                    <li>
+                      What would make it <strong>helpful</strong> for you to <strong>refine your fashion preferences?</strong>
+                    </li>
+                    <li>
+                      What <strong>challenges</strong> do you face when choosing outfits or accessories?
+                    </li>
+                    <li>
+                      Would you like personalized recommendations based on popular trends or your own preferences?
+                    </li>
+                </ul>
+                <div class="u-displayFlex u-justify-center u-marginV30">
+                  <p class="u-width80-stretch-mob u-fontSize-h5--alt u-textJustify u-lineHeight-1_5 amazon_shopbop_dark_color">"“<strong>I'm not great at styling outfits</strong>, so it would be helpful to see what's trending and get recommendations.”"</p>
+                </div>
+                <div class="u-displayFlex u-justify-center u-marginV30">
+                  <p class="u-width80-stretch-mob u-fontSize-h5--alt u-textJustify u-lineHeight-1_5 amazon_shopbop_dark_color">"“The platform needs to be <strong>simple and visually appealing</strong> to keep my interest.”"</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="main-pad-lr u-marginV100">
+        <div class="container">
+          <div class="u-marginV100">
+            <h5 class="u-textUpper u-secondaryTextColor u-fontWeight-regular u-lineHeight-1_75 u-marginB5">Research</h5>
+            <h2 class="u-fontWeight-bold u-marginB20">Competitor Analysis</h2>
+            <hr/>
+            <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4">
+              To design an engaging and interactive pairwise ranking platform for Shopbop, I <strong>analyzed competitors</strong> in the online clothing and accessories space. The analysis <strong>highlighted strengths, weaknesses, and opportunities</strong> for improvement to create a unique and appealing solution.</p>
+            <div class="row u-marginT30 u-displayFlex u-alignItems-start">
+              <div class="col-sm-12 col-md-4 col-12">
+                <figure class="u-height100px u-justify-center">
+                  <img src="../assets/images/amazon-shopbop/asos.png" loading="lazy" class="u-width50" alt="ASOS Logo">
+                </figure>
+                <h4 class="u-lineHeight-1_5 u-fontSize-p5 u-marginV10 u-fontWeight-medium">Pros:</h4>
+                <ul class="u-lineHeight-1_5 u-fontSize-p5 u-margin0">
+                    <li>
+                        <strong>Style Inspiration Features:</strong> Includes curated sections like “ASOS Edit” for trend discovery.
+                    </li>
+                    <li>
+                        <strong>Visual Design:</strong> Vibrant and modern interface that appeals to Gen Z.
+                    </li>
+                    <li>
+                        <strong>Comprehensive Catalog:</strong> Offers a wide variety of products across different categories.
+                    </li>
+                </ul>
+                <h4 class="u-lineHeight-1_5 u-fontSize-p5 u-marginV10 u-fontWeight-medium">Cons:</h4>
+                <ul class="u-lineHeight-1_5 u-fontSize-p5 u-margin0">
+                    <li>
+                        <strong>No Gamification:</strong> Users cannot actively interact or rank items.
+                    </li>
+                    <li>
+                        <strong>Overwhelming Catalog:</strong> Extensive product range can feel daunting.
+                    </li>
+                </ul>
+              </div>
+              <div class="col-sm-12 col-md-4 col-12">
+                <figure class="u-height100px-mobAuto u-justify-center">
+                  <img src="../assets/images/amazon-shopbop/zalando.png" loading="lazy" class="u-width60" alt="Zalando Logo">
+                </figure>
+                <h4 class="u-lineHeight-1_5 u-fontSize-p5 u-marginV10 u-fontWeight-medium" style="padding-top: 28px;">Pros:</h4>
+                <ul class="u-lineHeight-1_5 u-fontSize-p5 u-margin0">
+                    <li>
+                        <strong>Personalized Recommendations:</strong> Uses data-driven algorithms to suggest relevant products.
+                    </li>
+                    <li>
+                        <strong>Effective Filters:</strong> Simplifies navigation through extensive categories and filters.
+                    </li>
+                </ul>
+                <h4 class="u-lineHeight-1_5 u-fontSize-p5 u-marginV10 u-fontWeight-medium" style="padding-top: 48px;">Cons:</h4>
+                <ul class="u-lineHeight-1_5 u-fontSize-p5 u-margin0">
+                    <li>
+                        <strong>No Gamification:</strong> Misses out on engaging interactive features to involve users actively.
+                    </li>
+                    <li>
+                        <strong>Limited Trend Highlighting:</strong> Lacks dynamic leaderboards to showcase trending products.
+                    </li>
+                </ul>
+              </div>
+              <div class="col-sm-12 col-md-4 col-12">
+                <figure class="u-height100px u-justify-center">
+                  <img src="../assets/images/amazon-shopbop/revolve.png" loading="lazy" class="u-width60" alt="Revolve Logo">
+                </figure>
+                <h4 class="u-lineHeight-1_5 u-fontSize-p5 u-marginV10 u-fontWeight-medium">Pros:</h4>
+                <ul class="u-lineHeight-1_5 u-fontSize-p5 u-margin0">
+                    <li>
+                        <strong>Trend-Focused:</strong> Promotes trending items prominently on its homepage.
+                    </li>
+                    <li>
+                        <strong>Social Media Integration:</strong> Leverages influencer partnerships to engage users and drive trends.
+                    </li>
+                    <li>
+                        <strong>Well-Curated Catalog:</strong> Offers curated sections for events, styles, and occasions.
+                    </li>
+                </ul>
+                <h4 class="u-lineHeight-1_5 u-fontSize-p5 u-marginV10 u-fontWeight-medium">Cons:</h4>
+                <ul class="u-lineHeight-1_5 u-fontSize-p5 u-margin0">
+                    <li>
+                        <strong>No Interactive Features:</strong> Lacks gamified experiences like ranking or voting on products.
+                    </li>
+                    <li>
+                        <strong>Limited Community Engagement:</strong> Focuses more on influencer-driven marketing than user-generated trends.
+                    </li>
                 </ul>
               </div>
             </div>
           </div>
         </div>
       </section>
-      <section class="full-divider project-bg u-marginV150">
-        <div class="main-pad-lr">
-          <div class="Container-wrapper--alt">
-            <h2 class="u-fontWeight-bold u-lineHeight-1_5 u-textUpper">Processing and Analyzing the data</h2>
-            <!-- <p class="u-fontWeight-semiBold u-fontSize-p3">What did we learn as a team?</p> -->
-            <!-- <p class="u-fontSize-p3">It was a team project as part of the Cognizant Student Club. In the journey of completing the project, we learned about the importance of time management, strategic planning, and understanding each other's opinions.</p> -->
-          </div>
-        </div>
-      </section>
-      <section class="main-pad-lr u-marginV150">
-        <div class="Container-wrapper--alt">
-          <div class="u-marginV150">
-            <!-- <h2 class="u-fontWeight-bold u-marginB20">Logo Development</h2> -->
-            <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p3">
-              With all the insights, we organized the data through <strong>affinity diagram</strong> and tried to find like trends and themes together.
+
+      <section class="main-pad-lr u-marginV100">
+        <div class="container">
+          <div class="u-marginV100">
+            <h5 class="u-textUpper u-secondaryTextColor u-fontWeight-regular u-lineHeight-1_75 u-marginB5">Research</h5>
+            <h2 class="u-fontWeight-bold u-marginB20">Affinity Mapping</h2>
+            <hr/>
+            <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4">
+              Based on the insights gathered from user interviews and competitor analysis, I <strong>brainstormed many ideas</strong> and converged them into <strong>actional themes</strong> which best fits the needs of the users and business.
             </p>
-          </div>
-          <div class="Container-flex gap-50 u-marginT150">
-            <div class="u-flex1">
-              <figure>
-                <img class="u-width100 u-boxShadow3 u-borderR5" src="../assets/images/trader-joes/affinity-diagram.png"
-                  alt="Image of affinity diagram board"/>
-                <figcaption class="u-textCenter">Image of affinity diagram virtual board</figcaption>
-              </figure>
-            </div>
-            <div class="u-flex1">
-              <figure>
-                <img class="u-width100 u-boxShadow3 u-borderR5" src="../assets/images/trader-joes/affinity-diagram-session.png"
-                  alt="logo v2"/>
-                <figcaption class="u-textCenter">Image from affinity diagramming session</figcaption>
-              </figure>
+            <div class="u-displayFlex u-justify-center u-marginV50">
+              <a class="trader-joes-thumbnail" href="../assets/images/amazon-shopbop/affinity-mapping.png">
+                <figure>
+                  <img src="../assets/images/amazon-shopbop/affinity-mapping.png" loading="lazy"
+                  class="u-width80-stretch-mob u-borderR5" alt="Affinity Mapping"/>
+                </figure>
+              </a>
             </div>
           </div>
-          <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p3 u-marginT60"> After interviewing <strong>9 participants</strong> and survey responses, we brainstormed <strong>140+ data points</strong> and came up with <strong>3 themes</strong> around user demographics, shopping habits and interactions with Trader Joe's website. They prompted us to below user needs:</p>
-          <ul class="u-lineHeight-1_5 u-fontSize-p3">
-            <li>Clear communication and regarding restricted services offered online.</li>
-            <li>Convenient way to buy their desired items in minimal time.</li>
-            <li>Collaboration on product information exchange because to ensure they have made better choices.</li>
-            <li>Personalized way to navigate products.</li>
-            <li>Efficient way to find information about making a cost-effective purchase on the website.</li>
-          </ul>
         </div>
       </section>
-      <section class="full-divider project-bg u-marginV150">
-        <div class="main-pad-lr">
-          <div class="Container-wrapper--alt">
-            <h2 class="u-fontWeight-bold u-lineHeight-1_5 u-textUpper">User Persona</h2>
-            <!-- <p class="u-fontWeight-semiBold u-fontSize-p3">What did we learn as a team?</p> -->
-            <!-- <p class="u-fontSize-p3">It was a team project as part of the Cognizant Student Club. In the journey of completing the project, we learned about the importance of time management, strategic planning, and understanding each other's opinions.</p> -->
-          </div>
-        </div>
-      </section>
-      <section class="main-pad-lr u-marginV150">
-        <div class="Container-wrapper--alt">
-          <div class="u-marginV150">
-            <!-- <h2 class="u-fontWeight-bold u-marginB20">Mood Boards</h2> -->
-            <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p3 u-marginB10">
-              After gaining all the insights, we created our persona:<br><br>
-              Meet <strong>Anna Chan</strong>, our user persona, whose problems and shopping habits closely align with our user group based on <strong>budget limitations</strong> and <strong>preferences for shopping at Trader Joe's</strong>.
+      <section class="main-pad-lr u-marginV100">
+        <div class="container">
+          <div class="u-marginV100">
+            <h5 class="u-textUpper u-secondaryTextColor u-fontWeight-regular u-lineHeight-1_75 u-marginB5">Research</h5>
+            <h2 class="u-fontWeight-bold u-marginB20">Defining the Problem</h2>
+            <hr/>
+            <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4">
+              After concluding my research, I curated the <strong>How Might We statement</strong> to narrow down the design solutions to best meet the research insights.
             </p>
-          </div>
-          <div class="u-marginV50">
-            <figure>
-              <img src="../assets/images/trader-joes/user-persona.webp"
-                class="u-width80-stretch-mob u-boxShadow3 u-borderR5" alt="User Persona of Anna Chan"/>
-              <figcaption class="u-textCenter">User Persona: Anna Chan</figcaption>
-            </figure>
+            <div class="quote-blog u-marginV50">
+              <blockquote class="u-lineHeight-1_5 u-fontSize-p1 u-marginB20 u-fontWeight-semiBold project-bg">
+                How might we create an engaging digital experience that empowers users to explore and express their fashion preferences while fostering discovery and personalization?
+              </blockquote>
+            </div>
           </div>
         </div>
       </section>
-      <section class="full-divider project-bg u-marginV150">
-        <div class="main-pad-lr">
-          <div class="Container-wrapper--alt">
-            <h2 class="u-fontWeight-bold u-lineHeight-1_5 u-textUpper">User Journey Map</h2>
-            <!-- <p class="u-fontWeight-semiBold u-fontSize-p3">What did we learn as a team?</p> -->
-            <!-- <p class="u-fontSize-p3">It was a team project as part of the Cognizant Student Club. In the journey of completing the project, we learned about the importance of time management, strategic planning, and understanding each other's opinions.</p> -->
-          </div>
-        </div>
-      </section>
-      <section class="main-pad-lr u-marginV150">
-        <div class="Container-wrapper--alt" id="trader-joes-screenshots">
-          <div class="u-marginV150">
-            <!-- <h2 class="u-fontWeight-bold u-marginB20">Wireframe</h2> -->
-            <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p3">
-              We created the user journey based on Anna Chan's persona, considering that the majority of research participants align with her characteristics <strong>(limited budget and doesn't prefer Trader Joe's website)</strong>. We found out that the user faces the most challenge in reaching the store and through product navigation and selection.
+      <section class="main-pad-lr u-marginV100">
+        <div class="container">
+          <div class="u-marginV100">
+            <h5 class="u-textUpper u-secondaryTextColor u-fontWeight-regular u-lineHeight-1_75 u-marginB5">Research</h5>
+            <h2 class="u-fontWeight-bold u-marginB20">Generating Insights</h2>
+            <hr/>
+            <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4">
+              Through a <strong>detailed analysis</strong> of brainstormed ideas across themes like <strong>pairwise ranking, trending leaderboards,</strong> and <strong>personalized recommendations,</strong> I identified <strong>three core insights</strong> that could enhance user engagement and create an interactive shopping experience. These insights focus on decision-making through comparison, social validation of trends, and tailored shopping experiences.
             </p>
-          </div>
-          <div class="u-marginV150">
-            <a href="../assets/images/trader-joes/journeymap-annachan.webp">
-              <figure>
-                <img class="u-width80-stretch-mob u-boxShadow3 u-borderR5" src="../assets/images/trader-joes/journeymap-annachan.webp"
-                  alt="User Journey Map"/>
-                <figcaption class="u-textCenter">User Journey Map</figcaption>
-              </figure>
-            </a>
+            <div class="row u-marginV50 u-justify-center u-alignItems-stretch">
+              <div class="u-displayFlex u-alignItems-stretch u-marginV10 col-md-4 col-sm-6">
+                <div class="u-padding30 persona-card">
+                  <h3 class="u-lineHeight-1_5 u-fontSize-p3 u-fontWeight-medium u-marginB20">Decision-Making Through Comparison</h3>
+                  <p class="u-lineHeight-1_5 u-fontSize-p4">
+                    The pairwise ranking system empowers users to make informed choices by comparing two items at a time.
+                  </p>
+                </div>
+              </div>
+              <div class="u-displayFlex u-alignItems-stretch u-marginV10 col-md-4 col-sm-6">
+                <div class="u-padding30 persona-card">
+                  <h3 class="u-lineHeight-1_5 u-fontSize-p3 u-fontWeight-medium u-marginB20">Social Validation of Trends</h3>
+                  <p class="u-lineHeight-1_5 u-fontSize-p4">
+                    Dynamic leaderboards highlight community-driven preferences.
+                  </p>
+                </div>
+              </div>
+              <div class="u-displayFlex u-alignItems-stretch u-marginV10 col-md-4 col-sm-6">
+                <div class="u-padding30 persona-card">
+                  <h3 class="u-lineHeight-1_5 u-fontSize-p3 u-fontWeight-medium u-marginB20">Tailored Shopping Experiences</h3>
+                  <p class="u-lineHeight-1_5 u-fontSize-p4">
+                    A personalized recommendation system leverages user rankings and preferences to suggest items that align with their style.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="u-displayFlex u-justify-center u-marginV30">
+              <p class="u-width80-stretch-mob u-fontSize-h2--alt u-textJustify u-lineHeight-1_5">"...the brainstorming culminated with a <strong>clearer direction</strong>. These three insights had to be integrated while <strong>keeping the looks and feels of Shopbop in mind</strong>."</p>
+            </div>
           </div>
         </div>
       </section>
-      <section class="full-divider project-bg u-marginV150">
-        <div class="main-pad-lr">
-          <div class="Container-wrapper--alt">
-            <h2 class="u-fontWeight-bold u-lineHeight-1_5 u-textUpper">How Might We</h2>
-            <!-- <p class="u-fontWeight-semiBold u-fontSize-p3">What did we learn as a team?</p> -->
-            <!-- <p class="u-fontSize-p3">It was a team project as part of the Cognizant Student Club. In the journey of completing the project, we learned about the importance of time management, strategic planning, and understanding each other's opinions.</p> -->
+      <section class="main-pad-lr u-marginV100">
+        <div class="container">
+          <div class="u-marginV100">
+            <h5 class="u-textUpper u-secondaryTextColor u-fontWeight-regular u-lineHeight-1_75 u-marginB5">Synthesis</h5>
+            <h2 class="u-fontWeight-bold u-marginB20">User Persona</h2>
+            <hr/>
+            <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4">
+              This user persona was developed to represent the potential <strong>primary user</strong> of the Shopbop Pairwise Ranking Platform. It captures the <strong>needs, challenges, and aspirations</strong> of individuals who use Shopbop and similar platforms to explore fashion trends.</p>
+            <div class="u-displayFlex u-justify-center u-marginV50">
+              <a class="trader-joes-thumbnail" href="../assets/images/amazon-shopbop/Natasha.png">
+                <figure>
+                  <img src="../assets/images/amazon-shopbop/Natasha.png" loading="lazy"
+                  class="u-width80-stretch-mob u-borderR5" alt="User Persona"/>
+                </figure>
+              </a>
+            </div>
           </div>
         </div>
       </section>
-      <section class="main-pad-lr u-marginV150">
-        <div class="Container-wrapper--alt">
-          <div class="u-marginV150">
-            <!-- <h2 class="u-fontWeight-bold u-marginB20">Mood Boards</h2> -->
-            <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p3 u-marginB10">
-              Based on our research involving interviews and contextual inquiries, we utilized affinity diagrams, user personas, and user journey maps to distill valuable insights. From our findings, we identified that our <strong>HMV</strong>.<br><br>
-              <figure>
-                <img src="../assets/images/trader-joes/hmv.png"
-                  class="u-width80-stretch-mob u-boxShadow3 u-borderR5" alt="How might we statement"/>
-              </figure>
+
+      <section class="main-pad-lr u-marginV100">
+        <div class="container">
+          <div class="u-marginV100">
+            <h5 class="u-textUpper u-secondaryTextColor u-fontWeight-regular u-lineHeight-1_75 u-marginB5">Synthesis</h5>
+            <h2 class="u-fontWeight-bold u-marginB20">User Journey</h2>
+            <hr/>
+            <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4">
+              I created a <strong>user journey</strong> to map out how Natasha, a potential user for our platform would navigate normally while shopping online. This <strong>journey highlights the challenges</strong> faced by users like her who love fashion but also  seek a more <strong>guided, interactive,</strong> and <strong>confidence-boosting</strong> shopping experience.
+              <div class="u-displayFlex u-justify-center u-marginV50">
+              <a class="trader-joes-thumbnail" href="../assets/images/amazon-shopbop/shopbop-user-journey.png">
+                <figure>
+                  <img src="../assets/images/amazon-shopbop/shopbop-user-journey.png" loading="lazy"
+                  class="u-width80-stretch-mob u-borderR5" alt="User journey map for Natasha while shopping online"/>
+                </figure>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="main-pad-lr u-marginV100">
+        <div class="container">
+          <div class="u-marginV100">
+            <h5 class="u-textUpper u-secondaryTextColor u-fontWeight-regular u-lineHeight-1_75 u-marginB5">Ideation</h5>
+            <h2 class="u-fontWeight-bold u-marginB20">Developing a Solution</h2>
+            <hr/>
+            <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4">
+              By analyzing user interviews, competitor research, affinity mapping, and pinpointing user challenges, I identified <strong>three critical areas</strong> where online shoppers often <strong>struggle: keeping up with fashion trends, finding products that align with their style, and feeling overwhelmed by too many choices</strong>. To address these challenges, I established <strong>three key design goals</strong> for the Shopbop platform:
+             </p>
+            <div class="row u-marginV30 u-displayFlex u-alignItems-center row-rev-sm">
+              <div class="col-sm-12 col-md-6">
+                <h3 class="u-fontWeight-semiBold u-fontSize-p2 underline-effect">Design Goals</h3>
+                <ul class="u-lineHeight-1_5 u-fontSize-p4 u-marginT30">
+                    <li>
+                      <strong>Pairwise Ranking for Preferences:</strong> Develop a pairwise ranking system where users compare two items at a time to establish their likes and preferences.
+                    </li>
+                    <li>
+                    <strong>Highlight Trends with Leaderboards:</strong> Introduce an engaging leaderboard that displays the most popular items, allowing users to quickly discover trending styles.
+                    </li>
+                    <li>
+                      <strong>Tailored Recommendations:</strong> Implement a recommendation engine that personalizes the shopping experience by suggesting items based on users' previous interactions and preferences.
+                    </li>
+                </ul>
+              </div>
+              <div class="col-xs-1 col-sm-12 col-md-6 u-displayFlex u-alignItems-center u-justify-center u-margin50 sm-w100">
+                <a class="trader-joes-thumbnail" href="../assets/images/amazon-shopbop/dev-solution.png">
+                  <figure>
+                    <img src="../assets/images/amazon-shopbop/dev-solution.png" loading="lazy" class="u-width100-stretch-mob u-borderR5" alt="Image showcasing challenge and solution">
+                  </figure>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="main-pad-lr u-marginV100">
+        <div class="container">
+          <div class="u-marginV100">
+            <h5 class="u-textUpper u-secondaryTextColor u-fontWeight-regular u-lineHeight-1_75 u-marginB5">Ideation</h5>
+            <h2 class="u-fontWeight-bold u-marginB20">Workflow</h2>
+            <hr/>
+            <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4">
+            I crafted a workflow for the users to show <strong>how to perform the ranking</strong> and <strong>check the recommendations</strong> and the <strong>leaderboard</strong>. This also involved users to take certain simple <strong>decisions to customize</strong> their fashion preferences.</p>
+            <div class="u-displayFlex u-justify-center u-marginV50">
+              <a class="trader-joes-thumbnail" href="../assets/images/amazon-shopbop/workflow.png">
+                <figure>
+                  <img src="../assets/images/amazon-shopbop/workflow.png" loading="lazy"
+                  class="u-width100" alt="Workflow for pairwise ranking"/>
+                </figure>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="main-pad-lr u-marginV100">
+        <div class="container">
+          <div class="u-marginV100">
+            <h5 class="u-textUpper u-secondaryTextColor u-fontWeight-regular u-lineHeight-1_75 u-marginB5">Ideation</h5>
+            <h2 class="u-fontWeight-bold u-marginB20">Screen Designs</h2>
+            <hr/>
+            <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4">
+              With the workflow in place, I initially did some <strong>research on Shopbop's website and their design system</strong>. This helped me conceptualize the flow through <strong>some initial screen designs</strong>. I <strong>drew the main screens</strong> related to ranking, checking trending items and recommended products. </p>
+            <div class="u-displayFlex u-justify-center u-marginV50">
+              <a class="trader-joes-thumbnail" href="../assets/images/amazon-shopbop/screen-designs.png">
+                <figure>
+                  <img src="../assets/images/amazon-shopbop/screen-designs.png" loading="lazy"
+                  class="u-width100" alt="Screens Design Sketch"/>
+                </figure>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="main-pad-lr u-marginV100">
+        <div class="container">
+          <div class="u-marginV100">
+            <h5 class="u-textUpper u-secondaryTextColor u-fontWeight-regular u-lineHeight-1_75 u-marginB5">Ideation</h5>
+            <h2 class="u-fontWeight-bold u-marginB20">Wireframes</h2>
+            <hr/>
+            <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4">
+              I proceeded with <strong>crafting the wireframes</strong> for the required screens. I made the <strong>mid-fidelity wireframes</strong> for users to execute the main tasks. The wireframes were created using <strong>Figma</strong>. They were then used to <strong>test the flow and structure</strong> of the design solution and gain insights.
             </p>
+            <div class="row u-marginV50">
+              <div class="col-sm-8">
+                <div class="u-displayFlex u-justify-center u-alignItems-start u-height100 u-mob-marginT50">
+                  <a class="trader-joes-thumbnail" href="../assets/images/amazon-shopbop/wireframe-homepage.png">
+                    <figure>
+                      <img src="../assets/images/amazon-shopbop/wireframe-homepage.png" loading="lazy"
+                      class="u-width100" alt="Wireframe for Shopbop's homepage"/>
+                      <figcaption class="u-textCenter">Homepage Screen</figcaption>
+                    </figure>
+                  </a>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="u-displayFlex u-justify-center wireframe-option">
+                  <a class="trader-joes-thumbnail" href="../assets/images/amazon-shopbop/wireframe-gender-selection.png">
+                    <figure>
+                      <img src="../assets/images/amazon-shopbop/wireframe-gender-selection.png" loading="lazy"
+                      class="u-width100" alt="Wireframe for selecting gender"/>
+                    </figure>
+                  </a>
+                </div>
+                <div class="u-displayFlex u-justify-center u-marginT30">
+                  <a class="trader-joes-thumbnail" href="../assets/images/amazon-shopbop/wireframe-clothing-selection.png">
+                    <figure>
+                      <img src="../assets/images/amazon-shopbop/wireframe-clothing-selection.png" loading="lazy"
+                      class="u-width100" alt="Wireframe for selecting clothing"/>
+                      <figcaption class="u-textCenter">Category Selection Page</figcaption>
+                    </figure>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="row u-marginV50">
+              <div class="col-sm-4">
+                <div class="u-displayFlex u-justify-center">
+                  <a class="trader-joes-thumbnail" href="../assets/images/amazon-shopbop/wireframe-ranking.png">
+                    <figure>
+                      <img src="../assets/images/amazon-shopbop/wireframe-ranking.png" loading="lazy"
+                      class="u-width100" alt="Wireframe for ranking products"/>
+                      <figcaption class="u-textCenter">Ranking Page</figcaption>
+                    </figure>
+                  </a>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="u-displayFlex u-justify-center">
+                  <a class="trader-joes-thumbnail" href="../assets/images/amazon-shopbop/wireframe-recommendation.png">
+                    <figure>
+                      <img src="../assets/images/amazon-shopbop/wireframe-recommendation.png" loading="lazy"
+                      class="u-width100" alt="Wireframe for showing products recommendations"/>
+                      <figcaption class="u-textCenter">Recommendations Page</figcaption>
+                    </figure>
+                  </a>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="u-displayFlex u-justify-center u-mob-marginT50">
+                  <a class="trader-joes-thumbnail" href="../assets/images/amazon-shopbop/wireframe-trending.png">
+                    <figure>
+                      <img src="../assets/images/amazon-shopbop/wireframe-trending.png" loading="lazy"
+                      class="u-width100" alt="Wireframe for displaying trending items in a clothing category"/>
+                      <figcaption class="u-textCenter">Trending Items Page</figcaption>
+                    </figure>
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
-      <section class="full-divider project-bg u-marginV150">
-        <div class="main-pad-lr">
-          <div class="Container-wrapper--alt">
-            <h2 class="u-fontWeight-bold u-lineHeight-1_5 u-textUpper">Suggestions and Next Actions</h2>
-            <!-- <p class="u-fontWeight-semiBold u-fontSize-p3">What did we learn as a team?</p> -->
-            <!-- <p class="u-fontSize-p3">It was a team project as part of the Cognizant Student Club. In the journey of completing the project, we learned about the importance of time management, strategic planning, and understanding each other's opinions.</p> -->
+      <section class="main-pad-lr u-marginV100">
+        <div class="container">
+          <div class="u-marginV100">
+            <h5 class="u-textUpper u-secondaryTextColor u-fontWeight-regular u-lineHeight-1_75 u-marginB5">Final Designs</h5>
+            <h2 class="u-fontWeight-bold u-marginB20">Final Screens</h2>
+            <hr/>
+            <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4">
+              I created the <strong>final screens for all the workflows</strong> including ranking, showing recommendations and generating the leaderboards. The mid-fidelity prototypes were tested with users and the <strong>feedback received were incorporated</strong> for better functionality and visual design. These included introducing ranking instructions, progress bar and showing item images zoomed. The color palette used was provided by Shopbop.
+            <div class="swiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide u-displayFlex u-flex-col u-alignItems-center">
+                  <div class="row row-gutter-xxl u-displayFlex u-alignItems-center">
+                    <div class="col-sm-6">
+                      <a class="trader-joes-thumbnail" href="../assets/images/amazon-shopbop/shopbop-homepage.png">
+                        <figure>
+                          <img src="../assets/images/amazon-shopbop/shopbop-homepage.png" loading="lazy"
+                          class="u-borderR5" alt="Homepage page"/>
+                          <figcaption class="u-textCenter">Homepage page</figcaption>
+                        </figure>
+                      </a>
+                    </div>
+                    <div class="col-sm-6 mob-hide">
+                      <a class="trader-joes-thumbnail" href="../assets/images/amazon-shopbop/shopbop-ranking.png">
+                        <figure>
+                          <img src="../assets/images/amazon-shopbop/shopbop-ranking.png" loading="lazy"
+                          class="u-borderR5" alt="Ranking page"/>
+                          <figcaption class="u-textCenter">Ranking page</figcaption>
+                        </figure>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide u-displayFlex u-flex-col u-alignItems-center mob-show">
+                  <div class="row row-gutter-xxl u-displayFlex u-alignItems-center">
+                    <a class="trader-joes-thumbnail" href="../assets/images/amazon-shopbop/shopbop-ranking.png">
+                      <figure>
+                        <img src="../assets/images/amazon-shopbop/shopbop-ranking.png" loading="lazy"
+                        class="u-borderR5" alt="Ranking page"/>
+                        <figcaption class="u-textCenter">Ranking page</figcaption>
+                      </figure>
+                    </a>
+                  </div>
+                </div>
+                <div class="swiper-slide u-displayFlex u-flex-col u-alignItems-center">
+                  <div class="row row-gutter-xxl u-displayFlex u-alignItems-center">
+                    <div class="col-sm-6">
+                      <a class="trader-joes-thumbnail" href="../assets/images/amazon-shopbop/shopbop-recommendation.png">
+                        <figure>
+                          <img src="../assets/images/amazon-shopbop/shopbop-recommendation.png" loading="lazy"
+                          class="u-borderR5" alt="Recommendation page"/>
+                          <figcaption class="u-textCenter">Recommendation page</figcaption>
+                        </figure>
+                      </a>
+                    </div>
+                    <div class="col-sm-6 mob-hide">
+                      <a class="trader-joes-thumbnail" href="../assets/images/amazon-shopbop/shopbop-trending.png">
+                        <figure>
+                          <img src="../assets/images/amazon-shopbop/shopbop-trending.png" loading="lazy"
+                          class="u-borderR5" alt="Trending page"/>
+                          <figcaption class="u-textCenter">Trending page</figcaption>
+                        </figure>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide u-displayFlex u-flex-col u-alignItems-center mob-show">
+                  <div class="row row-gutter-xxl u-displayFlex u-alignItems-center">
+                    <a class="trader-joes-thumbnail" href="../assets/images/amazon-shopbop/shopbop-trending.png">
+                      <figure>
+                        <img src="../assets/images/amazon-shopbop/shopbop-trending.png" loading="lazy"
+                        class="u-borderR5" alt="Trending page"/>
+                        <figcaption class="u-textCenter">Trending page</figcaption>
+                      </figure>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-pagination"></div>
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+            </div>
           </div>
         </div>
       </section>
-      <section class="main-pad-lr u-marginV150">
-        <div class="Container-wrapper--alt" id="trader-joes-screenshots">
-          <div class="u-marginV150">
-            <!-- <h2 class="u-fontWeight-bold u-marginB20">Wireframe</h2> -->
-            <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p3">
-              <strong>Ideation</strong><br><br>
-              Engage internal stakeholders in a brainstorming session to generate a diverse array of potential solutions aligned with the How Might We (HMW) statements.<br><br>
-              <strong>Prototype and Testing</strong><br>
-              
-            <ul class="u-lineHeight-1_5 u-fontSize-p3">
-              <li>Collect user feedback through contextual inquiries conducted with the prototype.</li>
-              <li>Execute A/B testing to validate the effectiveness of newly proposed product features.</li>
-            </ul>
+      <section class="main-pad-lr u-marginV100">
+        <div class="container">
+          <div class="u-marginV100">
+            <h5 class="u-textUpper u-secondaryTextColor u-fontWeight-regular u-lineHeight-1_75 u-marginB5">Final Designs</h5>
+            <h2 class="u-fontWeight-bold u-marginB20">High Fidelity Prototype</h2>
+            <hr/>
+            <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4 u-marginT30 u-marginB20">
+              The high-fidelity prototype was instrumental in <strong>bridging the gap between ideation and implementation</strong>. It provided stakeholders and developers with a <strong>clear visual roadmap</strong> of the final product while ensuring every element <strong>resonated with the target audience.</strong>
+            </p>
+            <div class="u-marginT50 u-marginB30 u-displayFlex u-justify-center">
+              <div class="u-width60-stretch-mob video-demo-aspect">
+                <video autoplay muted playsinline loop preload="auto" class="u-height100 autoplay-on-visible" data-autoplay="false">
+                  <source src="../assets/images/amazon-shopbop/final-demo.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+            <div class="u-displayFlex u-justify-center">
+              <a
+                href="https://www.figma.com/proto/gUQnXd0BeD73IYFBeTHKTF/Portfolio?node-id=556-2902&t=leSq8Ydsz1W3aegh-1&scaling=scale-down&content-scaling=fixed&page-id=556%3A2461"
+                target="_blank"
+                class="btn-primary"
+              >
+                View Figma Prototype
+              </a>
+            </div>
           </div>
         </div>
       </section>
-      <section class="full-divider project-bg u-marginV150">
-        <div class="main-pad-lr">
-          <div class="Container-wrapper--alt">
-            <h2 class="u-fontWeight-bold u-lineHeight-1_5 u-textUpper">Reflections</h2>
-            <!-- <p class="u-fontWeight-semiBold u-fontSize-p3">What did we learn as a team?</p> -->
-            <!-- <p class="u-fontSize-p3">It was a team project as part of the Cognizant Student Club. In the journey of completing the project, we learned about the importance of time management, strategic planning, and understanding each other's opinions.</p> -->
+      <section class="main-pad-lr u-marginV100">
+        <div class="container">
+          <div class="u-marginV100">
+            <h5 class="u-textUpper u-secondaryTextColor u-fontWeight-regular u-lineHeight-1_75 u-marginB5">Reflection</h5>
+            <h2 class="u-fontWeight-bold u-marginB20">Learnings</h2>
+            <hr/>
+            <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4">
+              This project marked my first experience <strong>working directly with an industry partner, the Amazon-Shopbop team</strong>, as a UX designer. It was an incredible opportunity to collaborate with a team of experts, gaining insights into real-world challenges and <strong>understanding how design can drive business goals.</strong>
+            </p>
+            <div class="row u-marginV30 u-displayFlex u-alignItems-center">
+              <div class="col-md-8">
+                <ul class="u-lineHeight-1_5 u-fontSize-p4 u-margin0">
+                    <li>
+                      <strong>Bridging User Needs with Business Goals:</strong> I learned how to <strong>balance user-centered design principles</strong> with the <strong>company's business objectives</strong>. Through iterative discussions, I understood how to align design decisions with the <strong>vision of the stakeholders while keeping user needs at the forefront</strong>.
+                    </li>
+                    <li>
+                      <strong>Designing for Real Users:</strong> Immersing myself in the Shopbop ecosystem taught me the <strong>importance of understanding diverse user groups</strong>. By researching and identifying user pain points, I could propose tailored solutions that <strong>addressed the needs of both fashion enthusiasts and less confident shoppers</strong>.
+                    </li>
+                    <li>
+                      <strong>Hands-On Frontend Development:</strong> I gained experience in <strong>developing and deploying the frontend</strong> on AWS CloudFront, taking ownership of hosting and deployment. This not only strengthened my technical skillset but also <strong>deepened my understanding of the development lifecycle, working with the developers</strong>.
+                    </li>
+                </ul>
+              </div>
+              <div class="col-md-4 u-displayFlex u-alignItems-center u-justify-center u-mob-marginT50">
+                <a class="trader-joes-thumbnail" href="../assets/images/amazon-shopbop/team-pic.jpg">
+                  <figure>
+                    <img src="../assets/images/amazon-shopbop/team-pic.jpg" loading="lazy"
+                    class="u-borderR5" alt="Group Picture of Amazon-Shopbop Team"/>
+                    <figcaption class="u-textCenter">Amazon Shopbop Team</figcaption>
+                  </figure>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
-      <section class="main-pad-lr u-marginV150">
-        <div class="Container-wrapper--alt" id="trader-joes-screenshots">
-          <div class="u-marginV150">
-            <!-- <h2 class="u-fontWeight-bold u-marginB20">Wireframe</h2> -->
-            <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p3">
-              Reflecting on completing my user research plan in my UX course, I'm feeling pretty proud and pumped. Working with my classmates, who come from all sorts of backgrounds, was awesome. We all brought something unique to the table, which made the whole process a lot more interesting and fun.<br><br>
-              The biggest lesson for me was realizing just <strong>how important empathy is in design</strong>. Talking directly with users gave us a whole new perspective and helped us create solutions that really hit the mark.<br><br>
-              Plus, this project taught me a ton about <strong>collaboration and communication</strong>. We had to be open-minded and ready to tweak our ideas based on feedback, which made our final plan so much stronger.<br><br>
-              Overall, this experience has been a game-changer. It's not just about ticking off an assignment; it's about gaining real-world skills and insights that I can carry forward in my career. Can't wait to see where this journey takes me next!<br><br>
-          </div>
-          <div class="u-marginV150">
-            <a href="../assets/images/trader-joes/reflections.png">
-              <figure>
-                <img class="u-width80-stretch-mob u-boxShadow3 u-borderR5" src="../assets/images/trader-joes/reflections.png"
-                  alt="User Journey Map"/>
-                <figcaption class="u-textCenter">User Research Plan Team</figcaption>
-              </figure>
-            </a>
+      <section class="main-pad-lr u-marginV100">
+        <div class="container">
+          <div class="u-marginV100">
+            <h5 class="u-textUpper u-secondaryTextColor u-fontWeight-regular u-lineHeight-1_75 u-marginB5">Reflection</h5>
+            <h2 class="u-fontWeight-bold u-marginB20">Next Steps</h2>
+            <hr/>
+            <p class="u-textJustify u-lineHeight-1_5 u-fontSize-p4 u-marginB25">
+              The next steps involve expanding the platform's reach and accessibility by <strong>transitioning it into a mobile application</strong>. A mobile app would provide users with a seamless, on-the-go experience, making it easier to explore trends and receive personalized recommendations. Additionally, <strong>conducting iterative usability testing</strong> with a diverse user base will help refine features, address any remaining pain points, and ensure the platform meets user expectations across all devices.
+            </p>
           </div>
         </div>
       </section>
