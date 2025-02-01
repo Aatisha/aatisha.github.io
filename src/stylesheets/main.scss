@@ -2739,9 +2739,19 @@ footer {
     border-radius: 24px;
     animation: header-animation linear forwards;
     animation-range: exit;
-    animation-timeline: view(var(--project-hero-main-mar));
+    animation-timeline: view();
     width: calc(100% - (var(--project-hero-main-mar) * 2));
     height: calc(100% - (var(--project-hero-main-mar) * 2));
+
+    @keyframes header-animation {
+      25% { opacity: 1; }
+
+      85%,
+      100% {
+        opacity: 0;
+        scale: 2;
+      }
+    }
 
     .gradients-container {
       filter: url(#goo) blur(40px);

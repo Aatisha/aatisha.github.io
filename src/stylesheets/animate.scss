@@ -93,16 +93,6 @@
   }
 }
 
-@keyframes header-animation {
-  25% { opacity: 1; }
-
-  85%,
-  100% {
-    opacity: 0;
-    scale: 2;
-  }
-}
-
 // Animations
 @keyframes moveInCircle {
   0% {
