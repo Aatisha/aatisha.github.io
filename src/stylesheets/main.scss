@@ -1902,6 +1902,7 @@ footer {
   --swiper-nav-bg: #{$primary_alt};
   --primary-btn-color: #{$primary};
   --primary-btn-hover-color: #{$white};
+  --custom-blockquote: #{$primary};
 }
 
 // For managing whole site left right padding
@@ -2568,6 +2569,7 @@ footer {
   --swiper-nav-bg: #{$trader_joes_light};
   --primary-btn-color: #{$trader_joes_dark};
   --primary-btn-hover-color: #{$white};
+  --custom-blockquote: #{$trader_joes};
 
   .project-bg {
     background-color: $trader_joes_light;
@@ -2857,6 +2859,7 @@ footer {
   --scroll-watcher: #{$rover_usability};
   --swiper-elements: #{$rover_usability};
   --swiper-nav-bg: #{$rover_usability_light};
+  --custom-blockquote: #{$rover_usability};
 
   .project-bg {
     background-color: $rover_usability;
@@ -3969,11 +3972,9 @@ $star-background: #f1c40f;
 /* Custom Blockquote */
 .custom-blockquote {
   background: #f9f9f9;
-  border-left: 4px solid #4caf50;
+  border-left: 4px solid var(--custom-blockquote);
   padding: 10px 15px;
   margin: 20px 0;
-  font-style: italic;
-  color: #555;
 }
 
 /* Severity Chips */
