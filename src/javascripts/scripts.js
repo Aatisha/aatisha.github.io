@@ -67,10 +67,10 @@ function updateActiveNavigation() {
   const workNav = document.getElementById('work-nav');
 
   if (WORK_DROPDOWN_ITEMS.length > 0) {
-    // Create the main anchor element with caret
-    const workLink = document.createElement('a');
-    workLink.href = '/'; // Main Work page link
-    workLink.innerHTML = 'Work<i class=\'fas fa-caret-down\'></i>';
+    // Create the "Work" dropdown toggle button
+    const workToggle = document.createElement('div');
+    workToggle.classList.add('dropdown-toggle');
+    workToggle.innerHTML = 'Work <i class=\'fas fa-caret-down\'></i>';
 
     // Create the dropdown container
     const dropdownDiv = document.createElement('div');
@@ -85,8 +85,8 @@ function updateActiveNavigation() {
       listItem.classList.add('dropdown-link');
 
       const anchor = document.createElement('a');
-      anchor.href = item.path; // Set URL path
-      anchor.textContent = item.shortName; // Set text content
+      anchor.href = item.path;
+      anchor.textContent = item.shortName;
 
       listItem.appendChild(anchor);
       dropdownUl.appendChild(listItem);
@@ -95,9 +95,23 @@ function updateActiveNavigation() {
     // Append the dropdown menu to the dropdown container
     dropdownDiv.appendChild(dropdownUl);
 
-    // Append the main link and dropdown container to the nav link
-    workNav.appendChild(workLink);
+    // Append elements to the nav
+    workNav.appendChild(workToggle);
     workNav.appendChild(dropdownDiv);
+
+    // Click event to toggle dropdown
+    workToggle.addEventListener('click', () => {
+      dropdownDiv.classList.toggle('show'); // Toggle visibility
+      workNav.classList.toggle('open'); // Toggle caret rotation
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (event) => {
+      if (!workNav.contains(event.target)) {
+        dropdownDiv.classList.remove('show');
+        workNav.classList.remove('open');
+      }
+    });
   } else {
     // If no items, display just the Work link without dropdown
     const workLink = document.createElement('a');
