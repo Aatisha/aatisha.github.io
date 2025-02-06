@@ -1012,6 +1012,10 @@
   margin-right: 11px;
 }
 
+.u-marginR20 {
+  margin-right: 20px;
+}
+
 @media screen and (max-width: 400px) {
   .u-marginV150 {
     margin-top: 100px;
@@ -1029,6 +1033,10 @@
 
 .u-paddingR-50 {
   padding-right: 50px !important;
+}
+
+.u-paddingR-40 {
+  padding-right: 40px !important;
 }
 
 .u-paddingL-50 {
@@ -1239,6 +1247,10 @@
 
 .u-width65 {
   width: 65%;
+}
+
+.u-width70-stretch-mob {
+  width: 75%;
 }
 
 .u-width70 {

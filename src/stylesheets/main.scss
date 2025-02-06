@@ -589,6 +589,10 @@ html {
     width: 100%;
   }
 
+  .sm-w80 {
+    width: 80%;
+  }
+
   .mockup-liquid-shape {
     width: 70%;
     height: 350px;
@@ -2382,7 +2386,13 @@ footer {
 }
 
 .trader_joes_color {
-  color: $trader_joes;
+  color: $trader_joes_dark;
+
+  --link-hover-color: #{$trader_joes_dark};
+
+  &.link-style:hover {
+    color: $white !important;
+  }
 }
 
 .sustainable_ux_color {
