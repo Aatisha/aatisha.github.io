@@ -445,6 +445,10 @@
   border-radius: 12px;
 }
 
+.u-borderR24 {
+  border-radius: 24px;
+}
+
 .u-borderR50p {
   border-radius: 50%;
 }
@@ -630,6 +634,10 @@
 
 .u-fontSize-h2--alt {
   font-size: 2.25rem;
+}
+
+.u-fontSize-h2--sec {
+  font-size: 2rem;
 }
 
 .u-fontSize-h3 {
@@ -1004,6 +1012,10 @@
   margin-right: 11px;
 }
 
+.u-marginR20 {
+  margin-right: 20px;
+}
+
 @media screen and (max-width: 400px) {
   .u-marginV150 {
     margin-top: 100px;
@@ -1021,6 +1033,10 @@
 
 .u-paddingR-50 {
   padding-right: 50px !important;
+}
+
+.u-paddingR-40 {
+  padding-right: 40px !important;
 }
 
 .u-paddingL-50 {
@@ -1053,6 +1069,10 @@
 
 .u-padding80 {
   padding: 80px;
+}
+
+.u-paddingT0 {
+  padding-top: 0;
 }
 
 .u-paddingT10 {
@@ -1118,6 +1138,11 @@
 .u-paddingH50 {
   padding-left: 50px;
   padding-right: 50px;
+}
+
+.u-paddingH30 {
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 .u-paddingV125 {
@@ -1222,6 +1247,10 @@
 
 .u-width65 {
   width: 65%;
+}
+
+.u-width70-stretch-mob {
+  width: 75%;
 }
 
 .u-width70 {
