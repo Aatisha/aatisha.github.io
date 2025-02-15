@@ -2395,6 +2395,16 @@ footer {
   }
 }
 
+.minds_color {
+  color: $minds_dark;
+
+  --link-hover-color: #{$minds_dark};
+
+  &.link-style:hover {
+    color: $white !important;
+  }
+}
+
 .sustainable_ux_color {
   color: $sustainable_ux_dark;
 
@@ -2567,6 +2577,67 @@ footer {
       background-size: 24px 42px;
       background-position: 0 0, 0 0, 12px 21px, 12px 21px, 0 0, 12px 21px;
       animation: diagonal-right-bottom 20s linear infinite;
+    }
+  }
+}
+
+// MINDS
+.project-minds {
+  --underline-effect-color: #{$minds};
+  --scroll-watcher: #{$minds};
+  --swiper-elements: #{$minds_dark};
+  --swiper-nav-bg: #{$minds_light};
+  --primary-btn-color: #{$minds_dark};
+  --primary-btn-hover-color: #{$white};
+  --custom-blockquote: #{$minds};
+
+  .project-bg {
+    background-color: $minds_light;
+    color: $minds_dark;
+  }
+
+  .hero-minds {
+    .hero-minds--video {
+      overflow: hidden;
+      border-radius: 20px;
+    }
+
+    .left {
+      padding: 50px 50px 50px 0;
+    }
+
+    .right {
+      padding: 20px 0 20px 20px;
+    }
+
+    @media screen and (max-width: 768px) {
+      .left {
+        padding: 20px 0;
+      }
+
+      .right {
+        padding: 10px 0;
+      }
+    }
+  }
+
+  blockquote {
+    &.project-bg {
+      &::after,
+      &::before {
+        color: $minds_dark;
+      }
+    }
+  }
+
+  .video-demo-aspect {
+    aspect-ratio: 14.7 / 9;
+    overflow: hidden;
+
+    video {
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
     }
   }
 }
@@ -3735,6 +3806,12 @@ $star-background: #f1c40f;
   &.trader-joes-card {
     .interactive-glow {
       background-color: $trader_joes;
+    }
+  }
+
+  &.minds-card {
+    .interactive-glow {
+      background-color: $minds;
     }
   }
 

@@ -19,6 +19,7 @@ import './rover-usability';
 import './project-hero-bg-animation';
 import './amazon-shopbop';
 import './trader-joes';
+import './minds';
 import {
   BlogTemplateProperties, BLOG_CARD_TEMPLATE, MEDIUM_USERNAME,
   STARRED_BLOG_ID, DESIGN_URLS, DEV_URLS, DESIGN_ARTICLE_NAVS, DEV_ARTICLE_NAVS, URL_PATHS,
