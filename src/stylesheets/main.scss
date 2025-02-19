@@ -2596,7 +2596,46 @@ footer {
     color: $minds_dark;
   }
 
+  // Define your color scheme here
+  $minds-color-bg1: #e2e2ea;
+  $minds-color-bg2: #88c4ea;
+  $minds-color-bg3: $minds_dark;
+  $minds-color1: #e2e2ea;
+  $minds-color2: #88c4ea;
+  $minds-color3: #88c4ea;
+  $minds-color4: #42add1;
+  $minds-color5: #a2d5f5;
+  $minds-color-interactive: rgb(83, 204, 252);
+
   .hero-minds {
+    .gradient-bg-animate {
+      background: linear-gradient(70deg, $minds-color-bg1 0%, $minds-color-bg2 75%, $minds-color-bg3 100%);
+
+      .g1 {
+        background: radial-gradient(circle, $minds-color1 0%, transparent 50%);
+      }
+
+      .g2 {
+        background: radial-gradient(circle, $minds-color2 0%, transparent 50%);
+      }
+
+      .g3 {
+        background: radial-gradient(circle, $minds-color3 0%, transparent 50%);
+      }
+
+      .g4 {
+        background: radial-gradient(circle, $minds-color4 20%, transparent 50%);
+      }
+
+      .g5 {
+        background: radial-gradient(circle, $minds-color5 0%, transparent 50%);
+      }
+
+      .interactive {
+        background: radial-gradient(circle, $minds-color-interactive 0%, transparent 50%);
+      }
+    }
+
     .hero-minds--video {
       overflow: hidden;
       border-radius: 20px;
@@ -4156,4 +4195,95 @@ $star-background: #f1c40f;
 
 .light-gray-bg {
   background-color: $light_gray;
+}
+
+/* Tabs Container */
+.tabs {
+  /* A wrapper for the tab list (arrows will be injected dynamically) */
+  .tab-nav-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    /* The scrollable list of tabs */
+    .tab-list {
+      flex: 1;
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      border-bottom: 1px solid #ddd;
+
+      /* Horizontal scrolling */
+      overflow-x: auto;
+      white-space: nowrap;
+      scroll-behavior: smooth;
+      scrollbar-width: none; /* Hide scrollbar in Firefox (optional) */
+
+      &::-webkit-scrollbar {
+        display: none; /* Hide scrollbar in Chrome/Safari/Opera (optional) */
+      }
+
+      /* Individual tab item */
+      .tab-item {
+        display: inline-block;
+        padding: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        text-align: center;
+        user-select: none; /* Avoid text highlight on double-click */
+        margin-bottom: 0;
+
+        &:hover {
+          background-color: #f5f5f5;
+        }
+
+        &.active {
+          font-weight: bold;
+          border-bottom: 3px solid #333;
+        }
+      }
+    }
+  }
+
+  /* Tab Content */
+  .tab-content {
+    display: none;
+    padding: 20px;
+
+    &.active {
+      display: block;
+    }
+  }
+}
+
+/* Scroll Buttons (added dynamically by JS) */
+.scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1; /* Keep on top of the tab list */
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:disabled {
+    display: none;
+  }
+
+  &.left {
+    left: 0;
+  }
+
+  &.right {
+    right: 0;
+  }
 }

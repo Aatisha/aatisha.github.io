@@ -139,16 +139,16 @@ export const DESIGN_ARTICLE_NAVS = [
     class: 'ssec_products_color',
   },
   {
-    name: 'Trader Joe\'s - User Research Plan',
-    shortName: 'Trader Joe\'s',
-    path: URL_PATHS.trader_joes,
-    class: 'trader_joes_color',
-  },
-  {
     name: 'MINDS',
     shortName: 'MINDS',
     path: URL_PATHS.minds,
     class: 'minds_color',
+  },
+  {
+    name: 'Trader Joe\'s - User Research Plan',
+    shortName: 'Trader Joe\'s',
+    path: URL_PATHS.trader_joes,
+    class: 'trader_joes_color',
   },
   {
     name: 'Rover Website - Usability Study',
