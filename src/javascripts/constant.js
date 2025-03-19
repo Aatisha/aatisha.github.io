@@ -103,6 +103,7 @@ export const URL_PATHS = {
   online_assessment: '/online-assessment',
   plant_health: '/plant-health',
   trader_joes: '/trader-joes',
+  minds: '/minds',
   ux_research: '/ux-research',
   sustainable_ux: '/sustainable-ux',
   ssec_products: '/ssec-products',
@@ -124,6 +125,12 @@ export const DESIGN_ARTICLE_NAVS = [
     shortName: 'Amazon Shopbop',
     path: URL_PATHS.amazon_shopbop,
     class: 'amazon_shopbop_color',
+  },
+  {
+    name: 'MINDS',
+    shortName: 'MINDS',
+    path: URL_PATHS.minds,
+    class: 'minds_color',
   },
   {
     name: 'Sustain Dane - App Design For Environmental Good',
