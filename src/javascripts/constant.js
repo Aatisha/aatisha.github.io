@@ -127,6 +127,12 @@ export const DESIGN_ARTICLE_NAVS = [
     class: 'amazon_shopbop_color',
   },
   {
+    name: 'MINDS',
+    shortName: 'MINDS',
+    path: URL_PATHS.minds,
+    class: 'minds_color',
+  },
+  {
     name: 'Sustain Dane - App Design For Environmental Good',
     shortName: 'Sustain Dane',
     path: URL_PATHS.sustainable_ux,
@@ -137,12 +143,6 @@ export const DESIGN_ARTICLE_NAVS = [
     shortName: 'SSEC',
     path: URL_PATHS.ssec_products,
     class: 'ssec_products_color',
-  },
-  {
-    name: 'MINDS',
-    shortName: 'MINDS',
-    path: URL_PATHS.minds,
-    class: 'minds_color',
   },
   {
     name: 'Trader Joe\'s - User Research Plan',
