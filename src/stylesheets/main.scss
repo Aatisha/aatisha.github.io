@@ -2165,8 +2165,7 @@ footer {
 
       &::after {
         content: 'Aatisha Cyrill';
-        // font-family: 'Corinthia', cursive;
-        font-family: 'Cedarville Cursive', cursive;
+        font-family: "Dawning of a New Day", cursive;
         font-size: 3rem;
         display: flex;
         align-items: flex-end;
@@ -4123,11 +4122,18 @@ $star-background: #f1c40f;
   transition: opacity 0.5s ease-in-out;
 
   .hero-title {
-    font-family: "Cedarville Cursive", cursive;
+    font-family: "Dawning of a New Day", cursive;
     font-size: 4rem;
     margin-bottom: 50px;
     font-style: normal;
     font-weight: 400;
+    line-height: 1.5;
+
+    .hero-sentence {
+      display: inline-block;
+      white-space: nowrap;
+      margin-right: 0.5em; // Adjust spacing as needed
+    }
 
     svg {
       width: 3.5rem;
@@ -4138,6 +4144,10 @@ $star-background: #f1c40f;
 
   .hero-secondary-text {
     font-size: 2.2rem;
+  }
+
+  .hero-tertiary-text {
+    font-size: 1.75rem;
   }
 }
 
