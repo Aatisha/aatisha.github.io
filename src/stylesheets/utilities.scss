@@ -1249,10 +1249,6 @@
   width: 65%;
 }
 
-.u-width70-stretch-mob {
-  width: 75%;
-}
-
 .u-width70 {
   width: 70%;
 }
@@ -1267,6 +1263,10 @@
 
 .u-width80-stretch-mob {
   width: 80%;
+}
+
+.u-width70-stretch-mob {
+  width: 70%;
 }
 
 .u-width85 {
@@ -1381,8 +1381,17 @@
   }
 
   .u-width60-stretch-mob,
+  .u-width70-stretch-mob,
   .u-width80-stretch-mob {
     width: 100%;
+  }
+
+  .mob-w100 {
+    width: 100%;
+  }
+
+  .mob-w80 {
+    width: 80%;
   }
 }
 

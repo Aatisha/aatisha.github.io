@@ -127,8 +127,8 @@ export const DESIGN_ARTICLE_NAVS = [
     class: 'amazon_shopbop_color',
   },
   {
-    name: 'MINDS',
-    shortName: 'MINDS',
+    name: 'MINDS@UW',
+    shortName: 'MINDS@UW',
     path: URL_PATHS.minds,
     class: 'minds_color',
   },
