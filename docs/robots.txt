@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://aatisha.github.io/sitemap.xml
+Host: https://aatisha.github.io
