@@ -3875,6 +3875,12 @@ $star-background: #f1c40f;
     }
   }
 
+  &.gcw-card {
+    .interactive-glow {
+      background-color: $gcw;
+    }
+  }
+
   &.minds-card {
     .interactive-glow {
       background-color: $minds;
