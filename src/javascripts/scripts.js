@@ -20,6 +20,7 @@ import './project-hero-bg-animation';
 import './amazon-shopbop';
 import './trader-joes';
 import './minds';
+import { instantiatePlayground } from './playground';
 import {
   BlogTemplateProperties, BLOG_CARD_TEMPLATE, MEDIUM_USERNAME,
   STARRED_BLOG_ID, DESIGN_URLS, DEV_URLS, DESIGN_ARTICLE_NAVS, DEV_ARTICLE_NAVS, URL_PATHS,
@@ -468,6 +469,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         await delay(200);
         heroTextWrapper.style.display = 'block';
         heroTextWrapper.style.opacity = '0.75';
+      }
+
+      if (window.location.pathname.includes(URL_PATHS.playground)) {
+        instantiatePlayground();
       }
     } else {
       const logoAnimation = document.getElementById('logo-animation');
