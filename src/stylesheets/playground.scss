@@ -1,6 +1,6 @@
 /* === HERO SECTION === */
 .playground-hero-section {
-  height: 400px;
+  height: 450px;
   display: flex;
   align-items: flex-end;
   text-align: center;
@@ -13,11 +13,12 @@
   width: 100%;
   z-index: 2;
   transition: transform 0.3s ease;
+  margin-bottom: 125px;
 }
 
 .playground-hero-title {
   font-size: 5.25rem;
-  font-weight: 900;
+  font-weight: 600;
   margin-bottom: 1rem;
   color: #000;
 }
