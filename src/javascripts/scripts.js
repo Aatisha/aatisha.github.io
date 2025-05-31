@@ -470,10 +470,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         heroTextWrapper.style.display = 'block';
         heroTextWrapper.style.opacity = '0.75';
       }
-
-      if (window.location.pathname.includes(URL_PATHS.playground)) {
-        instantiatePlayground();
-      }
     } else {
       const logoAnimation = document.getElementById('logo-animation');
       const heroTextWrapper = document.querySelector('.hero-text');
@@ -499,6 +495,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (window.location.pathname.includes(URL_PATHS.design_work)) {
       designWorkGallery();
+    }
+
+    if (window.location.pathname.includes(URL_PATHS.playground)) {
+      instantiatePlayground();
     }
 
     if (document.getElementById('article-nav')) {
