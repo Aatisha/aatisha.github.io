@@ -1,0 +1,148 @@
+/* === HERO SECTION === */
+.playground-hero-section {
+  height: 450px;
+  display: flex;
+  align-items: flex-end;
+  text-align: center;
+  background: #fafafa;
+  position: relative;
+  overflow: hidden;
+}
+
+.playground-hero-content {
+  width: 100%;
+  z-index: 2;
+  transition: transform 0.3s ease;
+  margin-bottom: 125px;
+  position: relative;
+}
+
+.playground-hero-title {
+  font-size: 5.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #000;
+}
+
+.playground-hero-subtitle {
+  font-size: 1.65rem;
+  color: #9f9e9e;
+  font-weight: 400;
+}
+
+/* === PROJECT SECTION === */
+.playground-project-section {
+  animation-name: fadeMoveUp;
+  animation-timeline: view();
+  animation-range: entry 20% cover 40%;
+  animation-fill-mode: both;
+  animation-duration: 1s;
+}
+
+/* Responsive Layout Structure is assumed from container/row/col-* */
+
+.playground-project-layout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 60px;
+}
+
+.playground-project-info {
+  margin-bottom: 30px;
+}
+
+.playground-project-info h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.playground-project-info p {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* === PROJECT IMAGE === */
+.playground-project-hero {
+  overflow: hidden;
+  border-radius: 12px;
+  position: relative;
+}
+
+.playground-project-hero a {
+  display: block;
+  overflow: hidden;
+  border-radius: 12px;
+  animation-name: fadeMoveUp;
+  animation-timeline: view();
+  animation-range: entry 20% cover 30%;
+  animation-fill-mode: both;
+  animation-duration: 1s;
+}
+
+.playground-project-hero .image-zoom {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.6s ease;
+}
+
+.playground-project-hero:hover .image-zoom {
+  transform: scale(1.1);
+}
+
+/* === GALLERY === */
+.playground-project-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 30px;
+  overflow: hidden;
+}
+
+.playground-project-gallery a {
+  display: block;
+  overflow: hidden;
+  border-radius: 12px;
+  animation-name: fadeMoveUp;
+  animation-timeline: view();
+  animation-range: entry 20% cover 30%;
+  animation-fill-mode: both;
+  animation-duration: 1s;
+}
+
+.playground-project-gallery a img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.playground-project-gallery a:hover img {
+  transform: scale(1.1);
+}
+
+/* === ANIMATION === */
+@keyframes fadeMoveUp {
+  from {
+    opacity: 0.75;
+    transform: translateY(50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Container that holds the glowing particles */
+#starCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events: none;
+}

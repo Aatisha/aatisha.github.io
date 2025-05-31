@@ -20,6 +20,7 @@ import './project-hero-bg-animation';
 import './amazon-shopbop';
 import './trader-joes';
 import './minds';
+import { instantiatePlayground } from './playground';
 import {
   BlogTemplateProperties, BLOG_CARD_TEMPLATE, MEDIUM_USERNAME,
   STARRED_BLOG_ID, DESIGN_URLS, DEV_URLS, DESIGN_ARTICLE_NAVS, DEV_ARTICLE_NAVS, URL_PATHS,
@@ -494,6 +495,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (window.location.pathname.includes(URL_PATHS.design_work)) {
       designWorkGallery();
+    }
+
+    if (window.location.pathname.includes(URL_PATHS.playground)) {
+      instantiatePlayground();
     }
 
     if (document.getElementById('article-nav')) {

@@ -109,6 +109,7 @@ export const URL_PATHS = {
   ssec_products: '/ssec-products',
   rover_usability_study: '/rover-usability-study',
   amazon_shopbop: '/amazon-shopbop',
+  playground: '/playground',
   tech: {
     home: TECH_BASE_PATH,
     about: `${TECH_BASE_PATH}/about`,
