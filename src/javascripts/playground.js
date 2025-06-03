@@ -40,7 +40,7 @@ export function instantiatePlayground() {
   // ========== 2. LIGHTGALLERY ==========
   document.querySelectorAll('[data-gallery]').forEach((gallery) => {
     lightGallery(gallery, {
-      selector: 'a',
+      selector: 'a.playground-img-gallery',
       download: false,
       thumbnail: true,
       animateThumb: false,
