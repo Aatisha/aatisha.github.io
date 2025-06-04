@@ -76,6 +76,13 @@
     border-radius: 12px;
   }
 
+  .vid-wrapper {
+    video {
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+    }
+  }
+
   > a {
     display: block;
     animation-name: fadeMoveUp;
