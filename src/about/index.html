@@ -7,21 +7,11 @@
 
 <body>
   <include src="../partials/preloader.html"/>
-  <section class="hero-about">
-    <div class="stage"></div>
-    <div class="hero-text container">
-      <h1 class="hero-title">
-        About
-      </h1>
-      <p class="hero-secondary-text">A little bit more about me...</p>
-    </div>
-  </section>
   <div id="body-content">
     <include src="../partials/navbar.html"/>
     <main class="About">
       <div class="scroll-watcher"></div>
-
-      <section class="main-pad-lr u-bg-white u-paddingV50 u-border-grey--T">
+      <!-- <section class="main-pad-lr u-bg-white u-paddingV50 u-border-grey--T">
         <div class="Container-wrapper u-paddingV50">
           <div class="Container-flex u-marginT50 gap-50 about-info">
             <div class="left-part">
@@ -92,285 +82,237 @@
             </div>
           </div>
         </div>
-      </section>
+      </section> -->
+      <section class="main-pad-lr intro-section scroll-section u-marginV150">
+        <div class="container">
+          <div class="row">
+            <!-- Left: Image -->
+              <div class="col-12 col-md-6 u-displayFlex u-flex-col u-alignItems-center">
+                <div class="image-bg"></div>
+                <ul class="social-wrapper">
+                  <li class="icon linkedin">
+                    <span class="tooltip">LinkedIn</span>
+                    <span>
+                      <a href="https://www.linkedin.com/in/aatisha-cyrill/" target="_blank">
+                        <i class="fa-brands fa-linkedin"></i>
+                      </a>
+                    </span>
+                  </li>
+                  <li class="icon github">
+                    <span class="tooltip">Github</span>
+                    <span>
+                      <a href="https://github.com/Aatisha" target="_blank">
+                        <i class="fa-brands fa-github"></i>
+                      </a>
+                    </span>
+                  </li>
+                  <li class="icon medium">
+                    <span class="tooltip">Medium</span>
+                    <span>
+                      <a href="https://medium.com/@cyrillaatisha" target="_blank">
+                        <i class="fa-brands fa-medium"></i>
+                      </a>
+                    </span>
+                  </li>
+                  <li class="icon mail">
+                    <span class="tooltip">Email</span>
+                    <span>
+                      <a href="mailto:cyrillaatisha@gmail.com" target="_blank">
+                        <i class="fa-solid fa-envelope"></i>
+                      </a>
+                    </span>
+                  </li>
+                </ul>
+              </div>
 
-      <section class="main-pad-lr u-bg-white u-border-grey--T resume-section">
-        <div class="container u-paddingB50">
-          <h5 class="Heading u-fontSize-h3 u-lineHeight-1_5 u-letterSpacing_3 u-displayInlineBlock u-textUpper u-color-primary">
-            Resume
-          </h5>
-          <h6 class="Heading u-fontSize-h4 u-lineHeight-1_5 u-letterSpacing_3 u-displayInlineBlock u-marginV20">
-            Education
-          </h6>
-          <div class="reveal resume-card u-marginB50 u-boxShadow1">
-             <div class="u-displayFlex u-alignItems-center u-height100">
-              <div class="logo">
-                <img src="../assets/images/ssec-products/uw_logo.png" alt="University of Wisconsin, Madison">
-              </div>
-              <div class="info">
-                <h3>University of Wisconsin, Madison</h3>
-                <p class="u-fontSize-p4 u-lineHeight-1_75">
-                  <span>
-                    Madison, WI, USA
-                  </span>
-                  <span>
-                    September 2023 - May 2025
-                  </span>
-                </p>
-              </div>
-             </div>
-             <p class="u-fontSize-p3 u-marginT30 u-lineHeight-1_75">
-              Master's in Information Science (UX Concentration)
-             </p>
-          </div>
-          <div class="reveal resume-card u-marginB50 u-boxShadow1">
-             <div class="u-displayFlex u-alignItems-center u-height100">
-              <div class="logo">
-                <img src="../assets/images/about/sist.png" alt="Sathyabama Institute of Science and Technology, Chennai">
-              </div>
-              <div class="info">
-                <h3>Sathyabama Institute of Science and Technology, Chennai</h3>
-                <p class="u-fontSize-p4 u-lineHeight-1_75">
-                  <span>
-                    Chennai, TN, India
-                  </span>
-                  <span>
-                    July 2015 - July 2019
-                  </span>
-                </p>
-              </div>
-             </div>
-             <p class="u-fontSize-p3 u-marginT30 u-lineHeight-1_75">
-              Bachelor of Technology in Information Technology
-             </p>
-          </div>
-          <h6 class="Heading u-fontSize-h4 u-lineHeight-1_5 u-letterSpacing_3 u-displayInlineBlock u-marginV20">
-            Honors
-          </h6>
-          <div class="row">
-            <div class="col-md-6 u-width100">
-              <div class="reveal resume-card u-boxShadow1 certification-card">
-                <div class="info-banner">Certification</div>
-                <div class="u-displayFlex u-alignItems-center u-height100">
-                  <div class="logo">
-                    <img src="../assets/images/about/google.png" alt="Google Logo">
-                  </div>
-                  <div class="info">
-                    <h3>UX Design Professional, Grow with Google</h3>
-                    <p class="u-fontSize-p4 u-lineHeight-1_75">January 2024</p>
-                  </div>
-                 </div>
-              </div>
-            </div>
-            <div class="col-md-6 u-width100">
-              <div class="reveal resume-card u-boxShadow1 certification-card">
-                <div class="info-banner">Certification</div>
-                <div class="u-displayFlex u-alignItems-center u-height100">
-                  <div class="logo">
-                    <img src="../assets/images/about/georgia_tech.svg" alt="Georgia Tech Logo">
-                  </div>
-                  <div class="info">
-                    <h3>Introduction to UX, Georgia Tech</h3>
-                    <p class="u-fontSize-p4 u-lineHeight-1_75">July 2022</p>
-                  </div>
-                 </div>
-              </div>
-            </div>
-            <div class="col-md-6 u-width100">
-              <div class="reveal resume-card u-boxShadow1 certification-card">
-                <div class="info-banner">Award</div>
-                <div class="u-displayFlex u-alignItems-center u-height100">
-                  <div class="logo">
-                    <img src="../assets/images/about/sist.png" alt="Sathyabama Institute of Science and Technology Logo">
-                  </div>
-                  <div class="info">
-                    <h3>Star of Excellence Award, SIST</h3>
-                    <p class="u-fontSize-p4 u-lineHeight-1_75">July 2019</p>
-                  </div>
-                 </div>
-              </div>
-            </div>
-            <div class="col-md-6 u-width100">
-              <div class="reveal resume-card u-boxShadow1 certification-card">
-                <div class="info-banner">Scholarship</div>
-                <div class="u-displayFlex u-alignItems-center u-height100">
-                  <div class="logo">
-                    <img src="../assets/images/about/sist.png" alt="Sathyabama Institute of Science and Technology Logo">
-                  </div>
-                  <div class="info">
-                    <h3>Remibai Jeppiaar Scholarship, SIST</h3>
-                    <p class="u-fontSize-p4 u-lineHeight-1_75">March 2016, 2017</p>
-                  </div>
-                 </div>
+            <!-- Right: Text Column -->
+            <div class="col-sm-12 col-md-6">
+              <h1 class="Heading u-lineHeight-1_5 u-letterSpacing_3 u-displayInlineBlock u-textUpper u-color-primary u-marginV20">
+                Crafting Digital<br>
+                <span>Experiences</span>
+              </h1>
+              <p class="fade-in-up">
+                A UX designer who finds inspiration in travel, literature, space exploration, and gaming.
+                Every journey shapes the stories I tell through design.
+              </p>
+              <!-- RE-ADDED TAGS/CHIPS BELOW TEXT -->
+              <div>
+                <span class="tag tag-blue" style="animation-delay: 0.3s;">UX Design</span>
+                <span class="tag tag-purple" style="animation-delay: 0.4s;">Visual Storytelling</span>
+                <span class="tag tag-green" style="animation-delay: 0.5s;">User Research</span>
               </div>
             </div>
           </div>
-          <h6 class="Heading u-fontSize-h4 u-lineHeight-1_5 u-letterSpacing_3 u-displayInlineBlock u-marginB20 u-marginT55">
-            Relevant Experience
-          </h6>
-          <div class="reveal resume-card u-marginB50 u-boxShadow1">
-            <div class="u-displayFlex u-alignItems-center u-height100">
-             <div class="logo">
-               <img src="../assets/images/ssec-products/uw_logo.png" alt="University of Wisconsin Madison logo">
-             </div>
-             <div class="info">
-               <h3>UX and Research Data Initiatives Assistant @ UW Madison Digital Libraries</h3>
-               <p class="u-fontSize-p4 u-lineHeight-1_75">
-                 <span>
-                   Madison, WI, USA
-                 </span>
-                 <span>
-                   January 2024 - Present
-                 </span>
-               </p>
-             </div>
-            </div>
-            <ul class="u-lineHeight-1_5 u-fontSize-p4 u-marginT30 u-marginB0">
-             <li>
-                Redesigned the open-access MINDS repository, delivering end-to-end UX solutions from onboarding to analytics, and enhanced workflows to improve usability for diverse user personas.             </li>
-             <li>
-                Collaborated with 7 researchers, librarians and department admins for user interviews and gathered 170+ data points via affinity mapping in Miro to draw 5 major insights for user education, inclusivity and UI upgrades.
-            </li>
-             <li>
-                Created 2 user personas and 15+ Figma wireframes, typography, and prototypes to support design for readers and depositors through advanced browsing, curator-to-depositor interactions and MINDS analytics integration.
-            </li>
-             <li>
-                Created 2 personas and 10+ Figma wireframes and prototypes to support design for readers and depositors through advanced browsing, curator-to-depositor interactions and MINDS analytics integration.
-             </li>
-             <li>
-                Authored a quarterly blog on service design organized by the Center of User Experience at UW Madison.
-            </li>
-           </ul>
-         </div>
-          <div class="reveal resume-card u-marginB50 u-boxShadow1">
-             <div class="u-displayFlex u-alignItems-center u-height100">
-              <div class="logo">
-                <img src="../assets/images/amazon-shopbop/shopbop-logo.png" alt="Shopbop logo">
-              </div>
-              <div class="info">
-                <h3>UX Designer & Product Owner @ Amazon Shopbop</h3>
-                <p class="u-fontSize-p4 u-lineHeight-1_75">
-                  <span>
-                    Madison, WI, USA
-                  </span>
-                  <span>
-                    September 2024 - December 2024
-                  </span>
-                </p>
-              </div>
-             </div>
-             <ul class="u-lineHeight-1_5 u-fontSize-p4 u-marginT30 u-marginB0">
-              <li>
-                Built an intuitive Angular web interface to compare and rank Shopbop products in a pairwise manner, enhancing user engagement by generating favorite 10 items and product recommendations.
-              </li>
-              <li>
-                Designed user flows, wireframes and high-fidelity mockups to visualize the workflow before development.
-              </li>
-              <li>
-                Conducted user research and 15 usability studies to identify usability issues, ensuring solid recommendations for improvement when browsing and ranking products. Documented insights in a case study.
-              </li>
-              <li>
-                Facilitated daily Agile stand-ups and managed JIRA geared towards discussing progress related to feature translation.
-              </li>
-            </ul>
+        </div>
+      </section>
+      <section class="travelling-section scroll-section main-pad-lr u-marginV150">
+      <div class="container">
+        <div class="travel-header">
+          <h2>Wanderlust & Wonder</h2>
+          <p>
+            Every destination tells a story. These moments capture the essence of discovery that fuels my creative process.
+          </p>
+        </div>
+        <div class="travel-grid">
+          <!-- Four video cards (unchanged grid) -->
+          <div class="travel-card">
+            <img
+              src="../assets/images/about/palm-springs.png"
+              alt="Palm Spring Vacation Image"
+            />
           </div>
-          <div class="reveal resume-card u-marginB50 u-boxShadow1">
-             <div class="u-displayFlex u-alignItems-center u-height100">
-              <div class="logo">
-                <img src="../assets/images/ssec-products/ssec-logo.png" alt="Space Science and Engineering Center logo">
-              </div>
-              <div class="info">
-                <h3>UI/UX Design Intern @ Space Science and Engineering Center (SSEC)</h3>
-                <p class="u-fontSize-p4 u-lineHeight-1_75">
-                  <span>
-                    Madison, WI, USA
-                  </span>
-                  <span>
-                    June 2024 - September 2024
-                  </span>
-                </p>
-              </div>
-             </div>
-             <ul class="u-lineHeight-1_5 u-fontSize-p4 u-marginT30 u-marginB0">
-              <li>
-                Developed the WMO's Global Cryosphere Watch responsive website with HTML, CSS, JavaScript, Bootstrap, and PHP to support environmental policies, improving user engagement and retention by 30%.
-              </li>
-              <li>
-                Worked with a cross-functional team of climate researchers and developers to design 9 satellite observations webpages.
-              </li>
-              <li>
-                Crafted wireframes, hi-fi prototypes, and design system with Figma components for a real-time web app's integration with satellite images to study 3 climate parameters: polar winds, snow and ice.
-              </li>
-            </ul>
+          <div class="travel-card">
+            <video
+              src="../assets/images/about/seattle.mp4"
+              poster="../assets/images/about/seattle-thumbnail.png"
+              loop muted playsinline autoplay
+              data-id="1"
+            ></video>
+            <div class="hover-overlay"></div>
+            <button data-id="1">&#10074;&#10074;</button>
           </div>
-          <h6 class="Heading u-fontSize-h4 u-lineHeight-1_5 u-letterSpacing_3 u-displayInlineBlock u-marginV20">
-            Skills/Clubs
-          </h6>
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="reveal resume-card u-boxShadow1 certification-card">
-                <div class="u-displayFlex u-alignItems-center u-height100">
-                  <div class="info-alt">
-                    <h3>Design</h3>
-                    <p class="u-fontSize-p4 u-lineHeight-1_75">
-                      Figma, FigJam, Adobe Photoshop, Miro, Visily, Jitter, Canva, Adobe Express, User Interviews, Journey Mapping, Persona, Wireframe, Contextual Inquiry, Design Thinking, Prototype, Visual Design, Product Design, UX Research, Usability Study, Information Architecture, Storyboard, HCI, Qualtrics
-                    </p>
-                  </div>
-                 </div>
-              </div>
+          <div class="travel-card">
+            <video
+              src="../assets/images/about/new-york.mp4"
+              poster="../assets/images/about/new-york-thumbnail.png"
+              loop muted playsinline autoplay
+              data-id="2"
+            ></video>
+            <div class="hover-overlay"></div>
+            <button data-id="2">&#10074;&#10074;</button>
+          </div>
+          <div class="travel-card">
+            <video
+              src="../assets/images/about/san-francisco.mp4"
+              poster="../assets/images/about/san-francisco-thumbnail.png"
+              loop muted playsinline autoplay
+              data-id="3"
+            ></video>
+            <div class="hover-overlay"></div>
+            <button data-id="3">&#10074;&#10074;</button>
+          </div>
+        </div>
+      </div>
+      </section>
+          <!-- ============================================================
+         LITERARY SECTION (static book grid; unchanged grid)
+       ============================================================ -->
+      <section class="literary-section scroll-section">
+        <div class="container">
+          <div class="literary-header">
+            <h2>Literary Odyssey</h2>
+            <p>
+              The books that shaped my understanding of design, human psychology, and the art of creating meaningful experiences.
+            </p>
+          </div>
+          <div class="book-grid">
+            <!-- 15 Book Items with inline CSS variables for gathering -->
+            <div class="book-item book-initial"
+                style="--offset-x: 200%; --offset-y: 100%; --delay: 0.3s; transition-delay: 0.015s;">
+              <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=200&h=300&fit=crop&auto=format&q=80"
+                  alt="The Design of Everyday Things">
+              <div class="overlay"></div>
+              <div class="title">The Design of Everyday Things</div>
             </div>
-            <div class="col-sm-6">
-              <div class="reveal resume-card u-boxShadow1 certification-card">
-                <div class="u-displayFlex u-alignItems-center u-height100">
-                  <div class="info-alt">
-                    <h3>Technical</h3>
-                    <p class="u-fontSize-p4 u-lineHeight-1_75">HTML, CSS, JavaScript, Angular, React, Node.js, Python, PHP, Bootstrap, Webflow, Wix, WordPress, SQL, Git, Jira, Agile, Excel</p>
-                  </div>
-                 </div>
-              </div>
+            <div class="book-item book-initial"
+                style="--offset-x: 100%; --offset-y: 100%; --delay: 0.2s; transition-delay: 0.01s;">
+              <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=200&h=300&fit=crop&auto=format&q=80"
+                  alt="Don't Make Me Think">
+              <div class="overlay"></div>
+              <div class="title">Don't Make Me Think</div>
             </div>
-            <div class="col-sm-6">
-              <div class="reveal resume-card u-boxShadow1 certification-card">
-                <div class="u-displayFlex u-alignItems-center u-height100">
-                  <div class="info-alt">
-                    <h3>Soft Skills</h3>
-                    <p class="u-fontSize-p4 u-lineHeight-1_75">
-                      Leadership, Teamwork, Problem Solving, Organization, Empathy, Design Thinking, Growth Mindset, Curiosity
-                    </p>
-                  </div>
-                 </div>
-              </div>
+            <div class="book-item book-initial"
+                style="--offset-x: 0%; --offset-y: 100%; --delay: 0.1s; transition-delay: 0.005s;">
+              <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=200&h=300&fit=crop&auto=format&q=80"
+                  alt="About Face">
+              <div class="overlay"></div>
+              <div class="title">About Face</div>
             </div>
-            <div class="col-sm-12">
-              <div class="reveal resume-card u-boxShadow1 certification-card">
-                <div class="u-height100">
-                  <div class="info-alt">
-                    <h3>Clubs</h3>
-                    <div class="row row-gutter-sm u-fontSize-p4 u-lineHeight-1_75 u-marginT20">
-                      <div class="col-sm-6">
-                        <span>
-                          <div class="img-holder">
-                            <img src="../assets/images/about/swe.png" alt="Society of Women Engineers logo">
-                          </div>
-                          <div class="label-holder">
-                            Society of Women Engineers (Member)
-                          </div>
-                        </span>
-                      </div>
-                      <div class="col-sm-6">
-                        <span>
-                          <div class="img-holder">
-                            <img src="../assets/images/about/ux-club-logo.jpeg" class="u-borderR50p" alt="UX Club, UW Madison logo">
-                          </div>
-                          <div class="label-holder">
-                            UX Club @ UW Madison (Member)
-                          </div>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                 </div>
-              </div>
+            <div class="book-item book-initial"
+                style="--offset-x: -100%; --offset-y: 100%; --delay: 0.2s; transition-delay: 0.01s;">
+              <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=200&h=300&fit=crop&auto=format&q=80"
+                  alt="Lean UX">
+              <div class="overlay"></div>
+              <div class="title">Lean UX</div>
+            </div>
+            <div class="book-item book-initial"
+                style="--offset-x: -200%; --offset-y: 100%; --delay: 0.3s; transition-delay: 0.015s;">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=300&fit=crop&auto=format&q=80"
+                  alt="The Elements of User Experience">
+              <div class="overlay"></div>
+              <div class="title">The Elements of User Experience</div>
+            </div>
+
+            <div class="book-item book-initial"
+                style="--offset-x: 200%; --offset-y: 0%; --delay: 0.2s; transition-delay: 0.01s;">
+              <img src="https://images.unsplash.com/photo-1589998059171-988d887df646?w=200&h=300&fit=crop&auto=format&q=80"
+                  alt="Universal Principles of Design">
+              <div class="overlay"></div>
+              <div class="title">Universal Principles of Design</div>
+            </div>
+            <div class="book-item book-initial"
+                style="--offset-x: 100%; --offset-y: 0%; --delay: 0.1s; transition-delay: 0.005s;">
+              <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=200&h=300&fit=crop&auto=format&q=80"
+                  alt="Hooked">
+              <div class="overlay"></div>
+              <div class="title">Hooked</div>
+            </div>
+            <div class="book-item book-initial"
+                style="--offset-x: 0%; --offset-y: 0%; --delay: 0s; transition-delay: 0s;">
+              <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=200&h=300&fit=crop&auto=format&q=80"
+                  alt="The UX Book">
+              <div class="overlay"></div>
+              <div class="title">The UX Book</div>
+            </div>
+            <div class="book-item book-initial"
+                style="--offset-x: -100%; --offset-y: 0%; --delay: 0.1s; transition-delay: 0.005s;">
+              <img src="https://images.unsplash.com/photo-1551029506-0807df4e2031?w=200&h=300&fit=crop&auto=format&q=80"
+                  alt="Design Systems">
+              <div class="overlay"></div>
+              <div class="title">Design Systems</div>
+            </div>
+            <div class="book-item book-initial"
+                style="--offset-x: -200%; --offset-y: 0%; --delay: 0.2s; transition-delay: 0.01s;">
+              <img src="https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=200&h=300&fit=crop&auto=format&q=80"
+                  alt="Atomic Design">
+              <div class="overlay"></div>
+              <div class="title">Atomic Design</div>
+            </div>
+
+            <div class="book-item book-initial"
+                style="--offset-x: 200%; --offset-y: -100%; --delay: 0.3s; transition-delay: 0.015s;">
+              <img src="https://images.unsplash.com/photo-1521906874915-1c6e0a5be446?w=200&h=300&fit=crop&auto=format&q=80"
+                  alt="100 Things Every Designer Needs to Know About People">
+              <div class="overlay"></div>
+              <div class="title">100 Things Every Designer Needs to Know About People</div>
+            </div>
+            <div class="book-item book-initial"
+                style="--offset-x: 100%; --offset-y: -100%; --delay: 0.2s; transition-delay: 0.01s;">
+              <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=200&h=300&fit=crop&auto=format&q=80"
+                  alt="Seductive Interaction Design">
+              <div class="overlay"></div>
+              <div class="title">Seductive Interaction Design</div>
+            </div>
+            <div class="book-item book-initial"
+                style="--offset-x: 0%; --offset-y: -100%; --delay: 0.1s; transition-delay: 0.005s;">
+              <img src="https://images.unsplash.com/photo-1526243741027-444d633d7365?w=200&h=300&fit=crop&auto=format&q=80"
+                  alt="Mental Models">
+              <div class="overlay"></div>
+              <div class="title">Mental Models</div>
+            </div>
+            <div class="book-item book-initial"
+                style="--offset-x: -100%; --offset-y: -100%; --delay: 0.2s; transition-delay: 0.01s;">
+              <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=200&h=300&fit=crop&auto=format&q=80"
+                  alt="Observing the User Experience">
+              <div class="overlay"></div>
+              <div class="title">Observing the User Experience</div>
+            </div>
+            <div class="book-item book-initial"
+                style="--offset-x: -200%; --offset-y: -100%; --delay: 0.3s; transition-delay: 0.015s;">
+              <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=200&h=300&fit=crop&auto=format&q=80"
+                  alt="Information Architecture">
+              <div class="overlay"></div>
+              <div class="title">Information Architecture</div>
             </div>
           </div>
         </div>

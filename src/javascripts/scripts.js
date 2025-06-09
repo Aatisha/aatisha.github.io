@@ -20,6 +20,7 @@ import './project-hero-bg-animation';
 import './amazon-shopbop';
 import './trader-joes';
 import './minds';
+import './about';
 import { instantiatePlayground } from './playground';
 import {
   BlogTemplateProperties, BLOG_CARD_TEMPLATE, MEDIUM_USERNAME,
