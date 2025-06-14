@@ -48,7 +48,7 @@ if (window.location.pathname.includes(URL_PATHS.about)) {
           muteBtn.addEventListener('click', () => {
             video.muted = !video.muted;
             if (!video.muted) {
-              video.volume = 0.1; // Set volume low on unmute
+              video.volume = 0.08; // Set volume low on unmute
             }
             muteBtn.innerHTML = video.muted ? '&#128263;' : '&#128266;';
           });

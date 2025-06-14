@@ -1787,7 +1787,7 @@ html {
 }
 
 .footer-name {
-  font-size: 4rem;
+  font-size: 3.5rem;
   font-weight: bold;
   color: #0f172a;
   line-height: 1.1;
@@ -1876,7 +1876,7 @@ html {
 }
 
 .footer-logo {
-  font-size: 15cqw;
+  font-size: 11cqw;
   line-height: 1;
   font-family: serif;
   font-weight: bold;
@@ -1885,9 +1885,9 @@ html {
 }
 
 .footer-blob {
-  width: 3cqw;
-  height: 3cqw;
-  margin-bottom: 4cqw;
+  width: 1.5cqw;
+  height: 1.5cqw;
+  margin-bottom: 2.5cqw;
   background: linear-gradient(to right, $primary, $primary_alt);
   border-radius: $main-shape_border_radius;
 }
