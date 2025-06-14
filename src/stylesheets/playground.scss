@@ -45,7 +45,6 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  margin-bottom: 60px;
 }
 
 .playground-project-info {
@@ -74,6 +73,13 @@
   .vid-wrapper {
     overflow: hidden;
     border-radius: 12px;
+  }
+
+  .vid-wrapper {
+    video {
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+    }
   }
 
   > a {
