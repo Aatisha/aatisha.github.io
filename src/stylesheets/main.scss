@@ -2143,66 +2143,66 @@ footer {
   fill: #fff;
 }
 
-.about-info {
-  .left-part {
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+// .about-info {
+//   .left-part {
+//     padding: 20px;
+//     display: flex;
+//     align-items: center;
+//     flex-direction: column;
 
-    .image-bg {
-      background: url("../assets/images/hero-image.jpg") no-repeat center bottom;
-      background-size: cover;
-      height: 550px;
-      max-width: 450px;
-      width: 100%;
-      border: solid #fff;
-      border-radius: 10px;
-      transform: rotate(-1deg);
-      border-width: 20px 20px 80px 20px;
-      box-shadow: 0 0 2px 3px rgba(211, 211, 211, 0.5);
-      // margin-bottom: 50px;
+//     .image-bg {
+//       background: url("../assets/images/hero-image.jpg") no-repeat center bottom;
+//       background-size: cover;
+//       height: 550px;
+//       max-width: 450px;
+//       width: 100%;
+//       border: solid #fff;
+//       border-radius: 10px;
+//       transform: rotate(-1deg);
+//       border-width: 20px 20px 80px 20px;
+//       box-shadow: 0 0 2px 3px rgba(211, 211, 211, 0.5);
+//       // margin-bottom: 50px;
 
-      &::after {
-        content: 'Aatisha Cyrill';
-        font-family: "Dawning of a New Day", cursive;
-        font-size: 3rem;
-        display: flex;
-        align-items: flex-end;
-        justify-content: center;
-        height: calc(100% + 65px);
-      }
+//       &::after {
+//         content: 'Aatisha Cyrill';
+//         font-family: "Dawning of a New Day", cursive;
+//         font-size: 3rem;
+//         display: flex;
+//         align-items: flex-end;
+//         justify-content: center;
+//         height: calc(100% + 65px);
+//       }
 
-      // &::before {
-      //   content: '\f521';
-      //   font-family: "Font Awesome 6 Free", sans-serif;
-      //   font-size: 2rem;
-      //   display: flex;
-      //   justify-content: flex-end;
-      //   background: radial-gradient(ellipse farthest-corner at right bottom, #ffd81f 0%, #ffb41d 8%, #e3ac36 30%, #d19716 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #fff 0%, #ffffac 8%, #d1b464 25%, #ffc036 62.5%, #a57c20 100%);
-      //   margin: 10px 16px;
-      //   -webkit-background-clip: text;
-      //   -webkit-text-fill-color: transparent;
-      // }
-    }
-  }
+//       // &::before {
+//       //   content: '\f521';
+//       //   font-family: "Font Awesome 6 Free", sans-serif;
+//       //   font-size: 2rem;
+//       //   display: flex;
+//       //   justify-content: flex-end;
+//       //   background: radial-gradient(ellipse farthest-corner at right bottom, #ffd81f 0%, #ffb41d 8%, #e3ac36 30%, #d19716 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #fff 0%, #ffffac 8%, #d1b464 25%, #ffc036 62.5%, #a57c20 100%);
+//       //   margin: 10px 16px;
+//       //   -webkit-background-clip: text;
+//       //   -webkit-text-fill-color: transparent;
+//       // }
+//     }
+//   }
 
-  .right-part {
-    margin-top: -80px;
-    line-height: 1.5;
-    font-size: 1.3rem;
+//   .right-part {
+//     margin-top: -80px;
+//     line-height: 1.5;
+//     font-size: 1.3rem;
 
-    p {
-      margin: 10px 0;
-      text-align: justify;
-    }
-  }
+//     p {
+//       margin: 10px 0;
+//       text-align: justify;
+//     }
+//   }
 
-  .left-part,
-  .right-part {
-    flex: 1;
-  }
-}
+//   .left-part,
+//   .right-part {
+//     flex: 1;
+//   }
+// }
 
 @media screen and (max-width: 769px) {
   .about-info {
