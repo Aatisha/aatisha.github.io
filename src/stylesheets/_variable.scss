@@ -87,7 +87,7 @@ $breakpoints: (
 
 // Navbar
 $black: $black;
-$logo_dot: $primary;
+$logo_dot: linear-gradient(to right, $primary, $primary_alt);
 $nav_hover: $primary;
 $nav_active: $primary;
 // $logo_dot: #E9D5DA;
