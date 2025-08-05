@@ -455,6 +455,19 @@ window.onload = async () => {
   }
 };
 
+function getNonRepeatingRandomAnimation(allAnimations, recentAnimations) {
+  const options = allAnimations.filter((anim) => !recentAnimations.includes(anim));
+  const random = options[Math.floor(Math.random() * options.length)];
+
+  // Update recentAnimations history (limit to last 3)
+  recentAnimations.push(random);
+  if (recentAnimations.length > 3) {
+    recentAnimations.shift();
+  }
+
+  return random;
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
   const bodyContent = document.getElementById('body-content');
   if (bodyContent) {
@@ -482,6 +495,24 @@ document.addEventListener('DOMContentLoaded', async () => {
       navigationHandle();
       logoAnimation.style.display = 'block';
       heroTextWrapper.style.opacity = '0.75';
+
+      const badge = document.querySelector('.masked-badge-wrapper');
+      const allAnimations = [
+        'subtleTilt', 'floatPulse', 'breatheScale', 'squishBounce', 'slidePeek', 'shimmerPop', 'flickerWink', 'tiltHop', 'giggleWiggle',
+      ];
+      const recentAnimations = [];
+
+      getNonRepeatingRandomAnimation(allAnimations, recentAnimations);
+
+      if (badge) {
+        badge.addEventListener('mouseenter', () => {
+          badge.style.animation = `${getNonRepeatingRandomAnimation()} 1.5s ease-in-out`;
+        });
+
+        badge.addEventListener('mouseleave', () => {
+          badge.style.animation = ''; // Reset animation
+        });
+      }
 
       const tiltElements = document.querySelectorAll('.tilt-animation');
       if (tiltElements.length > 0) {

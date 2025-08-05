@@ -1452,7 +1452,7 @@ hr {
 
 // Container class to handle max-width and padding
 .container {
-  width: 100%;
+  width: 90%;
   margin-right: auto;
   margin-left: auto;
   padding-right: $gutter-width / 2;
@@ -1661,6 +1661,11 @@ hr {
 
   .mob-hide {
     display: none !important;
+  }
+
+  .mob-center {
+    align-items: center;
+    text-align: center;
   }
 }
 

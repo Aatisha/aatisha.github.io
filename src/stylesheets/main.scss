@@ -317,6 +317,131 @@ html {
   // min-height: 700px;
   // box-sizing: border-box;
 
+  .masked-badge-wrapper {
+    display: inline-block;
+    max-width: 100%;
+    margin: 0.5rem 0;
+    transform-origin: center;
+    transition: transform 0.3s ease;
+
+    .masked-badge-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    &:hover {
+      animation: subtleTilt 1.2s ease-in-out forwards;
+    }
+  }
+
+  .hero-heading {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: rgb(241, 237, 246);
+
+    .gradient-text {
+      background: radial-gradient(115deg, $primary_alt, $primary);
+      opacity: 1;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 4.25rem;
+    }
+
+    @media (max-width: 576px) {
+      line-height: 1.25;
+    }
+  }
+
+  .hero-intro {
+    font-size: 1.125rem;
+    color: rgb(241, 237, 246);
+    max-width: 80%;
+    line-height: 1.2;
+    font-weight: 500;
+
+    &.mar-top {
+      margin-top: 3.5rem;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 1.5rem;
+    }
+
+    @media (max-width: 576px) {
+      line-height: 1.4;
+    }
+  }
+
+  .hero-subtext {
+    color: rgb(230, 222, 237);
+    margin-top: 1rem;
+    font-size: 1rem;
+    max-width: 80%;
+
+    @media (min-width: 768px) {
+      font-size: 1.125rem;
+    }
+
+    @media (max-width: 576px) {
+      max-width: 70%;
+      line-height: 1.4;
+    }
+  }
+
+  .cta-buttons {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+
+    @media (min-width: 576px) {
+      flex-direction: row;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 500;
+      border-radius: 0.75rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+
+      i {
+        margin-left: 0.5rem;
+        transition: transform 0.3s ease;
+      }
+
+      &.btn-glass {
+        background: linear-gradient(135deg, rgba(49, 36, 64, 0.4), rgba(64, 45, 76, 0.2));
+        border: 1px solid rgba(61, 47, 84, 1);
+        backdrop-filter: blur(10px);
+        color: rgb(241, 237, 246);
+      }
+
+      &.btn-ghost {
+        border: 1px solid rgba(61, 47, 84, 0.3);
+        color: rgb(241, 237, 246);
+        background: transparent;
+
+        &:hover {
+          border-color: rgba(61, 47, 84, 0.6);
+        }
+      }
+
+      &:hover i {
+        transform: translateX(0.25rem);
+      }
+    }
+  }
+
   .hero-logo {
     position: absolute;
     left: 50%;
@@ -1854,10 +1979,10 @@ html {
 
 .say-hello-btn {
   padding: 0.5rem 1rem;
-  border: 2px solid #0f172a;
+  border: 1.5px solid #0f172a;
   border-radius: 9999px;
   color: #0f172a;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: transparent;
   backdrop-filter: blur(6px);
   font-weight: 500;
   transition: all 0.3s;
@@ -2468,8 +2593,24 @@ html {
   margin: 8px 10px;
 }
 
-// Projects
+.chip-container {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
 
+  .chip {
+    display: inline-block;
+    padding: 6px 12px;
+    margin: 8px 0;
+    font-size: 14px;
+    color: #171717;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    cursor: default;
+  }
+}
+
+// Projects
 .project {
   .hero-project-img {
     background-size: cover !important;
@@ -2682,8 +2823,22 @@ html {
   }
 }
 
+.myworkerai_color {
+  color: $myworkerai;
+
+  --link-hover-color: #{$myworkerai};
+
+  &.link-style:hover {
+    color: $white !important;
+  }
+}
+
 .amazon_shopbop_dark_color {
   color: $amazon_shopbop_dark;
+}
+
+.myworkerai_dark_color {
+  color: $myworkerai_dark;
 }
 
 // Online Assessment
@@ -3358,6 +3513,66 @@ html {
   }
 }
 
+// MyWorker.AI
+.project-myworkerai {
+  --underline-effect-color: #{$myworkerai};
+  --scroll-watcher: #{$myworkerai};
+  --swiper-elements: #{$myworkerai_dark};
+  --swiper-nav-bg: #{$myworkerai_light};
+  --primary-btn-color: #{$myworkerai_dark};
+  --primary-btn-hover-color: #{$white};
+
+  .project-bg {
+    background-color: $myworkerai_light;
+    color: $myworkerai_dark;
+  }
+
+  .hero-myworkerai {
+    .hero-myworkerai--video {
+      overflow: hidden;
+      border-radius: 20px;
+    }
+
+    .left {
+      padding: 50px 50px 50px 0;
+    }
+
+    .right {
+      padding: 20px 0 20px 20px;
+    }
+
+    @media screen and (max-width: 768px) {
+      .left {
+        padding: 20px 0;
+      }
+
+      .right {
+        padding: 10px 0;
+      }
+    }
+  }
+
+  blockquote {
+    &.project-bg {
+      &::after,
+      &::before {
+        color: $myworkerai_dark;
+      }
+    }
+  }
+
+  .video-demo-aspect {
+    aspect-ratio: 14.7 / 9;
+    overflow: hidden;
+
+    video {
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}
+
 // Amazon Shopbop
 .project-amazon-shopbop {
   --underline-effect-color: #{$amazon_shopbop};
@@ -3988,6 +4203,10 @@ $star-background: #f1c40f;
         height: 30px !important;
       }
 
+      &.myworkerai-logo {
+        height: 28px !important;
+      }
+
       @media screen and (max-width: 566px) {
         padding: 0 6px;
         height: 25px;
@@ -3998,6 +4217,10 @@ $star-background: #f1c40f;
 
         &.rover-logo {
           height: 20px !important;
+        }
+
+        &.myworkerai-logo {
+          height: 18px !important;
         }
       }
     }
@@ -4040,7 +4263,7 @@ $star-background: #f1c40f;
       }
     }
 
-    &.trdr-jos-img {
+    &.front-macbook-img {
       justify-content: center;
 
       img {
@@ -4131,9 +4354,15 @@ $star-background: #f1c40f;
     }
   }
 
+  &.myworkerai-card {
+    .interactive-glow {
+      background-color: #82f7f7;
+    }
+  }
+
   @media screen and (max-width: 1350px) {
     .image-container {
-      &.trdr-jos-img,
+      &.front-macbook-img,
       &.minds-img {
         img {
           height: 300px;
@@ -4150,7 +4379,7 @@ $star-background: #f1c40f;
         }
       }
 
-      &.trdr-jos-img,
+      &.front-macbook-img,
       &.minds-img {
         img {
           height: 260px;
@@ -4167,7 +4396,7 @@ $star-background: #f1c40f;
         }
       }
 
-      &.trdr-jos-img,
+      &.front-macbook-img,
       &.minds-img {
         img {
           height: 235px;
@@ -4190,7 +4419,7 @@ $star-background: #f1c40f;
         }
       }
 
-      &.trdr-jos-img,
+      &.front-macbook-img,
       &.minds-img {
         img {
           height: 210px;
@@ -4219,7 +4448,7 @@ $star-background: #f1c40f;
         }
       }
 
-      &.trdr-jos-img,
+      &.front-macbook-img,
       &.minds-img {
         img {
           height: 185px;
@@ -4237,7 +4466,7 @@ $star-background: #f1c40f;
 
   @media screen and (max-width: 750px) {
     .image-container {
-      &.trdr-jos-img,
+      &.front-macbook-img,
       &.minds-img {
         img {
           height: 160px;
@@ -4260,7 +4489,7 @@ $star-background: #f1c40f;
         }
       }
 
-      &.trdr-jos-img,
+      &.front-macbook-img,
       &.minds-img {
         img {
           height: 150px;
@@ -4294,7 +4523,7 @@ $star-background: #f1c40f;
         }
       }
 
-      &.trdr-jos-img,
+      &.front-macbook-img,
       &.minds-img {
         height: 180px;
 
@@ -4362,7 +4591,6 @@ $star-background: #f1c40f;
   transform: translate(-50%, -50%);
   opacity: 0;
   display: none;
-  text-align: center;
   transition: opacity 0.5s ease-in-out;
 
   .hero-title {
