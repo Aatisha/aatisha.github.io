@@ -13,7 +13,8 @@
     "lint-fix:js": "npx eslint \"src/**/*.js\" --fix",
     "lint:styles": "stylelint \"src/**/*.scss\"",
     "lint-fix:styles": "npx stylelint \"src/**/*.scss\" --fix",
-    "build:docs": "cross-env NODE_ENV=production webpack --max-old-space-size=8192 --config ./config/webpack.config.js",
+    "build:docs": "cross-env NODE_ENV=production webpack --max-old-space-size=8192 --config ./config/webpack.config.js && node ./config/add-cname.js",
+    "gen:cname": "node ./config/add-cname.js",
     "deploy": "node ./config/site.deploy.js"
   },
   "devDependencies": {
