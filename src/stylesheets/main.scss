@@ -324,10 +324,6 @@ html {
     top: 15px;
     // z-index: 1;
 
-    a {
-      color: $white !important;
-    }
-
     #logo-dot-hero {
       background: none;
       position: absolute;
@@ -336,7 +332,7 @@ html {
       margin-top: 22%;
 
       &[data-animate="true"] {
-        background: $white;
+        background: $logo_dot;
         animation: drop 1s forwards linear 0.2s 1;
       }
     }
@@ -4576,4 +4572,20 @@ $star-background: #f1c40f;
   &.right {
     right: 0;
   }
+}
+
+.hero-section .badge {
+  display: inline-block;
+  background: $primary;
+  color: #fff;
+  padding: 8px 16px;
+  // transform: rotate(-2deg);
+  font-size: 2rem;
+  margin-top: 50px;
+}
+
+.hero-section .badge-secondary-text {
+  letter-spacing: 1px;
+  word-spacing: 10px;
+  font-size: 4.5rem;
 }

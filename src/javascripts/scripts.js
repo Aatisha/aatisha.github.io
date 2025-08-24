@@ -472,16 +472,16 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     } else {
       const logoAnimation = document.getElementById('logo-animation');
-      const heroTextWrapper = document.querySelector('.hero-text');
+      // const heroTextWrapper = document.querySelector('.hero-text');
       logoAnimation.style.display = 'none';
-      const fluidApp = new FluidApp();
-      await fluidApp.show();
+      // const fluidApp = new FluidApp();
+      // await fluidApp.show();
       bodyContent.style.display = 'block';
-      heroTextWrapper.style.display = 'block';
-      await delay(100);
+      // heroTextWrapper.style.display = 'block';
+      // await delay(100);
       navigationHandle();
       logoAnimation.style.display = 'block';
-      heroTextWrapper.style.opacity = '0.75';
+      // heroTextWrapper.style.opacity = '1';
 
       const tiltElements = document.querySelectorAll('.tilt-animation');
       if (tiltElements.length > 0) {
