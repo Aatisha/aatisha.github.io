@@ -17,23 +17,30 @@
           <div class="u-displayFlex u-flex-col u-alignItems-start mob-center">
             <!-- Glass Badge -->
             <div class="masked-badge-wrapper">
-              <svg class="masked-badge-svg" viewBox="0 0 750 115" preserveAspectRatio="xMidYMid meet">
+              <svg class="masked-badge-svg"
+                   viewBox="0 0 750 115"
+                   preserveAspectRatio="xMidYMid meet"
+                   aria-label="PRODUCT DESIGNER badge">
                 <defs>
                   <mask id="text-mask">
-                    <rect width="100%" height="100%" fill="rgb(241, 237, 246)" />
+                    <!-- full-coverage rect in SVG coords -->
+                    <rect width="750" height="115" fill="white" />
                     <text id="badge-text"
                           x="50%" y="50%" dy=".35em"
                           text-anchor="middle"
                           font-size="54"
-                          fill="black"
-                          font-family="sans-serif"
                           font-weight="900"
-                          letter-spacing="0.1em">
+                          letter-spacing="0.1em"
+                          fill="black">
                       PRODUCT DESIGNER
                     </text>
                   </mask>
                 </defs>
-                <rect width="100%" height="100%" fill="rgba(255,255,255,0.55)" mask="url(#text-mask)" />
+
+                <!-- background rectangle sized in viewBox units -->
+                <rect width="750" height="115"
+                      fill="rgba(255,255,255,0.55)"
+                      mask="url(#text-mask)" />
               </svg>
             </div>
 
@@ -53,18 +60,18 @@
             </p>
 
             <!-- CTA Buttons -->
-            <div class="cta-buttons">
+            <!-- <div class="cta-buttons">
               <a href="mailto:hello@aatishacyrill.com" class="btn btn-glass">
                 Say Hello <i class="fa-solid fa-arrow-right"></i>
               </a>
-            </div>
+            </div> -->
           </div>
         </div>
 
         <!-- Right column: Image (hidden on mobile) -->
         <div class="mob-hide col-sm-5 col-md-4 hero-image-wrapper">
           <div class="u-displayFlex u-justify-end u-alignItems-center u-width100 u-height100">
-            <img src="assets/images/hero-image3.png" alt="Aatisha Cyrill" class="hero-image u-width75" />
+            <img src="assets/images/hero-image3.png" alt="Aatisha Cyrill" class="hero-image u-width75 bottom-fade" />
           </div>
         </div>
       </div>
@@ -104,9 +111,9 @@
                   <p class="u-fontSize-p3  u-marginT20 u-lineHeight-1_75">
                     Helping founders generate leads and craft personalized outreach through a conversational AI video agent.
                   </p>
-                  <!-- <div class="u-displayFlex u-marginT20 u-justify-end">
-                    <a href="/myworker.ai" class="btn-primary">Project details</a>
-                  </div> -->
+                  <div class="u-displayFlex u-marginT20 u-justify-end">
+                    <a href="https://www.figma.com/deck/WTkhxNWdn1T3uQe6yMln42/MyWorker.AI" class="btn-primary" target="_blank">Project deck</a>
+                  </div>
                 </div>
                 <div class="interactive-glow"></div>
               </div>

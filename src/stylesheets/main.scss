@@ -321,11 +321,9 @@ html {
     display: inline-block;
     max-width: 100%;
     margin: 0.5rem 0;
-    transform-origin: center;
-    transition: transform 0.3s ease;
 
     .masked-badge-svg {
-      width: 100%;
+      width: 15rem;
       height: auto;
       display: block;
     }
@@ -358,7 +356,7 @@ html {
   }
 
   .hero-intro {
-    font-size: 1.125rem;
+    font-size: 1.375rem;
     color: rgb(241, 237, 246);
     max-width: 80%;
     line-height: 1.2;
@@ -380,7 +378,7 @@ html {
   .hero-subtext {
     color: rgb(230, 222, 237);
     margin-top: 1rem;
-    font-size: 1rem;
+    font-size: 1.25rem;
     max-width: 80%;
 
     @media (min-width: 768px) {
@@ -3947,9 +3945,9 @@ ol {
   position: absolute;
   display: flex;
   // top: 20px;
-  font-size: 1.2rem;
+  font-size: 0.8rem;
   align-items: center;
-  padding: 5px 35px;
+  padding: 5px 20px;
   font-weight: 700;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
@@ -4804,4 +4802,13 @@ $star-background: #f1c40f;
   &.right {
     right: 0;
   }
+}
+
+.bottom-fade {
+  -webkit-mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
+  mask-repeat: no-repeat;
+  mask-size: 100% 100%;
 }
