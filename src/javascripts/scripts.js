@@ -541,61 +541,63 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.documentElement.style.scrollBehavior = 'smooth';
 
     const nav = document.querySelector('.case-study-nav');
-    const navLinks = nav.querySelectorAll('a[href*="#"]');
-    const navList = nav.querySelector('ul');
-    if (nav && navLinks && navList) {
-      // Dynamically get the first target section from nav
-      const sectionList = Array.from(navLinks)
-        .map((link) => {
-          const { hash } = new URL(link.href);
-          return document.querySelector(hash);
-        })
-        .filter(Boolean);
+    if (nav) {
+      const navLinks = nav.querySelectorAll('a[href*="#"]');
+      const navList = nav.querySelector('ul');
+      if (navLinks && navList) {
+        // Dynamically get the first target section from nav
+        const sectionList = Array.from(navLinks)
+          .map((link) => {
+            const { hash } = new URL(link.href);
+            return document.querySelector(hash);
+          })
+          .filter(Boolean);
 
-      // Fallback if no sections
-      if (!sectionList.length) return;
+        // Fallback if no sections
+        if (!sectionList.length) return;
 
-      const firstSection = sectionList[0]; // dynamically use first linked section
+        const firstSection = sectionList[0]; // dynamically use first linked section
 
-      // eslint-disable-next-line no-inner-declarations
-      function onScroll() {
-        const scrollPos = window.scrollY + window.innerHeight / 4;
-        let currentSection = null;
+        // eslint-disable-next-line no-inner-declarations
+        function onScroll() {
+          const scrollPos = window.scrollY + window.innerHeight / 4;
+          let currentSection = null;
 
-        sectionList.forEach((section) => {
-          if (section.offsetTop <= scrollPos) {
-            currentSection = section;
+          sectionList.forEach((section) => {
+            if (section.offsetTop <= scrollPos) {
+              currentSection = section;
+            }
+          });
+
+          navLinks.forEach((link) => {
+            link.classList.remove('active');
+            const linkHash = new URL(link.href).hash;
+            if (currentSection && linkHash === `#${currentSection.id}`) {
+              link.classList.add('active');
+            }
+          });
+
+          // Only show nav list if first section is in view
+          if (firstSection.getBoundingClientRect().top < window.innerHeight * 0.5) {
+            navList.classList.add('visible');
+            navList.classList.remove('animating-out');
+          } else {
+            navList.classList.remove('visible');
+            navList.classList.add('animating-out');
           }
-        });
-
-        navLinks.forEach((link) => {
-          link.classList.remove('active');
-          const linkHash = new URL(link.href).hash;
-          if (currentSection && linkHash === `#${currentSection.id}`) {
-            link.classList.add('active');
-          }
-        });
-
-        // Only show nav list if first section is in view
-        if (firstSection.getBoundingClientRect().top < window.innerHeight * 0.5) {
-          navList.classList.add('visible');
-          navList.classList.remove('animating-out');
-        } else {
-          navList.classList.remove('visible');
-          navList.classList.add('animating-out');
         }
+
+        // Prevent flash on load
+        window.addEventListener('DOMContentLoaded', () => {
+          navList.classList.remove('visible');
+        });
+
+        // Smooth scroll spy + entry animation
+        window.addEventListener('scroll', onScroll);
+        window.addEventListener('load', () => {
+          setTimeout(onScroll, 300); // trigger after browser completes hash jump
+        });
       }
-
-      // Prevent flash on load
-      window.addEventListener('DOMContentLoaded', () => {
-        navList.classList.remove('visible');
-      });
-
-      // Smooth scroll spy + entry animation
-      window.addEventListener('scroll', onScroll);
-      window.addEventListener('load', () => {
-        setTimeout(onScroll, 300); // trigger after browser completes hash jump
-      });
     }
   } else {
     const is404 = document.getElementById('404Page');
