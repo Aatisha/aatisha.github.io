@@ -220,7 +220,7 @@
 }
 
 .u-green {
-  color: #38d77a;
+  color: #34a853;
 
   /* background-color: #2a69ed; */
 
@@ -832,6 +832,10 @@
   margin-bottom: 0;
 }
 
+.u-marginB3 {
+  margin-bottom: 3px !important;
+}
+
 .u-marginB5 {
   margin-bottom: 5px;
 }
@@ -931,8 +935,8 @@
 }
 
 .u-marginV20 {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 20px !important;
+  margin-bottom: 20px !important;
 }
 
 .u-marginV30 {
@@ -1057,12 +1061,30 @@
   padding-left: 50px !important;
 }
 
+.u-paddingL-20 {
+  padding-left: 20px !important;
+}
+
+.u-padding0 {
+  padding: 0 !important;
+}
+
+.u-paddingB0 {
+  padding-bottom: 0 !important;
+}
+
 .u-padding10 {
   padding: 10px;
 }
 
 .u-padding15 {
   padding: 15px;
+}
+
+@media (min-width: 576px) {
+  .u-padding15-not-mob {
+    padding: 15px;
+  }
 }
 
 .u-padding20 {
@@ -1145,6 +1167,10 @@
   padding: 50px 0;
 }
 
+.u-paddingV20 {
+  padding: 20px 0;
+}
+
 .u-paddingV80 {
   padding: 80px 0;
 }
@@ -1152,6 +1178,11 @@
 .u-paddingH50 {
   padding-left: 50px;
   padding-right: 50px;
+}
+
+.u-paddingH20 {
+  padding-left: 20px !important;
+  padding-right: 20px !important;
 }
 
 .u-paddingH30 {
@@ -1452,7 +1483,7 @@ hr {
 
 // Container class to handle max-width and padding
 .container {
-  width: 90%;
+  width: 70%;
   margin-right: auto;
   margin-left: auto;
   padding-right: $gutter-width / 2;
@@ -1465,6 +1496,34 @@ hr {
       }
     }
   }
+
+  &.lg {
+    width: 80%;
+  }
+
+  &.lg-alt {
+    width: 85%;
+  }
+
+  &.xl {
+    width: 90%;
+  }
+
+  @media (max-width: 1300px) {
+    width: 80%;
+  }
+
+  @media (max-width: 992px) {
+    width: 85%;
+  }
+
+  @media (max-width: 768px) {
+    width: 90%;
+  }
+
+  @media (max-width: 576px) {
+    width: 100%;
+  }
 }
 
 .container-lg {
@@ -1475,6 +1534,12 @@ hr {
       }
     }
   }
+}
+
+.container-100 {
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 // Row class to handle negative margins for gutter compensation

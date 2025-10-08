@@ -122,16 +122,16 @@ export const URL_PATHS = {
 
 export const DESIGN_ARTICLE_NAVS = [
   {
-    name: 'Amazon Shopbop - App Design For Social Recommendations',
-    shortName: 'Amazon Shopbop',
-    path: URL_PATHS.amazon_shopbop,
-    class: 'amazon_shopbop_color',
-  },
-  {
     name: 'MINDS@UW',
     shortName: 'MINDS@UW',
     path: URL_PATHS.minds,
     class: 'minds_color',
+  },
+  {
+    name: 'Amazon Shopbop - App Design For Social Recommendations',
+    shortName: 'Amazon Shopbop',
+    path: URL_PATHS.amazon_shopbop,
+    class: 'amazon_shopbop_color',
   },
   {
     name: 'Sustain Dane - App Design For Environmental Good',
