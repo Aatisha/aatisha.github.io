@@ -35,6 +35,10 @@
   border-radius: 9999px;
   font-size: 0.875rem;
   font-weight: 500;
+
+  &:first-child {
+    margin-left: 0;
+  }
 }
 
 // ------------------------------------------------------------
@@ -109,6 +113,13 @@
   color: #1e40af;
 }
 
+.tag-light-blue {
+  @extend .tag;
+
+  background: #eeecff;
+  color: #0c2c94;
+}
+
 .tag-purple {
   @extend .tag;
 
@@ -128,6 +139,34 @@
 
   background-color: #f7f9cb;
   color: #6f4402;
+}
+
+.tag-sea-green {
+  @extend .tag;
+
+  background: #ebfcff;
+  color: #1c454a;
+}
+
+.tag-light-green {
+  @extend .tag;
+
+  background: #e0ffe5;
+  color: #1c454a;
+}
+
+.tag-red {
+  @extend .tag;
+
+  background: #fcdce4;
+  color: #651616;
+}
+
+.tag-black {
+  @extend .tag;
+
+  background: #e8e5e5;
+  color: #121111;
 }
 
 // ------------------------------------------------------------
