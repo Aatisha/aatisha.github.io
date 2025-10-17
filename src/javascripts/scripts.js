@@ -538,6 +538,22 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     tabHandler();
 
+    // Fix anchor links to work correctly with base href
+    document.addEventListener('click', (e) => {
+      const target = e.target.closest('a');
+      if (target && target.getAttribute('href')?.startsWith('#')) {
+        e.preventDefault();
+        const id = target.getAttribute('href').substring(1);
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+          // Update URL with full path + hash
+          // eslint-disable-next-line no-restricted-globals
+          history.pushState(null, '', `${window.location.pathname}#${id}`);
+        }
+      }
+    });
+
     document.documentElement.style.scrollBehavior = 'smooth';
 
     const nav = document.querySelector('.case-study-nav');

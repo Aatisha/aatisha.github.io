@@ -1,24 +1,6 @@
 <meta charset="utf-8">
 <title>Aatisha Cyrill | Product Designer</title>
 <base href="/">
-<script>
-  // Fix anchor links to work correctly with base href
-  document.addEventListener('DOMContentLoaded', function() {
-    document.addEventListener('click', function(e) {
-      const target = e.target.closest('a');
-      if (target && target.getAttribute('href')?.startsWith('#')) {
-        e.preventDefault();
-        const id = target.getAttribute('href').substring(1);
-        const element = document.getElementById(id);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-          // Update URL without navigating
-          history.pushState(null, '', '#' + id);
-        }
-      }
-    });
-  });
-</script>
 <meta name="description" content="Aatisha Cyrill's UX designer and researcher web portfolio." />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <!-- Google tag (gtag.js) -->
