@@ -20,6 +20,7 @@ import './project-hero-bg-animation';
 import './amazon-shopbop';
 import './trader-joes';
 import './minds';
+import './myworker-ai';
 import './about';
 import { instantiatePlayground } from './playground';
 import {
@@ -611,7 +612,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Smooth scroll spy + entry animation
         window.addEventListener('scroll', onScroll);
         window.addEventListener('load', () => {
-          setTimeout(onScroll, 300); // trigger after browser completes hash jump
+          setTimeout(onScroll, 500); // trigger after browser completes hash jump
         });
       }
     }
@@ -624,56 +625,71 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   const vids = document.querySelectorAll('.speed-control');
-  if (!vids || vids.length === 0) return;
-  vids.forEach((video) => {
-    const speed = parseFloat(video.dataset.speed) || 1.25;
-    // eslint-disable-next-line no-param-reassign
-    video.playbackRate = speed;
-  });
-
-  // 1) Select all your target videos
-  const videos = document.querySelectorAll('.autoplay-on-visible');
-
-  // 2) If there are no videos with that class, do nothing
-  if (!videos || videos.length === 0) {
-    return; // Stop execution here
+  if (vids && vids.length) {
+    vids.forEach((video) => {
+      const speed = parseFloat(video.dataset.speed) || 1.25;
+      // eslint-disable-next-line no-param-reassign
+      video.playbackRate = speed;
+    });
   }
 
-  const observerOptions = {
-    root: null,
-    threshold: 0.1,
-  };
+  const allAnimatedElements = document.querySelectorAll('.animate-on-visible');
 
-  // 3) This observer handles playing/pausing each video
-  const videoObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      const video = entry.target;
-
-      if (entry.isIntersecting && video.dataset.autoplay === 'false') {
-        video.play();
-        video.dataset.autoplay = 'true';
-      } else if (!entry.isIntersecting && video.dataset.autoplay === 'true') {
-        video.pause();
-        // video.currentTime = 0; // optional reset
-        video.dataset.autoplay = 'false';
-      }
+  if (allAnimatedElements && allAnimatedElements.length) {
+    // Use Intersection Observer to determine if objects are within the viewport
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          return;
+        }
+        entry.target.classList.remove('in-view');
+      });
     });
-  }, observerOptions);
 
-  // 4) Optional "lazy load" observer
-  const lazyLoadObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        // start observing for playback
-        videoObserver.observe(entry.target);
-        // unobserve from lazy loading
-        lazyLoadObserver.unobserve(entry.target);
-      }
+    // Add the observer to each of those elements
+    allAnimatedElements.forEach((element) => observer.observe(element));
+  }
+
+  const videos = document.querySelectorAll('.autoplay-on-visible');
+
+  if (videos && videos.length) {
+    const observerOptions = {
+      root: null,
+      threshold: 0.1,
+    };
+
+    // 3) This observer handles playing/pausing each video
+    const videoObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const video = entry.target;
+
+        if (entry.isIntersecting && video.dataset.autoplay === 'false') {
+          video.play();
+          video.dataset.autoplay = 'true';
+        } else if (!entry.isIntersecting && video.dataset.autoplay === 'true') {
+          video.pause();
+          // video.currentTime = 0; // optional reset
+          video.dataset.autoplay = 'false';
+        }
+      });
+    }, observerOptions);
+
+    // 4) Optional "lazy load" observer
+    const lazyLoadObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // start observing for playback
+          videoObserver.observe(entry.target);
+          // unobserve from lazy loading
+          lazyLoadObserver.unobserve(entry.target);
+        }
+      });
     });
-  });
 
-  // 5) Attach the lazyLoadObserver to each video
-  videos.forEach((video) => {
-    lazyLoadObserver.observe(video);
-  });
+    // 5) Attach the lazyLoadObserver to each video
+    videos.forEach((video) => {
+      lazyLoadObserver.observe(video);
+    });
+  }
 });

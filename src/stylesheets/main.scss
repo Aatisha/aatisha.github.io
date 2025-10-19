@@ -3041,6 +3041,644 @@ html {
   }
 }
 
+// MyWorker.AI
+.project-myworker-ai {
+  --underline-effect-color: #{$myworkerai_light};
+  --scroll-watcher: #{$myworkerai};
+  --swiper-elements: #{$myworkerai_dark};
+  --swiper-nav-bg: #{$myworkerai_light};
+  --primary-btn-color: #{$myworkerai_dark};
+  --primary-btn-hover-color: #{$white};
+  --custom-blockquote: #{$myworkerai};
+
+  .project-bg {
+    background-color: $myworkerai_light;
+    color: $myworkerai_dark;
+  }
+
+  .hero-myworker-ai {
+    overflow: visible !important;
+
+    .text-container {
+      overflow: visible !important;
+    }
+
+    .container {
+      overflow: visible !important;
+    }
+  }
+
+  .myworker-ai-hero-img {
+    box-shadow: 0 0 18.047px 3.008px rgba(0, 0, 0, 0.14), 0 12.031px 30.078px 9.023px rgba(0, 0, 0, 0.2);
+  }
+
+  .myworker-ai-hero-text {
+    h3 {
+      background: linear-gradient(29deg, #797877 0%, #463c3c 49%, #926436 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    p {
+      color: rgb(132, 132, 132);
+    }
+  }
+
+  // Hero Image Container with Lead Cards
+  .hero-image-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    overflow: visible;
+  }
+
+  .lead-cards-stack {
+    position: absolute;
+    right: -100px;
+    top: 28%;
+    transform: translateY(-50%);
+    width: 220px;
+    height: 300px;
+    z-index: 100;
+    pointer-events: auto;
+
+    @media screen and (max-width: 1400px) {
+      right: -75px;
+      top: 32%;
+      width: 190px;
+      height: 260px;
+    }
+
+    @media screen and (max-width: 1200px) {
+      right: -50px;
+      top: 35%;
+      width: 160px;
+      height: 220px;
+    }
+
+    @media screen and (max-width: 992px) {
+      display: none;
+    }
+  }
+
+  // Keyframe animations for each lead card with unique rotation and opacity
+  @keyframes leadCardFloat1 {
+    0% {
+      opacity: 0;
+      transform: translateX(50px) translateY(30px) rotate(12deg) scale(0.85);
+    }
+
+    100% {
+      opacity: 0.98;
+      transform: translateX(0) translateY(0) rotate(-4deg) scale(1);
+    }
+  }
+
+  @keyframes leadCardFloat2 {
+    0% {
+      opacity: 0;
+      transform: translateX(50px) translateY(30px) rotate(3deg) scale(0.85);
+    }
+
+    100% {
+      opacity: 0.97;
+      transform: translateX(0) translateY(0) rotate(16deg) scale(1);
+    }
+  }
+
+  @keyframes leadCardFloat3 {
+    0% {
+      opacity: 0;
+      transform: translateX(50px) translateY(30px) rotate(-5deg) scale(0.85);
+    }
+
+    100% {
+      opacity: 0.96;
+      transform: translateX(0) translateY(0) rotate(6deg) scale(1);
+    }
+  }
+
+  .lead-card {
+    position: absolute;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18), 0 2px 8px rgba(0, 0, 0, 0.12);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    cursor: pointer;
+    pointer-events: auto;
+    left: 0;
+
+    &:hover {
+      opacity: 1 !important;
+      transform: translateY(-15px) rotate(0deg) scale(1.1) !important;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3), 0 6px 15px rgba(0, 0, 0, 0.18);
+      z-index: 200 !important;
+    }
+  }
+
+  .lead-card-1 {
+    width: 140px;
+    top: 80px;
+    left: -15px;
+    z-index: 3;
+
+    &.in-view {
+      animation: leadCardFloat1 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      animation-delay: 0.3s;
+    }
+
+    @media screen and (max-width: 1400px) {
+      width: 120px;
+      top: 78px;
+      left: -13px;
+    }
+
+    @media screen and (max-width: 1200px) {
+      width: 100px;
+      top: 66px;
+      left: -10px;
+    }
+  }
+
+  .lead-card-2 {
+    width: 130px;
+    top: 90px;
+    left: 125px;
+    z-index: 2;
+
+    &.in-view {
+      animation: leadCardFloat2 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      animation-delay: 0.5s;
+    }
+
+    @media screen and (max-width: 1400px) {
+      width: 112px;
+      top: 78px;
+      left: 108px;
+    }
+
+    @media screen and (max-width: 1200px) {
+      width: 94px;
+      top: 66px;
+      left: 91px;
+    }
+  }
+
+  .lead-card-3 {
+    width: 140px;
+    top: 20px;
+    left: 80px;
+    z-index: 1;
+
+    &.in-view {
+      animation: leadCardFloat3 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      animation-delay: 0.7s;
+    }
+
+    @media screen and (max-width: 1400px) {
+      width: 120px;
+      top: 17px;
+      left: 69px;
+    }
+
+    @media screen and (max-width: 1200px) {
+      width: 100px;
+      top: 15px;
+      left: 58px;
+    }
+  }
+
+  // Arrow and Leads Text Label
+  .leads-label {
+    position: absolute;
+    right: -145px;
+    top: 40%;
+    z-index: 50;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+
+    &.in-view {
+      opacity: 1;
+      transition-delay: 0.9s;
+    }
+
+    @media screen and (max-width: 1600px) {
+      right: -110px;
+      top: 43%;
+    }
+
+    @media screen and (max-width: 1200px) {
+      right: -90px;
+      top: 50%;
+    }
+
+    @media screen and (max-width: 992px) {
+      display: none;
+    }
+  }
+
+  .leads-arrow {
+    width: 60px;
+    height: auto;
+    filter: brightness(0);
+    opacity: 0.75;
+    transform: rotate(-10deg);
+    position: relative;
+
+    @media screen and (max-width: 1400px) {
+      width: 52px;
+    }
+
+    @media screen and (max-width: 1200px) {
+      width: 44px;
+    }
+  }
+
+  .leads-text {
+    position: absolute;
+    top: 6px;
+    left: 150%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: auto;
+
+    @media screen and (max-width: 1600px) {
+      width: 60px;
+      top: 6px;
+      left: 150%;
+    }
+
+    @media screen and (max-width: 1200px) {
+      width: 50px;
+      top: 6px;
+      left: 150%;
+    }
+  }
+
+  .sparkle-on-banner {
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: -40px;
+      right: -50px;
+      width: 80px;
+      height: 80px;
+      background: url("../assets/images/minds/sparkle-side.webp") center/contain no-repeat;
+      filter: invert(1) brightness(0);
+      pointer-events: none;
+      transform: rotate(340deg);
+    }
+  }
+
+  .myworker-ai-thumbnail {
+    cursor: pointer;
+    display: block;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+      opacity: 0.9;
+    }
+
+    figure {
+      margin: 0;
+
+      img {
+        display: block;
+      }
+    }
+
+    &.wireframe-carousel {
+      img {
+        max-height: 600px;
+      }
+    }
+  }
+
+  .solution-video-row {
+    .video-fluid {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+    }
+
+    .video-fill-height {
+      height: 100%;
+      object-fit: cover; // Crop to fill the height of the sibling
+    }
+  }
+
+  .video-timelapse {
+    width: 100%;
+    object-fit: cover;
+    height: auto;
+    border-radius: 12px;
+  }
+
+  .analytics-box {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    padding: 3rem; /* give more vertical weight */
+    height: 100%;  /* stretch if parent is flex with align-items: stretch */
+  }
+
+  .metric {
+    flex: 1 1 45%;
+    background: #f5f5f5;
+    border: 1px solid #d9d9d9;
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+
+  .metric:hover {
+    transform: translateY(-5px);
+  }
+
+  .metric .number {
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+
+  .metric .label {
+    font-size: 1rem;
+    color: #848181;
+    margin-top: 10px;
+    display: block;
+  }
+
+  .myworker-ai-light-box {
+    background-color: #fbf1f1;
+    border: 1px solid #000;
+  }
+
+  // Business Goals Grid Layout
+  .business-goals-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+
+    @media screen and (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+  }
+
+  .business-goal-item {
+    position: relative;
+    background: $white;
+    border: 1px solid rgba($myworkerai_dark, 0.1);
+    border-radius: 12px;
+    padding: 32px 28px;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &.in-view {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    // Staggered animations
+    &:nth-child(1).in-view {
+      transition-delay: 0.1s;
+    }
+
+    &:nth-child(2).in-view {
+      transition-delay: 0.2s;
+    }
+
+    &:nth-child(3).in-view {
+      transition-delay: 0.3s;
+    }
+
+    &:hover {
+      transform: scale(1.02) translateY(-4px);
+      box-shadow: 0 12px 28px rgba($myworkerai_dark, 0.15);
+      border-color: rgba($myworkerai_dark, 0.2);
+
+      .business-goal-number {
+        transform: scale(1.05);
+        color: $myworkerai_dark;
+      }
+    }
+
+    .business-goal-number {
+      display: inline-block;
+      font-size: 32px;
+      font-weight: 700;
+      color: rgba($myworkerai_dark, 0.2);
+      font-family: 'Courier New', monospace;
+      line-height: 1;
+      margin-bottom: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .business-goal-title {
+      font-size: 19px;
+      font-weight: 600;
+      color: $myworkerai_dark;
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+
+    .business-goal-description {
+      font-size: 15px;
+      line-height: 1.65;
+      color: #5c5c5c;
+      margin: 0;
+    }
+
+    @media screen and (max-width: 768px) {
+      padding: 28px 24px;
+
+      .business-goal-number {
+        font-size: 28px;
+        margin-bottom: 14px;
+      }
+
+      .business-goal-title {
+        font-size: 18px;
+      }
+
+      .business-goal-description {
+        font-size: 14px;
+        line-height: 1.6;
+      }
+    }
+  }
+
+  .quote-block {
+    margin-bottom: 50px;
+    position: relative;
+
+    @media screen and (max-width: 576px) {
+      width: calc(100% - 36px);
+      float: right;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .quote-mark {
+    font-size: 60px;
+    color: #903;
+    position: absolute;
+    left: -30px;
+    top: -10px;
+    font-family: monospace;
+  }
+
+  .quote-text {
+    font-size: 18px;
+    margin: 0;
+    padding-left: 10px;
+  }
+
+  .quote-author {
+    font-size: 14px;
+    color: #5c5c6e;
+    margin-top: 10px;
+    padding-left: 10px;
+  }
+
+  .minds-carousel-thumbnail {
+    width: calc(100% - (2 * (var(--swiper-navigation-size) + 0.8rem)));
+    margin-bottom: 40px;
+  }
+
+  blockquote {
+    &.project-bg {
+      &::after,
+      &::before {
+        color: $minds_dark;
+      }
+    }
+  }
+
+  .video-demo-aspect {
+    aspect-ratio: 14.7 / 9;
+    overflow: hidden;
+
+    video {
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  // Problem Cards Design - Clean & Modern
+  .problem-card {
+    position: relative;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    background: $white;
+    border: 1px solid rgba($myworkerai_dark, 0.1);
+    border-radius: 12px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    transform: translateY(20px);
+
+    // Subtle left accent bar
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 3px;
+      height: 60%;
+      background: linear-gradient(180deg, $myworkerai_dark 0%, rgba($myworkerai_dark, 0.3) 100%);
+      border-radius: 0 3px 3px 0;
+      transition: height 0.3s ease;
+    }
+
+    &.in-view {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    // Staggered animation delays
+    &:nth-child(1).in-view {
+      transition-delay: 0.1s;
+    }
+
+    &:nth-child(2).in-view {
+      transition-delay: 0.2s;
+    }
+
+    &:nth-child(3).in-view {
+      transition-delay: 0.3s;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba($myworkerai_dark, 0.08);
+      border-color: rgba($myworkerai_dark, 0.15);
+
+      &::before {
+        height: 80%;
+      }
+
+      .problem-number {
+        opacity: 1;
+      }
+    }
+
+    .problem-number {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      font-size: 11px;
+      font-weight: 600;
+      color: $myworkerai_dark;
+      letter-spacing: 1.5px;
+      opacity: 0.3;
+      font-family: 'Courier New', monospace;
+      line-height: 1;
+      user-select: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .problem-text {
+      font-size: 16px;
+      line-height: 1.7;
+      color: #2d2929;
+      margin: 0;
+      padding-right: 50px;
+    }
+
+    @media screen and (max-width: 576px) {
+      padding: 24px 28px;
+      margin-bottom: 20px;
+
+      .problem-number {
+        font-size: 10px;
+        top: 20px;
+        right: 20px;
+      }
+
+      .problem-text {
+        font-size: 15px;
+        line-height: 1.6;
+        padding-right: 40px;
+      }
+    }
+  }
+}
+
 // MINDS
 .project-minds {
   --underline-effect-color: #{$minds_light};
@@ -4897,6 +5535,19 @@ $star-background: #f1c40f;
   }
 }
 
+.swiper-controls-below {
+  padding-bottom: 60px;
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    top: calc(100% - 3.5rem);
+  }
+
+  .swiper-pagination {
+    bottom: 10px;
+  }
+}
+
 .hero-404 {
   position: absolute;
   top: 50%;
@@ -5142,6 +5793,131 @@ $star-background: #f1c40f;
 .fade-slide-down {
   transform: translateY(-30px);
   opacity: 0;
-  animation: fadeSlideDown 1s ease-out forwards;
+  animation: fadeSlideY 1s ease-out forwards;
   animation-delay: 0.3s;
+}
+
+.scattered-images-container {
+  position: relative;
+  min-height: 400px;
+
+  @media screen and (max-width: 767px) {
+    min-height: 300px;
+  }
+
+  @media screen and (max-width: 479px) {
+    min-height: 200px;
+  }
+}
+
+.scattered-img {
+  position: absolute;
+  box-shadow: 0 12px 30px rgba($black, 0.2);
+  max-width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+
+  // Initial state - hidden before in view
+  opacity: 0;
+  transform: scale(0.3) translateY(-100px);
+
+  // Animation triggers only when in view
+  &.in-view {
+    animation: scatteredImageSlam 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    animation-fill-mode: forwards;
+  }
+
+  // Define rotation patterns for variation
+  $rotations: -8, 5, 12, -6, 9, -11, 7, -5, 10, -9, 6, -7;
+
+  // Generate styles for up to 12 images dynamically
+  // Desktop and larger screens
+  @media screen and (min-width: 768px) {
+    @for $i from 1 through 12 {
+      &:nth-child(#{$i}) {
+        $rotation: nth($rotations, $i);
+        $top: 5% + (($i - 1) * 8%);
+        $left: 5% + (($i - 1) * 12%);
+        $z-index: 13 - $i; // Higher z-index for earlier images
+        $delay: ($i - 1) * 0.15s; // Staggered delay
+
+        --rotation: #{$rotation}deg;
+
+        top: $top;
+        left: $left;
+        width: 60%;
+        z-index: $z-index;
+
+        // Apply animation delay only when in view
+        &.in-view {
+          animation-delay: $delay;
+
+          // Hover effect with specific rotation
+          &:hover {
+            transform: scale(1.05) translateY(0) !important;
+          }
+        }
+      }
+    }
+  }
+
+  // Tablet screens
+  @media screen and (min-width: 480px) and (max-width: 767px) {
+    @for $i from 1 through 12 {
+      &:nth-child(#{$i}) {
+        $rotation: nth($rotations, $i) * 0.75; // Slightly less rotation
+        $top: 5% + (($i - 1) * 7%);
+        $left: 5% + (($i - 1) * 10%);
+        $z-index: 13 - $i;
+        $delay: ($i - 1) * 0.15s; // Staggered delay
+
+        --rotation: #{$rotation}deg;
+
+        top: $top;
+        left: $left;
+        width: 70%;
+        z-index: $z-index;
+
+        // Apply animation delay only when in view
+        &.in-view {
+          animation-delay: $delay;
+
+          // Hover effect with specific rotation
+          &:hover {
+            transform: scale(1.05) rotate(0deg) translateY(0) !important;
+          }
+        }
+      }
+    }
+  }
+
+  // Mobile screens
+  @media screen and (max-width: 479px) {
+    @for $i from 1 through 12 {
+      &:nth-child(#{$i}) {
+        $rotation: nth($rotations, $i) * 0.6; // Even less rotation on mobile
+        $top: 5% + (($i - 1) * 6%);
+        $left: 2% + (($i - 1) * 8%);
+        $z-index: 13 - $i;
+        $delay: ($i - 1) * 0.15s; // Staggered delay
+
+        --rotation: #{$rotation}deg;
+
+        top: $top;
+        left: $left;
+        width: 75%;
+        z-index: $z-index;
+
+        // Apply animation delay only when in view
+        &.in-view {
+          animation-delay: $delay;
+
+          // Hover effect with specific rotation
+          &:hover {
+            transform: scale(1.05) rotate(#{$rotation}deg) translateY(0) !important;
+          }
+        }
+      }
+    }
+  }
 }
