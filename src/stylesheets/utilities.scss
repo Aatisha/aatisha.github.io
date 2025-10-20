@@ -1326,6 +1326,10 @@
   width: 90%;
 }
 
+.u-width90-stretch-mob {
+  width: 90%;
+}
+
 .u-width95 {
   width: 95%;
   max-width: 1300px;
@@ -1431,6 +1435,7 @@
 
   .u-width60-stretch-mob,
   .u-width70-stretch-mob,
+  .u-width90-stretch-mob,
   .u-width80-stretch-mob {
     width: 100%;
   }

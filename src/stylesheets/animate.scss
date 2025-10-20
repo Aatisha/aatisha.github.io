@@ -238,9 +238,69 @@
   100% { transform: rotate(0deg); }
 }
 
-@keyframes fadeSlideDown {
+@keyframes fadeSlideY {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes fadeSlideX {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in-bottom.in-view {
+  animation: fadeSlideY 1s ease-out forwards;
+}
+
+.slide-in-bottom {
+  transform: translateY(20%);
+  opacity: 0;
+}
+
+.slide-in-top.in-view {
+  animation: fadeSlideY 1s ease-out forwards;
+}
+
+.slide-in-top {
+  transform: translateY(-20%);
+  opacity: 0;
+}
+
+.slide-in-left.in-view {
+  animation: fadeSlideX 1s ease-out forwards;
+}
+
+.slide-in-left {
+  transform: translateX(-20%);
+  opacity: 0;
+}
+
+.slide-in-right.in-view {
+  animation: fadeSlideX 1s ease-out forwards;
+}
+
+.slide-in-right {
+  transform: translateX(20%);
+  opacity: 0;
+}
+
+// Keyframe animation for slam effect
+@keyframes scatteredImageSlam {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) rotate(0deg) translateY(-100px);
+  }
+
+  50% {
+    transform: scale(1.1) rotate(var(--rotation)) translateY(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(var(--rotation)) translateY(0);
   }
 }

@@ -1,3 +1,47 @@
 [build]
   publish = "dist/"
   command = "npm run build:dist"
+
+# Cache static assets aggressively (they have content hashes)
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/videos/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/resume/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# HTML files should check for updates more frequently
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Fonts
+[[headers]]
+  for = "/assets/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Favicons
+[[headers]]
+  for = "/assets/images/favicons/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"

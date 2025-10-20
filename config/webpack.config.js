@@ -12,7 +12,7 @@ module.exports = {
   ],
   output: {
     path: path.join(config.root, config.paths.dist),
-    filename: '[name].[hash].js',
+    filename: config.env === 'production' ? '[name].[contenthash].js' : '[name].js',
   },
   mode: ['production', 'development'].includes(config.env)
     ? config.env
@@ -27,7 +27,7 @@ module.exports = {
     open: true,
     port: config.port,
     host: config.dev_host,
-    disableHostCheck: true
+    disableHostCheck: true,
   },
   module: {
     rules: loaders,

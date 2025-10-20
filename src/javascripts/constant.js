@@ -104,6 +104,7 @@ export const URL_PATHS = {
   plant_health: '/plant-health',
   trader_joes: '/trader-joes',
   minds: '/minds',
+  myworker_ai: '/myworker.ai',
   ux_research: '/ux-research',
   sustainable_ux: '/sustainable-ux',
   ssec_products: '/ssec-products',
@@ -126,6 +127,12 @@ export const DESIGN_ARTICLE_NAVS = [
     shortName: 'MINDS@UW',
     path: URL_PATHS.minds,
     class: 'minds_color',
+  },
+  {
+    name: 'MyWorker.AI - Conversational AI Design',
+    shortName: 'MyWorker.AI',
+    path: URL_PATHS.myworker_ai,
+    class: 'myworkerai_color',
   },
   {
     name: 'Amazon Shopbop - App Design For Social Recommendations',
