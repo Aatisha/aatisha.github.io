@@ -692,4 +692,33 @@ document.addEventListener('DOMContentLoaded', async () => {
       lazyLoadObserver.observe(video);
     });
   }
+
+  // Lazy load videos on homepage to improve initial page load
+  const lazyVideos = document.querySelectorAll('.lazy-video');
+
+  if (lazyVideos && lazyVideos.length) {
+    const lazyVideoObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const video = entry.target;
+
+          // Load the video by triggering the load() method
+          if (video.readyState === 0) {
+            video.load();
+          }
+
+          // Unobserve after loading
+          lazyVideoObserver.unobserve(video);
+        }
+      });
+    }, {
+      root: null,
+      rootMargin: '800px', // Start loading 800px before video comes into view (about 1 screen height)
+      threshold: 0,
+    });
+
+    lazyVideos.forEach((video) => {
+      lazyVideoObserver.observe(video);
+    });
+  }
 });
