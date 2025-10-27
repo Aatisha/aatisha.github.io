@@ -636,15 +636,48 @@ document.addEventListener('DOMContentLoaded', async () => {
   const allAnimatedElements = document.querySelectorAll('.animate-on-visible');
 
   if (allAnimatedElements && allAnimatedElements.length) {
+    let lastScrollY = window.scrollY;
+    let isScrollingDown = true;
+    let scrollTimeout;
+
+    // Track scroll direction with better debouncing
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const scrollDelta = currentScrollY - lastScrollY;
+      // Only update direction if there's significant movement (prevents jitter)
+      if (Math.abs(scrollDelta) > 5) {
+        isScrollingDown = scrollDelta > 0;
+        lastScrollY = currentScrollY;
+      }
+    };
+
+    // Debounce scroll events for better performance
+    window.addEventListener('scroll', () => {
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
+      scrollTimeout = setTimeout(handleScroll, 16); // ~60fps
+    });
+
     // Use Intersection Observer to determine if objects are within the viewport
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
+        const element = entry.target;
+
         if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-          return;
+          // Always animate when element comes into view, regardless of scroll direction
+          // This ensures content never gets "stuck" invisible
+          element.classList.add('in-view');
+        } else if (!isScrollingDown) {
+          // Only remove animation when scrolling up
+          element.classList.remove('in-view');
         }
-        entry.target.classList.remove('in-view');
       });
+    }, {
+      // Trigger animation when 20% of the element is visible
+      threshold: 0.2,
+      // Add some margin to trigger slightly before fully visible
+      rootMargin: '0px 0px -50px 0px',
     });
 
     // Add the observer to each of those elements

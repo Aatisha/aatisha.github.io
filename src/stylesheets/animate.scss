@@ -304,3 +304,14 @@
     transform: scale(1) rotate(var(--rotation)) translateY(0);
   }
 }
+
+// Keyframe for baseline drawing
+@keyframes drawBaseline {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 90%;
+  }
+}
