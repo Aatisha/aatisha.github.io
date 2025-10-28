@@ -4060,7 +4060,7 @@ html {
     position: relative;
     width: 100%;
     max-width: 500px;
-    height: 520px;
+    height: 460px;
     margin: 0 auto;
     opacity: 0;
     transform: translateX(-40px);
@@ -4152,6 +4152,23 @@ html {
 
     @media screen and (max-width: 768px) {
       transform: translateX(-80px) rotate(-1deg);
+    }
+  }
+
+  // Center the two-image zig-zag stack within its container for the Workflow Validation section
+  #workflow-validation {
+    .interview-zigzag-container {
+      // keep default height/positioning, just nudge content down a bit for visual centering
+      padding-top: 8%;
+    }
+
+    // Adjust positions for two-image layout so the pair sits centered vertically
+    .interview-img-1 {
+      top: 15%;
+    }
+
+    .interview-img-2 {
+      top: 52%;
     }
   }
 
@@ -4651,7 +4668,7 @@ html {
 
       &.in-view {
         opacity: 1;
-        transition-delay: 3s; // Show after last step (2.8s + 0.2s)
+        transition-delay: 2.1s; // Show after last step (1.9s + 0.2s)
       }
 
       &::after {
@@ -4685,17 +4702,17 @@ html {
           }
 
           &:nth-child(2) .step-content {
-            transition-delay: 1s;
+            transition-delay: 0.7s;
             opacity: 1;
           }
 
           &:nth-child(3) .step-content {
-            transition-delay: 1.8s;
+            transition-delay: 1.2s;
             opacity: 1;
           }
 
           &:nth-child(4) .step-content {
-            transition-delay: 2.6s;
+            transition-delay: 1.7s;
             opacity: 1;
           }
 
@@ -4706,19 +4723,19 @@ html {
           }
 
           &:nth-child(2) .step-line {
-            transition-delay: 1.2s;
+            transition-delay: 0.9s;
             opacity: 1;
             transform: scaleY(1);
           }
 
           &:nth-child(3) .step-line {
-            transition-delay: 2s;
+            transition-delay: 1.4s;
             opacity: 1;
             transform: scaleY(1);
           }
 
           &:nth-child(4) .step-line {
-            transition-delay: 2.8s;
+            transition-delay: 1.9s;
             opacity: 1;
             transform: scaleY(1);
           }
