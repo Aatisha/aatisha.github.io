@@ -1738,6 +1738,10 @@ hr {
     display: block !important;
   }
 
+  .mob-show-inline {
+    display: inline-block !important;
+  }
+
   .mob-hide {
     display: none !important;
   }
@@ -1748,7 +1752,8 @@ hr {
   }
 }
 
-.mob-show {
+.mob-show,
+.mob-show-inline {
   display: none;
 }
 

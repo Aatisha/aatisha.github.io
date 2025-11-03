@@ -123,16 +123,16 @@ export const URL_PATHS = {
 
 export const DESIGN_ARTICLE_NAVS = [
   {
-    name: 'MINDS@UW',
-    shortName: 'MINDS@UW',
-    path: URL_PATHS.minds,
-    class: 'minds_color',
-  },
-  {
     name: 'MyWorker.AI - Conversational AI Design',
     shortName: 'MyWorker.AI',
     path: URL_PATHS.myworker_ai,
     class: 'myworkerai_color',
+  },
+  {
+    name: 'MINDS@UW',
+    shortName: 'MINDS@UW',
+    path: URL_PATHS.minds,
+    class: 'minds_color',
   },
   {
     name: 'Amazon Shopbop - App Design For Social Recommendations',

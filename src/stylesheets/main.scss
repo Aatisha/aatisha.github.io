@@ -1333,11 +1333,31 @@ html {
   }
 }
 
+.aspect-ratio-3-2 {
+  aspect-ratio: 3 / 2;
+}
+
+.aspect-ratio-1728-1117 {
+  aspect-ratio: 1728 / 1117;
+}
+
 .project-showcase {
   .media-element {
     width: 100%;
-    max-height: 100%;
+    height: auto;
+    max-height: none;
     object-fit: cover;
+    display: block;
+    flex: 0 0 auto;
+  }
+
+  // Keep right media pinned to the top even when left accordion grows
+  .col-md-8.u-displayFlex {
+    align-items: flex-start;
+
+    @media (max-width: 768px) {
+      align-items: center; // preserve centering on small screens
+    }
   }
 
   .project-year {
@@ -1345,7 +1365,7 @@ html {
     font-weight: 500;
     color: #888;
     margin-bottom: 0.5rem;
-    margin-top: 4.5rem;
+    margin-top: 2rem;
   }
 
   .project-title {
@@ -1358,6 +1378,12 @@ html {
     line-height: 1.6;
     margin-bottom: 2rem;
     color: #333;
+  }
+
+  /* Responsive adjustments local to project showcase */
+  @media (max-width: 767px) {
+    .projectLink--noMarginSm { margin-left: 0 !important; }
+    .projectPane--padLgSm { padding: 20px !important; }
   }
 
   .accordion {
@@ -3074,6 +3100,12 @@ html {
 
   .myworker-ai-hero-img {
     box-shadow: 0 0 18.047px 3.008px rgba(0, 0, 0, 0.14), 0 12.031px 30.078px 9.023px rgba(0, 0, 0, 0.2);
+    height: auto;
+    max-height: 720px;
+
+    @media screen and (max-width: 1550px) {
+      max-height: 600px;
+    }
   }
 
   .myworker-ai-hero-text {
@@ -3569,6 +3601,809 @@ html {
       position: relative;
       left: 50%;
       transform: translateX(-50%);
+    }
+  }
+
+  // AI Principles Cards
+  .ai-principles-grid {
+    display: grid;
+    grid-template-columns: 3fr 2fr; // 60% / 40%
+    gap: 28px;
+    align-items: stretch;
+
+    @media screen and (max-width: 992px) {
+      grid-template-columns: 1fr;
+      gap: 22px;
+    }
+  }
+
+  .principle-card {
+    position: relative;
+    background: $white;
+    border: 1px solid rgba($myworkerai_dark, 0.08);
+    border-radius: 16px;
+    padding: 0; // no padding in card
+    overflow: hidden;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+    height: 100%; // stretch to match row height
+
+    .principle-number {
+      position: absolute;
+      font-family: 'Courier New', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      color: rgba($myworkerai_dark, 0.35);
+      user-select: none;
+      z-index: 2;
+    }
+
+    .principle-content {
+      position: relative;
+      z-index: 3;
+
+      h3 {
+        color: $myworkerai_dark;
+      }
+
+      p {
+        color: #848484;
+        margin: 0;
+      }
+    }
+
+    .feedback-pills {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 22px;
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border-radius: 999px;
+        padding: 10px 14px;
+        border: 1px solid rgba($myworkerai_dark, 0.1);
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(6px);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+        transform: translateY(8px);
+        opacity: 0;
+        transition: all 0.45s ease;
+
+        &.in-view {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .icon-pill {
+        width: 44px;
+        height: 44px;
+        justify-content: center;
+        padding: 0;
+      }
+
+      .icon-toggle {
+        width: 20px;
+        height: 20px;
+        border-radius: 4px;
+        background: rgba($myworkerai_dark, 0.8);
+        display: inline-block;
+      }
+
+      .label-pill {
+        font-weight: 600;
+      }
+
+      .sparkle {
+        margin-right: 2px;
+      }
+    }
+
+    .principle-art {
+      position: absolute;
+      z-index: 1;
+      pointer-events: none;
+      filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.12));
+    }
+
+    .art-top-left {
+      top: -6px;
+      left: -6px;
+      width: 50%;
+      max-width: 520px;
+    }
+
+    .art-bottom-right {
+      right: -6px;
+      bottom: -6px;
+      width: 58%;
+      max-width: 640px;
+    }
+
+    .principle-visual {
+      position: relative;
+      margin-top: 20px;
+
+      .principle-main-img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 12px;
+      }
+
+      .progress-pill {
+        position: absolute;
+        left: 50%;
+        bottom: 14%;
+        transform: translate(-50%, 20%);
+        padding: 10px 16px;
+        border-radius: 999px;
+        background: rgba(32, 32, 32, 0.8);
+        color: #f3f3f3;
+        font-size: 14px;
+        white-space: nowrap;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+        opacity: 0;
+        transition: all 0.45s ease;
+
+        &.in-view {
+          opacity: 1;
+          transform: translate(-50%, 0);
+        }
+      }
+    }
+  }
+
+  // Specific layouts per card
+  .principle-1 {
+    display: grid;
+    grid-template-rows: auto auto;
+    gap: 0;
+
+    .p1-row1 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+
+      .p1-r1-c1 {
+        position: relative;
+      }
+
+      .p1-img-top {
+        width: 95%;
+        height: auto;
+        display: block;
+        margin-bottom: 30px;
+      }
+
+      .p1-r1-c2 {
+        position: relative;
+      }
+
+      .padded {
+        padding: 30px 20px;
+      }
+    }
+
+    .p1-row2 {
+      display: grid;
+      grid-template-columns: 1fr; // Single column now
+      align-items: end;
+
+      .p1-r2-c2 {
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .p1-img-bottom {
+        width: 70%;
+        height: auto;
+        display: block;
+      }
+    }
+  }
+
+  .principle-2 {
+    display: grid;
+    grid-template-rows: auto auto; // top and bottom halves
+
+    .p2-top {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .p2-bottom {
+      position: relative;
+    }
+
+    .padded {
+      padding: 30px;
+    }
+
+    .p2-image-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      height: 100%;
+
+      .principle-main-img {
+        width: 85%;
+        height: auto;
+        display: block;
+      }
+    }
+  }
+
+  @media screen and (max-width: 992px) {
+    .principle-card {
+      .principle-content {
+        max-width: 100%;
+      }
+    }
+  }
+
+  // Slightly reduce body copy to avoid overlap while keeping p4 token
+  .principle-text {
+    font-size: 0.95em;
+  }
+
+  // Delayed image animations - trigger when parent card gets in-view
+  .principle-img-delayed {
+    opacity: 0;
+  }
+
+  .principle-card.in-view {
+    .principle-img-delayed {
+      animation: fadeSlideY 0.8s ease-out forwards;
+      animation-delay: 0.4s; // Start after card animation begins
+
+      &.slide-in-left {
+        transform: translateX(-20%);
+        animation: fadeSlideX 0.8s ease-out forwards;
+        animation-delay: 0.4s;
+      }
+
+      &.slide-in-right {
+        transform: translateX(20%);
+        animation: fadeSlideX 0.8s ease-out forwards;
+        animation-delay: 0.5s; // Slightly more delay for bottom image
+      }
+
+      &.slide-in-bottom {
+        transform: translateY(20%);
+        animation: fadeSlideY 0.8s ease-out forwards;
+        animation-delay: 0.45s;
+      }
+
+      &.slide-in-top {
+        transform: translateY(-20%);
+        animation: fadeSlideY 0.8s ease-out forwards;
+        animation-delay: 0.4s;
+      }
+    }
+
+    .principle-img-delayed-fade {
+      opacity: 0;
+      animation: fadeIn 0.8s ease-out forwards;
+      animation-delay: 0.9s; // After citation-confidence animation completes
+    }
+  }
+
+  // Additional Principle Cards - 40/60 Split (opposite)
+  .ai-principles-grid-reverse {
+    display: grid;
+    grid-template-columns: 2fr 3fr; // 40% / 60%
+    gap: 28px;
+    align-items: stretch;
+
+    @media screen and (max-width: 992px) {
+      grid-template-columns: 1fr;
+      gap: 22px;
+    }
+  }
+
+  .principle-3 {
+    display: grid;
+    grid-template-rows: auto 1fr; // Image on top, text on bottom
+    gap: 0;
+
+    .principle-visual-reverse {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      height: 100%;
+
+      .principle-main-img-reverse {
+        width: 80%;
+        height: auto;
+        display: block;
+      }
+    }
+
+    .principle-content {
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+  }
+
+  .principle-4 {
+    display: grid;
+    grid-template-columns: 1fr 1fr; // Images left, text right
+    gap: 0;
+    align-items: stretch;
+    min-height: 300px;
+
+    .principle-visual-left {
+      position: relative;
+      height: 100%;
+
+      .principle-img-citation {
+        position: absolute;
+        left: 0;
+        bottom: 25px;
+        width: 77%;
+        height: auto;
+        z-index: 2;
+      }
+
+      .principle-img-sources {
+        position: absolute;
+        left: 18%;
+        bottom: 100px;
+        width: 82%;
+        height: auto;
+        z-index: 1;
+
+        @media screen and (max-width: 992px) {
+          bottom: 110px;
+          width: 80%;
+        }
+      }
+    }
+
+    .principle-content-right {
+      padding: 30px 20px 30px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    @media screen and (max-width: 992px) {
+      grid-template-columns: 1fr;
+
+      .principle-visual-left {
+        height: 300px;
+        margin-bottom: 20px;
+      }
+
+      .principle-content-right {
+        padding: 30px 20px;
+      }
+    }
+  }
+
+  // Fallback Card - 40% empty + 60% card
+  .ai-principles-grid-fallback {
+    display: grid;
+    grid-template-columns: 1fr; // 40% empty / 60% card
+    gap: 28px;
+    align-items: stretch;
+
+    @media screen and (max-width: 992px) {
+      grid-template-columns: 1fr;
+
+      .principle-empty-space {
+        display: none;
+      }
+    }
+  }
+
+  .principle-5 {
+    display: grid;
+    grid-template-columns: 1fr 1fr; // Image left, text right
+    gap: 0;
+    align-items: stretch;
+
+    .principle-visual-fallback {
+      position: relative;
+      height: 100%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      min-height: 300px;
+
+      .principle-img-fallback {
+        width: auto;
+        height: auto;
+        max-height: 90%;
+        z-index: 1;
+        margin: 0 auto;
+      }
+    }
+
+    .principle-content-fallback {
+      padding: 30px 20px 30px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    @media screen and (max-width: 992px) {
+      grid-template-columns: 1fr;
+
+      .principle-visual-fallback {
+        width: 90%;
+        margin: 0 auto;
+        order: 2;
+      }
+
+      .principle-content-fallback {
+        padding: 30px 20px;
+      }
+    }
+  }
+
+  // Accessibility Cards - Similar to principle cards but 40/60 split
+  .accessibility-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; // 40% / 60%
+    gap: 28px;
+    align-items: stretch;
+
+    @media screen and (max-width: 992px) {
+      grid-template-columns: 1fr;
+      gap: 22px;
+    }
+  }
+
+  .accessibility-card {
+    position: relative;
+    background: $white;
+    border: 1px solid rgba($myworkerai_dark, 0.08);
+    border-radius: 16px;
+    padding: 0; // no padding in card
+    overflow: hidden;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+    height: 100%; // stretch to match row height
+
+    .acc-text-content {
+      position: relative;
+      z-index: 3;
+
+      h3 {
+        color: $myworkerai_dark;
+      }
+
+      p {
+        color: #848484;
+        margin: 0;
+      }
+    }
+  }
+
+  .acc-card-1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    align-items: stretch;
+
+    .acc-text-content {
+      padding: 30px 10px 30px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .acc-image-wrap-1 {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      height: 100%;
+
+      .acc-circular-img {
+        width: auto;
+        max-height: 85%;
+        padding: 0 10px;
+      }
+    }
+  }
+
+  .acc-card-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    align-items: stretch;
+
+    .acc-text-content {
+      padding: 30px 20px 30px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .acc-image-wrap-2 {
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      height: 100%;
+      width: 100%;
+
+      .acc-chat-img {
+        width: auto;
+        height: 90%;
+      }
+    }
+  }
+
+  .accessibility-card.in-view {
+    .principle-img-delayed {
+      animation: fadeSlideY 0.8s ease-out forwards;
+      animation-delay: 0.4s;
+
+      &.slide-in-right {
+        transform: translateX(20%);
+        animation: fadeSlideX 0.8s ease-out forwards;
+        animation-delay: 0.4s;
+      }
+
+      &.slide-in-bottom {
+        transform: translateY(20%);
+        animation: fadeSlideY 0.8s ease-out forwards;
+        animation-delay: 0.5s;
+      }
+    }
+  }
+
+  // Next Steps - Using row/col layout
+  .next-step-col {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h3 {
+      color: $myworkerai_dark;
+    }
+
+    p {
+      color: #848484;
+    }
+
+    .next-step-quote {
+      color: rgba($myworkerai_dark, 0.7);
+    }
+
+    figure {
+      margin: 0;
+    }
+
+    .next-step-img {
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    }
+  }
+
+  .next-step-number-wrapper {
+    margin-bottom: 20px;
+  }
+
+  .next-step-number {
+    display: block;
+    font-size: 72px;
+    font-weight: 700;
+    color: rgba($myworkerai_dark, 0.15);
+    line-height: 1;
+    letter-spacing: -2px;
+    transition: color 0.3s ease;
+
+    @media screen and (max-width: 992px) {
+      font-size: 56px;
+    }
+
+    @media screen and (max-width: 768px) {
+      font-size: 48px;
+    }
+
+    @media screen and (max-width: 576px) {
+      font-size: 40px;
+    }
+  }
+
+  .row:hover .next-step-number {
+    color: rgba($myworkerai_dark, 0.25);
+  }
+
+  // Learning Section Styles
+  .learning-item {
+    display: flex;
+    gap: 40px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+
+    &.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .learning-number-wrapper {
+      flex-shrink: 0;
+      width: 80px;
+
+      @media screen and (max-width: 768px) {
+        width: 60px;
+      }
+    }
+
+    .learning-number {
+      display: block;
+      font-size: 72px;
+      font-weight: 700;
+      color: rgba($myworkerai_dark, 0.15);
+      line-height: 1;
+      letter-spacing: -2px;
+      transition: color 0.3s ease;
+
+      @media screen and (max-width: 992px) {
+        font-size: 56px;
+      }
+
+      @media screen and (max-width: 768px) {
+        font-size: 48px;
+      }
+    }
+
+    .learning-main-content {
+      flex: 1;
+      padding-top: 8px;
+
+      .learning-title {
+        color: $myworkerai_dark;
+        margin-bottom: 20px;
+      }
+
+      p {
+        color: #848484;
+      }
+    }
+
+    &:hover {
+      .learning-number {
+        color: rgba($myworkerai_dark, 0.25);
+      }
+    }
+
+    @media screen and (max-width: 576px) {
+      flex-direction: column;
+      gap: 20px;
+
+      .learning-number-wrapper {
+        width: 100%;
+      }
+
+      .learning-number {
+        font-size: 40px;
+      }
+
+      .learning-main-content {
+        padding-top: 0;
+      }
+    }
+  }
+
+  .prompt-showcase {
+    margin-top: 48px;
+    padding: 40px 44px;
+    background: linear-gradient(135deg, rgba(248, 248, 248, 0.95) 0%, rgba(252, 252, 252, 0.85) 100%);
+    border: 1px solid rgba($myworkerai_dark, 0.12);
+    border-left: 4px solid rgba($myworkerai_dark, 0.3);
+    border-radius: 0 12px 12px 0;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+    position: relative;
+
+    &:hover {
+      border-left-color: rgba($myworkerai_dark, 0.4);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    }
+
+    .prompt-header-section {
+      padding-bottom: 24px;
+      border-bottom: 2px solid rgba($myworkerai_dark, 0.12);
+      margin-bottom: 32px;
+      align-items: flex-start;
+    }
+
+    .prompt-label {
+      letter-spacing: 1.5px;
+      flex: 1;
+      padding-top: 4px;
+    }
+
+    .google-veo-logo {
+      height: 100px;
+      width: auto;
+      opacity: 0.95;
+      transition: all 0.3s ease;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.12));
+      flex-shrink: 0;
+
+      &:hover {
+        opacity: 1;
+        transform: scale(1.05);
+        filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.15));
+      }
+
+      @media screen and (max-width: 992px) {
+        height: 85px;
+      }
+
+      @media screen and (max-width: 768px) {
+        height: 70px;
+      }
+
+      @media screen and (max-width: 576px) {
+        height: 60px;
+      }
+    }
+
+    .prompt-text-block {
+      p {
+        color: rgba($myworkerai_dark, 0.85);
+        margin: 0;
+        font-size: 0.95rem;
+        line-height: 1.9;
+        letter-spacing: 0.01em;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      padding: 32px 36px;
+      margin-top: 36px;
+      border-radius: 0 10px 10px 0;
+
+      .prompt-header-section {
+        padding-bottom: 20px;
+        margin-bottom: 28px;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .prompt-label {
+        padding-top: 0;
+      }
+    }
+
+    @media screen and (max-width: 576px) {
+      padding: 28px 32px;
+      margin-top: 32px;
+      border-left-width: 3px;
+
+      .prompt-header-section {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        padding-bottom: 20px;
+        margin-bottom: 24px;
+        border-bottom-width: 1px;
+      }
+
+      .prompt-label {
+        padding-top: 0;
+      }
     }
   }
 
@@ -4170,6 +5005,23 @@ html {
     .interview-img-2 {
       top: 52%;
     }
+  }
+
+  // Mobile refinements for Insight/Decision comparison rows
+  @media (max-width: 768px) {
+    .insight-decision-label {
+      display: none;
+    }
+
+    .mobile-only {
+      display: inline-block;
+      font-weight: 600;
+      margin-right: 6px;
+    }
+  }
+
+  @media (min-width: 769px) {
+    .mobile-only { display: none; }
   }
 
   @keyframes slideInFromLeft {
@@ -4947,6 +5799,12 @@ html {
 
   .minds-hero-img {
     box-shadow: 0 0 18.047px 3.008px rgba(0, 0, 0, 0.14), 0 12.031px 30.078px 9.023px rgba(0, 0, 0, 0.2);
+    height: auto;
+    max-height: 720px;
+
+    @media screen and (max-width: 1550px) {
+      max-height: 600px;
+    }
   }
 
   .minds-hero-text {
