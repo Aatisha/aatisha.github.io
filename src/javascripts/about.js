@@ -18,43 +18,6 @@ if (window.location.pathname.includes(URL_PATHS.about)) {
       }, options);
       sections.forEach((sec) => observer.observe(sec));
 
-      const travelCards = document.querySelectorAll('.travel-vid-card');
-
-      travelCards.forEach((card) => {
-        const video = card.querySelector('video');
-        const playBtn = card.querySelector('.play-toggle') || card.querySelector('button');
-        const muteBtn = card.querySelector('.mute-toggle');
-
-        // Try autoplay
-        video.play().catch(() => {
-          /* ignore autoplay restriction */
-        });
-
-        // Play/Pause
-        if (playBtn) {
-          playBtn.addEventListener('click', () => {
-            if (video.paused) {
-              video.play();
-              playBtn.innerHTML = '&#10074;&#10074;'; // Pause icon
-            } else {
-              video.pause();
-              playBtn.innerHTML = '&#9658;'; // Play icon
-            }
-          });
-        }
-
-        // Mute/Unmute (Only for item C)
-        if (muteBtn) {
-          muteBtn.addEventListener('click', () => {
-            video.muted = !video.muted;
-            if (!video.muted) {
-              video.volume = 0.08; // Set volume low on unmute
-            }
-            muteBtn.innerHTML = video.muted ? '&#128263;' : '&#128266;';
-          });
-        }
-      });
-
       const literarySec = document.querySelector('.literary-section');
       const bookItems = document.querySelectorAll('.book-item');
 

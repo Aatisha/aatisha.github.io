@@ -4,7 +4,7 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import {
   removeContentByIdAfter, stringInject, removeTags, getFirstNWords, isEqualURLs,
   removeTrailingSlash, getAdjacentItems,
-  delay,
+  delay, initVideoControls,
 } from './utilities';
 import './home';
 import './design-work';
@@ -392,9 +392,28 @@ function initScrollableTabs(tabsContainer) {
   tabItems.forEach((tab, index) => {
     tab.addEventListener('click', () => {
       tabItems.forEach((t) => t.classList.remove('active'));
-      tabContents.forEach((c) => c.classList.remove('active'));
+      tabContents.forEach((c) => {
+        c.classList.remove('active');
+        // Remove animation classes from all tab images
+        const tabImage = c.querySelector('.tab-image');
+        if (tabImage) {
+          tabImage.classList.remove('slide-in-bottom', 'in-view');
+        }
+      });
       tab.classList.add('active');
       tabContents[index].classList.add('active');
+
+      // Animate the newly active tab's image
+      const activeTabImage = tabContents[index].querySelector('.tab-image');
+      if (activeTabImage) {
+        // Reset and trigger animation
+        activeTabImage.classList.remove('slide-in-bottom', 'in-view');
+        // Force reflow
+        // eslint-disable-next-line no-void
+        void activeTabImage.offsetWidth;
+        // Add animation classes
+        activeTabImage.classList.add('slide-in-bottom', 'animate-on-visible', 'in-view');
+      }
     });
   });
 
@@ -538,6 +557,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     tabHandler();
+
+    // Initialize video controls (if any video wrappers exist on the page)
+    initVideoControls();
 
     // Fix anchor links to work correctly with base href
     document.addEventListener('click', (e) => {

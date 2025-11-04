@@ -3928,7 +3928,7 @@ html {
       padding: 30px 20px;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
+      justify-content: center;
     }
   }
 
@@ -3938,6 +3938,10 @@ html {
     gap: 0;
     align-items: stretch;
     min-height: 300px;
+
+    @media screen and (min-width: 1600px) {
+      min-height: 360px;
+    }
 
     .principle-visual-left {
       position: relative;
@@ -5922,7 +5926,89 @@ html {
           margin-bottom: 0;
           color: #903;
         }
+
+        &.animate-on-visible {
+          opacity: 0;
+          transform: scale(0.95);
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+          &.in-view {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
       }
+
+      // Staggered animations for impact cards
+      > div:nth-child(1) .impact.animate-on-visible.in-view {
+        transition-delay: 0.1s;
+      }
+
+      > div:nth-child(2) .impact.animate-on-visible.in-view {
+        transition-delay: 0.2s;
+      }
+
+      > div:nth-child(3) .impact.animate-on-visible.in-view {
+        transition-delay: 0.3s;
+      }
+    }
+  }
+
+  .insight-item {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &.in-view {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    // Staggered animations for insight items
+    &:nth-child(1).in-view,
+    &:nth-of-type(1).in-view {
+      transition-delay: 0.1s;
+    }
+
+    &:nth-child(2).in-view,
+    &:nth-of-type(2).in-view {
+      transition-delay: 0.2s;
+    }
+
+    &:nth-child(3).in-view,
+    &:nth-of-type(3).in-view {
+      transition-delay: 0.3s;
+    }
+
+    &:nth-child(4).in-view,
+    &:nth-of-type(4).in-view {
+      transition-delay: 0.4s;
+    }
+  }
+
+  .target-users-row {
+    .minds-thumbnail.animate-on-visible {
+      opacity: 0;
+      transform: scale(0.95);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+      &.in-view {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    // Staggered animations for target user cards
+    > div:nth-child(1) .minds-thumbnail.animate-on-visible.in-view {
+      transition-delay: 0.1s;
+    }
+
+    > div:nth-child(2) .minds-thumbnail.animate-on-visible.in-view {
+      transition-delay: 0.2s;
+    }
+
+    > div:nth-child(3) .minds-thumbnail.animate-on-visible.in-view {
+      transition-delay: 0.3s;
     }
   }
 

@@ -1,3 +1,123 @@
+// Video Controls Utility - Helper functions
+function updatePlayIcon(playBtn, isPaused) {
+  if (isPaused) {
+    playBtn.classList.add('is-paused');
+    playBtn.classList.remove('is-playing');
+  } else {
+    playBtn.classList.add('is-playing');
+    playBtn.classList.remove('is-paused');
+  }
+}
+
+function updateMuteIcon(muteBtn, isMuted) {
+  if (isMuted) {
+    muteBtn.classList.add('is-muted');
+    muteBtn.classList.remove('is-unmuted');
+  } else {
+    muteBtn.classList.add('is-unmuted');
+    muteBtn.classList.remove('is-muted');
+  }
+}
+
+// Video Controls Utility
+export function initVideoControls() {
+  try {
+    const videoWrappers = document.querySelectorAll('.video-wrapper');
+
+    // If no video wrappers found, exit silently
+    if (!videoWrappers || videoWrappers.length === 0) {
+      return;
+    }
+
+    videoWrappers.forEach((wrapper) => {
+      try {
+        const video = wrapper?.querySelector('video');
+        const playBtn = wrapper?.querySelector('.play-toggle');
+        const muteBtn = wrapper?.querySelector('.mute-toggle');
+
+        // Play/Pause toggle
+        if (video && playBtn) {
+          // Try autoplay
+          video.play().catch(() => {
+            /* ignore autoplay restriction */
+          });
+
+          // Initialize icon states based on video state
+          updatePlayIcon(playBtn, video.paused);
+
+          // Play/Pause toggle
+          playBtn.addEventListener('click', () => {
+            try {
+              if (video.paused) {
+                video.play();
+              } else {
+                video.pause();
+              }
+              updatePlayIcon(playBtn, video.paused);
+            } catch (error) {
+              // eslint-disable-next-line no-console
+              console.warn('Error toggling video playback:', error);
+            }
+          });
+
+          // Update icon when video state changes
+          video.addEventListener('play', () => {
+            try {
+              updatePlayIcon(playBtn, false);
+            } catch (error) {
+              // eslint-disable-next-line no-console
+              console.warn('Error updating play icon:', error);
+            }
+          });
+          video.addEventListener('pause', () => {
+            try {
+              updatePlayIcon(playBtn, true);
+            } catch (error) {
+              // eslint-disable-next-line no-console
+              console.warn('Error updating pause icon:', error);
+            }
+          });
+        }
+
+        // Mute/Unmute toggle
+        if (video && muteBtn) {
+          // Initialize mute icon state
+          updateMuteIcon(muteBtn, video.muted);
+
+          muteBtn.addEventListener('click', () => {
+            try {
+              video.muted = !video.muted;
+              if (!video.muted) {
+                video.volume = 0.08; // Set volume low on unmute
+              }
+              updateMuteIcon(muteBtn, video.muted);
+            } catch (error) {
+              // eslint-disable-next-line no-console
+              console.warn('Error toggling video mute:', error);
+            }
+          });
+
+          // Update icon when mute state changes
+          video.addEventListener('volumechange', () => {
+            try {
+              updateMuteIcon(muteBtn, video.muted);
+            } catch (error) {
+              // eslint-disable-next-line no-console
+              console.warn('Error updating mute icon:', error);
+            }
+          });
+        }
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.warn('Error initializing video controls for wrapper:', error);
+      }
+    });
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.warn('Error initializing video controls:', error);
+  }
+}
+
 export function removeContentByIdAfter(id, timeout = 1500, callback = () => {}) {
   setTimeout(() => {
     document.getElementById(id).style.display = 'none';

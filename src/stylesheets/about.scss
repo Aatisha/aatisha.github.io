@@ -257,51 +257,7 @@
         display: block;
       }
 
-      .hover-overlay {
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.3), transparent);
-        opacity: 0;
-        transition: opacity 0.3s;
-      }
-
-      &:hover .hover-overlay {
-        opacity: 1;
-      }
-
-      .video-controls {
-        position: absolute;
-        bottom: 1rem;
-        right: 1rem;
-        display: flex;
-        gap: 0.75rem;
-        opacity: 0;
-        transition: opacity 0.3s;
-      }
-
-      &:hover .video-controls {
-        opacity: 1;
-      }
-
-      .video-controls button {
-        width: 3rem;
-        height: 3rem;
-        background: rgba(255, 255, 255, 0.2);
-        backdrop-filter: blur(5px);
-        border: none;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #fff;
-        cursor: pointer;
-        transition: all 0.3s;
-      }
-
-      .video-controls button:hover {
-        background: rgba(255, 255, 255, 0.3);
-      }
-
+      // Video controls are now handled by shared utilities.scss
       // Hide old center-aligned button if still present
       > button {
         display: none;

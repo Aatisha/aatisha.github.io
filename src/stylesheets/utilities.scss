@@ -864,6 +864,10 @@
   margin-bottom: 50px;
 }
 
+.u-marginB100 {
+  margin-bottom: 100px;
+}
+
 .u-marginT4 {
   margin-top: 4px;
 }
@@ -1093,6 +1097,11 @@
 @media (min-width: 576px) {
   .u-padding15-not-mob {
     padding: 15px;
+  }
+
+  .u-paddingH20-not-mob {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
 
@@ -1779,4 +1788,136 @@ ol li::marker {
 
 .u-visibilityHidden {
   visibility: hidden;
+}
+
+/**
+----- VIDEO CONTROLS (Shared) -----
+**/
+
+// Video wrapper with play/pause controls
+.video-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  overflow: hidden;
+
+  video {
+    display: block;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  // Match aspect ratio when video has aspect-ratio classes
+  &:has(video.aspect-ratio-1728-1117) {
+    aspect-ratio: 1728 / 1117;
+  }
+
+  &:has(video.aspect-ratio-3-2) {
+    aspect-ratio: 3 / 2;
+  }
+
+  // Match border-radius when video has common border-radius classes
+  &:has(video.u-borderR5) {
+    border-radius: 5px;
+  }
+
+  &:has(video.u-borderR12) {
+    border-radius: 12px;
+  }
+
+  // Match overlay border-radius to wrapper (which matches video)
+  .hover-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.3), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    z-index: 2;
+    border-radius: inherit;
+  }
+
+  &:hover .hover-overlay {
+    opacity: 1;
+  }
+
+  .video-controls {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    display: flex;
+    gap: 0.75rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 10;
+  }
+
+  &:hover .video-controls {
+    opacity: 1;
+  }
+
+  .video-controls button {
+    width: 3rem;
+    height: 3rem;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s;
+    padding: 0;
+    position: relative;
+    background-size: 1.2rem 1.2rem;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    // Remove default button styles
+    &::before,
+    &::after {
+      display: none;
+    }
+  }
+
+  .video-controls button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+
+  // Play/Pause button with SVG icons via CSS
+  .play-toggle {
+    // Default state (playing) - show pause icon
+    background-image: url('../assets/images/Pause.svg');
+
+    // When paused - show play icon
+    &.is-paused {
+      background-image: url('../assets/images/Play.svg');
+    }
+
+    // When playing - show pause icon
+    &.is-playing {
+      background-image: url('../assets/images/Pause.svg');
+    }
+  }
+
+  // Mute/Unmute button with SVG icons via CSS
+  .mute-toggle {
+    // Default state (muted) - show speaker-off icon
+    background-image: url('../assets/images/speaker-off.svg');
+
+    // When muted - show speaker-off icon
+    &.is-muted {
+      background-image: url('../assets/images/speaker-off.svg');
+    }
+
+    // When unmuted - show speaker-on icon
+    &.is-unmuted {
+      background-image: url('../assets/images/speaker-on.svg');
+    }
+  }
 }
