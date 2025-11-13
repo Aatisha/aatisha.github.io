@@ -3129,6 +3129,11 @@ html {
     }
   }
 
+  // Dashboard videos - crop 1px from bottom
+  .clip-2px-bottom {
+    clip-path: inset(0 0 2px 0);
+  }
+
   // Hero Image Container with Lead Cards
   .hero-image-container {
     position: relative;
