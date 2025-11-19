@@ -6692,6 +6692,333 @@ html {
       position: relative;
       left: 50%;
       transform: translateX(-50%);
+      clip-path: inset(7px 12px 8px 12px);
+    }
+  }
+
+  .persona-card.animate-on-visible {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &.in-view {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .row {
+    > div:nth-child(1) .persona-card.animate-on-visible.in-view {
+      transition-delay: 0.1s;
+    }
+
+    > div:nth-child(2) .persona-card.animate-on-visible.in-view {
+      transition-delay: 0.2s;
+    }
+
+    > div:nth-child(3) .persona-card.animate-on-visible.in-view {
+      transition-delay: 0.3s;
+    }
+
+    > div:nth-child(1).col-sm-12.col-md-4.animate-on-visible.in-view {
+      transition-delay: 0.1s;
+    }
+
+    > div:nth-child(2).col-sm-12.col-md-4.animate-on-visible.in-view {
+      transition-delay: 0.2s;
+    }
+
+    > div:nth-child(3).col-sm-12.col-md-4.animate-on-visible.in-view {
+      transition-delay: 0.3s;
+    }
+  }
+
+  // Competitor analysis cards animation
+  .col-sm-12.col-md-4.animate-on-visible {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &.in-view {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  // Wireframe thumbnails animation
+  .wireframe-item.animate-on-visible {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &.in-view {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  // First wireframe row (Homepage + Category Selection)
+  .wireframe-row:nth-of-type(1) {
+    > div:nth-child(1).wireframe-item.animate-on-visible.in-view {
+      transition-delay: 0.1s;
+    }
+
+    > div:nth-child(2).wireframe-item.animate-on-visible.in-view {
+      transition-delay: 0.2s;
+    }
+  }
+
+  // Second wireframe row (Ranking + Recommendation + Trending)
+  .wireframe-row:nth-of-type(2) {
+    > div:nth-child(1).wireframe-item.animate-on-visible.in-view {
+      transition-delay: 0.3s;
+    }
+
+    > div:nth-child(2).wireframe-item.animate-on-visible.in-view {
+      transition-delay: 0.4s;
+    }
+
+    > div:nth-child(3).wireframe-item.animate-on-visible.in-view {
+      transition-delay: 0.5s;
+    }
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+
+    @media screen and (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+  }
+
+  .feature-item {
+    position: relative;
+    background: $white;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    padding: 32px 28px;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &.in-view {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    // Staggered animations
+    &:nth-child(1).in-view {
+      transition-delay: 0.1s;
+    }
+
+    &:nth-child(2).in-view {
+      transition-delay: 0.2s;
+    }
+
+    &:nth-child(3).in-view {
+      transition-delay: 0.3s;
+    }
+
+    &:hover {
+      transform: scale(1.02) translateY(-4px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+      border-color: rgba(0, 0, 0, 0.12);
+
+      .feature-number {
+        transform: scale(1.05);
+        color: $main_text;
+      }
+    }
+
+    .feature-number {
+      display: inline-block;
+      font-size: 32px;
+      font-weight: 700;
+      color: rgba(0, 0, 0, 0.25);
+      font-family: 'Courier New', monospace;
+      line-height: 1;
+      margin-bottom: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .feature-title {
+      color: $main_text;
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+
+    .feature-description {
+      margin: 0;
+      color: rgba(0, 0, 0, 0.7);
+    }
+
+    @media screen and (max-width: 768px) {
+      padding: 28px 24px;
+
+      .feature-number {
+        font-size: 28px;
+        margin-bottom: 14px;
+      }
+    }
+  }
+
+  // Simple 2-Column Grid for Final Screens
+  .screens-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    @media screen and (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 50px;
+    }
+  }
+
+  .screen-header-inline {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 20px;
+
+    .screen-num {
+      font-size: 32px;
+      font-weight: 700;
+      color: rgba(0, 0, 0, 0.25);
+      font-family: 'Courier New', monospace;
+      line-height: 1;
+
+      @media screen and (max-width: 768px) {
+        font-size: 28px;
+      }
+    }
+
+    .screen-name {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: $main_text;
+      margin: 0;
+      line-height: 1.4;
+      margin-bottom: 12px;
+
+      @media screen and (max-width: 768px) {
+        font-size: 1.1rem;
+      }
+    }
+  }
+
+  .screen-link {
+    display: block;
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  }
+
+  // How Might We statement design
+  .hmw-container {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    padding: 80px 60px;
+    min-height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media screen and (max-width: 768px) {
+      padding: 60px 30px;
+      min-height: 350px;
+    }
+  }
+
+  .hmw-background {
+    position: absolute;
+    inset: 0;
+    background-image: url('../assets/images/amazon-shopbop/hmw.jpg');
+    background-size: cover;
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    z-index: 1;
+  }
+
+  .hmw-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    z-index: 2;
+  }
+
+  .hmw-noise {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+    opacity: 0.5;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  .hmw-content {
+    position: relative;
+    z-index: 4;
+    max-width: 900px;
+    width: 100%;
+  }
+
+  .hmw-title {
+    color: $white;
+    text-align: center;
+    opacity: 0.9;
+    letter-spacing: 0.1em;
+
+    @media screen and (max-width: 768px) {
+      font-size: 1rem;
+    }
+  }
+
+  .hmw-text {
+    position: relative;
+    color: $white;
+    text-align: center;
+    margin: 0;
+    padding: 0 40px;
+    background: none !important;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+
+    &::before,
+    &::after {
+      display: none !important;
+    }
+
+    &.quotation-mark::before {
+      content: '❝';
+      position: absolute;
+      top: -2rem;
+      left: 0;
+      font-family: monospace;
+      font-size: 8rem;
+      line-height: 1;
+      color: rgba(255, 255, 255, 0.3);
+      font-weight: bold;
+      z-index: -1;
+      display: block !important;
+
+      @media screen and (max-width: 768px) {
+        font-size: 5rem;
+        top: -1.5rem;
+        left: -1rem;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      font-size: 1.5rem;
+      padding: 0 10px;
     }
   }
 }
