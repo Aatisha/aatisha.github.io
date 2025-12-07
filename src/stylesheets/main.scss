@@ -1425,6 +1425,7 @@ html {
         font-size: 0.95rem;
         color: #444;
         margin: 0;
+        line-height: 1.5;
       }
     }
   }
@@ -3548,6 +3549,7 @@ html {
     }
   }
 
+  // stylelint-disable-next-line no-duplicate-selectors
   .quote-block {
     margin-bottom: 50px;
     position: relative;
@@ -3562,6 +3564,7 @@ html {
     }
   }
 
+  // stylelint-disable-next-line no-duplicate-selectors
   .quote-mark {
     font-size: 60px;
     color: #903;
@@ -3571,12 +3574,14 @@ html {
     font-family: monospace;
   }
 
+  // stylelint-disable-next-line no-duplicate-selectors
   .quote-text {
     font-size: 18px;
     margin: 0;
     padding-left: 10px;
   }
 
+  // stylelint-disable-next-line no-duplicate-selectors
   .quote-author {
     font-size: 14px;
     color: #5c5c6e;
@@ -4697,6 +4702,241 @@ html {
     }
   }
 
+  // Research Papers Caption - Clickable
+  .research-papers-caption {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    color: $myworkerai_dark;
+    transition: all 0.3s ease;
+    text-decoration: none;
+
+    &:hover {
+      color: $myworkerai;
+
+      .research-papers-badge {
+        background: rgba($myworkerai, 0.1);
+        color: $myworkerai;
+      }
+    }
+
+    &:focus {
+      outline: 2px solid $myworkerai;
+      outline-offset: 4px;
+      border-radius: 4px;
+    }
+  }
+
+  .research-papers-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 4px 10px;
+    background: rgba($myworkerai_dark, 0.06);
+    color: rgba($myworkerai_dark, 0.7);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    letter-spacing: 0.3px;
+    font-family: 'Courier New', monospace;
+  }
+
+  // Quote Blocks (similar to minds but with POG quotation mark style)
+  // stylelint-disable-next-line no-duplicate-selectors
+  .quote-block {
+    position: relative;
+    padding-left: 30px;
+
+    @media screen and (max-width: 576px) {
+      padding-left: 40px;
+      margin-bottom: 32px;
+    }
+
+    // stylelint-disable-next-line no-duplicate-selectors
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // stylelint-disable-next-line no-duplicate-selectors
+  .quote-mark {
+    position: absolute;
+    left: 0;
+    top: -0.5rem;
+    font-family: monospace;
+    font-size: 4rem;
+    line-height: 1;
+    color: $myworkerai_light;
+    font-weight: bold;
+    z-index: 0;
+
+    &::before {
+      content: '❝';
+      display: block;
+    }
+
+    @media screen and (max-width: 768px) {
+      font-size: 3.5rem;
+      top: -0.3rem;
+    }
+
+    @media screen and (max-width: 576px) {
+      font-size: 3rem;
+      top: -0.2rem;
+    }
+  }
+
+  // stylelint-disable-next-line no-duplicate-selectors
+  .quote-text {
+    font-size: 18px;
+    line-height: 1.6;
+    color: $myworkerai_dark;
+    margin: 0 0 12px 0;
+    position: relative;
+    z-index: 1;
+
+    @media screen and (max-width: 768px) {
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+  }
+
+  // stylelint-disable-next-line no-duplicate-selectors
+  .quote-author {
+    font-size: 14px;
+    color: rgba($myworkerai_dark, 0.6);
+    margin: 0;
+    position: relative;
+    z-index: 1;
+    font-style: italic;
+
+    @media screen and (max-width: 768px) {
+      font-size: 0.8rem;
+    }
+  }
+
+  // Research Goals Header with Button
+  .research-goals-header {
+    width: 100%;
+    gap: 20px;
+
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+  }
+
+  .uxr-plan-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: $white;
+    border: 1px solid rgba($myworkerai_dark, 0.15);
+    border-radius: 8px;
+    color: $myworkerai_dark;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+
+    &:hover {
+      background: $myworkerai_light;
+      border-color: rgba($myworkerai_dark, 0.25);
+      color: $myworkerai;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+      i {
+        transform: translate(2px, -2px);
+      }
+    }
+
+    &:focus {
+      outline: 2px solid $myworkerai;
+      outline-offset: 2px;
+    }
+
+    i {
+      font-size: 0.75rem;
+      transition: transform 0.3s ease;
+    }
+
+    @media screen and (max-width: 768px) {
+      padding: 8px 16px;
+      font-size: 0.85rem;
+    }
+  }
+
+  // Swiper Slide Content with Title
+  .swiper-slide-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .myworker-ai-thumbnail {
+      figure {
+        img {
+          max-height: 550px;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+
+  .swiper-slide-title {
+    color: $myworkerai_dark;
+    margin: 0 0 20px 0;
+    line-height: 1.4;
+
+    @media screen and (max-width: 768px) {
+      font-size: 1.1rem;
+      margin-bottom: 16px;
+    }
+  }
+
+  // Stats Swiper specific styling
+  .swiper-controls-below.stats-swiper {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+
+    .swiper-slide {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: auto;
+      max-height: 850px;
+      overflow: hidden;
+
+      @media screen and (max-width: 768px) {
+        max-height: 700px;
+      }
+
+      @media screen and (max-width: 576px) {
+        max-height: 600px;
+      }
+
+      .stats-bars-container {
+        width: 100%;
+        max-width: 900px;
+        margin: 0 auto;
+        min-height: 600px;
+        padding: 20px;
+
+        @media screen and (max-width: 768px) {
+          min-height: 500px;
+        }
+
+        @media screen and (max-width: 576px) {
+          min-height: auto;
+        }
+      }
+    }
+  }
+
   // Stats Bars Section
   .stats-bars-container {
     display: flex;
@@ -4783,6 +5023,13 @@ html {
     transform-origin: bottom;
 
     @media screen and (max-width: 576px) {
+      background:
+        linear-gradient(
+          to left,
+          #f8f5f1 0%,
+          #f8f5f1 70%,
+          rgba(#f8f5f1, 0) 100%
+        );
       border-radius: 0 16px 16px 0;
       padding-top: 0;
       padding-left: 20px;
@@ -4793,23 +5040,23 @@ html {
   }
 
   .stat-bar-1 {
-    height: 400px;
+    height: 370px;
 
     @media screen and (max-width: 768px) {
-      height: 340px;
+      height: 320px;
     }
 
     @media screen and (max-width: 576px) {
       height: 80px;
-      width: 42%;
+      width: 43%;
     }
   }
 
   .stat-bar-2 {
-    height: 470px;
+    height: 500px;
 
     @media screen and (max-width: 768px) {
-      height: 395px;
+      height: 420px;
     }
 
     @media screen and (max-width: 576px) {
@@ -8223,6 +8470,259 @@ $star-background: #f1c40f;
   mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
   mask-repeat: no-repeat;
   mask-size: 100% 100%;
+}
+
+// White Papers Modal (outside project scope so it works globally)
+.white-papers-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+
+  &[aria-hidden="false"] {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .white-papers-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba($myworkerai_dark, 0.6);
+    backdrop-filter: blur(2px);
+  }
+
+  .white-papers-modal-content {
+    position: relative;
+    background: $white;
+    border: 1px solid rgba($myworkerai_dark, 0.08);
+    border-radius: 16px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+    max-width: 640px;
+    width: 90%;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    transform: scale(0.95) translateY(20px);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    overflow: hidden;
+
+    @media screen and (max-width: 768px) {
+      width: 95%;
+      max-height: 90vh;
+      border-radius: 12px;
+    }
+  }
+
+  &[aria-hidden="false"] .white-papers-modal-content {
+    transform: scale(1) translateY(0);
+  }
+
+  .white-papers-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 32px 32px 24px 32px;
+    border-bottom: 1px solid rgba($myworkerai_dark, 0.08);
+
+    @media screen and (max-width: 768px) {
+      padding: 24px 24px 20px 24px;
+    }
+  }
+
+  .white-papers-modal-title {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: $myworkerai_dark;
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+
+    @media screen and (max-width: 768px) {
+      font-size: 1.25rem;
+    }
+  }
+
+  .white-papers-modal-close {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba($myworkerai_dark, 0.6);
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    width: 32px;
+    height: 32px;
+
+    &:hover {
+      background: rgba($myworkerai_dark, 0.06);
+      color: $myworkerai_dark;
+    }
+
+    &:focus {
+      outline: 2px solid $myworkerai;
+      outline-offset: 2px;
+    }
+
+    i {
+      font-size: 1.1rem;
+    }
+  }
+
+  .white-papers-modal-body {
+    padding: 24px 32px 32px 32px;
+    overflow-y: auto;
+    flex: 1;
+
+    @media screen and (max-width: 768px) {
+      padding: 20px 24px 24px 24px;
+    }
+  }
+
+  .white-papers-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .white-paper-item {
+    margin: 0;
+    border-bottom: 1px solid rgba($myworkerai_dark, 0.06);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .white-paper-link {
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+    text-decoration: none;
+    color: $myworkerai_dark;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    gap: 20px;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: $myworkerai;
+      transition: width 0.3s ease;
+    }
+
+    &:hover {
+      .white-paper-name {
+        color: $myworkerai;
+        padding-left: 8px;
+      }
+
+      .white-paper-number {
+        opacity: 1;
+        color: $myworkerai;
+      }
+
+      .white-paper-external-icon {
+        opacity: 1;
+        transform: translate(2px, -2px);
+      }
+
+      &::after {
+        width: 40px;
+      }
+    }
+
+    &:focus {
+      outline: 2px solid $myworkerai;
+      outline-offset: 4px;
+      border-radius: 4px;
+    }
+
+    @media screen and (max-width: 768px) {
+      padding: 18px 0;
+      gap: 16px;
+    }
+  }
+
+  .white-paper-number {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: rgba($myworkerai_dark, 0.3);
+    letter-spacing: 0.5px;
+    opacity: 0.6;
+    min-width: 28px;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .white-paper-name {
+    flex: 1;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: $myworkerai_dark;
+    transition: all 0.3s ease;
+    position: relative;
+
+    @media screen and (max-width: 768px) {
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+  }
+
+  .white-paper-external-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    flex-shrink: 0;
+    margin-left: 8px;
+    vertical-align: middle;
+
+    i {
+      font-size: 0.7rem;
+      color: rgba($myworkerai_dark, 0.4);
+      transition: color 0.3s ease;
+    }
+
+    @media screen and (max-width: 768px) {
+      margin-left: 6px;
+
+      i {
+        font-size: 0.65rem;
+      }
+    }
+  }
+
+  // stylelint-disable-next-line no-duplicate-selectors
+  .white-paper-link:hover .white-paper-external-icon {
+    opacity: 1;
+
+    i {
+      color: rgba($myworkerai_dark, 0.6);
+    }
+  }
 }
 
 .case-study-nav {
