@@ -74,74 +74,93 @@
                     </div>
                 </div>
 
-                <!-- Right: Controls -->
-                <div class="controls-section">
-                    <div class="controls-header">
-                        <h2>Customize</h2>
-                        <p>Select elements to create your space</p>
+                <!-- Right: Controls (Desktop) / Bottom Drawer (Mobile) -->
+                <div class="controls-section" id="controls-section">
+                    <!-- Drawer Handle (Mobile only) -->
+                    <div class="drawer-handle" id="drawer-handle">
+                        <div class="drawer-handle-bar"></div>
                     </div>
-
-                    <!-- City View Selector -->
-                    <div class="selector-group">
-                        <label class="selector-label">City View</label>
-                        <div class="thumbnail-grid" id="view-selector">
-                            <button class="thumbnail-btn active" data-value="nyc" data-type="view">
-                                <img src="assets/View/View-NYC.png" alt="New York">
-                                <span>NYC</span>
-                            </button>
-                            <button class="thumbnail-btn" data-value="tokyo" data-type="view">
-                                <img src="assets/View/View-Tokyo.jpeg" alt="Tokyo">
-                                <span>Tokyo</span>
-                            </button>
-                            <button class="thumbnail-btn" data-value="paris" data-type="view">
-                                <img src="assets/View/View-Paris.jpeg" alt="Paris">
-                                <span>Paris</span>
-                            </button>
-                            <button class="thumbnail-btn" data-value="sf" data-type="view">
-                                <img src="assets/View/View-SF.jpeg" alt="San Francisco">
-                                <span>SF</span>
-                            </button>
+                    
+                    <!-- Drawer Header with collapse/expand info -->
+                    <div class="drawer-header">
+                        <div class="controls-header">
+                            <h2>Customize</h2>
+                            <p>Select elements to create your space</p>
                         </div>
+                        <button class="drawer-toggle" id="drawer-toggle">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="18 15 12 9 6 15"/>
+                            </svg>
+                        </button>
                     </div>
 
-                    <!-- Chair Selector -->
-                    <div class="selector-group">
-                        <label class="selector-label">Chair</label>
-                        <div class="thumbnail-grid thumbnail-grid-3" id="chair-selector">
-                            <button class="thumbnail-btn active" data-value="beige" data-type="chair">
-                                <img src="assets/Chair/Chair-Beige.png" alt="Beige">
-                                <span>Beige</span>
-                            </button>
-                            <button class="thumbnail-btn" data-value="burgundy" data-type="chair">
-                                <img src="assets/Chair/Chair-Burgundy.png" alt="Burgundy">
-                                <span>Burgundy</span>
-                            </button>
-                            <button class="thumbnail-btn" data-value="green" data-type="chair">
-                                <img src="assets/Chair/Chair-Green.png" alt="Green">
-                                <span>Green</span>
-                            </button>
+                    <!-- Scrollable Content -->
+                    <div class="drawer-content">
+                        <!-- City View Selector -->
+                        <div class="selector-group">
+                            <label class="selector-label">City View</label>
+                            <div class="thumbnail-scroll" id="view-selector">
+                                <button class="thumbnail-btn active" data-value="nyc" data-type="view">
+                                    <img src="assets/View/View-NYC.png" alt="New York">
+                                    <span>NYC</span>
+                                </button>
+                                <button class="thumbnail-btn" data-value="tokyo" data-type="view">
+                                    <img src="assets/View/View-Tokyo.jpeg" alt="Tokyo">
+                                    <span>Tokyo</span>
+                                </button>
+                                <button class="thumbnail-btn" data-value="paris" data-type="view">
+                                    <img src="assets/View/View-Paris.jpeg" alt="Paris">
+                                    <span>Paris</span>
+                                </button>
+                                <button class="thumbnail-btn" data-value="sf" data-type="view">
+                                    <img src="assets/View/View-SF.jpeg" alt="San Francisco">
+                                    <span>SF</span>
+                                </button>
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Table Selector -->
-                    <div class="selector-group">
-                        <label class="selector-label">Table Setup</label>
-                        <div class="thumbnail-grid thumbnail-grid-3" id="table-selector">
-                            <button class="thumbnail-btn active" data-value="candles" data-type="table">
-                                <img src="assets/Candle/candle-plain.png" alt="Candles">
-                                <span>Candles</span>
-                            </button>
-                            <button class="thumbnail-btn" data-value="decoration" data-type="table">
-                                <img src="assets/Candle/candle-decoration.png" alt="Decoration">
-                                <span>Decor</span>
-                            </button>
-                            <button class="thumbnail-btn" data-value="cup" data-type="table">
-                                <img src="assets/Candle/candle-cup.png" alt="Cup">
-                                <span>Cup</span>
-                            </button>
+                        <!-- Chair Selector -->
+                        <div class="selector-group">
+                            <label class="selector-label">Chair</label>
+                            <div class="thumbnail-scroll" id="chair-selector">
+                                <button class="thumbnail-btn active" data-value="beige" data-type="chair">
+                                    <img src="assets/Chair/Chair-Beige.png" alt="Beige">
+                                    <span>Beige</span>
+                                </button>
+                                <button class="thumbnail-btn" data-value="burgundy" data-type="chair">
+                                    <img src="assets/Chair/Chair-Burgundy.png" alt="Burgundy">
+                                    <span>Burgundy</span>
+                                </button>
+                                <button class="thumbnail-btn" data-value="green" data-type="chair">
+                                    <img src="assets/Chair/Chair-Green.png" alt="Green">
+                                    <span>Green</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Table Selector -->
+                        <div class="selector-group">
+                            <label class="selector-label">Table Setup</label>
+                            <div class="thumbnail-scroll" id="table-selector">
+                                <button class="thumbnail-btn active" data-value="candles" data-type="table">
+                                    <img src="assets/Candle/candle-plain.png" alt="Candles">
+                                    <span>Candles</span>
+                                </button>
+                                <button class="thumbnail-btn" data-value="decoration" data-type="table">
+                                    <img src="assets/Candle/candle-decoration.png" alt="Decoration">
+                                    <span>Decor</span>
+                                </button>
+                                <button class="thumbnail-btn" data-value="cup" data-type="table">
+                                    <img src="assets/Candle/candle-cup.png" alt="Cup">
+                                    <span>Cup</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Mobile Overlay (for drawer backdrop) -->
+                <div class="drawer-overlay" id="drawer-overlay"></div>
             </div>
         </div>
     </div>
