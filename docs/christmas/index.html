@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christmas Cozy Setup</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Landing Screen -->
+        <div id="landing-screen" class="screen active">
+            <div class="landing-content">
+                <div class="landing-icon">🎄</div>
+                <h1 class="landing-title">Create Your Cozy Space</h1>
+                <p class="landing-subtitle">Design your perfect holiday window view</p>
+                <button id="start-button" class="start-button">
+                    <span>Start Creating</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Design Screen -->
+        <div id="design-screen" class="screen">
+            <div class="design-layout">
+                <!-- Left: Preview -->
+                <div class="preview-section">
+                    <div class="preview-frame">
+                        <!-- Action Buttons -->
+                        <div class="action-buttons">
+                            <button id="randomize-btn" class="action-btn randomize-btn" title="Randomize">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="16 3 21 3 21 8"/>
+                                    <line x1="4" y1="20" x2="21" y2="3"/>
+                                    <polyline points="21 16 21 21 16 21"/>
+                                    <line x1="15" y1="15" x2="21" y2="21"/>
+                                    <line x1="4" y1="4" x2="9" y2="9"/>
+                                </svg>
+                            </button>
+                            <button id="download-btn" class="action-btn" title="Download">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                    <polyline points="7,10 12,15 17,10"/>
+                                    <line x1="12" y1="15" x2="12" y2="3"/>
+                                </svg>
+                            </button>
+                            <button id="share-btn" class="action-btn" title="Share">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="18" cy="5" r="3"/>
+                                    <circle cx="6" cy="12" r="3"/>
+                                    <circle cx="18" cy="19" r="3"/>
+                                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="layered-container" id="layered-container">
+                            <!-- Layer 0: City View -->
+                            <img id="city-view" class="layer layer-0" src="" alt="City View">
+                            <!-- Layer 1: Window Frame -->
+                            <img id="window-frame" class="layer layer-1" src="assets/Window/output-onlinepngtools (4).png" alt="Window Frame">
+                            <!-- Layer 2: Chair -->
+                            <img id="chair" class="layer layer-2" src="" alt="Chair">
+                            <!-- Layer 3: Table -->
+                            <img id="table" class="layer layer-3" src="" alt="Table">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Controls -->
+                <div class="controls-section">
+                    <div class="controls-header">
+                        <h2>Customize</h2>
+                        <p>Select elements to create your space</p>
+                    </div>
+
+                    <!-- City View Selector -->
+                    <div class="selector-group">
+                        <label class="selector-label">City View</label>
+                        <div class="thumbnail-grid" id="view-selector">
+                            <button class="thumbnail-btn active" data-value="nyc" data-type="view">
+                                <img src="assets/View/View-NYC.png" alt="New York">
+                                <span>NYC</span>
+                            </button>
+                            <button class="thumbnail-btn" data-value="tokyo" data-type="view">
+                                <img src="assets/View/View-Tokyo.jpeg" alt="Tokyo">
+                                <span>Tokyo</span>
+                            </button>
+                            <button class="thumbnail-btn" data-value="paris" data-type="view">
+                                <img src="assets/View/View-Paris.jpeg" alt="Paris">
+                                <span>Paris</span>
+                            </button>
+                            <button class="thumbnail-btn" data-value="sf" data-type="view">
+                                <img src="assets/View/View-SF.jpeg" alt="San Francisco">
+                                <span>SF</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Chair Selector -->
+                    <div class="selector-group">
+                        <label class="selector-label">Chair</label>
+                        <div class="thumbnail-grid thumbnail-grid-3" id="chair-selector">
+                            <button class="thumbnail-btn active" data-value="beige" data-type="chair">
+                                <img src="assets/Chair/Chair-Beige.png" alt="Beige">
+                                <span>Beige</span>
+                            </button>
+                            <button class="thumbnail-btn" data-value="burgundy" data-type="chair">
+                                <img src="assets/Chair/Chair-Burgundy.png" alt="Burgundy">
+                                <span>Burgundy</span>
+                            </button>
+                            <button class="thumbnail-btn" data-value="green" data-type="chair">
+                                <img src="assets/Chair/Chair-Green.png" alt="Green">
+                                <span>Green</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Table Selector -->
+                    <div class="selector-group">
+                        <label class="selector-label">Table Setup</label>
+                        <div class="thumbnail-grid thumbnail-grid-3" id="table-selector">
+                            <button class="thumbnail-btn active" data-value="candles" data-type="table">
+                                <img src="assets/Candle/candle-plain.png" alt="Candles">
+                                <span>Candles</span>
+                            </button>
+                            <button class="thumbnail-btn" data-value="decoration" data-type="table">
+                                <img src="assets/Candle/candle-decoration.png" alt="Decoration">
+                                <span>Decor</span>
+                            </button>
+                            <button class="thumbnail-btn" data-value="cup" data-type="table">
+                                <img src="assets/Candle/candle-cup.png" alt="Cup">
+                                <span>Cup</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
