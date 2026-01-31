@@ -8,75 +8,30 @@
 <body>
   <!-- <include src="./partials/preloader.html"/> -->
   <section class="hero-section hero-main">
-    <div id="logo-animation" class="u-fontSize-h1  u-fontPlayfair u-positionA hero-logo"><a href="/">A</a><div id="logo-dot-hero" data-animate="false"></div></div>
-    <div class="stage"></div>
-    <div class="hero-text container xl">
-      <div class="row row-gutter-md">
-        <!-- Left column: Text -->
-        <div class="col-sm-7 col-md-8">
-          <div class="u-displayFlex u-flex-col u-alignItems-start mob-center">
-            <!-- Glass Badge -->
-            <div class="masked-badge-wrapper">
-              <svg class="masked-badge-svg"
-                   viewBox="0 0 750 115"
-                   preserveAspectRatio="xMidYMid meet"
-                   aria-label="PRODUCT DESIGNER badge">
-                <defs>
-                  <mask id="text-mask">
-                    <!-- full-coverage rect in SVG coords -->
-                    <rect width="750" height="115" fill="white" />
-                    <text id="badge-text"
-                          x="50%" y="50%" dy=".35em"
-                          text-anchor="middle"
-                          font-size="54"
-                          font-weight="900"
-                          letter-spacing="0.1em"
-                          fill="black">
-                      PRODUCT DESIGNER
-                    </text>
-                  </mask>
-                </defs>
+    <!-- Video Background -->
+    <video class="hero-video-background" autoplay muted loop playsinline>
+      <source src="assets/images/landscape.mp4" type="video/mp4">
+    </video>
 
-                <!-- background rectangle sized in viewBox units -->
-                <rect width="750" height="115"
-                      fill="rgba(255,255,255,0.55)"
-                      mask="url(#text-mask)" />
-              </svg>
-            </div>
 
-            <!-- Heading -->
-            <h1 class="hero-heading">
-              Designing for <span class="gradient-text">clarity</span> and <span class="gradient-text">structure</span>
-            </h1>
+    <!-- Hero Content -->
+    <div class="hero-content">
+      <h1 class="hero-title">I'm Aatisha!</h1>
+      <p class="hero-subtitle">Welcome to where creativity meets the horizon. <br>I build products and experiences with purpose and heart.</p>
+    </div>
 
-            <!-- Intro Paragraphs -->
-            <p class="hero-intro u-marginB20 mar-top">
-              I'm Aatisha,
-            </p>
-            <p class="hero-intro">
-              A problem solver skilled in shaping intuitive experiences in AI startups, research platforms, e-commerce, and public-sector tools.            </p>
-            <p class="hero-subtext">
-              Engineering taught me to build with precision. Design has taught me to build with intention.
-            </p>
 
-            <!-- CTA Buttons -->
-            <!-- <div class="cta-buttons">
-              <a href="mailto:hello@aatishacyrill.com" class="btn btn-glass">
-                Say Hello <i class="fa-solid fa-arrow-right"></i>
-              </a>
-            </div> -->
-          </div>
-        </div>
-
-        <!-- Right column: Image (hidden on mobile) -->
-        <div class="mob-hide col-sm-5 col-md-4 hero-image-wrapper">
-          <div class="u-displayFlex u-justify-end u-alignItems-center u-width100 u-height100">
-            <img src="assets/images/hero-image3.png" alt="Aatisha Cyrill" fetchpriority="high" class="hero-image u-width75 bottom-fade" />
-          </div>
-        </div>
+    <!-- Flower Images -->
+    <div class="hero-flowers-wrapper hero-flowers-left-wrapper">
+      <img src="assets/images/flowers.png" alt="Flowers decoration" class="hero-flowers hero-flowers-left">
+      <div class="hero-butterfly-container">
+        <img src="assets/images/butterfly.png" alt="Butterfly" class="hero-butterfly hero-butterfly-static">
+        <img src="assets/images/butterfly.gif" alt="Butterfly" class="hero-butterfly hero-butterfly-animated">
       </div>
     </div>
+    <img src="assets/images/flowers.png" alt="Flowers decoration" class="hero-flowers hero-flowers-right">
   </section>
+
   <div id="body-content">
     <include src="./partials/navbar.html"/>
     <main class="Home">

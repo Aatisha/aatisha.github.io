@@ -1,5 +1,5 @@
 import Swiper from 'swiper';
-import VanillaTilt from 'vanilla-tilt';
+// import VanillaTilt from 'vanilla-tilt';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import {
   removeContentByIdAfter, stringInject, removeTags, getFirstNWords, isEqualURLs,
@@ -53,20 +53,20 @@ new Swiper('.swiper', {
   modules: [Navigation, Pagination, Autoplay],
 });
 
-function switchNavigation() {
-  const navbar = document.getElementById('navigation-bar');
-  const navbarHeight = navbar.offsetHeight;
-  const heroSection = document.querySelector('.hero-section');
-  const { scrollY } = window;
-  const logoDot = document.getElementById('logo-dot');
-  if (scrollY >= heroSection.offsetHeight - navbarHeight - 30) {
-    navbar.classList.add('nav-fixed');
-    logoDot.dataset.animate = 'true';
-  } else {
-    navbar.classList.remove('nav-fixed');
-    logoDot.dataset.animate = 'false';
-  }
-}
+// function switchNavigation() {
+//   const navbar = document.getElementById('navigation-bar');
+//   const navbarHeight = navbar.offsetHeight;
+//   const heroSection = document.querySelector('.hero-section');
+//   const { scrollY } = window;
+//   const logoDot = document.getElementById('logo-dot');
+//   if (scrollY >= heroSection.offsetHeight - navbarHeight - 30) {
+//     navbar.classList.add('nav-fixed');
+//     logoDot.dataset.animate = 'true';
+//   } else {
+//     navbar.classList.remove('nav-fixed');
+//     logoDot.dataset.animate = 'false';
+//   }
+// }
 
 function updateActiveNavigation() {
   const workNav = document.getElementById('work-nav');
@@ -217,17 +217,20 @@ function navigationHandle() {
   updateActiveNavigation();
   // change nav logo animation data attribute
   const navbar = document.getElementById('navigation-bar');
-  if (window.location.pathname === URL_PATHS.home
-    || window.location.pathname === URL_PATHS.tech.home) {
-    const logoDotHero = document.getElementById('logo-dot-hero');
-    logoDotHero.dataset.animate = 'true';
-    navbar.classList.add('nav-home');
-    window.addEventListener('scroll', switchNavigation);
-  } else {
-    navbar.classList.add('nav-fixed');
-    const logoDot = document.getElementById('logo-dot');
-    logoDot.dataset.animate = 'true';
-  }
+  navbar.classList.add('nav-fixed');
+  const logoDot = document.getElementById('logo-dot');
+  logoDot.dataset.animate = 'true';
+  // if (window.location.pathname === URL_PATHS.home
+  //   || window.location.pathname === URL_PATHS.tech.home) {
+  //   const logoDotHero = document.getElementById('logo-dot-hero');
+  //   logoDotHero.dataset.animate = 'true';
+  //   navbar.classList.add('nav-home');
+  //   window.addEventListener('scroll', switchNavigation);
+  // } else {
+  //   navbar.classList.add('nav-fixed');
+  //   const logoDot = document.getElementById('logo-dot');
+  //   logoDot.dataset.animate = 'true';
+  // }
 }
 
 function preloader(bodyContent) {
@@ -475,18 +478,18 @@ window.onload = async () => {
   }
 };
 
-function getNonRepeatingRandomAnimation(allAnimations, recentAnimations) {
-  const options = allAnimations.filter((anim) => !recentAnimations.includes(anim));
-  const random = options[Math.floor(Math.random() * options.length)];
+// function getNonRepeatingRandomAnimation(allAnimations, recentAnimations) {
+//   const options = allAnimations.filter((anim) => !recentAnimations.includes(anim));
+//   const random = options[Math.floor(Math.random() * options.length)];
 
-  // Update recentAnimations history (limit to last 3)
-  recentAnimations.push(random);
-  if (recentAnimations.length > 3) {
-    recentAnimations.shift();
-  }
+//   // Update recentAnimations history (limit to last 3)
+//   recentAnimations.push(random);
+//   if (recentAnimations.length > 3) {
+//     recentAnimations.shift();
+//   }
 
-  return random;
-}
+//   return random;
+// }
 
 document.addEventListener('DOMContentLoaded', async () => {
   const bodyContent = document.getElementById('body-content');
@@ -504,44 +507,43 @@ document.addEventListener('DOMContentLoaded', async () => {
         heroTextWrapper.style.opacity = '0.75';
       }
     } else {
-      const logoAnimation = document.getElementById('logo-animation');
-      const heroTextWrapper = document.querySelector('.hero-text');
-      logoAnimation.style.display = 'none';
-      const fluidApp = new FluidApp();
-      await fluidApp.show();
+      // const logoAnimation = document.getElementById('logo-animation');
+      // const heroTextWrapper = document.querySelector('.hero-text');
+      // logoAnimation.style.display = 'none';
+      // const fluidApp = new FluidApp();
+      // await fluidApp.show();
       bodyContent.style.display = 'block';
-      heroTextWrapper.style.display = 'block';
+      // heroTextWrapper.style.display = 'block';
       await delay(100);
       navigationHandle();
-      logoAnimation.style.display = 'block';
-      heroTextWrapper.style.opacity = '0.75';
+      // logoAnimation.style.display = 'block';
+      // heroTextWrapper.style.opacity = '0.75';
 
-      const badge = document.querySelector('.masked-badge-wrapper');
-      const allAnimations = [
-        'subtleTilt', 'floatPulse', 'breatheScale', 'squishBounce', 'slidePeek', 'shimmerPop', 'flickerWink', 'tiltHop', 'giggleWiggle',
-      ];
-      const recentAnimations = [];
+      // const badge = document.querySelector('.masked-badge-wrapper');
+      // const allAnimations = ['subtleTilt', 'floatPulse', 'breatheScale', 'squishBounce',
+      // 'slidePeek','shimmerPop', 'flickerWink', 'tiltHop', 'giggleWiggle'];
+      // const recentAnimations = [];
 
-      getNonRepeatingRandomAnimation(allAnimations, recentAnimations);
+      // getNonRepeatingRandomAnimation(allAnimations, recentAnimations);
 
-      if (badge) {
-        badge.addEventListener('mouseenter', () => {
-          badge.style.animation = `${getNonRepeatingRandomAnimation()} 1.5s ease-in-out`;
-        });
+      // if (badge) {
+      //   badge.addEventListener('mouseenter', () => {
+      //     badge.style.animation = `${getNonRepeatingRandomAnimation()} 1.5s ease-in-out`;
+      //   });
 
-        badge.addEventListener('mouseleave', () => {
-          badge.style.animation = ''; // Reset animation
-        });
-      }
+      //   badge.addEventListener('mouseleave', () => {
+      //     badge.style.animation = ''; // Reset animation
+      //   });
+      // }
 
-      const tiltElements = document.querySelectorAll('.tilt-animation');
-      if (tiltElements.length > 0) {
-        VanillaTilt.init(tiltElements, {
-          speed: 4000,
-          max: 2,
-          perspective: 400,
-        });
-      }
+      // const tiltElements = document.querySelectorAll('.tilt-animation');
+      // if (tiltElements.length > 0) {
+      //   VanillaTilt.init(tiltElements, {
+      //     speed: 4000,
+      //     max: 2,
+      //     perspective: 400,
+      //   });
+      // }
     }
 
     if (window.location.pathname.includes(URL_PATHS.design_work)) {
