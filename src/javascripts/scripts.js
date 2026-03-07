@@ -642,9 +642,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   } else {
     const is404 = document.getElementById('404Page');
-    if (is404) {
+    const isFlare = document.getElementById('flarePage');
+    if (is404 || isFlare) {
       const fluidApp = new FluidApp();
-      await fluidApp.show(false);
+      await fluidApp.show(!is404);
     }
   }
 
