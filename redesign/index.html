@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio redesign: versions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Inter, system-ui, sans-serif; background: #F5F4F0; color: #1b1a17; padding: 64px clamp(20px, 6vw, 80px); -webkit-font-smoothing: antialiased; }
+  h1 { font: 400 clamp(44px, 6vw, 84px)/1 "Instrument Serif", serif; letter-spacing: -.01em; }
+  h1 em { color: #12A06E; }
+  .v2 h2 em, .v3 h2 em { color: #0B8FA3; }
+  .versions { display: grid; gap: 28px; margin-bottom: 56px; }
+  .versions a.hero-card { margin-bottom: 0; }
+  a.hero-card { display: grid; grid-template-columns: 1.3fr 1fr; text-decoration: none; color: inherit; border-radius: 28px; overflow: hidden; background: #fff; border: 1px solid rgba(0,0,0,.07); margin-bottom: 56px; transition: transform .5s cubic-bezier(.16,1,.3,1), box-shadow .5s; }
+  a.hero-card:hover { transform: translateY(-6px); box-shadow: 0 30px 60px -30px rgba(0,0,0,.3); }
+  .shot { background: #F5F4F0; min-height: 300px; }
+  .shot img { width: 100%; height: 100%; object-fit: cover; object-position: left top; display: block; }
+  .hero-card .body { padding: 32px; }
+  .label { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: rgba(27,26,23,.5); margin-bottom: 14px; }
+  .card .body h2 { font-size: 28px; }
+  @media (max-width: 800px) { a.hero-card { grid-template-columns: 1fr; } }
+  .sub { max-width: 620px; margin: 18px 0 48px; color: rgba(27,26,23,.62); line-height: 1.6; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; }
+  a.card {
+    display: flex; flex-direction: column; text-decoration: none; color: inherit; border-radius: 24px; overflow: hidden; background: #fff;
+    border: 1px solid rgba(0,0,0,.07); transition: transform .5s cubic-bezier(.16,1,.3,1), box-shadow .5s;
+  }
+  a.card:hover { transform: translateY(-6px); box-shadow: 0 30px 60px -30px rgba(0,0,0,.3); }
+  .swatch { height: 180px; position: relative; overflow: hidden; }
+  .a .swatch { background: linear-gradient(#f6d9c4, #cfe3f2 45%, #f3b98a 75%, #1c2140); }
+  .a .swatch::after { content: ""; position: absolute; left: 50%; top: 58%; width: 90px; height: 90px; border-radius: 50%; transform: translate(-50%, -50%); background: radial-gradient(#fff6e3, #ffd9a0 50%, transparent 70%); }
+  .b .swatch { background: #f4f2ee radial-gradient(rgba(0,0,0,.18) 1px, transparent 1.2px) 0 0 / 18px 18px; }
+  .b .swatch i { position: absolute; width: 70px; height: 70px; box-shadow: 0 8px 16px -8px rgba(0,0,0,.3); }
+  .c .swatch { background: #f5f1e8; display: grid; place-items: center; }
+  .c .swatch b { width: 90px; height: 90px; border-radius: 46% 54% 50% 50% / 55% 48% 52% 45%; background: radial-gradient(circle at 35% 30%, #ffd9c0, #f2a47c 55%, #d97757); animation: wob 4s ease-in-out infinite; }
+  @keyframes wob { 50% { border-radius: 54% 46% 45% 55% / 48% 55% 45% 52%; transform: translateY(-4px); } }
+  .body { padding: 22px 22px 24px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .body small { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: rgba(27,26,23,.5); }
+  .body h2 { font: 400 34px/1 "Instrument Serif", serif; }
+  .body p { font-size: 14px; line-height: 1.55; color: rgba(27,26,23,.66); }
+  .meta { display: grid; grid-template-columns: 90px 1fr; gap: 6px 10px; font-size: 13px; margin-top: 6px; }
+  .meta span:nth-child(odd) { color: rgba(27,26,23,.5); }
+  .go { margin-top: auto; padding-top: 12px; font-size: 14px; font-weight: 500; }
+  .docs { margin-top: 44px; display: flex; gap: 14px; flex-wrap: wrap; }
+  .docs a { padding: 12px 18px; border-radius: 999px; background: #1b1a17; color: #fff; text-decoration: none; font-size: 14px; }
+  .docs a.ghost { background: none; color: inherit; border: 1px solid rgba(0,0,0,.15); }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+  <h1>Aatisha’s portfolio, <em>summer receipts.</em></h1>
+  <p class="sub">Every version is kept. <b>v3 “Summer receipts”</b> is the current direction: v1’s polished design system, mascot and interactions, with your “always summer” ideas added in the same grown-up style. v1 is frozen exactly as you approved it. v2 stays as an explored direction.</p>
+
+  <div class="versions">
+  <a class="hero-card v3" href="v3-summer-receipts/">
+    <div class="shot"><img src="v3-summer-receipts/preview.jpg" alt="Preview of the summer receipts portfolio: sea water showing through the cut-out name Aatisha Cyrill, with the pixel seahorse Tish"></div>
+    <div class="body">
+      <small>v3 · recommended · summer receipts</small>
+      <h2>Bring receipts, <em>always summer</em></h2>
+      <p>v1 as the base: Geist and Instrument Serif, warm off-white, a mint accent, the receipt printer, ⌘K and Recruiter mode. Now the page is a frame floating on live sea water. Your name is cut out of it so the water and leaves show through. Work is one big folder with small folders below it: pick one and the big folder sinks, changes colour and rises with the new story. Six pixel treasures are hidden around the site, each holding a quote. About is an envelope of scalloped summer prints that develop as you toss through them. Contact sits on the water, where a message in a bottle washes ashore.</p>
+      <div class="meta"><span>Mascot</span><span>Tish, now a pixel seahorse. She perches, guides (“Where to?”), gives hints, grows a leafy frond for every treasure and becomes a sea dragon at 6/6.</span><span>Feels like</span><span>v1’s calm, tactile polish, with summer in the water around it</span><span>Try</span><span>Move over the name · print a receipt · pick a small folder, swipe or use ← → · open a story to the end · tap the envelope and drag prints away · find all 6 treasures · ⌘K · click Tish</span></div>
+      <span class="go">Open v3 →</span>
+    </div>
+  </a>
+
+  <a class="hero-card" href="v1-receipts/">
+    <div class="shot"><img src="v1-receipts/preview.png" alt="Preview of the receipts portfolio hero"></div>
+    <div class="body">
+      <small>v1 · frozen · bring receipts</small>
+      <h2>Bring receipts</h2>
+      <p>A hero printer with a detent dial and an end-of-roll Grand Total you stamp. Receipts you can tear and drag, fanning folders, story sheets, a scroll-scrubbed affinity map, a Gantt-style journey, a lab bento, a personal “off the clock” section with a bookshelf, ⌘K with “Ask Aatisha”, and a Recruiter mode that turns the page into a one-page résumé.</p>
+      <div class="meta"><span>Mascot</span><span>Tish: perches on things, naps, reacts, and grows up as you discover the site</span><span>Feels like</span><span>Warm off-white, Geist and Instrument Serif, a mint accent, tactile props</span><span>Try</span><span>Turn the dial → print → tear → drag · print all four for the Grand Total · hover folders · ⌘K · Recruiter mode · click Tish</span></div>
+      <span class="go">Open v1 →</span>
+    </div>
+  </a>
+  </div>
+
+  <p class="label">Explored · not chosen</p>
+  <div class="grid" style="margin-bottom:56px">
+    <a class="card" href="v2-summer/"><div class="body"><small>v2 · always summer</small><h2>It’s always summer here</h2><p>A standalone summer build with Kai the seahorse, SVG seashells and a postcard. Set aside because it felt too playful. Its best ideas carried into v3.</p></div></a>
+  </div>
+
+  <p class="label">Round 1 · archived explorations</p>
+  <div class="grid">
+    <a class="card" href="archive/a-horizon.html"><div class="body"><small>A · scroll narrative</small><h2>Horizon</h2><p>Dawn-to-night scroll story with a butterfly.</p></div></a>
+    <a class="card" href="archive/b-field-notes.html"><div class="body"><small>B · spatial canvas</small><h2>Field Notes</h2><p>A draggable research board with a ghost cursor.</p></div></a>
+    <a class="card" href="archive/c-ask-pip.html"><div class="body"><small>C · conversation</small><h2>Ask Pip</h2><p>A chat-first portfolio with a blob mascot.</p></div></a>
+  </div>
+
+  <div class="docs">
+    <a href="PLAN.md">Read the project plan</a>
+    <a class="ghost" href="RESEARCH.md">Research: what top designers do</a>
+  </div>
+</body>
+</html>

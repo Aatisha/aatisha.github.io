@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aatisha Cyrill: product designer & UX researcher · the summer edition</title>
+  <meta name="description" content="Aatisha Cyrill is a product designer and UX researcher who listens first. AI, research-heavy products, and the receipts to back it up.">
+  <meta name="theme-color" content="#0B7F93">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+  <link rel="icon" id="favicon" href="data:,">
+  <link rel="stylesheet" href="styles.css?v=4">
+</head>
+<body>
+  <a class="skip" href="#work">Skip to work</a>
+  <!-- The sea sits behind everything; the page is a frame floating on it. -->
+  <div class="sea" id="sea" aria-hidden="true"></div>
+  <canvas class="sea-ring" id="seaRing" aria-hidden="true"></canvas>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="nav">
+    <a class="brand" href="#top" aria-label="Aatisha Cyrill, home">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-name">Aatisha Cyrill</span>
+    </a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#work">Work</a><a href="#process">Process</a><a href="#journey">Journey</a><a href="#about">About</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="pill pill-ghost shells-btn" id="shellsBtn" aria-haspopup="dialog" aria-label="Your treasures"><img id="shellsIcon" alt=""><b id="shellsCount">0</b><span>/6</span></button>
+      <button class="pill pill-ghost" id="cmdkBtn" aria-haspopup="dialog">Jump to <kbd>⌘</kbd><kbd>K</kbd></button>
+      <button class="pill pill-ink" id="recruiterBtn" aria-haspopup="dialog"><span class="dot"></span>Recruiter mode</button>
+    </div>
+  </header>
+
+  <div class="frame">
+  <main id="top">
+    <!-- ============ INTRO: the name, cut out of the frame so the sea shows through ============ -->
+    <section class="intro" id="intro">
+      <div class="cut" aria-hidden="true">
+        <div class="cut-name" id="cutName"><span class="l1">Aatisha</span><span class="l2">Cyrill</span></div>
+      </div>
+      <div class="cut-tint" aria-hidden="true"></div>
+      <div class="intro-top">
+        <p class="intro-ed">Est. 2018 <span>·</span> listening since</p>
+        <p class="intro-ed">Portfolio 2026 <span>·</span> <em>the summer edition</em></p>
+      </div>
+      <p class="sr-only">Aatisha Cyrill</p>
+      <div class="intro-foot" data-perch="intro">
+        <p class="intro-role">Product designer <em>&amp;</em> UX researcher<br><span>who listens first.</span></p>
+        <p class="intro-line"><em>It’s always summer here.</em></p>
+        <a class="intro-scroll" href="#hero" aria-label="Scroll to the introduction"><span>Scroll</span><i></i></a>
+        <button class="treasure" data-t="scallop" type="button" aria-label="A scallop shell in the sand"></button>
+      </div>
+    </section>
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="hero">
+      <div class="hero-copy">
+        <p class="eyebrow" data-reveal><span class="status-dot"></span>Open to product design roles · 2026</p>
+        <h1 class="bio" data-reveal>
+          <b>Hi, I’m Aatisha,</b> a product designer who listens first.
+          I’ve untangled research at
+          <a class="hl" href="#work" data-preview="minds"><i class="lg lg-uw"></i>UW–Madison</a>,
+          made style a game for
+          <a class="hl" href="#work" data-preview="shopbop"><i class="lg lg-amz"></i>Amazon × Shopbop</a>
+          and designed <a class="hl" href="#work" data-preview="myworker"><i class="lg lg-mw"></i>Alex</a>,
+          an AI teammate founders called <b>“approachable.”</b>
+        </h1>
+        <p class="sub" data-reveal>Before design, I wrote the code (Angular, Spring Boot, a plant monitor that blinked when it was thirsty). It still shows in how I work.</p>
+        <div class="hero-meta" data-reveal>
+          <div><span>Local time</span><b id="clock">--:--</b></div>
+          <div><span>Currently</span><b>Designing for AI</b></div>
+          <div><span>Voices heard</span><b>60+</b></div>
+          <div><span>Forecast</span><b>Always summer</b></div>
+        </div>
+      </div>
+
+      <div class="stage" data-reveal>
+        <div class="paper-window" id="paperWindow" aria-live="polite"></div>
+        <div class="printer" id="printer" data-perch="printer">
+          <div class="p-slot"><i></i></div>
+          <div class="p-face">
+            <div class="p-row">
+              <div class="lcd"><span id="lcd">HELLO, YOU</span></div>
+              <div class="led" id="led" aria-hidden="true"></div>
+            </div>
+            <div class="p-row p-controls">
+              <div class="grille" aria-hidden="true"></div>
+              <button class="p-btn" id="printBtn" aria-label="Print a receipt"><span>PRINT</span></button>
+              <div class="dial">
+                <div class="dial-dots" id="dialDots" aria-hidden="true"></div>
+                <div class="knob" id="knob" data-lenis-prevent tabindex="0" role="slider" aria-label="Receipt type" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1" aria-valuetext="The basics"><i></i></div>
+              </div>
+            </div>
+            <div class="p-label"><span>AC–26</span><span>Receipt unit</span><span id="counter">01/04</span></div>
+          </div>
+          <i class="screw s1"></i><i class="screw s2"></i><i class="screw s3"></i><i class="screw s4"></i>
+        </div>
+        <p class="stage-hint" id="stageHint"><span class="arrow">↑</span> <span id="hintText">Turn the dial, press print. Every claim comes with a receipt.</span></p>
+      </div>
+      <div class="preview-card" id="previewCard" aria-hidden="true"></div>
+    </section>
+
+    <!-- ============ PARTNERS ============ -->
+    <section class="marquee" aria-label="Projects and partners">
+      <div class="marquee-track" id="marquee"></div>
+    </section>
+
+    <!-- ============ WORK ============ -->
+    <section class="section work" id="work">
+      <header class="section-head">
+        <p class="label" data-reveal>01 · Selected work</p>
+        <h2 data-reveal>One story <em>at a time.</em></h2>
+        <p class="section-sub" data-reveal>Each one comes with receipts. Pick a folder below and it slides onto the table; open it to go one step deeper.</p>
+      </header>
+      <div class="stage-wrap" data-reveal data-perch="stage">
+        <div class="folder stage-folder" id="stageFolder" tabindex="0" role="button" aria-live="polite"></div>
+        <button class="treasure" data-t="starfish" type="button" aria-label="A starfish stuck to the folder"></button>
+      </div>
+      <div class="minis" id="minis" role="tablist" aria-label="Choose a story" data-perch="minis"></div>
+      <div class="more" id="more"></div>
+    </section>
+
+    <!-- ============ PROCESS (scroll-scrubbed affinity map) ============ -->
+    <section class="process" id="process">
+      <div class="process-sticky">
+        <div class="process-copy">
+          <p class="label">02 · How I work</p>
+          <h2 id="processTitle">Sixty voices. <em>Scattered.</em></h2>
+          <ol class="steps" id="steps">
+            <li class="on"><b>Listen</b><span>Interviews, contextual inquiry in the aisles, moderated usability sessions.</span></li>
+            <li><b>Cluster</b><span>Affinity mapping until the patterns stop moving.</span></li>
+            <li><b>Decide</b><span>One insight each for the team to build on.</span></li>
+          </ol>
+          <p class="fine">Every note on this board is a real quote or stat from my studies.</p>
+          <button class="treasure" data-t="seaglass" type="button" aria-label="A piece of sea glass, surfaced from the notes"></button>
+        </div>
+        <div class="board" id="board" aria-label="Affinity map of real research quotes" data-perch="board"></div>
+        <div class="scrub" aria-hidden="true"><i id="scrubBar"></i></div>
+      </div>
+    </section>
+
+    <!-- ============ JOURNEY ============ -->
+    <section class="section journey" id="journey">
+      <header class="section-head">
+        <p class="label" data-reveal>03 · Journey</p>
+        <h2 data-reveal>From writing code <em>to designing what it should do.</em></h2>
+      </header>
+      <div class="timeline" id="timeline" data-perch="timeline" data-reveal></div>
+    </section>
+
+    <!-- ============ LAB ============ -->
+    <section class="section lab" id="lab">
+      <header class="section-head">
+        <p class="label" data-reveal>04 · Lab & notes</p>
+        <h2 data-reveal>Side quests, <em>old code and writing.</em></h2>
+      </header>
+      <div class="bento" id="bento" data-perch="bento"></div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="section about" id="about">
+      <div class="about-grid">
+        <div class="darkroom" id="darkroom" data-perch="darkroom">
+          <div class="prints" id="prints" aria-label="Summer prints"></div>
+          <button class="envelope" id="envelope" type="button" aria-label="Open the envelope of summer prints">
+            <span class="env-back"></span>
+            <span class="env-front">
+              <span class="env-band"></span>
+              <span class="env-brand">Summer prints</span>
+              <span class="env-meta">24 exp · 4×6 · glossy</span>
+              <span class="env-label"><em>Aatisha · summer ’26</em></span>
+              <span class="env-tap">Tap to develop</span>
+            </span>
+            <span class="env-flap"></span>
+          </button>
+          <div class="print-ctrl" id="printCtrl" hidden>
+            <button class="icon-btn" data-print="-1" type="button" aria-label="Previous print">‹</button>
+            <span id="printCount">1 / 6</span>
+            <button class="icon-btn" data-print="1" type="button" aria-label="Next print">›</button>
+            <span class="fine">or drag the top one away</span>
+          </div>
+        </div>
+        <div class="about-copy">
+          <p class="label" data-reveal>05 · Off the clock</p>
+          <p class="print-note" id="printNote" aria-live="polite">Tap the envelope. I had my summer developed.</p>
+          <p class="about-text" data-reveal>
+            I design with the hope of creating impact, even if just a little.
+            Off-screen, I’m usually reading <span class="inline-img"><img src="../../src/assets/images/about/the-god-of-small-things.jpg" alt=""></span>,
+            since that’s how I exercise empathy, or packing a bag for
+            <span class="inline-img round"><img src="../../src/assets/images/about/san-francisco-thumbnail.png" alt=""></span> somewhere new,
+            because travel taught me that every place is a story.
+          </p>
+          <div class="postcards" id="postcards"></div>
+        </div>
+      </div>
+      <div class="shelf-wrap">
+        <div class="shelf-head"><p class="label">On my shelf</p><p class="shelf-note" id="shelfNote"><span class="on-hover">Hover a book.</span><span class="on-touch">Tap a book.</span></p></div>
+        <div class="shelf" id="shelf" data-perch="shelf"></div>
+        <button class="treasure" data-t="sanddollar" type="button" aria-label="A sand dollar used as a bookend"></button>
+      </div>
+    </section>
+  </main>
+  </div>
+
+  <!-- ============ CONTACT (on the water) ============ -->
+  <footer class="contact" id="contact" data-perch="contact">
+    <div class="contact-inner">
+      <p class="label light">06 · Say hello</p>
+      <h2 class="contact-title">Let’s build something <em>with heart.</em></h2>
+      <div class="contact-actions">
+        <button class="mail" id="mailBtn"><span id="mailText">hello@aatishacyrill.com</span><span class="copy">Copy</span></button>
+        <a class="pill pill-light" href="https://www.linkedin.com/in/aatisha-cyrill/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="pill pill-light" href="https://medium.com/@cyrillaatisha" target="_blank" rel="noopener">Medium ↗</a>
+        <a class="pill pill-light" href="https://github.com/Aatisha" target="_blank" rel="noopener">GitHub ↗</a>
+        <a class="pill pill-light" href="../../src/assets/resume/Aatisha_Cyrill_UX.pdf" target="_blank" rel="noopener">Résumé ↗</a>
+      </div>
+      <p class="closing" data-perch="closing">This is only the start. I’m growing, evolving, and dreaming big… and I’d be honored if you came along.</p>
+      <div class="shore">
+        <button class="treasure bottle" data-t="bottle" type="button" aria-label="A message in a bottle"></button>
+        <p class="fine light" id="bottleHint">Find the other treasures and something will wash ashore.</p>
+      </div>
+      <div class="sign-row" data-perch="sign">
+        <span class="signature">Aatisha</span>
+        <span class="fine light">Designed & built by Aatisha · © 2026 · No cookies, just sunshine</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ OVERLAYS ============ -->
+  <div class="story" id="story" data-lenis-prevent role="dialog" aria-modal="true" aria-label="Project story" hidden>
+    <div class="story-backdrop" data-close></div>
+    <article class="story-sheet" id="storySheet" tabindex="-1"></article>
+  </div>
+
+  <div class="cmdk" id="cmdk" data-lenis-prevent role="dialog" aria-modal="true" aria-label="Command menu" hidden>
+    <div class="cmdk-backdrop" data-close></div>
+    <div class="cmdk-panel">
+      <div class="cmdk-input"><span>⌕</span><input id="cmdkInput" placeholder="Jump to a project, run a command, or ask me something…" autocomplete="off" aria-label="Search commands"><kbd>esc</kbd></div>
+      <div class="cmdk-list" id="cmdkList" role="listbox"></div>
+      <div class="cmdk-foot"><span><kbd>↑</kbd><kbd>↓</kbd> navigate</span><span><kbd>↵</kbd> open</span><span><kbd>esc</kbd> close</span></div>
+    </div>
+  </div>
+
+  <div class="recruiter" id="recruiter" data-lenis-prevent role="dialog" aria-modal="true" aria-label="Recruiter mode" hidden>
+    <div class="recruiter-backdrop" data-close></div>
+    <div class="resume" id="resume"></div>
+  </div>
+
+  <div class="tmodal" id="tmodal" data-lenis-prevent role="dialog" aria-modal="true" aria-labelledby="tmQuote" hidden>
+    <div class="tm-backdrop" data-close></div>
+    <div class="tm-card">
+      <div class="tm-art"><div class="tm-water"></div><img id="tmArt" alt=""></div>
+      <div class="tm-body">
+        <p class="label" id="tmFound"></p>
+        <blockquote class="tm-quote" id="tmQuote"></blockquote>
+        <p class="tm-by" id="tmBy"></p>
+        <p class="tm-why" id="tmWhy"></p>
+        <div class="tm-acts" id="tmActs"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="shells-panel" id="shellsPanel" role="dialog" aria-label="Your treasures" hidden>
+    <div class="sp-head"><p class="label">Treasures</p><span class="fine" id="spCount">0 of 6</span></div>
+    <div class="sp-slots" id="spSlots"></div>
+    <div class="sp-acts"><button class="pill pill-ink sm" id="hintBtn" type="button">Tish, a hint?</button><button class="sp-reset" id="resetBtn" type="button">Put them back</button></div>
+  </div>
+
+  <div class="cursor-pill" id="cursorPill" aria-hidden="true">Open story <span>↗</span></div>
+  <div class="toast" id="toast" role="status"></div>
+
+  <!-- Tish, the mascot -->
+  <div class="tish" id="tish" aria-label="Tish, a pixel seahorse. Click to talk, or to go somewhere." role="button" tabindex="0">
+    <canvas id="tishCanvas" width="40" height="46"></canvas>
+  </div>
+  <div class="tish-bubble" id="tishBubble" role="status"></div>
+
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <div class="grain" aria-hidden="true"></div>
+  <script src="data.js?v=1" defer></script>
+  <script src="sea.js?v=2" defer></script>
+  <script src="tish.js?v=2" defer></script>
+  <script src="app.js?v=2" defer></script>
+</body>
+</html>

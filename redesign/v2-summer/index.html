@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Aatisha Cyrill: it’s always summer here</title>
+  <meta name="description" content="Aatisha Cyrill is a product designer and UX researcher who listens first. Welcome to her always-summer portfolio.">
+  <meta name="theme-color" content="#0B8FA3">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&family=Fraunces:ital,opsz,wght,SOFT@1,9..144,300..600,100&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="icon" id="favicon" href="data:,">
+  <link rel="stylesheet" href="styles.css?v=2">
+</head>
+<body>
+  <a class="skip" href="#work">Skip to the work</a>
+
+  <!-- the sea lives behind everything; the white frame floats on top of it -->
+  <div class="sea" id="sea" aria-hidden="true"></div>
+
+  <nav class="nav" id="nav" aria-label="Main">
+    <button class="kai" id="kai" type="button" aria-label="Kai the seahorse. Tap for directions."></button>
+    <a class="brand" href="#top">Aatisha Cyrill</a>
+    <div class="nav-links"><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Say hi</a></div>
+    <div class="nav-actions">
+      <button class="bucket" id="bucketBtn" type="button" aria-haspopup="dialog" aria-controls="bucketPanel">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M7 12h18l-2.2 14a2 2 0 0 1-2 1.7h-9.6a2 2 0 0 1-2-1.7Z" fill="#FF7A59" stroke="#5A2E14" stroke-width="1.8" stroke-linejoin="round"/><path d="M8.5 17h15" stroke="#FFD0BF" stroke-width="2.2"/><path d="M9 12c0-6 14-6 14 0" fill="none" stroke="#5A2E14" stroke-width="1.8"/><circle cx="16" cy="9.5" r="2.4" fill="#FFC24B" stroke="#5A2E14" stroke-width="1.4"/></svg>
+        <span><b id="bucketCount">0</b>/6</span><span class="sr">treasures found</span>
+      </button>
+      <button class="nav-k" id="cmdkBtn" type="button" aria-label="Open command menu"><kbd>⌘</kbd><kbd>K</kbd></button>
+      <button class="nav-cta" id="recruiterBtn" type="button">Résumé</button>
+    </div>
+  </nav>
+  <div class="kai-bubble" id="kaiBubble" role="status" aria-live="polite" aria-hidden="true"></div>
+
+  <main class="frame" id="top">
+    <!-- ============ HERO: the name is cut out of the frame, so the sea shows through ============ -->
+    <header class="hero">
+      <div class="hero-cut">
+        <div class="cut-top"><span>Portfolio · 2026</span><span class="sun-dot"></span><span>The always-summer edition</span></div>
+        <h1 class="cut-name"><span class="l1">Aatisha</span><span class="l2">Cyrill</span></h1>
+        <p class="cut-role">product designer<br>&amp; ux researcher</p>
+      </div>
+      <div class="hero-foot">
+        <p class="intro" data-reveal>Hi! I’m a product designer who <b>listens first</b>. I design calm, human products for AI and research-heavy problems, and I bring the research to back them up. <span class="hand">It’s always summer here, so stay a while.</span></p>
+        <dl class="meta" data-reveal>
+          <div><dt>Local time</dt><dd id="clock">--:--</dd></div>
+          <div><dt>Currently</dt><dd>Designing for AI</dd></div>
+          <div><dt>Water</dt><dd>26°C &amp; sparkly</dd></div>
+          <div><dt>Status</dt><dd><i class="dot"></i>Open to roles</dd></div>
+        </dl>
+        <div class="hero-acts" data-reveal>
+          <a class="btn sun" href="#work">See the work <span aria-hidden="true">↓</span></a>
+          <button class="btn ghost" type="button" data-resume>Résumé</button>
+        </div>
+        <button class="treasure" data-t="scallop" type="button" aria-label="Something shiny in the sand"></button>
+      </div>
+    </header>
+
+    <div class="ribbon" aria-hidden="true"><div class="ribbon-track" id="ribbon"></div></div>
+
+    <!-- ============ WORK: one featured story at a time ============ -->
+    <section class="section work" id="work">
+      <div class="sec-head" data-reveal>
+        <p class="label">01 · The work</p>
+        <h2>One story <em>at a time.</em></h2>
+        <p class="sub"><span class="on-hover">Click a card below to swap it in.</span><span class="on-touch">Tap a card below, or swipe the big one.</span> Open any story to go one step deeper.</p>
+      </div>
+      <div class="feature-wrap" data-reveal>
+        <div class="feature" id="feature" aria-live="polite"></div>
+        <button class="treasure" data-t="starfish" type="button" aria-label="Something is stuck to the card"></button>
+      </div>
+      <div class="deck" id="deck" aria-label="More stories"></div>
+      <div class="also" id="also"></div>
+    </section>
+
+    <!-- ============ ABOUT: a roll of summer prints ============ -->
+    <section class="section about" id="about">
+      <div class="sec-head" data-reveal>
+        <p class="label">02 · Off the clock</p>
+        <h2>Summer, <em>on film.</em></h2>
+      </div>
+      <div class="about-grid">
+        <div class="darkroom" id="darkroom" data-reveal>
+          <div class="prints" id="prints" aria-live="polite"></div>
+          <button class="envelope" id="envelope" type="button" aria-label="Open the envelope of summer prints">
+            <span class="env-flap"></span>
+            <span class="env-body">
+              <span class="env-band"><b>SUMMER</b><b>PRINTS</b></span>
+              <span class="env-info"><span>24 EXP · 4×6 · GLOSSY</span><span>DEVELOPED WITH LOVE</span></span>
+              <span class="env-label">Aatisha · summer ’25</span>
+              <span class="env-tap">tap to open</span>
+            </span>
+          </button>
+          <button class="treasure" data-t="seaglass" type="button" aria-label="Something glinting by the envelope"></button>
+        </div>
+        <div class="about-copy" data-reveal>
+          <p class="about-lead" id="printNote">Tap the envelope to develop my summer prints.</p>
+          <div class="print-ctrl" id="printCtrl" hidden>
+            <button class="round" type="button" data-print="-1" aria-label="Previous print">‹</button>
+            <span id="printCount">1 / 6</span>
+            <button class="round" type="button" data-print="1" aria-label="Next print">›</button>
+            <span class="hand small">or toss the top one</span>
+          </div>
+          <p class="about-short">I’m Aatisha. I grew up writing code, fell for research, and now design products that feel like a good conversation. Off-screen I’m reading, travelling, or collecting quotes, and a few of them are hidden on this page.</p>
+          <div class="beach">
+            <p class="label">In my beach bag</p>
+            <div class="reads" id="reads"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT: a postcard ============ -->
+    <section class="section contact" id="contact">
+      <div class="sec-head" data-reveal>
+        <p class="label">03 · Say hello</p>
+        <h2>Wish you <em>were here.</em></h2>
+      </div>
+      <div class="postcard-wrap" data-reveal>
+        <div class="postcard" id="postcard">
+          <div class="pc-face pc-front" aria-hidden="true">
+            <span class="pc-greet">Greetings from</span>
+            <span class="pc-big">SUMMER</span>
+            <span class="pc-sub">where it’s always sunny &amp; the work is well-researched</span>
+          </div>
+          <div class="pc-face pc-back">
+            <div class="pc-msg">
+              <p class="hand">Hey you,</p>
+              <p class="hand">Thanks for dropping by my little summer. If you’re building something with heart (AI, research, or both), I’d love to hear about it.</p>
+              <p class="hand sign">— Aatisha</p>
+            </div>
+            <div class="pc-addr">
+              <div class="pc-stamps"><span class="postmark">ALWAYS SUMMER · 2026 ·</span><span class="stamp" id="stamp"></span></div>
+              <button class="pc-line mail" id="mailBtn" type="button"><span id="mailText">hello@aatishacyrill.com</span><em>copy</em></button>
+              <a class="pc-line" href="https://www.linkedin.com/in/aatisha-cyrill/" target="_blank" rel="noopener">linkedin.com/in/aatisha-cyrill ↗</a>
+              <a class="pc-line" href="https://medium.com/@cyrillaatisha" target="_blank" rel="noopener">medium.com/@cyrillaatisha ↗</a>
+              <a class="pc-line" href="https://github.com/Aatisha" target="_blank" rel="noopener">github.com/Aatisha ↗</a>
+            </div>
+          </div>
+        </div>
+        <button class="pc-flip" id="pcFlip" type="button">Flip the postcard ↻</button>
+        <button class="treasure" data-t="sanddollar" type="button" aria-label="Something round under the postcard"></button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="shore" id="shore">
+    <div class="bottle-slot">
+      <button class="treasure" data-t="bottle" type="button" aria-label="A message in a bottle"></button>
+      <p class="bottle-hint" id="bottleHint">Find the five treasures above and something will wash ashore.</p>
+    </div>
+    <p class="fine">Designed &amp; built by Aatisha · © 2026 · It’s always summer here.</p>
+  </footer>
+
+  <!-- ============ OVERLAYS ============ -->
+  <div class="bucket-panel" id="bucketPanel" role="dialog" aria-label="Your beach bucket" hidden>
+    <p class="label">Your beach bucket</p>
+    <div class="slots" id="slots"></div>
+    <div class="bp-acts"><button class="btn sun small" type="button" id="hintBtn">Kai, a hint please</button><button class="link" type="button" id="resetBtn">Empty bucket</button></div>
+  </div>
+
+  <div class="tmodal" id="tmodal" data-lenis-prevent hidden>
+    <div class="tm-backdrop" data-close></div>
+    <div class="tm-card" role="dialog" aria-modal="true" aria-labelledby="tmFound">
+      <div class="tm-art" id="tmArt"></div>
+      <div class="tm-body">
+        <p class="label" id="tmFound"></p>
+        <blockquote id="tmQuote"></blockquote>
+        <p class="tm-by" id="tmBy"></p>
+        <p class="tm-why hand" id="tmWhy"></p>
+        <div class="tm-acts" id="tmActs"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story" id="story" data-lenis-prevent role="dialog" aria-modal="true" aria-label="Project story" hidden>
+    <div class="story-backdrop" data-close></div>
+    <article class="story-sheet" id="storySheet" tabindex="-1"></article>
+  </div>
+
+  <div class="cmdk" id="cmdk" data-lenis-prevent role="dialog" aria-modal="true" aria-label="Command menu" hidden>
+    <div class="cmdk-backdrop" data-close></div>
+    <div class="cmdk-panel">
+      <div class="cmdk-input"><span>⌕</span><input id="cmdkInput" placeholder="Jump to a story, find a treasure, or ask me something…" autocomplete="off" aria-label="Search commands"><kbd>esc</kbd></div>
+      <div class="cmdk-list" id="cmdkList" role="listbox"></div>
+      <div class="cmdk-foot"><span><kbd>↑</kbd><kbd>↓</kbd> navigate</span><span><kbd>↵</kbd> open</span><span><kbd>esc</kbd> close</span></div>
+    </div>
+  </div>
+
+  <div class="recruiter" id="recruiter" data-lenis-prevent role="dialog" aria-modal="true" aria-label="Recruiter mode" hidden>
+    <div class="recruiter-backdrop" data-close></div>
+    <div class="resume" id="resume"></div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <script src="data.js?v=2" defer></script>
+  <script src="sea.js?v=2" defer></script>
+  <script src="kai.js?v=2" defer></script>
+  <script src="app.js?v=2" defer></script>
+</body>
+</html>

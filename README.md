@@ -6,12 +6,12 @@ This is my personal web portfolio, showcasing my journey and projects as a UI/UX
 
 ## Installation
 
-To get started with this project, clone the repository and install the necessary dependencies:
+Node.js 16 and npm are required. To get started with this project, clone the repository and install the necessary dependencies:
 
 ```bash
 git clone https://github.com/Aatisha/aatisha.github.io.git
 cd aatisha.github.io
-npm install
+npm ci
 ```
 
 ## Development

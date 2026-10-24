@@ -1,0 +1,749 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Direction A — Horizon · Aatisha Cyrill</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sky-top: #f6d9c4;
+    --sky-bottom: #fbeee2;
+    --ink: #1d1a17;
+    --ink-soft: rgba(29, 26, 23, .62);
+    --line: rgba(29, 26, 23, .14);
+    --card: rgba(255, 255, 255, .55);
+    --mint: #57cfa9;
+    --ease-out: cubic-bezier(.16, 1, .3, 1);
+    --serif: "Instrument Serif", Georgia, serif;
+    --sans: "Inter", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--sky-bottom);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    transition: color .8s var(--ease-out);
+  }
+  ::selection { background: var(--mint); color: #fff; }
+  a { color: inherit; }
+
+  /* ---------- fixed sky ---------- */
+  .sky {
+    position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background: linear-gradient(to bottom, var(--sky-top), var(--sky-bottom) 78%);
+  }
+  .sun {
+    position: absolute; left: 50%; width: 38vmin; height: 38vmin; border-radius: 50%;
+    transform: translate(-50%, 0);
+    background: radial-gradient(circle at 50% 50%, #fff6e3 0%, #ffd9a0 45%, rgba(255, 190, 120, 0) 70%);
+    filter: blur(2px);
+    will-change: top, opacity;
+  }
+  .horizon {
+    position: absolute; left: 0; right: 0; top: 74vh; height: 1px; background: var(--line);
+  }
+  .sea {
+    position: absolute; left: 0; right: 0; top: 74vh; bottom: 0;
+    background: linear-gradient(to bottom, rgba(255,255,255,.18), rgba(255,255,255,0));
+    backdrop-filter: blur(6px);
+  }
+  #stars { position: absolute; inset: 0; opacity: 0; }
+
+  /* ---------- chrome ---------- */
+  .top {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 20;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 22px clamp(20px, 4vw, 48px) 36px;
+    font-size: 13px; letter-spacing: .02em;
+    background: linear-gradient(to bottom, var(--sky-top) 40%, transparent);
+  }
+  .top-r { display: flex; gap: 22px; align-items: center; }
+  .hurry {
+    border: 1px solid var(--line); background: none; color: inherit; cursor: pointer;
+    padding: 8px 14px; border-radius: 999px; font: 500 12px var(--sans);
+  }
+  .hurry kbd { font: inherit; opacity: .55; margin-left: 6px; }
+  .index {
+    position: fixed; inset: 0; z-index: 50; display: grid; place-items: center;
+    background: rgba(10, 10, 20, .35); backdrop-filter: blur(10px);
+    opacity: 0; pointer-events: none; transition: opacity .35s var(--ease-out);
+  }
+  .index.on { opacity: 1; pointer-events: auto; }
+  .index .sheet {
+    width: min(640px, 92vw); background: #fffdf9; color: #1d1a17; border-radius: 22px; padding: 26px;
+    transform: translateY(16px) scale(.98); transition: transform .45s var(--ease-out);
+    box-shadow: 0 40px 100px -30px rgba(0,0,0,.5);
+  }
+  .index.on .sheet { transform: none; }
+  .index h3 { font: 400 30px var(--serif); margin-bottom: 4px; }
+  .index p.sub { font-size: 13px; color: rgba(29,26,23,.6); margin-bottom: 16px; }
+  .index a.row {
+    display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; padding: 14px 12px; border-radius: 12px; text-decoration: none;
+  }
+  .index a.row:hover, .index a.row:focus-visible { background: rgba(0,0,0,.05); outline: none; }
+  .index a.row b { font-weight: 500; }
+  .index a.row span { font-size: 12px; color: rgba(29,26,23,.6); }
+  .index a.row em { grid-row: span 2; align-self: center; font: italic 22px var(--serif); }
+  .top .name { font-family: var(--serif); font-size: 22px; letter-spacing: 0; }
+  .clock { display: flex; gap: 10px; align-items: center; font-variant-numeric: tabular-nums; color: var(--ink-soft); }
+  .clock i { width: 8px; height: 8px; border-radius: 50%; background: currentColor; display: inline-block; }
+  .progress {
+    position: fixed; right: clamp(16px, 3vw, 36px); top: 50%; transform: translateY(-50%);
+    display: flex; flex-direction: column; gap: 14px; z-index: 20;
+  }
+  .progress a {
+    display: flex; align-items: center; gap: 10px; justify-content: flex-end;
+    text-decoration: none; font-size: 12px; color: var(--ink-soft);
+  }
+  .progress a span { opacity: 0; transform: translateX(6px); transition: .4s var(--ease-out); }
+  .progress a:hover span, .progress a.on span { opacity: 1; transform: none; }
+  .progress a b { width: 18px; height: 1px; background: currentColor; transition: width .4s var(--ease-out); }
+  .progress a.on b { width: 34px; }
+
+  /* ---------- sections ---------- */
+  section { position: relative; padding: 0 clamp(20px, 11vw, 180px) 0 clamp(20px, 8vw, 120px); }
+  .hero { min-height: 100vh; display: grid; place-content: center; text-align: center; }
+  .eyebrow { font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-soft); }
+  h1 {
+    font-family: var(--serif); font-weight: 400;
+    font-size: clamp(56px, 11vw, 176px); line-height: .92; letter-spacing: -.02em;
+    margin: 28px 0 32px;
+  }
+  h1 em { font-style: italic; }
+  .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .08em; }
+  .w > span {
+    display: inline-block; transform: translateY(105%); filter: blur(8px); opacity: 0;
+    transition: transform 1.2s var(--ease-out), filter 1.2s var(--ease-out), opacity 1.2s var(--ease-out);
+  }
+  .ready .w > span { transform: none; filter: none; opacity: 1; }
+  .lede { max-width: 520px; margin: 0 auto; font-size: 18px; line-height: 1.55; color: var(--ink-soft); }
+  .scroll-cue {
+    margin-top: 56px; display: inline-flex; flex-direction: column; align-items: center; gap: 10px;
+    font-size: 12px; color: var(--ink-soft);
+  }
+  .scroll-cue i { width: 1px; height: 48px; background: linear-gradient(var(--ink), transparent); animation: drip 2.4s var(--ease-out) infinite; transform-origin: top; }
+  @keyframes drip { 0% { transform: scaleY(0); } 60% { transform: scaleY(1); opacity: 1; } 100% { opacity: 0; } }
+
+  .chapter { min-height: 180vh; display: grid; grid-template-columns: 1fr 1fr; gap: 6vw; align-items: start; }
+  .chapter .copy { position: sticky; top: 16vh; }
+  .chapter .stage { position: sticky; top: 16vh; height: 68vh; }
+  .time { font-family: var(--serif); font-style: italic; font-size: 22px; color: var(--ink-soft); }
+  h2 {
+    font-family: var(--serif); font-weight: 400;
+    font-size: clamp(40px, 5.6vw, 84px); line-height: 1; letter-spacing: -.015em; margin: 14px 0 24px;
+  }
+  .copy p { font-size: 17px; line-height: 1.6; color: var(--ink-soft); max-width: 460px; }
+  .proof { display: flex; gap: 28px; margin-top: 32px; flex-wrap: wrap; }
+  .proof div { border-top: 1px solid var(--line); padding-top: 12px; min-width: 120px; }
+  .proof strong { display: block; font-family: var(--serif); font-size: 44px; font-weight: 400; line-height: 1; }
+  .proof small { font-size: 12px; color: var(--ink-soft); }
+  .deep {
+    display: inline-flex; gap: 10px; align-items: center; margin-top: 32px;
+    font-size: 14px; text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 4px;
+  }
+  .deep:hover .arr { transform: translateX(4px); }
+  .arr { transition: transform .3s var(--ease-out); }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 1s var(--ease-out), transform 1s var(--ease-out); }
+  .reveal.in { opacity: 1; transform: none; }
+
+  .panel {
+    position: absolute; inset: 0; border-radius: 28px; overflow: hidden;
+    background: var(--card); border: 1px solid rgba(255,255,255,.6);
+    backdrop-filter: blur(18px) saturate(1.2);
+    box-shadow: 0 30px 80px -30px rgba(40, 20, 0, .25);
+  }
+
+  /* dawn: quotes that float */
+  .quotes { position: absolute; inset: 0; }
+  .quote {
+    position: absolute; max-width: 260px; padding: 16px 18px; border-radius: 16px;
+    background: #fff; font-family: var(--serif); font-size: 20px; line-height: 1.25;
+    box-shadow: 0 10px 30px -12px rgba(0,0,0,.18);
+    transition: transform 1.4s var(--ease-out), opacity 1.4s var(--ease-out);
+  }
+  .quote small { display: block; margin-top: 8px; font-family: var(--sans); font-size: 11px; color: var(--ink-soft); }
+  .quotes .insight {
+    position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) scale(.9); opacity: 0;
+    width: 76%; padding: 22px; border-radius: 18px; background: var(--ink); color: #fff;
+    transition: 1s var(--ease-out) .2s;
+  }
+  .quotes .insight small { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; opacity: .6; }
+  .quotes .insight p { font-family: var(--serif); font-size: 26px; line-height: 1.2; margin-top: 8px; color: #fff; }
+  .quotes.synth .quote { transform: translate(var(--sx), var(--sy)) scale(.6) !important; opacity: .15; }
+  .quotes.synth .insight { opacity: 1; transform: translate(-50%, -50%); }
+  .synth-btn {
+    position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+    border: 0; border-radius: 999px; padding: 12px 18px; font: 500 13px var(--sans);
+    background: var(--ink); color: #fff; cursor: pointer;
+  }
+
+  /* morning: ticket counter */
+  .tickets { display: grid; place-content: center; height: 100%; text-align: center; gap: 18px; }
+  .tickets .big { font-family: var(--serif); font-size: clamp(90px, 12vw, 180px); line-height: 1; font-variant-numeric: tabular-nums; }
+  .bars { display: flex; gap: 6px; align-items: flex-end; justify-content: center; height: 120px; }
+  .bars i { width: 14px; border-radius: 6px 6px 2px 2px; background: var(--ink); transition: height 1.4s var(--ease-out), background 1.4s; }
+  .toggle {
+    justify-self: center; display: inline-flex; padding: 4px; border-radius: 999px; background: rgba(0,0,0,.06);
+  }
+  .toggle button {
+    border: 0; background: none; padding: 9px 16px; border-radius: 999px; font: 500 13px var(--sans); cursor: pointer; color: var(--ink-soft);
+    transition: .3s var(--ease-out);
+  }
+  .toggle button.on { background: #fff; color: var(--ink); box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+
+  /* afternoon: pairwise */
+  .pair { position: absolute; inset: 0; display: grid; grid-template-rows: auto 1fr auto; padding: 24px; gap: 16px; }
+  .pair header { display: flex; justify-content: space-between; font-size: 13px; color: var(--ink-soft); }
+  .cards { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .item {
+    border: 0; border-radius: 20px; cursor: pointer; position: relative; overflow: hidden;
+    display: flex; align-items: flex-end; padding: 16px; font: 500 14px var(--sans); color: #fff; text-align: left;
+    transition: transform .6s var(--ease-out), opacity .5s var(--ease-out), box-shadow .3s;
+  }
+  .item:hover { transform: translateY(-4px) rotate(-.6deg); box-shadow: 0 20px 40px -20px rgba(0,0,0,.4); }
+  .item.win { transform: scale(1.04); }
+  .item.lose { transform: translateY(40px) scale(.9) rotate(4deg); opacity: 0; }
+  .item .shape { position: absolute; inset: 18% 22% 30%; border-radius: 40% 40% 12px 12px; background: rgba(255,255,255,.25); }
+  .taste { display: grid; gap: 8px; }
+  .taste div { display: grid; grid-template-columns: 80px 1fr 34px; align-items: center; gap: 10px; font-size: 12px; color: var(--ink-soft); }
+  .taste span.meter { height: 6px; border-radius: 6px; background: rgba(0,0,0,.08); overflow: hidden; }
+  .taste span.meter i { display: block; height: 100%; width: 10%; background: var(--ink); border-radius: 6px; transition: width .9s var(--ease-out); }
+
+  /* golden: chat */
+  .chat { position: absolute; inset: 0; padding: 24px; display: flex; flex-direction: column; gap: 12px; justify-content: flex-end; overflow: hidden;
+    -webkit-mask-image: linear-gradient(transparent, #000 22%); mask-image: linear-gradient(transparent, #000 22%); }
+  .bubble {
+    max-width: 78%; padding: 12px 16px; border-radius: 18px; font-size: 15px; line-height: 1.45;
+    opacity: 0; transform: translateY(10px) scale(.98); transition: .6s var(--ease-out);
+  }
+  .bubble.in { opacity: 1; transform: none; }
+  .bubble.me { align-self: flex-end; background: var(--ink); color: #fff; border-bottom-right-radius: 6px; }
+  .bubble.ai { align-self: flex-start; background: #fff; border-bottom-left-radius: 6px; }
+  .bubble.ai .cite { display: inline-block; margin-top: 8px; font-size: 11px; padding: 3px 8px; border-radius: 999px; background: rgba(87,207,169,.18); color: #19785b; }
+  .typing i { display: inline-block; width: 6px; height: 6px; margin: 0 2px; border-radius: 50%; background: var(--ink-soft); animation: blink 1s infinite; }
+  .typing i:nth-child(2) { animation-delay: .15s; } .typing i:nth-child(3) { animation-delay: .3s; }
+  @keyframes blink { 50% { opacity: .2; } }
+
+  /* night */
+  .night { min-height: 140vh; padding-top: 20vh; }
+  .night h2 { text-align: center; }
+  .shelf { display: flex; justify-content: center; align-items: flex-end; gap: 4px; height: 280px; margin: 40px auto 0; perspective: 900px; }
+  .spine {
+    width: 38px; border-radius: 3px; position: relative; cursor: pointer;
+    writing-mode: vertical-rl; transform: rotate(180deg);
+    display: flex; align-items: center; justify-content: center;
+    font: 500 11px var(--sans); letter-spacing: .06em; color: rgba(255,255,255,.9);
+    transition: transform .5s var(--ease-out), margin .5s var(--ease-out);
+    box-shadow: inset -3px 0 0 rgba(0,0,0,.15);
+  }
+  .spine:hover, .spine:focus-visible { transform: rotate(180deg) translateY(28px); outline: none; }
+  .book-note {
+    text-align: center; margin-top: 26px; min-height: 60px; font-family: var(--serif); font-size: 24px; font-style: italic; color: var(--ink-soft);
+  }
+  .cities { display: flex; justify-content: center; gap: 18px; margin-top: 100px; flex-wrap: wrap; }
+  .postcard {
+    width: 220px; aspect-ratio: 4/5; border-radius: 16px; overflow: hidden; position: relative;
+    transform: rotate(var(--r)); transition: transform .6s var(--ease-out); box-shadow: 0 30px 60px -30px rgba(0,0,0,.6);
+    background: #222;
+  }
+  .postcard:hover { transform: rotate(0) translateY(-10px) scale(1.04); }
+  .postcard video, .postcard img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .postcard span { position: absolute; left: 14px; bottom: 12px; font-family: var(--serif); font-size: 24px; color: #fff; text-shadow: 0 2px 12px rgba(0,0,0,.4); }
+
+  .end { min-height: 100vh; display: grid; place-content: center; text-align: center; }
+  .end h2 { font-size: clamp(48px, 8vw, 128px); }
+  .mail {
+    margin: 12px auto 0; display: inline-flex; align-items: center; gap: 12px; cursor: pointer;
+    border: 1px solid rgba(255,255,255,.25); background: rgba(255,255,255,.06); color: inherit;
+    padding: 16px 24px; border-radius: 999px; font: 500 16px var(--sans);
+    transition: background .3s;
+  }
+  .mail:hover { background: rgba(255,255,255,.14); }
+  .socials { margin-top: 28px; display: flex; gap: 24px; justify-content: center; font-size: 14px; }
+  .socials a { text-decoration: none; opacity: .7; } .socials a:hover { opacity: 1; }
+
+  /* ---------- butterfly mascot ---------- */
+  .fly {
+    position: fixed; left: 0; top: 0; width: 44px; height: 44px; z-index: 30; pointer-events: auto; cursor: pointer;
+    will-change: transform;
+  }
+  .fly svg { width: 100%; height: 100%; overflow: visible; }
+  .fly .wl, .fly .wr { transform-box: fill-box; animation: flap .22s ease-in-out infinite alternate; }
+  .fly .wl { transform-origin: right center; } .fly .wr { transform-origin: left center; }
+  .fly.rest .wl, .fly.rest .wr { animation-duration: 1.6s; }
+  @keyframes flap { from { transform: scaleX(1); } to { transform: scaleX(.18); } }
+  .say {
+    position: fixed; z-index: 31; pointer-events: none; max-width: 220px;
+    padding: 10px 14px; border-radius: 14px 14px 14px 4px; background: var(--ink); color: #fff; font-size: 13px; line-height: 1.4;
+    opacity: 0; transform: translateY(6px) scale(.96); transition: opacity .35s var(--ease-out), transform .35s var(--ease-out);
+  }
+  .say.on { opacity: 1; transform: none; }
+  body.dark .say { background: #fff; color: #111; }
+
+  .toast {
+    position: fixed; bottom: 26px; left: 50%; transform: translate(-50%, 20px); opacity: 0; z-index: 40;
+    background: #fff; color: #111; padding: 10px 16px; border-radius: 999px; font-size: 13px; transition: .4s var(--ease-out);
+  }
+  .toast.on { opacity: 1; transform: translate(-50%, 0); }
+
+  @media (max-width: 860px) {
+    .chapter { grid-template-columns: 1fr; min-height: auto; padding-bottom: 20vh; }
+    .chapter .copy, .chapter .stage { position: relative; top: 0; padding-bottom: 0; }
+    .chapter .stage { height: 520px; margin-top: 40px; }
+    .progress { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
+    .w > span { transform: none; filter: none; opacity: 1; }
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="sky" aria-hidden="true">
+    <canvas id="stars"></canvas>
+    <div class="sun"></div>
+    <div class="sea"></div>
+    <div class="horizon"></div>
+  </div>
+
+  <header class="top">
+    <div class="name">Aatisha Cyrill</div>
+    <div class="top-r">
+      <div class="clock" aria-live="polite"><i></i><span id="clock">06:00 · first light</span></div>
+      <button class="hurry" id="hurry" data-perch>In a hurry? <kbd>⌘K</kbd></button>
+    </div>
+  </header>
+
+  <div class="index" id="index" role="dialog" aria-modal="true" aria-label="Quick index">
+    <div class="sheet">
+      <h3>The 30-second version</h3>
+      <p class="sub">Skip the sunset. Here’s the evidence, one click each.</p>
+      <a class="row" href="#golden"><b>MyWorker.AI: semi-agentic AI sales avatar</b><em>12</em><span>Product designer · conversational AI · 2025</span></a>
+      <a class="row" href="#morning"><b>MINDS@UW: research repository redesign</b><em>−50%</em><span>UX designer and researcher · accessibility · 2024</span></a>
+      <a class="row" href="#afternoon"><b>Amazon × Shopbop: pairwise fashion discovery</b><em>ML</em><span>Product designer and owner · 2024</span></a>
+      <a class="row" href="#dawn"><b>Trader Joe’s + Rover: field research</b><em>40+</em><span>UX researcher · generative and evaluative · 2023–24</span></a>
+      <a class="row" href="#"><b>Résumé (PDF)</b><em>↗</em><span>Everything above, in a single file</span></a>
+    </div>
+  </div>
+
+  <nav class="progress" aria-label="Chapters">
+    <a href="#dawn"><span>Listening</span><b></b></a>
+    <a href="#morning"><span>Clarity</span><b></b></a>
+    <a href="#afternoon"><span>Play</span><b></b></a>
+    <a href="#golden"><span>What’s next</span><b></b></a>
+    <a href="#night"><span>Off the clock</span><b></b></a>
+  </nav>
+
+  <main>
+    <section class="hero" data-time="06:00 · first light">
+      <p class="eyebrow">Product designer · UX researcher · recovering engineer</p>
+      <h1 aria-label="Hi, I’m Aatisha.">
+        <span class="w"><span>Hi,</span></span>
+        <span class="w"><span>I’m</span></span><br>
+        <span class="w"><span><em>Aatisha.</em></span></span>
+      </h1>
+      <p class="lede reveal">I build products with purpose and heart. This isn’t a list of projects. It’s one day, dawn to dusk, showing how I think. Take your time.</p>
+      <div class="scroll-cue reveal"><i></i>scroll to let the sun move</div>
+    </section>
+
+    <!-- DAWN -->
+    <section class="chapter" id="dawn" data-time="06:40 · dawn">
+      <div class="copy">
+        <p class="time reveal">06:40, dawn</p>
+        <h2 class="reveal">Every good idea starts as a <em>quiet conversation.</em></h2>
+        <p class="reveal">Before I push a pixel, I listen. At Trader Joe’s I shadowed shoppers in the aisles, and on Rover.com I timed pet owners as they tried to book a sitter. Messy quotes turn into one sharp insight.</p>
+        <div class="proof reveal">
+          <div><strong>9</strong><small>interviews</small></div>
+          <div><strong>6</strong><small>contextual inquiries</small></div>
+          <div><strong>25+</strong><small>survey voices</small></div>
+        </div>
+        <a class="deep reveal" href="#" data-perch>Read the field notes <span class="arr">→</span></a>
+      </div>
+      <div class="stage reveal">
+        <div class="panel">
+          <div class="quotes" id="quotes">
+            <div class="quote" style="left:6%;top:8%;--sx:60px;--sy:80px">“I know it’s here somewhere. I just can’t find it.”<small>Shopper, aisle 4</small></div>
+            <div class="quote" style="right:6%;top:18%;--sx:-60px;--sy:60px">“I only come in for the recipes on the cards.”<small>Weekly regular</small></div>
+            <div class="quote" style="left:10%;top:44%;--sx:40px;--sy:-10px">“Wait… how much will this actually cost me?”<small>Rover, task 3</small></div>
+            <div class="quote" style="right:8%;bottom:18%;--sx:-40px;--sy:-40px">“Too many filters. None of them are mine.”<small>Rover, task 1</small></div>
+            <div class="insight"><small>Synthesized insight</small><p>People don’t want more options. They want to trust the path in front of them.</p></div>
+            <button class="synth-btn" id="synth" data-perch>Synthesize ✦</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MORNING -->
+    <section class="chapter" id="morning" data-time="10:15 · morning">
+      <div class="copy">
+        <p class="time reveal">10:15, morning</p>
+        <h2 class="reveal">I make the complicated feel <em>calm.</em></h2>
+        <p class="reveal">MINDS@UW holds 32,000+ papers and datasets for 3,000+ researchers across every UW campus, and it felt like a maze. I redesigned navigation, rewrote the words, and made the whole thing accessible. The support inbox noticed.</p>
+        <div class="proof reveal">
+          <div><strong>−50%</strong><small>support tickets</small></div>
+          <div><strong>32k+</strong><small>works, findable</small></div>
+        </div>
+        <a class="deep reveal" href="#" data-perch>See how it changed <span class="arr">→</span></a>
+      </div>
+      <div class="stage reveal">
+        <div class="panel">
+          <div class="tickets">
+            <div class="big" id="tix">100</div>
+            <div style="font-size:13px;color:var(--ink-soft)">support tickets / month (indexed)</div>
+            <div class="bars" id="bars"></div>
+            <div class="toggle" role="tablist">
+              <button class="on" data-mode="before" data-perch>Before</button>
+              <button data-mode="after" data-perch>After redesign</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AFTERNOON -->
+    <section class="chapter" id="afternoon" data-time="14:30 · afternoon">
+      <div class="copy">
+        <p class="time reveal">14:30, afternoon</p>
+        <h2 class="reveal">Useful can also be <em>playful.</em></h2>
+        <p class="reveal">For Amazon × Shopbop I led a team that turned fashion discovery into a game of “this or that.” Every tap trains a recommendation model (AWS Personalize), and nobody has to fill in a style quiz. Go ahead, play a round.</p>
+        <div class="proof reveal">
+          <div><strong>4</strong><small>exec stakeholders</small></div>
+          <div><strong>1</strong><small>tap per decision</small></div>
+        </div>
+        <a class="deep reveal" href="#" data-perch>How the game learns <span class="arr">→</span></a>
+      </div>
+      <div class="stage reveal">
+        <div class="panel">
+          <div class="pair">
+            <header><span>Round <b id="round">1</b> / 5</span><span>Which feels more <i>you</i>?</span></header>
+            <div class="cards" id="cards"></div>
+            <div class="taste" id="taste"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GOLDEN -->
+    <section class="chapter" id="golden" data-time="18:10 · golden hour">
+      <div class="copy">
+        <p class="time reveal">18:10, golden hour</p>
+        <h2 class="reveal">Lately, I design for machines that <em>talk back.</em></h2>
+        <p class="reveal">At MyWorker.AI I designed a semi-agentic sales avatar for SMB founders. My job was deciding when it should act, when it should ask, and how it earns trust. We tested it with 12 founders and shipped an MVP to SF Tech Week 2025.</p>
+        <div class="proof reveal">
+          <div><strong>12</strong><small>founders tested</small></div>
+          <div><strong>5</strong><small>designers, 1 new space</small></div>
+        </div>
+        <a class="deep reveal" href="#" data-perch>My principles for AI UX <span class="arr">→</span></a>
+      </div>
+      <div class="stage reveal">
+        <div class="panel"><div class="chat" id="chat"></div></div>
+      </div>
+    </section>
+
+    <!-- NIGHT -->
+    <section class="night" id="night" data-time="21:30 · night">
+      <p class="time reveal" style="text-align:center">21:30, off the clock</p>
+      <h2 class="reveal">Reading is how I practice <em>empathy.</em></h2>
+      <div class="shelf reveal" id="shelf" aria-label="Bookshelf"></div>
+      <p class="book-note" id="note">Pull a book. Each one taught me something about people.</p>
+
+      <div class="cities">
+        <figure class="postcard reveal" style="--r:-4deg"><video muted loop playsinline preload="none" poster="../../src/assets/images/about/san-francisco-thumbnail.png" src="../../src/assets/images/about/san-francisco.mp4"></video><span>San Francisco</span></figure>
+        <figure class="postcard reveal" style="--r:3deg"><video muted loop playsinline preload="none" poster="../../src/assets/images/about/new-york-thumbnail.png" src="../../src/assets/images/about/new-york.mp4"></video><span>New York</span></figure>
+        <figure class="postcard reveal" style="--r:-2deg"><video muted loop playsinline preload="none" poster="../../src/assets/images/about/seattle-thumbnail.png" src="../../src/assets/images/about/seattle.mp4"></video><span>Seattle</span></figure>
+      </div>
+      <p class="book-note reveal" style="margin-top:36px">Travel taught me that every place is a story. So is every product.</p>
+    </section>
+
+    <section class="end" data-time="23:59 · see you tomorrow">
+      <p class="eyebrow reveal">The sun’s down. The ideas aren’t.</p>
+      <h2 class="reveal">Let’s build something <em>with heart.</em></h2>
+      <div class="reveal"><button class="mail" id="mail" data-perch>hello@aatishacyrill.com <span>⧉</span></button></div>
+      <div class="socials reveal">
+        <a href="https://www.linkedin.com/in/aatisha-cyrill/">LinkedIn</a>
+        <a href="https://medium.com/@cyrillaatisha">Medium</a>
+        <a href="https://github.com/Aatisha">GitHub</a>
+        <a href="#">Résumé</a>
+      </div>
+    </section>
+  </main>
+
+  <div class="fly" id="fly" role="img" aria-label="Butterfly companion">
+    <svg viewBox="-24 -24 48 48">
+      <g class="wl"><path d="M-2 -2 C -14 -22 -26 -12 -20 -2 C -26 6 -16 18 -2 6 Z" fill="#57cfa9" stroke="#1f5f4c" stroke-width="1.4"/></g>
+      <g class="wr"><path d="M2 -2 C 14 -22 26 -12 20 -2 C 26 6 16 18 2 6 Z" fill="#7fe0c2" stroke="#1f5f4c" stroke-width="1.4"/></g>
+      <ellipse cx="0" cy="2" rx="2" ry="9" fill="#1f5f4c"/>
+      <path d="M-1 -7 Q -4 -14 -7 -15 M1 -7 Q 4 -14 7 -15" stroke="#1f5f4c" stroke-width="1" fill="none"/>
+    </svg>
+  </div>
+  <div class="say" id="say"></div>
+  <div class="toast" id="toast">Copied. Talk soon ✦</div>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = (s, c = document) => c.querySelector(s);
+  const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+
+  requestAnimationFrame(() => document.body.classList.add('ready'));
+
+  /* ---------- sky timeline ---------- */
+  const stops = [
+    { p: 0,    top: [246, 217, 196], bot: [251, 238, 226], ink: [29, 26, 23] },
+    { p: .28,  top: [203, 226, 242], bot: [246, 243, 236], ink: [29, 26, 23] },
+    { p: .5,   top: [188, 214, 238], bot: [244, 240, 230], ink: [29, 26, 23] },
+    { p: .68,  top: [243, 185, 138], bot: [250, 226, 200], ink: [29, 26, 23] },
+    { p: .8,   top: [74, 66, 120],   bot: [214, 130, 120], ink: [255, 248, 240] },
+    { p: .9,   top: [12, 14, 32],    bot: [30, 34, 66],    ink: [240, 238, 250] },
+    { p: 1,    top: [6, 8, 20],      bot: [16, 18, 40],    ink: [240, 238, 250] },
+  ];
+  const mix = (a, b, t) => a.map((v, i) => Math.round(lerp(v, b[i], t)));
+  const rgb = (c, a = 1) => `rgba(${c[0]},${c[1]},${c[2]},${a})`;
+  const root = document.documentElement.style;
+  const sun = $('.sun'); const starsEl = $('#stars');
+
+  function paintSky(p) {
+    let i = 0; while (i < stops.length - 2 && p > stops[i + 1].p) i++;
+    const a = stops[i], b = stops[i + 1]; const t = clamp((p - a.p) / (b.p - a.p));
+    const ink = mix(a.ink, b.ink, t);
+    root.setProperty('--sky-top', rgb(mix(a.top, b.top, t)));
+    root.setProperty('--sky-bottom', rgb(mix(a.bot, b.bot, t)));
+    root.setProperty('--ink', rgb(ink));
+    root.setProperty('--ink-soft', rgb(ink, .62));
+    root.setProperty('--line', rgb(ink, .16));
+    const dark = p > .78; document.body.classList.toggle('dark', dark);
+    root.setProperty('--card', dark ? 'rgba(255,255,255,.08)' : 'rgba(255,255,255,.55)');
+    // sun arc: rises to 12vh at midday, sets past the horizon by dusk
+    const arc = Math.sin(clamp(p / .84) * Math.PI);
+    sun.style.top = `calc(${lerp(62, 10, arc)}vh - 19vmin + ${p > .6 ? (p - .6) * 60 : 0}vh)`;
+    sun.style.opacity = clamp(1.2 - clamp((p - .72) / .12) * 1.2);
+    starsEl.style.opacity = clamp((p - .78) / .12);
+  }
+
+  /* ---------- stars ---------- */
+  const ctx = starsEl.getContext('2d'); let stars = [];
+  function sizeStars() {
+    starsEl.width = innerWidth * devicePixelRatio; starsEl.height = innerHeight * devicePixelRatio;
+    stars = Array.from({ length: 180 }, () => ({ x: Math.random(), y: Math.random() * .74, r: Math.random() * 1.3 + .2, s: Math.random() * 6 }));
+  }
+  function drawStars(t) {
+    ctx.clearRect(0, 0, starsEl.width, starsEl.height);
+    for (const s of stars) {
+      ctx.globalAlpha = .4 + .6 * Math.abs(Math.sin(t / 1400 + s.s));
+      ctx.beginPath(); ctx.arc(s.x * starsEl.width, s.y * starsEl.height, s.r * devicePixelRatio, 0, 7); ctx.fillStyle = '#fff'; ctx.fill();
+    }
+  }
+  sizeStars(); addEventListener('resize', sizeStars);
+
+  /* ---------- scroll ---------- */
+  const sections = $$('[data-time]'); const clock = $('#clock');
+  const navLinks = $$('.progress a');
+  function onScroll() {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    const p = clamp(scrollY / max);
+    paintSky(p);
+    let current = sections[0];
+    for (const s of sections) if (s.getBoundingClientRect().top < innerHeight * .5) current = s;
+    clock.textContent = current.dataset.time;
+    navLinks.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + current.id));
+  }
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); e.target.dispatchEvent(new Event('enter')); }
+  }), { threshold: .25 });
+  $$('.reveal').forEach(el => io.observe(el));
+
+  /* ---------- dawn: synthesize ---------- */
+  $('#synth').addEventListener('click', e => {
+    const q = $('#quotes'); q.classList.toggle('synth');
+    e.target.textContent = q.classList.contains('synth') ? 'Show raw quotes' : 'Synthesize ✦';
+    if (q.classList.contains('synth')) say('That’s the moment I live for. Noise → signal.', 2600);
+  });
+
+  /* ---------- morning: tickets ---------- */
+  const bars = $('#bars'); const before = [62, 80, 74, 92, 86, 100, 90, 96]; const after = [58, 50, 44, 40, 38, 36, 34, 32];
+  before.forEach(h => { const i = document.createElement('i'); i.style.height = h + '%'; bars.appendChild(i); });
+  let tixAnim;
+  function setMode(mode) {
+    $$('.toggle button').forEach(b => b.classList.toggle('on', b.dataset.mode === mode));
+    const data = mode === 'after' ? after : before;
+    $$('#bars i').forEach((b, i) => { b.style.height = data[i] + '%'; b.style.background = mode === 'after' ? 'var(--mint)' : 'var(--ink)'; });
+    const from = +$('#tix').textContent; const to = mode === 'after' ? 50 : 100; const t0 = performance.now();
+    cancelAnimationFrame(tixAnim);
+    (function step(t) { const k = clamp((t - t0) / 1200); const e = 1 - Math.pow(1 - k, 4);
+      $('#tix').textContent = Math.round(lerp(from, to, e)); if (k < 1) tixAnim = requestAnimationFrame(step); })(t0);
+  }
+  $$('.toggle button').forEach(b => b.addEventListener('click', () => setMode(b.dataset.mode)));
+  $('#morning .stage').addEventListener('enter', () => setTimeout(() => setMode('after'), 900), { once: true });
+
+  /* ---------- afternoon: pairwise ---------- */
+  const looks = [
+    ['Linen, oversized', '#c9a27e', 'minimal'], ['Neon & chrome', '#8a5cf6', 'bold'],
+    ['Soft pastel knit', '#e8a3b8', 'romantic'], ['Black tailored', '#26221f', 'minimal'],
+    ['Vintage denim', '#4f6d8f', 'classic'], ['Sequin mini', '#d4a017', 'bold'],
+    ['Floral midi', '#d97a6c', 'romantic'], ['Crisp white shirt', '#9aa7a1', 'classic'],
+    ['Cargo & boots', '#6b6b3a', 'bold'], ['Silk slip', '#b8918a', 'romantic'],
+  ];
+  const taste = { minimal: 10, bold: 10, romantic: 10, classic: 10 };
+  const tasteEl = $('#taste');
+  Object.keys(taste).forEach(k => tasteEl.insertAdjacentHTML('beforeend', `<div><span>${k}</span><span class="meter"><i data-k="${k}"></i></span><span data-v="${k}">–</span></div>`));
+  let round = 0;
+  function deal() {
+    const cards = $('#cards'); cards.innerHTML = '';
+    if (round >= 5) {
+      const top = Object.entries(taste).sort((a, b) => b[1] - a[1])[0][0];
+      cards.innerHTML = `<div style="grid-column:1/-1;display:grid;place-content:center;text-align:center;gap:10px"><div style="font-family:var(--serif);font-size:44px;line-height:1">You’re a little <em>${top}</em>.</div><div style="font-size:13px;color:var(--ink-soft)">5 taps. No quiz. That was the whole idea.</div><button class="synth-btn" style="position:static;transform:none;justify-self:center" id="again" data-perch>Play again</button></div>`;
+      $('#again').onclick = () => { round = 0; Object.keys(taste).forEach(k => taste[k] = 10); updateTaste(); deal(); };
+      say('See? Nobody likes forms. Everybody likes choosing.', 2800); return;
+    }
+    $('#round').textContent = round + 1;
+    const pair = [looks[(round * 2) % looks.length], looks[(round * 2 + 1) % looks.length]];
+    pair.forEach((l, i) => {
+      const b = document.createElement('button'); b.className = 'item'; b.style.background = l[1];
+      b.innerHTML = `<span class="shape"></span><span style="position:relative">${l[0]}</span>`;
+      b.onclick = () => {
+        taste[l[2]] += 30; updateTaste();
+        [...cards.children].forEach((c, j) => c.classList.add(j === i ? 'win' : 'lose'));
+        round++; setTimeout(deal, 650);
+      };
+      cards.appendChild(b);
+    });
+  }
+  function updateTaste() {
+    const total = Object.values(taste).reduce((a, b) => a + b, 0);
+    Object.entries(taste).forEach(([k, v]) => { $(`[data-k="${k}"]`).style.width = (v / total * 100) + '%'; $(`[data-v="${k}"]`).textContent = Math.round(v / total * 100) + '%'; });
+  }
+  updateTaste(); deal();
+
+  /* ---------- golden: chat ---------- */
+  const script = [
+    ['me', 'Find me 20 bakeries in Oakland that might want catering software.'],
+    ['ai', 'Found 23. I shortlisted 20 with active websites and fewer than 50 staff. Want me to draft intros in your voice?<br><span class="cite">✓ sources: 3 directories · confidence high</span>'],
+    ['me', 'Yes, but don’t send anything yet.'],
+    ['ai', 'Got it. I’ll keep them as drafts, so nothing goes out without you. Here’s the first one to review ↗'],
+  ];
+  let chatPlayed = false;
+  $('#golden .stage').addEventListener('enter', async () => {
+    if (chatPlayed) return; chatPlayed = true; const chat = $('#chat');
+    for (const [who, text] of script) {
+      if (who === 'ai') {
+        const t = document.createElement('div'); t.className = 'bubble ai typing in'; t.innerHTML = '<i></i><i></i><i></i>'; chat.appendChild(t);
+        await wait(reduce ? 0 : 1100); t.remove();
+      }
+      const b = document.createElement('div'); b.className = `bubble ${who}`; b.innerHTML = text; chat.appendChild(b);
+      requestAnimationFrame(() => b.classList.add('in')); await wait(reduce ? 0 : 900);
+    }
+    say('Notice it asked before acting. That was a design decision.', 3200);
+  });
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+
+  /* ---------- night: shelf ---------- */
+  const books = [
+    ['The God of Small Things', '#8b3a3a', 'Small details carry the biggest feelings.'],
+    ['Eleanor Oliphant Is Completely Fine', '#d98b3a', 'Loneliness is invisible until someone designs for it.'],
+    ['White Nights', '#3a4e8b', 'Hope and hesitation live in the same moment.'],
+    ['To Kill a Mockingbird', '#5a6b3a', 'You don’t understand someone until you climb into their skin.'],
+    ['The Design of Everyday Things', '#c43b2f', 'If people fail, the design failed first.'],
+    ['Norwegian Wood', '#2f6f5a', 'Memory is an interface too.'],
+    ['The Stranger', '#b8a27a', 'Not every user will tell you how they feel.'],
+    ['The Lonely City', '#6a4a7a', 'Cities, like apps, can make us feel alone in a crowd.'],
+    ['Invisible Planets', '#1f4f6f', 'Imagination is a research method.'],
+    ['Wuthering Heights', '#4a3a2f', 'Intensity is memorable. Use it carefully.'],
+    ['Less', '#e0b04a', 'Sometimes the best edit is removal.'],
+  ];
+  const shelf = $('#shelf'); const note = $('#note');
+  books.forEach(([t, c, n], i) => {
+    const s = document.createElement('button'); s.className = 'spine'; s.textContent = t; s.dataset.perch = '';
+    s.style.background = c; s.style.height = (200 + (i * 37) % 80) + 'px';
+    const show = () => { note.style.opacity = 0; setTimeout(() => { note.innerHTML = `“${n}”<br><small style="font-family:var(--sans);font-style:normal;font-size:12px">${t}</small>`; note.style.opacity = 1; }, 180); };
+    s.addEventListener('mouseenter', show); s.addEventListener('focus', show);
+    shelf.appendChild(s);
+  });
+  note.style.transition = 'opacity .3s';
+  $$('.postcard').forEach(p => { const v = $('video', p);
+    p.addEventListener('mouseenter', () => v.play().catch(() => {})); p.addEventListener('mouseleave', () => v.pause()); });
+
+  /* ---------- quick index ---------- */
+  const index = $('#index');
+  const toggleIndex = on => index.classList.toggle('on', on);
+  $('#hurry').addEventListener('click', () => toggleIndex(true));
+  index.addEventListener('click', e => { if (e.target === index || e.target.closest('a.row')) toggleIndex(false); });
+  addEventListener('keydown', e => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); toggleIndex(!index.classList.contains('on')); }
+    if (e.key === 'Escape') toggleIndex(false);
+  });
+
+  /* ---------- contact ---------- */
+  $('#mail').addEventListener('click', () => {
+    navigator.clipboard?.writeText('hello@aatishacyrill.com');
+    $('#toast').classList.add('on'); setTimeout(() => $('#toast').classList.remove('on'), 2000);
+    celebrate();
+  });
+
+  /* ---------- butterfly ---------- */
+  const fly = $('#fly'); const bubble = $('#say');
+  const pos = { x: innerWidth * .7, y: innerHeight * .3 }, target = { ...pos };
+  let mouse = null, perch = null, lastMove = performance.now(), angle = 0, loop = 0;
+  addEventListener('pointermove', e => { mouse = { x: e.clientX, y: e.clientY }; lastMove = performance.now(); });
+  $$('[data-perch]').forEach(bindPerch);
+  function bindPerch(el) { el.addEventListener('mouseenter', () => perch = el); el.addEventListener('mouseleave', () => perch === el && (perch = null)); }
+  new MutationObserver(() => $$('[data-perch]').forEach(el => { if (!el._b) { el._b = 1; bindPerch(el); } })).observe(document.body, { childList: true, subtree: true });
+
+  let sayTimer;
+  function say(text, ms = 2200) {
+    bubble.textContent = text; bubble.classList.add('on');
+    clearTimeout(sayTimer); sayTimer = setTimeout(() => bubble.classList.remove('on'), ms);
+  }
+  const lines = ['Hi! I’m Tish. I follow curious people.', 'Psst, try the buttons. They all do something.', 'I get sleepy when you stop scrolling…'];
+  fly.addEventListener('click', () => { loop = 1; say(lines[Math.floor(Math.random() * lines.length)]); });
+  setTimeout(() => say('Hi! I’m Tish. Scroll and the day moves with you.', 3200), 1600);
+
+  function celebrate() {
+    for (let i = 0; i < 18; i++) {
+      const d = document.createElement('div'); const a = Math.random() * Math.PI * 2; const r = 60 + Math.random() * 80;
+      Object.assign(d.style, { position: 'fixed', left: pos.x + 'px', top: pos.y + 'px', width: '6px', height: '6px', borderRadius: '50%', background: i % 2 ? '#57cfa9' : '#ffd9a0', zIndex: 29, transition: 'transform 1s cubic-bezier(.16,1,.3,1), opacity 1s', pointerEvents: 'none' });
+      document.body.appendChild(d);
+      requestAnimationFrame(() => { d.style.transform = `translate(${Math.cos(a) * r}px, ${Math.sin(a) * r}px)`; d.style.opacity = 0; });
+      setTimeout(() => d.remove(), 1100);
+    }
+  }
+
+  function tick(t) {
+    const idle = t - lastMove > 3500;
+    if (perch) {
+      const r = perch.getBoundingClientRect(); target.x = r.right - 6; target.y = r.top - 10;
+    } else if (mouse && !idle) {
+      target.x = mouse.x + 38; target.y = mouse.y - 30;
+    } else {
+      target.x = innerWidth * .78 + Math.sin(t / 2200) * 90; target.y = innerHeight * .32 + Math.sin(t / 1300) * 50;
+    }
+    const k = reduce ? 1 : (perch ? .12 : .045);
+    const nx = lerp(pos.x, target.x, k), ny = lerp(pos.y, target.y, k);
+    const vx = nx - pos.x, vy = ny - pos.y; pos.x = nx; pos.y = ny;
+    angle = lerp(angle, clamp(vx * 2.2, -35, 35), .1);
+    if (loop) { loop += .06; if (loop > 1 + Math.PI * 2) loop = 0; }
+    const bob = perch ? 0 : Math.sin(t / 180) * 3;
+    const spin = loop ? (loop - 1) * 57.3 : 0;
+    fly.style.transform = `translate(${pos.x - 22}px, ${pos.y - 22 + bob}px) rotate(${angle + spin}deg)`;
+    fly.classList.toggle('rest', !!perch || Math.hypot(vx, vy) < .15);
+    bubble.style.transform = bubble.classList.contains('on') ? 'none' : '';
+    bubble.style.left = Math.min(innerWidth - 240, pos.x + 26) + 'px'; bubble.style.top = (pos.y - 64) + 'px';
+    if (starsEl.style.opacity > 0) drawStars(t);
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>

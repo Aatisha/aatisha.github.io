@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Direction C: Ask Pip · Aatisha Cyrill</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f1e8; --paper: #fbf9f4; --ink: #1a1915; --soft: rgba(26,25,21,.58); --line: rgba(26,25,21,.1);
+    --clay: #d97757; --peach: #f2b38f; --sage: #9fb8a0;
+    --ease: cubic-bezier(.16, 1, .3, 1);
+    --sans: "Geist", system-ui, sans-serif; --serif: "Newsreader", Georgia, serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body { font-family: var(--sans); background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; overflow: hidden; }
+  button { font: inherit; color: inherit; }
+
+  .app { height: 100%; display: grid; grid-template-columns: 1fr 0fr; grid-template-rows: 100%; transition: grid-template-columns .9s var(--ease); }
+  .chatting .app { grid-template-columns: minmax(380px, 1fr) 1.15fr; }
+
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 10; display: flex; justify-content: space-between; align-items: center;
+    padding: 18px 24px; font-size: 13px; pointer-events: none;
+  }
+  header > * { pointer-events: auto; }
+  .brand { font: 400 20px var(--serif); }
+  .honest { display: flex; align-items: center; gap: 8px; color: var(--soft); }
+  .honest i { width: 7px; height: 7px; border-radius: 50%; background: var(--sage); box-shadow: 0 0 0 4px rgba(159,184,160,.25); }
+  .links { display: flex; gap: 18px; } .links a { color: var(--soft); text-decoration: none; } .links a:hover { color: var(--ink); }
+
+  /* -------- conversation column -------- */
+  .convo { position: relative; display: flex; flex-direction: column; min-width: 0; height: 100%; }
+  .scroll { flex: 1; min-height: 0; overflow-y: auto; padding: 80px clamp(20px, 6vw, 80px) 12px; scroll-behavior: smooth; }
+  @media (max-height: 760px) {
+    #pip { width: 120px; height: 120px; }
+    .intro h1 { font-size: clamp(30px, 3.8vw, 46px); margin: 14px 0 10px; }
+  }
+  .intro { min-height: calc(100% - 40px); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; transition: min-height .9s var(--ease); }
+  .chatting .intro { min-height: 0; align-items: flex-start; text-align: left; }
+  #pip { width: 180px; height: 180px; cursor: pointer; transition: width .9s var(--ease), height .9s var(--ease); flex: none; }
+  .chatting #pip { width: 64px; height: 64px; }
+  .intro h1 { font: 400 clamp(36px, 4.6vw, 60px)/1.05 var(--serif); letter-spacing: -.01em; margin: 26px 0 12px; max-width: 640px; transition: font-size .9s var(--ease), margin .9s var(--ease); }
+  .intro h1 em { color: var(--clay); }
+  .chatting .intro h1 { font-size: 26px; margin: 14px 0 6px; }
+  .intro p { color: var(--soft); font-size: 16px; line-height: 1.55; max-width: 480px; max-height: 120px; overflow: hidden; transition: max-height .8s var(--ease), opacity .5s; }
+  .chatting .intro p { max-height: 0; opacity: 0; }
+
+  .msg { margin-top: 26px; max-width: 560px; animation: rise .6s var(--ease) both; }
+  @keyframes rise { from { opacity: 0; transform: translateY(10px); } }
+  .msg.you { margin-left: auto; width: fit-content; background: var(--ink); color: var(--paper); padding: 10px 16px; border-radius: 18px 18px 4px 18px; font-size: 15px; }
+  .msg.pip { font-size: 16px; line-height: 1.6; }
+  .msg.pip .who { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--soft); margin-bottom: 6px; }
+  .msg.pip .who b { width: 14px; height: 14px; border-radius: 50%; background: linear-gradient(135deg, var(--peach), var(--clay)); }
+  .msg.pip .text em { font-family: var(--serif); font-size: 1.1em; }
+  .sources { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+  .sources button { border: 1px solid var(--line); background: var(--paper); border-radius: 999px; padding: 4px 10px; font-size: 12px; cursor: pointer; color: var(--soft); }
+  .sources button:hover { color: var(--ink); border-color: rgba(26,25,21,.3); }
+  details.why { margin-top: 10px; font-size: 13px; color: var(--soft); }
+  details.why summary { cursor: pointer; list-style: none; display: inline-flex; gap: 6px; align-items: center; }
+  details.why summary::before { content: "›"; transition: transform .3s var(--ease); display: inline-block; }
+  details.why[open] summary::before { transform: rotate(90deg); }
+  details.why p { margin-top: 6px; padding-left: 12px; border-left: 2px solid var(--line); line-height: 1.5; }
+  .caret { display: inline-block; width: 8px; height: 1.05em; background: var(--clay); vertical-align: -3px; margin-left: 2px; border-radius: 2px; animation: blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .dock { padding: 12px clamp(20px, 6vw, 80px) 22px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 12px; }
+  .chatting .chips { justify-content: flex-start; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin: 0 -4px 10px; padding: 2px 4px; -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); }
+  .chatting .chips::-webkit-scrollbar { display: none; }
+  .chatting .chip { flex: none; font-size: 13px; padding: 7px 12px; }
+  .chatting .scroll { -webkit-mask-image: linear-gradient(transparent 40px, #000 100px); mask-image: linear-gradient(transparent 40px, #000 100px); }
+  .chip {
+    border: 1px solid var(--line); background: var(--paper); padding: 9px 14px; border-radius: 999px; font-size: 14px; cursor: pointer;
+    transition: transform .3s var(--ease), background .2s, border-color .2s, opacity .3s;
+  }
+  .chip:hover { transform: translateY(-2px); border-color: rgba(26,25,21,.28); }
+  .chip.used { opacity: .45; }
+  .ask { display: flex; gap: 8px; align-items: center; background: var(--paper); border: 1px solid var(--line); border-radius: 18px; padding: 8px 8px 8px 16px; box-shadow: 0 10px 30px -18px rgba(0,0,0,.25); max-width: 680px; margin: 0 auto; }
+  .chatting .ask { margin: 0; }
+  .ask input { flex: 1; border: 0; background: none; font: 15px var(--sans); outline: none; color: var(--ink); }
+  .ask button { border: 0; background: var(--ink); color: var(--paper); width: 36px; height: 36px; border-radius: 12px; cursor: pointer; font-size: 16px; transition: background .2s; }
+  .ask button.stop { background: var(--clay); }
+  .fine { text-align: center; font-size: 11.5px; color: var(--soft); margin-top: 10px; }
+  .chatting .fine { text-align: left; }
+
+  /* -------- artifact column -------- */
+  .canvas { position: relative; overflow: hidden; min-width: 0; }
+  .sheet {
+    position: absolute; inset: 62px 14px 14px 0; background: var(--paper); border: 1px solid var(--line); border-radius: 24px;
+    box-shadow: 0 30px 80px -40px rgba(60,40,20,.35); overflow: auto; padding: 40px clamp(24px, 4vw, 56px) 40px;
+    opacity: 0; transform: translateX(40px); transition: opacity .8s var(--ease) .15s, transform .9s var(--ease) .1s;
+  }
+  .chatting .sheet { opacity: 1; transform: none; }
+  .sheet .kicker { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--soft); }
+  .sheet h2 { font: 400 clamp(32px, 3.6vw, 52px)/1.05 var(--serif); margin: 10px 0 18px; letter-spacing: -.01em; }
+  .sheet h2 em { color: var(--clay); }
+  .sheet .lede { color: var(--soft); font-size: 16px; line-height: 1.6; max-width: 560px; }
+  .art-enter > * { animation: rise .7s var(--ease) both; }
+  .art-enter > *:nth-child(2) { animation-delay: .06s; } .art-enter > *:nth-child(3) { animation-delay: .12s; } .art-enter > *:nth-child(4) { animation-delay: .18s; } .art-enter > *:nth-child(5) { animation-delay: .24s; }
+
+  /* triad */
+  .triad { position: relative; height: 340px; margin-top: 20px; }
+  .triad .c { position: absolute; width: 220px; height: 220px; border-radius: 50%; mix-blend-mode: multiply; display: grid; place-items: center; font: 400 22px var(--serif); transition: transform 1.2s var(--ease); }
+  .triad .c span { transform: translate(var(--tx), var(--ty)); }
+  .triad .c1 { background: rgba(242,179,143,.7); left: calc(50% - 190px); top: 10px; --tx: -30px; --ty: -20px; }
+  .triad .c2 { background: rgba(159,184,160,.7); left: calc(50% - 30px); top: 10px; --tx: 30px; --ty: -20px; }
+  .triad .c3 { background: rgba(170,180,230,.7); left: calc(50% - 110px); top: 120px; --tx: 0; --ty: 40px; }
+  .triad .me { position: absolute; left: 50%; top: 172px; transform: translate(-50%, -50%); background: var(--ink); color: var(--paper); font-size: 12px; padding: 6px 10px; border-radius: 999px; white-space: nowrap; }
+  .triad.apart .c1 { transform: translate(-40px, -10px); } .triad.apart .c2 { transform: translate(40px, -10px); } .triad.apart .c3 { transform: translate(0, 40px); }
+
+  /* stat rows */
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-top: 28px; }
+  .stat { border: 1px solid var(--line); border-radius: 16px; padding: 16px; background: #fff; }
+  .stat b { display: block; font: 400 40px/1 var(--serif); font-variant-numeric: tabular-nums; }
+  .stat small { font-size: 12px; color: var(--soft); }
+
+  /* autonomy slider */
+  .auto { margin-top: 28px; border: 1px solid var(--line); border-radius: 20px; background: #fff; padding: 22px; }
+  .auto .top { display: flex; justify-content: space-between; font-size: 13px; color: var(--soft); }
+  .auto input[type=range] { width: 100%; margin: 16px 0 6px; accent-color: var(--clay); }
+  .auto .ticks { display: grid; grid-template-columns: repeat(4, 1fr); font-size: 12px; color: var(--soft); }
+  .auto .ticks span:nth-child(2), .auto .ticks span:nth-child(3) { text-align: center; } .auto .ticks span:last-child { text-align: right; }
+  .auto .preview { margin-top: 18px; padding: 16px; border-radius: 14px; background: var(--bg); min-height: 112px; font-size: 14px; line-height: 1.55; transition: background .4s; }
+  .auto .preview .badge { display: inline-block; font-size: 11px; padding: 3px 8px; border-radius: 999px; margin-bottom: 8px; background: #fff; border: 1px solid var(--line); }
+  .auto .verdict { margin-top: 12px; font-size: 13px; }
+  .principles { display: grid; gap: 10px; margin-top: 20px; }
+  .principles div { display: grid; grid-template-columns: 28px 1fr; gap: 10px; font-size: 14px; line-height: 1.5; }
+  .principles b { font: 400 22px var(--serif); color: var(--clay); }
+
+  /* research method */
+  .flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-top: 28px; }
+  .flow div { border-radius: 16px; padding: 16px 14px; background: #fff; border: 1px solid var(--line); font-size: 13px; line-height: 1.45; color: var(--soft); position: relative; }
+  .flow div b { display: block; color: var(--ink); font: 400 20px var(--serif); margin-bottom: 6px; }
+  .flow div::after { content: "→"; position: absolute; right: -10px; top: 50%; transform: translateY(-50%); color: var(--soft); font-size: 13px; }
+  .flow div:last-child::after { content: none; }
+  .quoteCloud { position: relative; height: 200px; margin-top: 18px; }
+  .quoteCloud span { position: absolute; font: italic 17px var(--serif); background: #fff; border: 1px solid var(--line); padding: 8px 12px; border-radius: 12px; transition: all 1.2s var(--ease); white-space: nowrap; }
+  .quoteCloud.merge span { left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) scale(.6); opacity: 0; }
+  .quoteCloud .ins { left: 50%; top: 50%; transform: translate(-50%, -50%) scale(.8); opacity: 0; background: var(--ink); color: var(--paper); font-style: normal; font-family: var(--sans); font-size: 15px; white-space: normal; width: 80%; text-align: center; }
+  .quoteCloud.merge .ins { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  .ghostbtn { margin-top: 12px; border: 1px solid var(--line); background: #fff; border-radius: 999px; padding: 8px 14px; font-size: 13px; cursor: pointer; }
+
+  /* life */
+  .life { display: grid; grid-template-columns: 1.1fr 1fr; gap: 14px; margin-top: 24px; }
+  .life figure { border-radius: 18px; overflow: hidden; position: relative; aspect-ratio: 4/5; background: #ddd; }
+  .life figure img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
+  .life figure:hover img { transform: scale(1.05); }
+  .life figcaption { position: absolute; left: 14px; bottom: 12px; color: #fff; font: 400 22px var(--serif); text-shadow: 0 2px 14px rgba(0,0,0,.4); }
+  .shelf { display: flex; flex-direction: column; gap: 4px; justify-content: flex-end; }
+  .shelf button { border: 0; text-align: left; padding: 10px 14px; border-radius: 8px; color: #fff; font-size: 13px; cursor: pointer; transition: transform .4s var(--ease); }
+  .shelf button:hover { transform: translateX(10px); }
+  .bookline { margin-top: 14px; font: italic 20px/1.4 var(--serif); color: var(--soft); min-height: 56px; }
+
+  /* index */
+  .idx a { display: grid; grid-template-columns: 1fr auto; gap: 2px 16px; padding: 16px 0; border-top: 1px solid var(--line); text-decoration: none; color: inherit; }
+  .idx a:hover b { color: var(--clay); }
+  .idx b { font: 400 22px var(--serif); transition: color .2s; }
+  .idx span { font-size: 13px; color: var(--soft); }
+  .idx em { grid-row: span 2; align-self: center; font: italic 26px var(--serif); color: var(--clay); }
+
+  .reasons { display: grid; gap: 12px; margin-top: 24px; }
+  .reasons div { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 18px 20px; }
+  .reasons b { font: 400 24px var(--serif); display: block; margin-bottom: 6px; }
+  .reasons span { color: var(--soft); font-size: 14px; line-height: 1.55; }
+
+  @media (max-width: 900px) {
+    .chatting .app { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; }
+    .sheet { inset: 0 10px 10px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="brand">Aatisha Cyrill</div>
+    <div class="honest"><i></i>Every answer here was written by Aatisha. Nothing is generated.</div>
+    <nav class="links"><a href="https://www.linkedin.com/in/aatisha-cyrill/">LinkedIn</a><a href="https://medium.com/@cyrillaatisha">Writing</a><a href="mailto:hello@aatishacyrill.com">Email</a></nav>
+  </header>
+
+  <div class="app">
+    <section class="convo">
+      <div class="scroll" id="scroll">
+        <div class="intro">
+          <svg id="pip" viewBox="-110 -110 220 220" role="img" aria-label="Pip, a friendly blob">
+            <defs>
+              <radialGradient id="pg" cx="35%" cy="30%" r="80%"><stop offset="0" stop-color="#ffd9c0"/><stop offset=".55" stop-color="#f2a47c"/><stop offset="1" stop-color="#d97757"/></radialGradient>
+            </defs>
+            <ellipse id="shadow" cx="0" cy="96" rx="58" ry="7" fill="rgba(0,0,0,.08)"/>
+            <g id="body"><path id="blob" fill="url(#pg)"/>
+              <g id="face">
+                <g id="eyes"><ellipse class="eye" cx="-22" cy="-6" rx="8" ry="11" fill="#1a1915"/><ellipse class="eye" cx="22" cy="-6" rx="8" ry="11" fill="#1a1915"/>
+                  <circle cx="-19" cy="-10" r="2.6" fill="#fff"/><circle cx="25" cy="-10" r="2.6" fill="#fff"/></g>
+                <path id="mouth" d="M-9 16 Q0 22 9 16" stroke="#1a1915" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+                <ellipse cx="-40" cy="12" rx="8" ry="5" fill="#ff8f7a" opacity=".45"/><ellipse cx="40" cy="12" rx="8" ry="5" fill="#ff8f7a" opacity=".45"/>
+              </g>
+            </g>
+          </svg>
+          <h1 id="hello">Hi, I’m Pip. I know everything about <em>Aatisha</em>, and I’m a little biased.</h1>
+          <p id="sub">She’s a product designer and UX researcher who used to be an engineer. Ask me anything or pick a thread. Every answer comes with proof.</p>
+        </div>
+        <div id="thread" aria-live="polite"></div>
+      </div>
+      <div class="dock">
+        <div class="chips" id="chips"></div>
+        <form class="ask" id="ask" autocomplete="off">
+          <input id="q" placeholder="Ask about her work, her process, her favorite book…" aria-label="Ask Pip">
+          <button id="send" aria-label="Send">↑</button>
+        </form>
+        <p class="fine">Pip only knows what Aatisha taught it. If it doesn’t know something, it will say so.</p>
+      </div>
+    </section>
+    <section class="canvas"><div class="sheet" id="sheet"></div></section>
+  </div>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = s => document.querySelector(s);
+  const IMG = '../../src/assets/images/';
+
+  /* ================= Pip: a living blob ================= */
+  const blob = $('#blob'), eyes = $('#eyes'), mouth = $('#mouth'), body = $('#body'), pipSvg = $('#pip');
+  let mood = 'idle', look = { x: 0, y: 0 }, lookT = { x: 0, y: 0 }, squash = 0, blinkAt = performance.now() + 2500;
+  const N = 10;
+  function blobPath(t) {
+    const pts = [];
+    const amp = mood === 'thinking' ? 7 : mood === 'happy' ? 5 : 3.2, sp = mood === 'thinking' ? 380 : 900;
+    for (let i = 0; i < N; i++) {
+      const a = (i / N) * Math.PI * 2;
+      const r = 78 + Math.sin(t / sp + i * 1.7) * amp + Math.cos(t / (sp * 1.3) + i * 2.3) * amp * .6;
+      pts.push([Math.cos(a) * r * (1 + squash * .12), Math.sin(a) * r * (1 - squash * .12) + squash * 8]);
+    }
+    // closed Catmull-Rom → Bézier for a smooth organic outline
+    let d = `M${pts[0][0]},${pts[0][1]}`;
+    for (let i = 0; i < N; i++) {
+      const p0 = pts[(i - 1 + N) % N], p1 = pts[i], p2 = pts[(i + 1) % N], p3 = pts[(i + 2) % N];
+      d += ` C${p1[0] + (p2[0] - p0[0]) / 6},${p1[1] + (p2[1] - p0[1]) / 6} ${p2[0] - (p3[0] - p1[0]) / 6},${p2[1] - (p3[1] - p1[1]) / 6} ${p2[0]},${p2[1]}`;
+    }
+    return d + 'Z';
+  }
+  addEventListener('pointermove', e => {
+    const r = pipSvg.getBoundingClientRect(); const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+    const dx = e.clientX - cx, dy = e.clientY - cy, d = Math.hypot(dx, dy) || 1, k = Math.min(1, d / 400);
+    lookT = { x: dx / d * 12 * k, y: dy / d * 9 * k };
+  });
+  pipSvg.addEventListener('click', () => { squash = 1; setMood('happy', 1400); pipLine(); });
+  let moodTimer;
+  function setMood(m, ms) { mood = m; clearTimeout(moodTimer); if (ms) moodTimer = setTimeout(() => mood = 'idle', ms); }
+  (function tick(t) {
+    if (mood === 'thinking') lookT = { x: Math.sin(t / 300) * 6, y: -9 };
+    look.x += (lookT.x - look.x) * .12; look.y += (lookT.y - look.y) * .12;
+    squash *= .9;
+    const bob = reduce ? 0 : Math.sin(t / 700) * 4;
+    blob.setAttribute('d', reduce ? blobPath(0) : blobPath(t));
+    body.setAttribute('transform', `translate(0 ${bob})`);
+    let blink = 1;
+    if (t > blinkAt) { const k = (t - blinkAt) / 140; blink = k < 1 ? Math.abs(1 - k * 2) * .9 + .1 : 1; if (k >= 1) blinkAt = t + 2200 + Math.random() * 3000; }
+    const happyEyes = mood === 'happy';
+    eyes.setAttribute('transform', `translate(${look.x} ${look.y}) scale(1 ${happyEyes ? .35 : blink})`);
+    mouth.setAttribute('d', mood === 'happy' ? 'M-12 12 Q0 28 12 12' : mood === 'thinking' ? 'M-6 18 Q0 16 6 18' : 'M-9 16 Q0 22 9 16');
+    requestAnimationFrame(tick);
+  })(0);
+
+  /* ================= knowledge (hand-written) ================= */
+  const K = {
+    what: {
+      chip: 'What does she actually do?',
+      keys: ['do', 'role', 'who', 'about', 'designer'],
+      text: 'She works where <em>research, design and code</em> meet. She talks to people until the real problem shows up, designs the simplest honest answer, and can build the front end herself. She’s worked across e-commerce, scientific data, sustainability and, most recently, conversational AI.',
+      sources: ['MINDS@UW', 'Amazon × Shopbop', 'MyWorker.AI'],
+      why: 'You asked something broad, so I led with her overall shape, the overlap of three skills, before any single project.',
+      art: () => `<div class="kicker">The shape of her work</div><h2>Researcher, designer, <em>recovering engineer.</em></h2>
+        <p class="lede">Most designers are strong in one or two of these circles. She’s spent years in all three: Angular and Spring Boot first, then usability labs, now Figma and Claude.</p>
+        <div class="triad apart" id="triad"><div class="c c1"><span>Research</span></div><div class="c c2"><span>Design</span></div><div class="c c3"><span>Code</span></div><div class="me">she works here ✦</div></div>`,
+      after: () => setTimeout(() => $('#triad')?.classList.remove('apart'), 300),
+    },
+    ai: {
+      chip: 'Show me her AI work',
+      keys: ['ai', 'agent', 'myworker', 'conversational', 'llm', 'claude'],
+      text: 'At <em>MyWorker.AI</em> she designed a semi-agentic sales avatar that finds leads and writes personalized outreach for SMB founders. The hard part was deciding how much autonomy it should have. She tested it with 12 founders, and the MVP was presented at SF Tech Week 2025. Try the slider →',
+      sources: ['MyWorker.AI case study', 'AI principles'],
+      why: 'The autonomy slider shows her main design decision better than a screenshot could, so I opened it next to my answer.',
+      art: () => `<div class="kicker">MyWorker.AI · 2025 · product designer and research lead</div><h2>How much should an agent <em>do on its own?</em></h2>
+        <p class="lede">Every AI product has to answer this. Slide to see how the agent would behave at each level, then see where she landed and why.</p>
+        <div class="auto"><div class="top"><span>Agent autonomy</span><span id="lvl">Draft and wait for approval</span></div>
+          <input type="range" id="auto" min="0" max="3" step="1" value="2" aria-label="Agent autonomy">
+          <div class="ticks"><span>Suggest</span><span>Draft</span><span>Draft + approve</span><span>Act alone</span></div>
+          <div class="preview" id="preview"></div><div class="verdict" id="verdict"></div></div>
+        <div class="principles"><div><b>1</b><span>Show where each answer came from. Every claim the agent makes links to its source.</span></div><div><b>2</b><span>Nothing goes out without the founder’s approval. Drafts are the default.</span></div><div><b>3</b><span>Write like a helpful colleague, not a hype machine. We tuned the tone with 12 founders.</span></div></div>`,
+      after: () => {
+        const states = [
+          ['Suggest', 'I noticed 20 bakeries in Oakland that match your ideal customer. Want to see them?', 'Safe, but founders told us it felt like “homework with extra steps.”', '#f5f1e8'],
+          ['Draft', 'Here are 20 bakeries and a draft intro for each. They’re in your outbox for you to edit.', 'Helpful, but founders still worried about losing track of what was queued.', '#f3efe4'],
+          ['Draft + approve', 'I drafted 20 personalized intros (sources: 3 directories). Nothing is sent. Review them as a batch, then approve?', '✓ Where she landed: the agent does the work and the founder keeps control. Trust went up in testing.', '#eef3ea'],
+          ['Act alone', 'Sent 20 emails to Oakland bakeries. 2 bounced.', 'Fast, but every founder winced at this one. Trust took the biggest hit here.', '#fbece6'],
+        ];
+        const set = v => { const [n, p, verdict, bg] = states[v]; $('#lvl').textContent = n; $('#preview').innerHTML = `<span class="badge">Agent</span><br>${p}`; $('#preview').style.background = bg; $('#verdict').textContent = verdict; if (+v === 2) { squash = .8; setMood('happy', 900); } };
+        $('#auto').addEventListener('input', e => set(e.target.value)); set(2);
+      },
+    },
+    research: {
+      chip: 'How does she do research?',
+      keys: ['research', 'interview', 'usability', 'method', 'process', 'study'],
+      text: 'Qualitative first, then evidence. For <em>Trader Joe’s</em> she ran 9 interviews and 6 contextual inquiries in the aisles, plus a 25+ person survey. For <em>Rover.com</em> she ran moderated usability sessions measuring SEQ, time-on-task and errors. She synthesizes until one insight holds up, then designs around it.',
+      sources: ['Trader Joe’s study', 'Rover usability', 'Blog: Journey Mapping'],
+      why: 'You asked about process, so I’m showing the method and then the moment of synthesis instead of listing tools.',
+      art: () => `<div class="kicker">Research practice</div><h2>From noise to <em>one sharp insight.</em></h2>
+        <div class="flow"><div><b>Listen</b>Interviews and contextual inquiry</div><div><b>Measure</b>SEQ, time-on-task, error rates</div><div><b>Synthesize</b>Affinity maps and journey maps</div><div><b>Decide</b>One insight the design can act on</div></div>
+        <div class="stats"><div class="stat"><b data-count="9">0</b><small>interviews (Trader Joe’s)</small></div><div class="stat"><b data-count="6">0</b><small>contextual inquiries</small></div><div class="stat"><b data-count="25">0</b><small>survey respondents +</small></div></div>
+        <div class="quoteCloud" id="cloud"><span style="left:2%;top:6%">“I know it’s here somewhere.”</span><span style="left:48%;top:0%">“How much will it cost me?”</span><span style="left:10%;top:62%">“Too many filters.”</span><span style="left:52%;top:58%">“I come for the recipe cards.”</span><span class="ins">People don’t want more options. They want to trust the path.</span></div>
+        <button class="ghostbtn" id="merge">Synthesize ✦</button>`,
+      after: () => { countUp(); $('#merge').onclick = () => { $('#cloud').classList.toggle('merge'); setMood('happy', 1000); }; },
+    },
+    life: {
+      chip: 'What’s she like outside work?',
+      keys: ['hobby', 'life', 'book', 'read', 'travel', 'fun', 'outside', 'personal'],
+      text: 'Honestly? She’s a <em>reader and a wanderer.</em> Whenever she has the time and money, she packs a bag and flies somewhere. Books are how she practices empathy: <em>The God of Small Things</em>, <em>Norwegian Wood</em>, <em>The Lonely City</em>… Hover a spine to see what each one taught her.',
+      sources: ['About'],
+      why: 'Personality comes through better in pictures and small details than in a bio, so there’s very little text on the right.',
+      art: () => `<div class="kicker">Off the clock</div><h2>Every place is a story. <em>So is every product.</em></h2>
+        <div class="life"><figure><img src="${IMG}hero-image-sf.jpg" alt="Aatisha at the Golden Gate Bridge"><figcaption>San Francisco</figcaption></figure>
+          <div class="shelf" id="shelf"></div></div><p class="bookline" id="bookline">Hover a book…</p>`,
+      after: () => {
+        const books = [['The Design of Everyday Things', '#c43b2f', 'If people fail, the design failed first.'], ['The God of Small Things', '#8b3a3a', 'The small details carry the biggest feelings.'], ['Eleanor Oliphant Is Completely Fine', '#d98b3a', 'Loneliness is invisible until someone designs for it.'], ['Norwegian Wood', '#2f6f5a', 'Memory is an interface too.'], ['The Lonely City', '#6a4a7a', 'You can feel alone in a crowd, and in an app.'], ['Less', '#c9962f', 'Sometimes the best edit is taking something out.']];
+        books.forEach(([t, c, l]) => { const b = document.createElement('button'); b.textContent = t; b.style.background = c; b.onmouseenter = b.onfocus = () => $('#bookline').textContent = `“${l}”`; $('#shelf').appendChild(b); });
+      },
+    },
+    hire: {
+      chip: 'Why should we hire her?',
+      keys: ['hire', 'why', 'strength', 'value', 'fit'],
+      text: 'I’m biased, but I’ll give you evidence instead of adjectives. Three reasons, each with proof →',
+      sources: ['Résumé', 'MINDS@UW', 'MyWorker.AI'],
+      why: 'A claim without evidence is just marketing, so every reason links to a result.',
+      art: () => `<div class="kicker">The pitch, with receipts</div><h2>Three reasons, <em>each with proof.</em></h2>
+        <div class="reasons"><div><b>She finds the real problem.</b><span>At MINDS@UW, 9 interviews showed the issue was navigation, not missing features. Support tickets dropped 50% after the redesign.</span></div>
+        <div><b>She’s already designing for AI.</b><span>She designed agent autonomy, sourcing and tone for MyWorker.AI, tested it with 12 founders, and prototypes with Claude, Figma Make and Google Veo.</span></div>
+        <div><b>She can build what she designs.</b><span>A software engineering background (Angular, Spring Boot, IoT) means her designs hold up in engineering review, and she built the Shopbop front end herself.</span></div></div>`,
+    },
+    index: {
+      chip: 'Just show me everything',
+      keys: ['resume', 'cv', 'everything', 'list', 'projects', 'work', 'portfolio'],
+      text: 'Of course. Here’s the whole index, no small talk. Each project opens as a short story rather than a 40-slide case study.',
+      sources: ['Résumé (PDF)'],
+      why: 'You wanted speed, so I skipped the personality this time.',
+      art: () => `<div class="kicker">Index</div><h2>Everything, <em>at a glance.</em></h2><div class="idx">
+        ${[['MyWorker.AI', 'Semi-agentic AI sales avatar · 2025', '12'], ['MINDS@UW', 'Research repository · accessibility · 2024', '−50%'], ['Amazon × Shopbop', 'ML-powered pairwise discovery · 2024', 'ML'], ['Sustain Dane', 'Behavior design for climate action · 2024', '3 flows'], ['SSEC Products', 'Polar climate data platform · 2024', 'NASA-grade'], ['Rover.com', 'Moderated usability study · 2024', 'SEQ'], ['Trader Joe’s', 'Generative research plan · 2023', '40+'], ['Earlier: engineering', 'Online assessment · deal management · plant IoT', '2018–19']].map(([a, b, c]) => `<a href="#"><b>${a}</b><em>${c}</em><span>${b}</span></a>`).join('')}</div>`,
+    },
+  };
+
+  /* ================= conversation engine ================= */
+  const chipsEl = $('#chips'), thread = $('#thread'), sheet = $('#sheet'), scroller = $('#scroll');
+  Object.entries(K).forEach(([id, k]) => { const c = document.createElement('button'); c.className = 'chip'; c.textContent = k.chip; c.onclick = () => ask(id, k.chip); c.dataset.id = id; chipsEl.appendChild(c); });
+  let streaming = null;
+  function transition(fn) {
+    if (!document.startViewTransition || reduce) return fn();
+    const vt = document.startViewTransition(fn);
+    vt.ready.catch(() => {}); vt.finished.catch(() => {});
+  }
+
+  async function ask(id, label) {
+    if (streaming) stop();
+    if (!document.body.classList.contains('chatting')) transition(() => document.body.classList.add('chatting'));
+    const you = document.createElement('div'); you.className = 'msg you'; you.textContent = label; thread.appendChild(you);
+    chipsEl.querySelector(`[data-id="${id}"]`)?.classList.add('used');
+    const k = K[id];
+    const m = document.createElement('div'); m.className = 'msg pip';
+    m.innerHTML = `<div class="who"><b></b>Pip</div><div class="text"><span class="caret"></span></div>`;
+    thread.appendChild(m); scrollDown();
+    setMood('thinking');
+    await wait(reduce ? 0 : 650);
+    if (k) { sheet.innerHTML = `<div class="art-enter">${k.art()}</div>`; sheet.scrollTop = 0; k.after && k.after(); }
+    await stream(m.querySelector('.text'), k ? k.text : 'I don’t know that one yet. Aatisha only taught me about her work and life, and I’d rather not guess. Try one of the threads below?');
+    if (k) {
+      m.insertAdjacentHTML('beforeend', `<div class="sources">${k.sources.map(s => `<button>↗ ${s}</button>`).join('')}</div><details class="why"><summary>Why this answer?</summary><p>${k.why}</p></details>`);
+    }
+    setMood(k ? 'happy' : 'idle', 900); squash = .6; scrollDown();
+  }
+  function stream(el, html) {
+    const $send = $('#send'); $send.textContent = '■'; $send.classList.add('stop'); $send.setAttribute('aria-label', 'Stop');
+    return new Promise(res => {
+      const tokens = html.split(/(<[^>]+>|\s+)/).filter(Boolean); let i = 0, out = '';
+      const finish = () => { el.innerHTML = html; streaming = null; $send.textContent = '↑'; $send.classList.remove('stop'); $send.setAttribute('aria-label', 'Send'); res(); };
+      if (reduce) return finish();
+      streaming = { finish, iv: setInterval(() => {
+        out += tokens[i++]; el.innerHTML = out + '<span class="caret"></span>'; if (i % 6 === 0) scrollDown();
+        if (i >= tokens.length) { clearInterval(streaming.iv); finish(); }
+      }, 28) };
+    });
+  }
+  // "stop" jumps to the full answer: the user stays in control
+  function stop() { if (!streaming) return; clearInterval(streaming.iv); streaming.finish(); }
+  function scrollDown() { scroller.scrollTop = scroller.scrollHeight; }
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+  function countUp() { document.querySelectorAll('[data-count]').forEach(el => { const to = +el.dataset.count, t0 = performance.now(); (function s(t) { const k = Math.min(1, (t - t0) / 1100); el.textContent = Math.round(to * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(s); })(t0); }); }
+
+  $('#ask').addEventListener('submit', e => {
+    e.preventDefault(); if (streaming) return stop();
+    const q = $('#q').value.trim(); if (!q) return; $('#q').value = '';
+    const words = q.toLowerCase();
+    const hit = Object.entries(K).find(([, k]) => k.keys.some(w => words.includes(w)));
+    ask(hit ? hit[0] : null, q);
+  });
+
+  const lines = ['Boop. That tickles.', 'I’m made of 10 points and a lot of feelings.', 'Aatisha designed me in an afternoon. Don’t tell her I said that.'];
+  let li = 0;
+  function pipLine() { const s = $('#sub'); if (document.body.classList.contains('chatting')) return; s.style.opacity = 0; setTimeout(() => { s.textContent = lines[li++ % lines.length]; s.style.opacity = 1; }, 200); }
+  $('#sub').style.transition = 'opacity .2s';
+})();
+</script>
+</body>
+</html>

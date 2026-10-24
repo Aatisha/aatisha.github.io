@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Direction B: Field Notes · Aatisha Cyrill</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f4f2ee; --ink: #1c1b1a; --soft: rgba(28,27,26,.58); --line: rgba(28,27,26,.1);
+    --y: #ffe58f; --p: #ffc6d0; --b: #c6e2ff; --g: #c9f0d8; --o: #ffd3a8;
+    --me: #7b61ff;
+    --ease: cubic-bezier(.16, 1, .3, 1);
+    --hand: "Caveat", cursive; --sans: "Inter", system-ui, sans-serif; --serif: "Newsreader", Georgia, serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; overflow: hidden; }
+  body { font-family: var(--sans); color: var(--ink); background: var(--bg); -webkit-font-smoothing: antialiased; user-select: none; }
+  #viewport {
+    position: fixed; inset: 0; cursor: grab; touch-action: none;
+    background-image: radial-gradient(rgba(28,27,26,.16) 1px, transparent 1.2px);
+    background-size: calc(24px * var(--s, 1)) calc(24px * var(--s, 1));
+    background-position: var(--bx, 0) var(--by, 0);
+  }
+  #viewport.panning { cursor: grabbing; }
+  #world { position: absolute; left: 0; top: 0; transform-origin: 0 0; will-change: transform; }
+
+  .it {
+    position: absolute; transform: translate(-50%, -50%) rotate(var(--r, 0deg)); cursor: grab;
+    transition: box-shadow .3s var(--ease);
+  }
+  .it.dragging { cursor: grabbing; z-index: 999 !important; }
+  .tidy .it, .it.anim { transition: left .9s var(--ease), top .9s var(--ease), transform .9s var(--ease), box-shadow .3s; }
+
+  .label { font: 600 11px var(--sans); letter-spacing: .16em; text-transform: uppercase; color: var(--soft); white-space: nowrap; }
+  .title { font: 700 120px/0.9 var(--hand); white-space: nowrap; }
+  .title small { display: block; font: 400 22px/1.4 var(--serif); font-style: italic; color: var(--soft); margin-top: 18px; white-space: normal; width: 560px; }
+
+  .sticky {
+    width: 180px; min-height: 180px; padding: 18px 16px; font: 500 26px/1.1 var(--hand);
+    background: var(--c, var(--y)); box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 12px 24px -12px rgba(0,0,0,.25);
+  }
+  .sticky small { display: block; font: 500 11px var(--sans); color: var(--soft); margin-top: 12px; }
+  .sticky[contenteditable] { cursor: text; outline: none; }
+  .it:hover { box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 22px 40px -16px rgba(0,0,0,.3); }
+
+  .polaroid { background: #fff; padding: 10px 10px 40px; width: 240px; box-shadow: 0 16px 30px -16px rgba(0,0,0,.35); }
+  .polaroid img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; pointer-events: none; filter: saturate(.92); }
+  .polaroid span { position: absolute; left: 0; right: 0; bottom: 8px; text-align: center; font: 500 22px var(--hand); }
+
+  .card {
+    width: 340px; background: #fff; border-radius: 16px; overflow: hidden; border: 1px solid var(--line);
+    box-shadow: 0 16px 36px -20px rgba(0,0,0,.3);
+  }
+  .card img { width: 100%; height: 180px; object-fit: cover; display: block; pointer-events: none; background: #eee; }
+  .card .body { padding: 16px 18px 18px; }
+  .card h3 { font: 400 26px/1.1 var(--serif); margin: 6px 0 8px; }
+  .card p { font-size: 13px; line-height: 1.5; color: var(--soft); }
+  .card .stat { display: flex; justify-content: space-between; align-items: baseline; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--line); }
+  .card .stat b { font: 400 30px var(--serif); }
+  .card .stat span { font-size: 12px; color: var(--me); font-weight: 500; }
+
+  .code {
+    width: 320px; background: #1c1b1a; color: #e9e6df; border-radius: 12px; padding: 16px 18px;
+    font: 12.5px/1.65 ui-monospace, SFMono-Regular, Menlo, monospace; box-shadow: 0 16px 36px -20px rgba(0,0,0,.5);
+  }
+  .code .c { color: #8a877f; } .code .k { color: #ff9ac1; } .code .s { color: #b5e8a0; }
+
+  .books { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+  .books i {
+    display: block; height: 30px; border-radius: 3px; color: #fff; font: 500 12px/30px var(--sans); font-style: normal;
+    padding: 0 14px; white-space: nowrap; box-shadow: inset 0 -3px 0 rgba(0,0,0,.15);
+  }
+  .envelope {
+    width: 360px; height: 230px; background: #fff; border: 1px solid var(--line); border-radius: 6px; position: absolute;
+    box-shadow: 0 20px 40px -24px rgba(0,0,0,.35); overflow: hidden;
+  }
+  .envelope::before { content: ""; position: absolute; inset: 0; background: linear-gradient(155deg, transparent 49.6%, var(--line) 50%, transparent 50.4%), linear-gradient(-155deg, transparent 49.6%, var(--line) 50%, transparent 50.4%); background-size: 100% 60%; background-repeat: no-repeat; }
+  .envelope .stamp { position: absolute; right: 16px; top: 16px; width: 58px; height: 70px; border: 2px dashed #e46; display: grid; place-items: center; font: 700 24px var(--hand); color: #e46; transform: rotate(6deg); }
+  .envelope .to { position: absolute; left: 28px; bottom: 26px; font: 500 30px/1.1 var(--hand); }
+  .envelope .to a { font: 500 14px var(--sans); color: var(--me); display: block; margin-top: 8px; }
+  .arrow { position: absolute; pointer-events: none; }
+  .arrow path { fill: none; stroke: var(--ink); stroke-width: 2.2; stroke-linecap: round; stroke-dasharray: 6 7; }
+
+  /* ghost cursor (mascot) */
+  .ghost { position: fixed; left: 0; top: 0; z-index: 40; pointer-events: none; will-change: transform; }
+  .ghost svg { display: block; filter: drop-shadow(0 2px 4px rgba(0,0,0,.2)); }
+  .ghost .tag {
+    position: absolute; left: 18px; top: 20px; background: var(--me); color: #fff; font: 500 12px var(--sans);
+    padding: 4px 8px; border-radius: 4px 12px 12px 12px; white-space: nowrap;
+  }
+  .ghost .chat {
+    position: absolute; left: 18px; top: 48px; background: var(--me); color: #fff; font: 400 15px/1.45 var(--sans);
+    padding: 10px 14px; border-radius: 4px 16px 16px 16px; width: max-content; max-width: 280px;
+    transform-origin: 0 0; transform: scale(.6); opacity: 0; transition: .35s var(--ease);
+  }
+  .ghost.talking .chat { transform: none; opacity: 1; }
+  .ghost.flip .chat { left: auto; right: 4px; border-radius: 16px 4px 16px 16px; transform-origin: 100% 0; }
+  .ghost.flip .tag { left: auto; right: 6px; border-radius: 12px 4px 12px 12px; }
+  .ghost .chat .caret { display: inline-block; width: 2px; height: 1em; background: #fff; vertical-align: -2px; animation: caret 1s steps(1) infinite; }
+  @keyframes caret { 50% { opacity: 0; } }
+
+  /* chrome */
+  .hud-top { position: fixed; top: 16px; left: 16px; right: 16px; display: flex; justify-content: space-between; align-items: center; z-index: 30; pointer-events: none; }
+  .pill { pointer-events: auto; display: flex; align-items: center; gap: 10px; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 8px 12px; font-size: 13px; box-shadow: 0 6px 20px -10px rgba(0,0,0,.2); }
+  .pill .dot { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; color: #fff; font: 600 11px var(--sans); }
+  .avatars { display: flex; } .avatars .dot + .dot { margin-left: -6px; box-shadow: 0 0 0 2px #fff; }
+  .toolbar {
+    position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%); z-index: 30;
+    display: flex; gap: 4px; padding: 6px; background: #fff; border: 1px solid var(--line); border-radius: 16px;
+    box-shadow: 0 12px 30px -14px rgba(0,0,0,.3);
+  }
+  .toolbar button {
+    border: 0; background: none; font: 500 13px var(--sans); color: var(--ink); padding: 10px 14px; border-radius: 10px; cursor: pointer;
+    display: flex; align-items: center; gap: 8px; transition: background .2s; white-space: nowrap;
+  }
+  .toolbar button:hover { background: rgba(0,0,0,.05); }
+  .toolbar button.on { background: var(--ink); color: #fff; }
+  .toolbar .sep { width: 1px; background: var(--line); margin: 6px 4px; }
+  .toolbar .zoom { font-variant-numeric: tabular-nums; color: var(--soft); min-width: 56px; justify-content: center; }
+  .hint { position: fixed; top: 72px; left: 50%; transform: translateX(-50%); z-index: 30; font-size: 12px; color: var(--soft); transition: opacity .6s; background: rgba(244,242,238,.9); padding: 6px 12px; border-radius: 999px; white-space: nowrap; }
+
+  /* detail drawer */
+  .drawer {
+    position: fixed; top: 12px; right: 12px; bottom: 12px; width: min(460px, 92vw); z-index: 50; background: #fff; border-radius: 20px;
+    border: 1px solid var(--line); box-shadow: 0 30px 80px -30px rgba(0,0,0,.4); padding: 28px; overflow: auto; user-select: text;
+    transform: translateX(110%); transition: transform .6s var(--ease);
+  }
+  .drawer.on { transform: none; }
+  .drawer .x { position: absolute; top: 16px; right: 16px; border: 0; background: rgba(0,0,0,.05); width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 16px; }
+  .drawer h2 { font: 400 40px/1.05 var(--serif); margin: 10px 0 18px; }
+  .drawer .step { display: grid; grid-template-columns: 90px 1fr; gap: 12px; padding: 14px 0; border-top: 1px solid var(--line); font-size: 14px; line-height: 1.55; }
+  .drawer .step b { font: 600 11px var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--soft); padding-top: 3px; }
+  .drawer .step:nth-child(odd) { opacity: 0; transform: translateY(8px); }
+  .drawer .step { opacity: 0; transform: translateY(8px); transition: .6s var(--ease); }
+  .drawer.on .step { opacity: 1; transform: none; }
+  .drawer .cta { display: inline-block; margin-top: 18px; background: var(--ink); color: #fff; text-decoration: none; padding: 12px 18px; border-radius: 999px; font-size: 14px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition-duration: .01ms !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+  <div id="viewport" aria-label="Aatisha's research wall. Drag to explore."><div id="world"></div></div>
+
+  <div class="hud-top">
+    <div class="pill"><b style="font-family:var(--hand);font-size:22px;font-weight:700">aatisha / field-notes</b><span style="color:var(--soft)">· a working board, not a portfolio</span></div>
+    <div class="pill">
+      <div class="avatars"><div class="dot" style="background:var(--me)">A</div><div class="dot" style="background:#1fb57a">You</div></div>
+      <span>2 people here</span>
+    </div>
+  </div>
+
+  <div class="ghost" id="ghost" aria-live="polite">
+    <svg width="22" height="24" viewBox="0 0 22 24"><path d="M2 2 L2 20 L7 15.5 L10.5 23 L14 21.5 L10.5 14 L18 14 Z" fill="#7b61ff" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>
+    <div class="tag">Aatisha</div>
+    <div class="chat" id="ghostChat"></div>
+  </div>
+
+  <p class="hint" id="hint">Drag the board · scroll to pan · ⌘/Ctrl + scroll to zoom · drag anything</p>
+  <nav class="toolbar" aria-label="Board tools">
+    <button id="tour" class="on">▶ Tour with Aatisha</button>
+    <button id="tidy">▦ Tidy up</button>
+    <button id="note">✎ Leave a sticky</button>
+    <div class="sep"></div>
+    <button id="fit" title="Zoom to fit">⤢</button>
+    <button class="zoom" id="zoom">100%</button>
+  </nav>
+
+  <aside class="drawer" id="drawer" aria-hidden="true"><button class="x" id="closeDrawer" aria-label="Close">✕</button><div id="drawerBody"></div></aside>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = s => document.querySelector(s);
+  const IMG = '../../src/assets/images/';
+  const vp = $('#viewport'), world = $('#world');
+  const cam = { x: 0, y: 0, s: 1 };
+
+  const projects = {
+    myworker: {
+      tag: 'Conversational AI · 2025', title: 'MyWorker.AI', img: IMG + 'myworkerai/avatar-intro.png', stat: ['12', 'founders tested'],
+      blurb: 'A semi-agentic AI sales avatar that prospects leads and personalizes email for SMB founders.',
+      steps: [['Question', 'When should an AI teammate act on its own, and when should it ask first?'], ['Research', 'PESTLE, competitor teardown, and stress tests with 12 startup founders to tune tone, empathy and usability.'], ['Decision', 'Semi-agentic by default: it drafts, cites its sources, and waits for approval before anything goes out.'], ['Outcome', 'MVP presented at SF Tech Week 2025 (Big Design Energy). Prototyped with Figma Make, Google Veo, Claude and ChatGPT.']],
+    },
+    minds: {
+      tag: 'Research repository · 2024', title: 'MINDS@UW', img: IMG + 'minds/minds-banner.png', stat: ['−50%', 'support tickets'],
+      blurb: 'Rebuilding a 32,000+ item academic repository used by 3,000+ researchers so people can actually find things in it.',
+      steps: [['Question', 'Why do researchers feel lost in their own university’s repository?'], ['Research', '9 user interviews, competitive studies and an accessibility audit using BrowserStack.'], ['Decision', 'Redesigned navigation around how researchers think, rewrote the UX copy, and built an insights dashboard.'], ['Outcome', 'Support tickets fell by 50%. Engineers were involved from day one to keep it feasible.']],
+    },
+    shopbop: {
+      tag: 'ML discovery · 2024', title: 'Amazon × Shopbop', img: IMG + 'amazon-shopbop/amazon-shopbop-hero.png', stat: ['4', 'exec stakeholders'],
+      blurb: 'Gamified pairwise ranking that learns your style one “this or that” at a time.',
+      steps: [['Question', 'How do you learn someone’s taste without making them fill in a quiz?'], ['Research', 'User interviews, competitor analysis (ASOS, Revolve), affinity mapping, personas.'], ['Decision', 'Pairwise ranking, trending leaderboards and AWS Personalize recommendations.'], ['Outcome', 'Led an Agile team from concept to working prototype as product owner, and built the front end myself.']],
+    },
+    sustain: {
+      tag: 'Behavior design · 2024', title: 'Sustain Dane', img: IMG + 'sustainable-ux/app-solution.png', stat: ['3', 'core task flows'],
+      blurb: 'A mobile app that turns caring about the climate into small social wins.',
+      steps: [['Question', 'Why don’t people act on environmental concerns they already have?'], ['Research', 'Desk and secondary research, then paper, lo-fi and hi-fi prototype tests.'], ['Decision', 'Three flows: contribution, achievement and awareness. Lottie micro-animations reward progress.'], ['Outcome', 'A validated prototype and a design system.']],
+    },
+    ssec: {
+      tag: 'Climate data · 2024', title: 'SSEC Products', img: IMG + 'ssec-products/hero-img-ssec-products.png', stat: ['1', 'unified platform'],
+      blurb: 'Near real-time satellite data on snow, ice and polar winds, gathered into one place for scientists.',
+      steps: [['Question', 'Scientists’ data lived in folders. How do you make it explorable?'], ['Research', 'Interviews with SSEC researchers at UW-Madison.'], ['Decision', 'Navigation organized by variable, high-resolution imagery, and comparisons across regions and time.'], ['Outcome', 'Hi-fi platform design handed off to engineering.']],
+    },
+  };
+
+  /* ---------- board content (world coords) ---------- */
+  const items = [
+    // hello
+    { id: 'hello', x: 0, y: -40, html: `<div class="title">Hi, I’m Aatisha.<small>Product designer and UX researcher. I used to write the code, now I design what it should do. This is my working wall. Grab anything.</small></div>`, cls: '', r: 0 },
+    { x: 470, y: -150, r: 5, html: `<div class="polaroid"><img src="${IMG}hero-image-sf.jpg" alt="Aatisha at the Golden Gate Bridge"><span>me, probably thinking about UX</span></div>` },
+    { x: -330, y: 190, r: -4, html: `<div class="sticky" style="--c:var(--y)">I design with purpose & heart<small>my one rule</small></div>` },
+    { x: -120, y: 230, r: 3, html: `<div class="sticky" style="--c:var(--g)">Research → design → front-end<small>the whole loop</small></div>` },
+    { x: 90, y: 200, r: -2, html: `<div class="sticky" style="--c:var(--p)">Lately: vibe coding ✦<small>and loving it</small></div>` },
+
+    // research cluster
+    { x: -1150, y: 460, label: true, html: `<div class="label">Cluster 01 · How I listen</div>` },
+    { x: -1380, y: 620, r: -3, html: `<div class="sticky" style="--c:var(--y)">“I know it’s here somewhere…”<small>TJ’s shopper</small></div>` },
+    { x: -1180, y: 610, r: 2, html: `<div class="sticky" style="--c:var(--y)">“I come for the recipe cards.”<small>weekly regular</small></div>` },
+    { x: -1370, y: 820, r: 2, html: `<div class="sticky" style="--c:var(--p)">“How much will it actually cost?”<small>Rover · task 3</small></div>` },
+    { x: -1170, y: 830, r: -3, html: `<div class="sticky" style="--c:var(--p)">“Too many filters.”<small>Rover · task 1</small></div>` },
+    { x: -870, y: 720, r: 1, html: `<div class="sticky" style="--c:var(--b);width:230px;font-size:30px">Insight: people want to trust the path, not get more options.<small>synthesis · affinity map</small></div>` },
+    { x: -1270, y: 1080, r: 0, html: `<div class="card"><div class="body"><div class="label">Generative · 2023</div><h3>Trader Joe’s research plan</h3><p>9 interviews, 6 contextual inquiries and a 25+ person survey on an offline-first store. Outcomes: a find-in-store locator, aisle guides, and recipe-to-list.</p><div class="stat"><b>40+</b><span>voices heard</span></div></div></div>` },
+    { x: -880, y: 1080, r: 0, html: `<div class="card"><div class="body"><div class="label">Evaluative · 2024</div><h3>Rover usability study</h3><p>Moderated sessions with SEQ, time-on-task and error rates. Recommendations: upfront pricing, filters that matter, and clearer service descriptions.</p><div class="stat"><b>3</b><span>core flows tested</span></div></div></div>` },
+
+    // shipped cluster
+    { x: 1150, y: 360, label: true, html: `<div class="label">Cluster 02 · Things I shaped</div>` },
+    ...['myworker', 'minds', 'shopbop', 'sustain', 'ssec'].map((k, i) => ({
+      x: 950 + (i % 3) * 380 - (i > 2 ? -190 : 0), y: 620 + Math.floor(i / 3) * 440, r: [-1.5, 1, -.5, 1.5, -1][i], project: k,
+      html: `<div class="card"><img src="${projects[k].img}" alt=""><div class="body"><div class="label">${projects[k].tag}</div><h3>${projects[k].title}</h3><p>${projects[k].blurb}</p><div class="stat"><b>${projects[k].stat[0]}</b><span>${projects[k].stat[1]} · open →</span></div></div></div>`,
+    })),
+
+    // me cluster
+    { x: -40, y: 1180, label: true, html: `<div class="label">Cluster 03 · Off the clock</div>` },
+    { x: -300, y: 1450, r: -5, html: `<div class="polaroid"><img src="${IMG}about/palm-springs.png" alt="Palm Springs"><span>Palm Springs</span></div>` },
+    { x: -40, y: 1420, r: 4, html: `<div class="polaroid"><img src="${IMG}about/new-york-thumbnail.png" alt="New York"><span>New York</span></div>` },
+    { x: 60, y: 1720, r: -2, html: `<div class="sticky" style="--c:var(--o);width:220px">Travel taught me that every place is a story.<small>so is every product</small></div>` },
+    { x: 330, y: 1480, r: 0, html: `<div class="books">${[['The Design of Everyday Things', '#c43b2f'], ['The God of Small Things', '#8b3a3a'], ['Norwegian Wood', '#2f6f5a'], ['The Lonely City', '#6a4a7a'], ['White Nights', '#3a4e8b'], ['Less', '#d9a53a']].map(([t, c], i) => `<i style="background:${c};margin-left:${(i % 2 ? 14 : -10)}px">${t}</i>`).join('')}<div style="font:500 22px var(--hand);margin-top:10px">reading = practicing empathy</div></div>` },
+    { x: -330, y: 1800, r: 1, html: `<div class="code"><span class="c">// 2018: my first “user” was a plant 🌱</span><br><span class="k">if</span> (soilMoisture &lt; threshold) {<br>&nbsp;&nbsp;led.<span class="k">on</span>(<span class="s">"thirsty"</span>);<br>}<br><span class="c">// Arduino, Embedded C. Then Angular,<br>// Spring Boot, PHP… then I met UX.</span></div>` },
+
+    // contact
+    { x: 1150, y: 1650, r: -3, html: `<div class="envelope" style="position:relative"><div class="stamp">hi!</div><div class="to">To: whoever builds<br>thoughtful things<a href="mailto:hello@aatishacyrill.com">hello@aatishacyrill.com</a></div></div>` },
+    { x: 1150, y: 1450, label: true, html: `<div class="label">Cluster 04 · Say hello</div>` },
+  ];
+
+  const els = items.map((it, i) => {
+    const d = document.createElement('div'); d.className = 'it'; d.innerHTML = it.html;
+    d.style.left = it.x + 'px'; d.style.top = it.y + 'px'; d.style.setProperty('--r', (it.r || 0) + 'deg'); d.style.zIndex = i + 1;
+    it.el = d; it.home = { x: it.x, y: it.y, r: it.r || 0 }; world.appendChild(d); return d;
+  });
+
+  // hand-drawn arrows between clusters
+  function arrow(x1, y1, x2, y2, bend = 120) {
+    const minX = Math.min(x1, x2) - 200, minY = Math.min(y1, y2) - 200, w = Math.abs(x2 - x1) + 400, h = Math.abs(y2 - y1) + 400;
+    const mx = (x1 + x2) / 2 - minX + bend, my = (y1 + y2) / 2 - minY - bend;
+    const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    s.setAttribute('class', 'arrow'); s.setAttribute('width', w); s.setAttribute('height', h);
+    s.style.left = minX + 'px'; s.style.top = minY + 'px';
+    s.innerHTML = `<path d="M${x1 - minX},${y1 - minY} Q${mx},${my} ${x2 - minX},${y2 - minY}"/>`;
+    world.prepend(s); return s;
+  }
+  const arrows = [arrow(-420, 330, -900, 470, -80), arrow(420, 280, 940, 380, 80), arrow(0, 360, 0, 1120, 160), arrow(700, 1440, 950, 1580, -60)];
+
+  /* ---------- camera ---------- */
+  function apply() {
+    world.style.transform = `translate(${cam.x}px, ${cam.y}px) scale(${cam.s})`;
+    vp.style.setProperty('--s', cam.s); vp.style.setProperty('--bx', cam.x + 'px'); vp.style.setProperty('--by', cam.y + 'px');
+    $('#zoom').textContent = Math.round(cam.s * 100) + '%';
+  }
+  const center = (wx, wy, s) => ({ x: innerWidth / 2 - wx * s, y: innerHeight / 2 - wy * s, s });
+  let camTween;
+  function flyTo(wx, wy, s, dur = 1400) {
+    const from = { ...cam }, to = center(wx, wy, s), t0 = performance.now();
+    cancelAnimationFrame(camTween);
+    if (reduce) { Object.assign(cam, to); apply(); return Promise.resolve(); }
+    return new Promise(res => {
+      (function step(t) {
+        const k = Math.min(1, (t - t0) / dur), e = k < .5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
+        // zoom out slightly mid-flight for a sense of travel
+        const dip = Math.sin(k * Math.PI) * .18 * Math.min(from.s, to.s);
+        cam.s = from.s + (to.s - from.s) * e - dip;
+        const c = center(0, 0, cam.s);
+        const wxNow = (innerWidth / 2 - from.x) / from.s + (((innerWidth / 2 - to.x) / to.s) - (innerWidth / 2 - from.x) / from.s) * e;
+        const wyNow = (innerHeight / 2 - from.y) / from.s + (((innerHeight / 2 - to.y) / to.s) - (innerHeight / 2 - from.y) / from.s) * e;
+        cam.x = c.x - wxNow * cam.s; cam.y = c.y - wyNow * cam.s; apply();
+        if (k < 1) camTween = requestAnimationFrame(step); else res();
+      })(t0);
+    });
+  }
+  const fitScale = () => Math.min(innerWidth / 3400, innerHeight / 2600);
+  Object.assign(cam, center(0, 80, Math.min(1, innerWidth / 1400, innerHeight / 860))); apply();
+
+  /* ---------- interaction: pan, zoom, drag ---------- */
+  let mode = null, start, last, target, moved = 0, vel = 0;
+  const toWorld = (cx, cy) => ({ x: (cx - cam.x) / cam.s, y: (cy - cam.y) / cam.s });
+  vp.addEventListener('pointerdown', e => {
+    if (e.target.closest('[contenteditable], a')) return;
+    cancelAnimationFrame(camTween); stopTour();
+    const itEl = e.target.closest('.it'); moved = 0; last = { x: e.clientX, y: e.clientY };
+    if (itEl && !tidyOn) { mode = 'drag'; target = items.find(i => i.el === itEl); itEl.classList.add('dragging'); }
+    else if (itEl) { mode = 'click'; target = items.find(i => i.el === itEl); }
+    else { mode = 'pan'; vp.classList.add('panning'); }
+    vp.setPointerCapture(e.pointerId);
+  });
+  vp.addEventListener('pointermove', e => {
+    mouseSeen = true;
+    if (!mode) return;
+    const dx = e.clientX - last.x, dy = e.clientY - last.y; last = { x: e.clientX, y: e.clientY }; moved += Math.abs(dx) + Math.abs(dy);
+    if (mode === 'pan') { cam.x += dx; cam.y += dy; apply(); }
+    if (mode === 'drag') {
+      target.x += dx / cam.s; target.y += dy / cam.s; vel = vel * .7 + dx * .3;
+      target.el.style.left = target.x + 'px'; target.el.style.top = target.y + 'px';
+      target.el.style.transform = `translate(-50%,-50%) rotate(${(target.r || 0) + Math.max(-14, Math.min(14, vel * .8))}deg) scale(1.04)`;
+    }
+  });
+  vp.addEventListener('pointerup', () => {
+    if (mode === 'drag' || mode === 'click') {
+      target.el.classList.remove('dragging'); target.el.style.transform = '';
+      if (moved < 5 && target.project) openProject(target);
+      else if (mode === 'drag') { target.el.style.zIndex = 500 + (++zTop); }
+    }
+    mode = null; vp.classList.remove('panning');
+  });
+  let zTop = 0, mouseSeen = false;
+  vp.addEventListener('wheel', e => {
+    e.preventDefault(); cancelAnimationFrame(camTween); stopTour();
+    if (e.ctrlKey || e.metaKey) {
+      const w = toWorld(e.clientX, e.clientY); const ns = Math.max(.2, Math.min(2.2, cam.s * Math.exp(-e.deltaY * .01)));
+      cam.s = ns; cam.x = e.clientX - w.x * ns; cam.y = e.clientY - w.y * ns;
+    } else { cam.x -= e.deltaX; cam.y -= e.deltaY; }
+    apply(); $('#hint').style.opacity = 0;
+  }, { passive: false });
+
+  /* ---------- project drawer ---------- */
+  function openProject(it) {
+    const p = projects[it.project];
+    stopTour(); flyTo(it.x + 180, it.y, Math.max(cam.s, .95), 900);
+    $('#drawerBody').innerHTML = `<div class="label">${p.tag}</div><h2>${p.title}</h2><p style="color:var(--soft);line-height:1.6;margin-bottom:18px">${p.blurb}</p>` +
+      p.steps.map(([k, v], i) => `<div class="step" style="transition-delay:${.15 + i * .08}s"><b>${k}</b><span>${v}</span></div>`).join('') +
+      `<a class="cta" href="#">Read the full story →</a>`;
+    $('#drawer').classList.add('on'); $('#drawer').setAttribute('aria-hidden', 'false');
+  }
+  $('#closeDrawer').onclick = () => { $('#drawer').classList.remove('on'); $('#drawer').setAttribute('aria-hidden', 'true'); };
+  addEventListener('keydown', e => { if (e.key === 'Escape') $('#closeDrawer').click(); });
+
+  /* ---------- tidy up ---------- */
+  let tidyOn = false;
+  $('#tidy').onclick = () => {
+    tidyOn = !tidyOn; stopTour(); document.body.classList.toggle('tidy', tidyOn); $('#tidy').classList.toggle('on', tidyOn);
+    $('#tidy').textContent = tidyOn ? '✺ Make it messy again' : '▦ Tidy up';
+    arrows.forEach(a => { a.style.transition = 'opacity .6s'; a.style.opacity = tidyOn ? 0 : 1; });
+    const order = [...items.filter(i => i.project), ...items.filter(i => !i.project && !i.id && !i.label)];
+    items.forEach(i => { if (i.label) i.el.style.opacity = tidyOn ? 0 : 1; });
+    const cols = 5, cw = 400, ch = 420;
+    order.forEach((it, n) => {
+      if (tidyOn) { it.x = (n % cols - (cols - 1) / 2) * cw; it.y = 420 + Math.floor(n / cols) * ch; it.el.style.setProperty('--r', '0deg'); }
+      else { it.x = it.home.x; it.y = it.home.y; it.el.style.setProperty('--r', it.home.r + 'deg'); }
+      it.el.style.transitionDelay = (n * 25) + 'ms';
+      it.el.style.left = it.x + 'px'; it.el.style.top = it.y + 'px';
+    });
+    const hello = items.find(i => i.id === 'hello'); hello.el.style.transition = 'left .9s var(--ease), top .9s var(--ease)'; hello.el.style.top = (tidyOn ? -120 : hello.home.y) + 'px';
+    flyTo(0, tidyOn ? 520 : 700, Math.min(innerWidth / 2200, innerHeight / 1800), 1200);
+    $('#hint').style.opacity = tidyOn ? 0 : 1;
+    say(tidyOn ? 'Okay, the neat version. Recruiters, this one’s for you.' : 'Much better. Ideas need a bit of mess.', 3000);
+  };
+
+  /* ---------- leave a sticky ---------- */
+  $('#note').onclick = () => {
+    stopTour();
+    const w = toWorld(innerWidth / 2, innerHeight / 2);
+    const colors = ['--y', '--p', '--b', '--g', '--o'];
+    const it = { x: w.x, y: w.y, r: (Math.random() * 6 - 3), html: `<div class="sticky" contenteditable="true" spellcheck="false" style="--c:var(${colors[Math.floor(Math.random() * 5)]})">Write something nice…</div>` };
+    const d = document.createElement('div'); d.className = 'it'; d.innerHTML = it.html; d.style.left = it.x + 'px'; d.style.top = it.y + 'px'; d.style.setProperty('--r', it.r + 'deg'); d.style.zIndex = 900;
+    d.animate([{ transform: 'translate(-50%,-50%) scale(.4) rotate(-20deg)', opacity: 0 }, { transform: `translate(-50%,-50%) rotate(${it.r}deg)`, opacity: 1 }], { duration: reduce ? 1 : 600, easing: 'cubic-bezier(.16,1,.3,1)' });
+    world.appendChild(d); it.el = d; it.home = { x: it.x, y: it.y, r: it.r }; items.push(it);
+    const s = d.firstChild; setTimeout(() => { s.focus(); document.execCommand('selectAll', false, null); }, 50);
+    say('Ooh, a note! I read every one of these. (In the real build, they’d be sent to me.)', 3600);
+  };
+
+  /* ---------- ghost cursor mascot + tour ---------- */
+  const ghost = $('#ghost'), chat = $('#ghostChat');
+  const g = { x: innerWidth * .62, y: innerHeight * .62 }; const gt = { ...g }; let gWorld = null;
+  function ghostTo(wx, wy) { gWorld = { x: wx, y: wy }; }
+  let typeTimer, sayTimer;
+  function say(text, hold = 2600) {
+    clearInterval(typeTimer); clearTimeout(sayTimer); ghost.classList.add('talking'); chat.innerHTML = '<span class="caret"></span>';
+    let n = 0; const speed = reduce ? 0 : 22;
+    return new Promise(res => {
+      const done = () => { chat.textContent = text; sayTimer = setTimeout(() => { ghost.classList.remove('talking'); res(); }, hold); };
+      if (!speed) return done();
+      typeTimer = setInterval(() => { n++; chat.innerHTML = text.slice(0, n) + '<span class="caret"></span>'; if (n >= text.length) { clearInterval(typeTimer); done(); } }, speed);
+    });
+  }
+  const tour = [
+    { cam: [0, 80, 1], at: [380, 0], line: 'Hey! I’m Aatisha, or at least my cursor is. Want the tour?' },
+    { cam: [-1100, 800, .8], at: [-870, 640], line: 'Everything starts with listening. These are real quotes from my Trader Joe’s and Rover studies.' },
+    { cam: [-1100, 800, .8], at: [-760, 760], line: 'I cluster them until one insight pops out: people want to trust the path.' },
+    { cam: [1330, 800, .62], at: [950, 560], line: 'Here’s what I’ve shaped: AI agents, research repositories, ML discovery. Click any card to open it.' },
+    { cam: [1330, 800, .62], at: [1330, 1000], line: 'MINDS@UW was my favorite: 50% fewer support tickets once people could find their way.' },
+    { cam: [0, 1500, .75], at: [330, 1330], line: 'Off the clock I read, travel, and remember that my first “user” was a plant.' },
+    { cam: [1150, 1600, .9], at: [1260, 1720], line: 'If you build thoughtful things, I’d love to hear from you. Or leave me a sticky!' },
+    { cam: null, at: null, line: 'Your turn. Drag things around. Nothing breaks, I promise.' },
+  ];
+  let touring = false, tourId = 0;
+  async function runTour() {
+    touring = true; const id = ++tourId; $('#tour').classList.add('on'); $('#tour').textContent = '■ Stop tour';
+    for (const step of tour) {
+      if (id !== tourId) return;
+      if (step.cam) { const fit = Math.min(1, innerWidth / 1400, innerHeight / 860); flyTo(step.cam[0], step.cam[1], step.cam[2] * fit, 1500); }
+      if (step.at) { await wait(step.cam ? 700 : 0); ghostTo(...step.at); }
+      await wait(700); if (id !== tourId) return;
+      await say(step.line, 1800 + step.line.length * 18);
+    }
+    stopTour();
+  }
+  function stopTour() { if (!touring) return; touring = false; tourId++; $('#tour').classList.remove('on'); $('#tour').textContent = '▶ Tour with Aatisha'; $('#hint').style.opacity = 1; }
+  $('#hint').style.opacity = 0;
+  $('#tour').onclick = () => touring ? stopTour() : runTour();
+  const wait = ms => new Promise(r => setTimeout(r, reduce ? Math.min(ms, 300) : ms));
+  $('#fit').onclick = () => { stopTour(); flyTo(0, 800, fitScale(), 1000); };
+  $('#zoom').onclick = () => { stopTour(); const w = toWorld(innerWidth / 2, innerHeight / 2); flyTo(w.x, w.y, 1, 600); };
+
+  let pointer = null; addEventListener('pointermove', e => pointer = { x: e.clientX, y: e.clientY });
+  (function loop(t) {
+    if (gWorld && touring) { gt.x = gWorld.x * cam.s + cam.x; gt.y = gWorld.y * cam.s + cam.y; }
+    else if (pointer) { // when idle, Aatisha's cursor hangs out near yours, like a real collaborator
+      gt.x = pointer.x + 120 + Math.sin(t / 900) * 30; gt.y = pointer.y + 60 + Math.cos(t / 1100) * 24;
+    }
+    const k = reduce ? 1 : .08; g.x += (gt.x - g.x) * k; g.y += (gt.y - g.y) * k;
+    ghost.style.transform = `translate(${g.x}px, ${g.y}px)`;
+    ghost.classList.toggle('flip', g.x > innerWidth - 320);
+    requestAnimationFrame(loop);
+  })(0);
+
+  setTimeout(runTour, 900);
+  addEventListener('resize', apply);
+})();
+</script>
+</body>
+</html>
