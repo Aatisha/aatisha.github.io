@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aatisha Cyrill — Product Designer</title>
+  <meta name="description" content="Aatisha Cyrill is a product designer who builds products and experiences with purpose and heart.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Geist+Mono:wght@400&family=Geist:wght@400;500;600&family=Instrument+Serif&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__pin">
+        <div class="hero__photo grain" aria-hidden="true"></div>
+
+        <!-- data-title: "solid" for plain black text, "cutout" to cut the title out of the paper. -->
+        <div class="window hero__window" data-title="solid">
+          <!-- White paper with the title cut out, so the photo shows through the letters.
+               hero.js lines the cut up with the .hero__title text. -->
+          <svg class="hero__paper" aria-hidden="true">
+            <defs>
+              <mask id="hero-cut" maskUnits="userSpaceOnUse" x="0" y="0" width="100%" height="100%">
+                <rect width="100%" height="100%" fill="#fff"/>
+                <g class="hero__cut">
+                  <text class="cutout-text" x="50%" y="200">Product Designer</text>
+                </g>
+              </mask>
+            </defs>
+            <rect width="100%" height="100%" rx="28" fill="#fff" mask="url(#hero-cut)"/>
+          </svg>
+
+          <header class="hero__bar">
+            <a class="brand" href="./">Aatisha Cyrill</a>
+            <nav aria-label="Primary">
+              <ul class="nav-mono">
+                <li><a href="#work" aria-current="page">Work</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#playground">Playground</a></li>
+                <li><a href="#contact">Contact</a></li>
+              </ul>
+            </nav>
+            <a class="btn-pill" href="#contact">Say hello</a>
+          </header>
+
+          <div class="hero__body">
+            <div class="hero__copy">
+              <h1 id="hero-title" class="hero__title"><span class="visually-hidden">Aatisha Cyrill, </span>Product Designer</h1>
+
+              <div class="hero__intro">
+                <p class="hero__statement"><b>Hi, I'm Aatisha.</b> I design products and experiences bridging research, design and code with purpose, heart, sugar, spice and everything nice.</p>
+                <p class="mono-label">Currently designing and shipping at LifeLoop</p>
+              </div>
+            </div>
+
+            <!-- Polaroids. polaroids.js plays them once before the text appears: they bloom into a spinning
+                 ring (each photo plus a decorative twin), a flip wave runs round it, then the photos settle
+                 into small clusters under the text and can be peeled off and dragged around.
+                 --x/--y are the scatter layout (% of the strip), --mx/--my on phones; --w is the card width; --r its tilt. -->
+            <div class="stickers" role="group" aria-label="Summer polaroids. Drag them around or move them with the arrow keys.">
+              <button class="sticker" type="button" aria-label="Polaroid: Sunset clouds over the sea"
+                style="--x: 2%; --y: 6%; --mx: 1%; --my: 2%; --w: 100px; --r: -7deg;">
+                <span class="sticker__art polaroid"><img src="assets/photos/polaroid-1.jpg" alt="" style="object-position: center 62%;"><span>sunset chaser</span></span>
+              </button>
+
+              <button class="sticker" type="button" aria-label="Polaroid: Kayakers paddling past mangroves"
+                style="--x: 14%; --y: 20%; --mx: 26%; --my: 0%; --w: 100px; --r: 5deg;">
+                <span class="sticker__art polaroid"><img src="assets/photos/polaroid-2.jpg" alt="" style="object-position: center 72%;"><span>paddle season</span></span>
+              </button>
+
+              <button class="sticker" type="button" aria-label="Polaroid: Green headland above the ocean"
+                style="--x: 26.5%; --y: 2%; --mx: 51%; --my: 3%; --w: 100px; --r: -3deg;">
+                <span class="sticker__art polaroid"><img src="assets/photos/polaroid-3.jpg" alt="" style="object-position: 40% center;"><span>cliffside views</span></span>
+              </button>
+
+              <button class="sticker" type="button" aria-label="Polaroid: A lone sailboat beneath distant mountains"
+                style="--x: 39%; --y: 18%; --mx: 75%; --my: 1%; --w: 100px; --r: 8deg;">
+                <span class="sticker__art polaroid"><img src="assets/photos/polaroid-4.jpg" alt="" style="object-position: center 42%;"><span>lone sail</span></span>
+              </button>
+
+              <button class="sticker" type="button" aria-label="Polaroid: A golden tree beside a lake"
+                style="--x: 51%; --y: 4%; --mx: 1%; --my: 50%; --w: 100px; --r: -5deg;">
+                <span class="sticker__art polaroid"><img src="assets/photos/polaroid-5.jpg" alt="" style="object-position: center 70%;"><span>lakeside gold</span></span>
+              </button>
+
+              <button class="sticker" type="button" aria-label="Polaroid: Palm trees on a sunny beach"
+                style="--x: 63.5%; --y: 19%; --mx: 26%; --my: 48%; --w: 100px; --r: 6deg;">
+                <span class="sticker__art polaroid"><img src="assets/photos/polaroid-6.jpg" alt="" style="object-position: center 40%;"><span>palm tree therapy</span></span>
+              </button>
+
+              <button class="sticker" type="button" aria-label="Polaroid: Palm trees in Palm Springs"
+                style="--x: 76%; --y: 3%; --mx: 51%; --my: 51%; --w: 100px; --r: -4deg;">
+                <span class="sticker__art polaroid"><img src="assets/photos/palm-springs.jpg" alt="" style="object-position: right center;"><span>palm springs</span></span>
+              </button>
+
+              <button class="sticker" type="button" aria-label="Polaroid: Turquoise sea glittering in the sun"
+                style="--x: 87.5%; --y: 17%; --mx: 75%; --my: 49%; --w: 100px; --r: 7deg;">
+                <span class="sticker__art polaroid"><img src="assets/sea.webp" alt="" style="object-position: center;"><span>salt water</span></span>
+              </button>
+            </div>
+
+          </div>
+
+          <footer class="hero__foot">
+            <p class="annotation annotation--inline hero__hint">
+              psst, peel one off
+              <svg viewBox="0 0 40 44" aria-hidden="true"><path d="M6 38 C 10 22, 20 12, 34 8 M 26 4 L 35 8 L 29 15"/></svg>
+            </p>
+            <p class="hero__cue mono-label">Scroll to explore</p>
+          </footer>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="hero.js"></script>
+  <script src="polaroids.js"></script>
+</body>
+</html>
