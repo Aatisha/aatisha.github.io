@@ -896,13 +896,22 @@ body.page {
   color: var(--color-ink-2);
 }
 
-/* Intro: copy on the left, a small stack of prints and a handwritten note on the right. */
+/* Intro: copy on the left, the slide projector standing on the page to its right. The scene layer
+   runs edge to edge behind the whole intro, so nothing frames it; the projector is fitted into the
+   right-hand column (.projector-stage), and its cables trail off across the page. */
 .about-intro {
+  position: relative;
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
   align-items: center;
-  gap: var(--space-8);
-  padding: var(--space-9) 0 var(--space-8);
+  gap: var(--space-6);
+  min-height: clamp(560px, calc(100svh - 120px), 860px);
+  padding: var(--space-6) 0 var(--space-7);
+}
+
+.about-intro__copy {
+  position: relative;
+  z-index: 1;
 }
 
 .chips,
@@ -927,385 +936,198 @@ body.page {
 }
 
 /* ---------- Slide projector (about page, projector.js) ----------
-   A 1970s carousel projector and a pull-down screen. Pressing the round key dims the room around
-   them, the lamp warms up with a flicker, the tray clunks round and the slide comes into focus. */
+   A 1970s carousel projector and its tripod screen in 3D, standing on the page. The canvas is the
+   page's own colour, so it has no edge: projector-scene.js paints the page and the 3D room the same
+   shade (--room) as the lights go down. Starting the show puts the whole page in the dark
+   (html.lights-out, below). Where the 3D can't run, a still print shows instead. */
 
+.about-intro__scene {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  bottom: 0;
+  left: calc(50% - 50vw); /* the full width of the window, past the page's margins */
+  width: 100vw;
+  opacity: 0;
+  transition: opacity 900ms ease;
+}
+
+.about-intro.is-ready .about-intro__scene {
+  opacity: 1;
+}
+
+/* Vertical swipes still scroll the page; sideways ones turn the tray. */
+.about-intro__scene canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.page__window:has(.about-intro__scene) {
+  overflow-x: clip;
+}
+
+/* The column the projector is fitted into. Only its keys catch the pointer; the rest falls through
+   to the scene behind. */
 .projector-stage {
   position: relative;
-  aspect-ratio: 6 / 5;
-  border-radius: var(--radius-window);
-  /* A soft grey backdrop, lit from above like a product shot. */
-  background: radial-gradient(ellipse 80% 70% at 50% 38%, #fbf9f8 0%, #f1edea 60%, #e6e1dc 100%);
-  isolation: isolate;
-}
-
-/* The room going dark. */
-.projector-stage::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  border-radius: inherit;
-  background: radial-gradient(ellipse 90% 80% at 55% 40%, #24211d 0%, #161412 100%);
-  opacity: 0;
-  transition: opacity 1200ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.projector-stage.is-dim::before {
-  opacity: 1;
-}
-
-/* The beam of light, from the lens to the screen. The projector stands in front of the screen, so
-   the beam crosses over it, adding light rather than covering it. */
-.projector-stage__beam {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  mix-blend-mode: screen;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 600ms ease;
-}
-
-.projector-stage__motes circle {
-  fill: #fff8e8;
-  transform-box: fill-box;
-  animation: pj-mote var(--t, 8s) var(--d, 0s) linear infinite;
-}
-
-@keyframes pj-mote {
-  0% { transform: translate(0, 0); opacity: 0; }
-  20% { opacity: 0.85; }
-  80% { opacity: 0.55; }
-  100% { transform: translate(var(--dx, 10px), var(--dy, -14px)); opacity: 0; }
-}
-
-/* The pull-down screen: a roller bar, the matte surface and a little pull tab. */
-.screen {
-  position: absolute;
-  top: 5%;
-  right: 4%;
   z-index: 1;
-  width: 58%;
-  margin: 0;
-}
-
-.screen__roller {
-  height: 10px;
-  margin: 0 -5% -2px;
-  border-radius: 5px;
-  background:
-    linear-gradient(90deg, #8f8571 0 3%, transparent 3% 97%, #8f8571 97%),
-    linear-gradient(#f5f0e4, #ddd4c1 45%, #b9ae97);
-  box-shadow: 0 3px 6px rgba(60, 50, 30, 0.22);
-}
-
-.screen__surface {
-  position: relative;
-  aspect-ratio: 4 / 3;
-  background: linear-gradient(#fbfaf7, #f1efea);
-  box-shadow: 0 0 0 1px rgba(22, 22, 22, 0.05), 0 18px 30px -18px rgba(60, 50, 30, 0.4);
-  transition: background-color 1200ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.is-dim .screen__surface {
-  background: linear-gradient(#3c3934, #34312d);
-}
-
-.screen__pull {
-  display: block;
-  width: 14px;
-  height: 7px;
-  margin: 0 auto;
-  border: 1.5px solid #a69a82;
-  border-top: 0;
-  border-radius: 0 0 8px 8px;
-}
-
-/* The patch of lamp light the slide's window lets through. */
-.screen__picture {
-  position: absolute;
-  inset: 7% 6%;
-  overflow: hidden;
-  border-radius: 5px;
-  background: #fff6e0;
-  box-shadow: 0 0 1px 1px rgba(255, 244, 220, 0.6), 0 0 42px rgba(255, 210, 140, 0.45);
-  opacity: 0;
-  transition: opacity 600ms ease;
-}
-
-.screen__picture.is-tall {
-  inset: 7% 28%;
-}
-
-.is-on .projector-stage__beam,
-.is-on .screen__picture {
-  opacity: 1;
-}
-
-/* Between slides the shutter closes for a moment and the light all but goes. */
-.is-on.is-shut .projector-stage__beam,
-.is-on.is-shut .screen__picture {
-  opacity: 0.08;
-  transition-duration: 140ms;
-}
-
-/* The lamp coming up: it catches, stutters and settles. */
-.is-warming .projector-stage__beam,
-.is-warming .screen__picture {
-  animation: pj-lamp 1000ms linear both;
-}
-
-@keyframes pj-lamp {
-  0% { opacity: 0; }
-  8% { opacity: 0.55; }
-  13% { opacity: 0.12; }
-  22% { opacity: 0.7; }
-  27% { opacity: 0.38; }
-  40% { opacity: 0.88; }
-  46% { opacity: 0.74; }
-  100% { opacity: 1; }
-}
-
-/* The slide itself, aged like old film: warmer, softer colour, a tint where the dyes have shifted,
-   grain, a dark falloff at the edges, and the odd scratch. */
-.screen__slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-}
-
-.screen__slide.is-shown {
-  opacity: 1;
-}
-
-.screen__slide.is-focusing {
-  animation: pj-focus 1300ms cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-@keyframes pj-focus {
-  0% { filter: blur(10px); transform: scale(1.025); opacity: 0; }
-  25% { opacity: 1; }
-  100% { filter: blur(0); transform: none; opacity: 1; }
-}
-
-.screen__slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: sepia(0.34) saturate(0.82) contrast(1.06) brightness(1.06);
-}
-
-.screen__slide::before,
-.screen__slide::after,
-.screen__film {
-  content: "";
-  position: absolute;
-  inset: 0;
+  align-self: stretch;
+  min-height: 460px;
   pointer-events: none;
 }
 
-/* How the dyes have aged. */
-.screen__slide::before {
-  background: #f0b26a;
-  mix-blend-mode: multiply;
-  opacity: 0.22;
-}
-
-.screen__slide[data-tint="rose"]::before {
-  background: #e3a0c6;
-  opacity: 0.3;
-}
-
-.screen__slide[data-tint="faded"]::before {
-  background: #c6d6c4;
-  opacity: 0.3;
-}
-
-.screen__slide::after {
-  background: radial-gradient(ellipse at 50% 48%, transparent 52%, rgba(40, 20, 6, 0.5) 100%);
-}
-
-.screen__film {
-  background-image:
-    linear-gradient(90deg, transparent 31%, rgba(255, 255, 255, 0.22) 31.2%, transparent 31.5%),
-    linear-gradient(90deg, transparent 74%, rgba(60, 40, 20, 0.18) 74.15%, transparent 74.4%),
-    var(--grain);
-  background-size: 100% 100%, 100% 100%, 160px;
-  mix-blend-mode: overlay;
-  opacity: 0.6;
-}
-
-.screen__caption {
-  margin-top: var(--space-3);
-  text-align: center;
-  opacity: 0;
-  transition: opacity 500ms ease, color 1200ms ease;
-}
-
-.is-on .screen__caption {
-  opacity: 1;
-}
-
-.is-dim .screen__caption {
-  color: rgba(255, 246, 228, 0.6);
-}
-
-/* The projector. */
-.projector {
+/* Under the projector: the hint (lights up) or the slide's caption (show on), then the keys. */
+.projector-stage__foot {
   position: absolute;
-  left: 2%;
-  bottom: 4%;
-  z-index: 3;
-  width: 62%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-4);
+  transition: opacity 600ms ease, visibility 600ms;
 }
 
-.projector__art {
-  display: block;
-  width: 100%;
-  height: auto;
-  overflow: visible;
-  transition: filter 1200ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* With the room lights down the projector sinks into the dark too; its display and light still glow. */
-.is-dim .projector__art,
-.is-dim .projector__key {
-  filter: brightness(0.8);
-}
-
-/* Segment letters behind dark glass: pale and softly glowing, brighter while the show runs. */
-.projector__readout {
-  fill: none;
-  stroke-linecap: round;
-  stroke-width: 1.15;
-  opacity: 0.78;
-  transition: opacity 300ms ease;
-}
-
-.projector__seg {
-  stroke: #dfe3d6;
-}
-
-.projector__seg-ghost {
-  stroke: #dfe3d6;
-  opacity: 0.07;
-}
-
-.is-dim .projector__readout {
-  opacity: 1;
-}
-
-.projector__led {
-  transition: fill 300ms ease;
-}
-
-.projector__led-glow {
+.about-intro:not(.is-ready) .projector-stage__foot {
   opacity: 0;
-  transition: opacity 300ms ease;
+  visibility: hidden;
 }
 
-.projector__led {
-  fill: #4b4943;
-}
-
-.is-dim .projector__led {
-  fill: url(#pj-led);
-}
-
-.is-dim .projector__led-glow {
-  opacity: 1;
-}
-
-.projector__glow {
-  opacity: 0;
-  transition: opacity 700ms ease;
-}
-
-.is-on .projector__glow {
-  opacity: 1;
-}
-
-.projector__gate {
-  fill: #ffd27a;
-  opacity: 0;
+.projector-stage__hint,
+.projector-stage__caption {
+  grid-area: 1 / 1;
+  justify-self: start;
+  margin: 0;
   transition: opacity 500ms ease;
 }
 
-.is-on .projector__gate {
-  opacity: 0.9;
+.projector-stage__hint {
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+  background: linear-gradient(100deg, var(--color-ink-3) 0 42%, var(--color-ink) 50%, var(--color-ink-3) 58% 100%);
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: pj-shimmer 3400ms linear infinite;
 }
 
-/* The three keys on the front: back, start/stop and forward. */
-.projector__keys {
-  position: absolute;
-  left: 9.8%;
-  top: 66.2%;
+@keyframes pj-shimmer {
+  from { background-position: 100% 0; }
+  to { background-position: -150% 0; }
+}
+
+/* "Click" for a mouse, "Tap" for a finger. */
+.projector-stage__hint .on-touch {
+  display: none;
+}
+
+@media (hover: none) {
+  .projector-stage__hint .on-pointer {
+    display: none;
+  }
+
+  .projector-stage__hint .on-touch {
+    display: inline;
+  }
+}
+
+.projector-stage__caption {
+  opacity: 0;
+}
+
+.lights-out .projector-stage__hint {
+  opacity: 0;
+}
+
+.lights-out .projector-stage__caption {
+  opacity: 1;
+}
+
+/* Back, start/stop, forward, and sound. */
+.projector-stage__keys {
+  grid-area: 1 / 2;
   display: flex;
-  justify-content: space-between;
-  width: 18.3%;
+  gap: 6px;
+  pointer-events: auto;
 }
 
-.projector__key {
+.projector-stage__key {
   position: relative;
   display: grid;
   place-items: center;
-  width: 27.3%;
-  aspect-ratio: 1;
+  width: 34px;
+  height: 34px;
   padding: 0;
-  border: 1px solid rgba(110, 96, 70, 0.35);
+  border: 0;
   border-radius: 50%;
-  background: radial-gradient(circle at 38% 32%, #fbf8f1, #e2dac8 55%, #c9bea6);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 1.5px 2px rgba(70, 58, 36, 0.4);
-  color: #5e5647;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-pill);
+  color: var(--color-ink);
   cursor: pointer;
-  transition: transform 90ms ease, box-shadow 90ms ease, color 300ms ease, filter 1200ms ease;
+  transition: transform var(--dur-fast) var(--ease-out);
 }
 
-/* A bigger target than the key itself, for fingers. */
-.projector__key::before {
-  content: "";
-  position: absolute;
-  inset: -8px;
+.projector-stage__key:hover {
+  transform: translateY(-1px);
 }
 
-.projector__key:active {
+.projector-stage__key:active {
   transform: translateY(1px);
-  box-shadow: inset 0 1px 2px rgba(70, 58, 36, 0.45), 0 0.5px 1px rgba(70, 58, 36, 0.3);
 }
 
-.projector__key:focus-visible {
+.projector-stage__key:focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 2px;
 }
 
-.projector__key svg {
-  width: 62%;
-  height: 62%;
+.projector-stage__key svg {
+  width: 14px;
+  height: 14px;
   fill: currentColor;
 }
 
-.projector__key--power svg circle {
+.projector-stage__key--power svg circle {
   fill: none;
   stroke: currentColor;
   stroke-width: 1.8;
 }
 
-.projector__key--power[aria-pressed="true"] {
-  color: #c27d16;
+.projector-stage__key--power[aria-pressed="true"] {
+  color: #ffb547;
 }
 
-/* Until it has been pressed once, the start key breathes a soft amber ring. */
-.projector:not(.has-started) .projector__key--power::after {
+.projector-stage__key--sound {
+  margin-left: 6px;
+}
+
+.projector-stage__key--sound svg path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.projector-stage__key--sound svg .projector-stage__speaker {
+  fill: currentColor;
+}
+
+.projector-stage__key--sound[aria-pressed="true"] .projector-stage__mute,
+.projector-stage__key--sound[aria-pressed="false"] .projector-stage__waves {
+  display: none;
+}
+
+/* Until the show has been started once, the start key breathes a soft amber ring... */
+.projector-stage:not(.has-started) .projector-stage__key--power::after {
   content: "";
   position: absolute;
   inset: -3px;
   border-radius: 50%;
-  box-shadow: 0 0 0 0 rgba(255, 181, 71, 0.55);
   animation: pj-breathe 2400ms ease-out infinite;
 }
 
@@ -1314,16 +1136,153 @@ body.page {
   70%, 100% { box-shadow: 0 0 0 7px rgba(255, 181, 71, 0); }
 }
 
+/* ...and so does the projector's own silver knob, in step (projector-scene.js keeps this over it). */
+.projector-beacon {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: var(--w, 40px);
+  height: var(--h, 24px);
+  margin: calc(var(--h, 24px) / -2) 0 0 calc(var(--w, 40px) / -2);
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+
+.projector-beacon::before,
+.projector-beacon::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1.5px solid rgba(255, 170, 60, 0.9);
+  border-radius: inherit;
+  animation: pj-ripple 2400ms cubic-bezier(0.2, 0.6, 0.3, 1) infinite;
+}
+
+.projector-beacon::after {
+  animation-delay: 1200ms;
+}
+
+@keyframes pj-ripple {
+  0% { transform: scale(0.85); opacity: 0.9; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+.about-intro.is-ready .projector-beacon.is-on {
+  opacity: 1;
+}
+
+/* A label for whatever part of the projector is under the pointer. */
+.projector-tip {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  padding: 4px 10px 5px;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-pill);
+  color: var(--color-ink);
+  font-size: var(--text-sm);
+  line-height: 1.2;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--dur-fast) ease;
+}
+
+.projector-tip.is-on {
+  opacity: 1;
+}
+
+/* The still, where the 3D can't run: one of the slides as a print. */
+.projector-stage__still {
+  display: none;
+  position: absolute;
+  inset: 0;
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+  margin: 0;
+  padding: 4% 8%;
+  place-items: center;
+}
+
+.projector-stage__still img {
+  max-width: 100%;
+  max-height: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border: var(--photo-border) solid #fff;
+  border-radius: var(--radius-xs);
+  box-shadow: var(--shadow-photo);
+  transform: rotate(-2deg);
+}
+
+.projector-stage.is-fallback .projector-stage__still {
+  display: grid;
+}
+
+.about-intro.is-fallback .about-intro__scene,
+.about-intro.is-fallback .projector-beacon,
+.about-intro.is-fallback .projector-tip,
+.projector-stage.is-fallback .projector-stage__foot {
+  display: none;
+}
+
+/* ---------- Lights out ----------
+   With the lamp on, the whole page goes dark like a room for a slide show. The page itself takes
+   --room from projector-scene.js frame by frame, so it stays the exact shade of the 3D room around
+   the projector; everything else follows these darker tokens. */
+
+body.page,
+.page__window {
+  background-color: var(--room, var(--color-surface));
+}
+
+html.lights-out {
+  color-scheme: dark;
+  --color-surface: #24211c;
+  --color-paper: #1d1a16;
+  --color-tile: #24211c;
+  --color-tile-hover: #2c2923;
+  --color-ink: #f2ece3;
+  --color-ink-2: #aaa296;
+  --color-ink-3: #7d766b;
+  --color-line: rgba(255, 244, 226, 0.1);
+  --shadow-pill: 0 0 0 1px rgba(255, 244, 226, 0.08), 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+html.lights-out .btn-pill--dark {
+  color: #15130f;
+}
+
+html.lights-out .projector-stage__key--power[aria-pressed="true"] {
+  background: rgba(255, 181, 71, 0.14);
+  box-shadow: inset 0 0 0 1px rgba(255, 181, 71, 0.35);
+}
+
+/* While the lights change, colours ease across with them. (The page's own background is left out:
+   it follows the room frame by frame.) */
+html.is-dimming body *:not(.page__window):not(canvas) {
+  transition:
+    color 1400ms ease,
+    background-color 1400ms ease,
+    border-color 1400ms ease,
+    box-shadow 1400ms ease,
+    opacity 500ms ease !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .projector-stage__motes circle,
-  .projector:not(.has-started) .projector__key--power::after {
+  .projector-stage__hint,
+  .projector-stage:not(.has-started) .projector-stage__key--power::after,
+  .projector-beacon::before,
+  .projector-beacon::after {
     animation: none;
   }
 
-  .is-warming .projector-stage__beam,
-  .is-warming .screen__picture,
-  .screen__slide.is-focusing {
-    animation: none;
+  .projector-beacon::after {
+    display: none;
   }
 }
 
@@ -1430,27 +1389,29 @@ body.page {
     padding: var(--space-4) var(--space-4) var(--space-7);
   }
 
+  /* On phones the projector comes first, above the copy: the camera moves round behind it and the
+     screen rises above. The scene layer covers just its part. */
   .about-intro {
-    grid-template-columns: 1fr;
-    gap: var(--space-6);
-    padding: var(--space-7) 0 var(--space-6);
+    --scene-h: min(124vw, 620px);
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-5);
+    min-height: 0;
+    padding: var(--space-2) 0 var(--space-6);
   }
 
-  /* Taller on phones, so the slide's caption clears the projector below it. */
+  .about-intro__scene {
+    bottom: auto;
+    height: calc(var(--scene-h) + var(--space-2));
+  }
+
   .projector-stage {
-    aspect-ratio: 5 / 6;
+    order: -1;
+    height: var(--scene-h);
+    min-height: 0;
   }
 
-  .screen {
-    width: 68%;
-  }
-
-  .screen__caption {
-    text-align: right;
-  }
-
-  .projector {
-    width: 68%;
+  .projector-stage__foot {
+    gap: var(--space-3);
   }
 
   .print-wall {
