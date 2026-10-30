@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About — Aatisha Cyrill</title>
+  <meta name="description" content="Aatisha Cyrill is a product designer with a background in software and data, bridging research, design and front-end development.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Geist+Mono:wght@400&family=Geist:wght@400;500;600&family=Instrument+Serif&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="page">
+  <div class="window page__window">
+    <header class="site-bar">
+      <a class="brand" href="./">Aatisha Cyrill</a>
+      <nav aria-label="Primary">
+        <ul class="nav-mono">
+          <li><a href="./">Work</a></li>
+          <li><a href="about.html" aria-current="page">About</a></li>
+          <li><a href="#playground">Playground</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <a class="btn-pill" href="mailto:hello@aatishacyrill.com">Say hello</a>
+    </header>
+
+    <main>
+      <!-- Intro: who I am, beside a slide projector showing a few of my photos. -->
+      <section class="about-intro" aria-labelledby="about-title">
+        <div class="about-intro__copy" data-reveal>
+          <h1 id="about-title" class="visually-hidden">About me</h1>
+          <figure class="page-quote">
+            <blockquote class="page__lead">Think of the universe as an eternal creative unfolding. Trees blossom. Cells replicate. Rivers forge new tributaries.</blockquote>
+            <figcaption class="mono-label">— Rick Rubin</figcaption>
+          </figure>
+          <p class="page__body">I love designing collaborative web-based systems, running usability studies and building prototypes that are both user-centred and technically sound. I've led projects across e-commerce, scientific data visualisation and sustainability, working with Figma, Angular, HTML/CSS and Agile workflows. Lately I've been enjoying the creative rhythm of vibe coding.</p>
+          <p class="page__body">Right now I'm designing and shipping at LifeLoop.</p>
+
+          <ul class="chips" aria-label="What I do">
+            <li>Product Design</li>
+            <li>User Research</li>
+            <li>UX Design</li>
+            <li>Visual Storytelling</li>
+          </ul>
+
+          <ul class="link-row" aria-label="Elsewhere">
+            <li><a class="btn-pill" href="https://www.linkedin.com/in/aatisha-cyrill/" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a class="btn-pill" href="https://github.com/Aatisha" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a class="btn-pill" href="https://medium.com/@cyrillaatisha" target="_blank" rel="noopener">Medium</a></li>
+            <li><a class="btn-pill btn-pill--ghost" href="mailto:hello@aatishacyrill.com">hello@aatishacyrill.com</a></li>
+          </ul>
+        </div>
+
+        <!-- A 1970s carousel slide projector and its pull-down screen. The round key dims the lights
+             and starts the show; the arrows step the tray through the slides (projector.js). -->
+        <div class="projector-stage" data-reveal>
+          <svg class="projector-stage__beam" aria-hidden="true">
+            <defs>
+              <linearGradient id="pj-beam" gradientUnits="userSpaceOnUse">
+                <stop offset="0" stop-color="#fff4d8" stop-opacity=".85"/>
+                <stop offset=".3" stop-color="#ffe8bd" stop-opacity=".4"/>
+                <stop offset=".8" stop-color="#ffdfa6" stop-opacity=".14"/>
+                <stop offset="1" stop-color="#ffdfa6" stop-opacity=".05"/>
+              </linearGradient>
+              <filter id="pj-soft" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="3"/></filter>
+              <clipPath id="pj-cone"><polygon class="projector-stage__clip"/></clipPath>
+            </defs>
+            <polygon class="projector-stage__cone" fill="url(#pj-beam)" filter="url(#pj-soft)"/>
+            <g class="projector-stage__motes" clip-path="url(#pj-cone)"></g>
+          </svg>
+
+          <figure class="screen">
+            <div class="screen__roller" aria-hidden="true"></div>
+            <div class="screen__surface">
+              <div class="screen__picture">
+                <div class="screen__slide">
+                  <img alt="" decoding="async">
+                  <span class="screen__film" aria-hidden="true"></span>
+                </div>
+              </div>
+            </div>
+            <span class="screen__pull" aria-hidden="true"></span>
+            <figcaption class="screen__caption mono-label" aria-live="polite"></figcaption>
+          </figure>
+
+          <div class="projector">
+            <svg class="projector__art" viewBox="0 0 300 170" aria-hidden="true">
+              <defs>
+                <!-- Moulded beige plastic, lit softly from above. -->
+                <linearGradient id="pj-body" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#efe9da"/><stop offset=".45" stop-color="#e5ddca"/><stop offset="1" stop-color="#d4cab3"/></linearGradient>
+                <linearGradient id="pj-lid" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ece5d4"/><stop offset="1" stop-color="#d8cfb9"/></linearGradient>
+                <linearGradient id="pj-inset" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9d0bb"/><stop offset=".35" stop-color="#e3dbc8"/><stop offset="1" stop-color="#e8e1cf"/></linearGradient>
+                <linearGradient id="pj-band" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#b3a891"/><stop offset=".35" stop-color="#ebe4d3"/><stop offset=".65" stop-color="#e2dac7"/><stop offset="1" stop-color="#ab9f88"/></linearGradient>
+                <radialGradient id="pj-tray" cx=".45" cy=".3" r=".8"><stop offset="0" stop-color="#f4efe3"/><stop offset="1" stop-color="#d9d0bd"/></radialGradient>
+                <radialGradient id="pj-glass-dark" cx=".5" cy=".35" r=".8"><stop offset="0" stop-color="#1c1e1b"/><stop offset="1" stop-color="#0c0d0b"/></radialGradient>
+                <radialGradient id="pj-glass" cx=".38" cy=".38" r=".7"><stop offset="0" stop-color="#53636e"/><stop offset=".6" stop-color="#1b2229"/><stop offset="1" stop-color="#07090b"/></radialGradient>
+                <radialGradient id="pj-glow"><stop offset="0" stop-color="#fff6dc"/><stop offset=".45" stop-color="#ffd788" stop-opacity=".75"/><stop offset="1" stop-color="#ffb547" stop-opacity="0"/></radialGradient>
+                <radialGradient id="pj-led" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#fbffc4"/><stop offset=".45" stop-color="#e2e64a"/><stop offset="1" stop-color="#9da22a"/></radialGradient>
+                <radialGradient id="pj-led-glow"><stop offset="0" stop-color="#eef25a" stop-opacity=".7"/><stop offset="1" stop-color="#eef25a" stop-opacity="0"/></radialGradient>
+                <!-- The grain of the plastic: a fine, slightly uneven speckle. -->
+                <filter id="pj-plastic" x="0" y="0" width="100%" height="100%">
+                  <feTurbulence type="fractalNoise" baseFrequency="1.25" numOctaves="2" seed="11" result="noise"/>
+                  <feColorMatrix in="noise" type="saturate" values="0" result="grey"/>
+                  <feComponentTransfer in="grey" result="speckle">
+                    <feFuncR type="linear" slope=".26" intercept=".83"/><feFuncG type="linear" slope=".26" intercept=".83"/><feFuncB type="linear" slope=".26" intercept=".83"/>
+                  </feComponentTransfer>
+                  <feBlend in="SourceGraphic" in2="speckle" mode="multiply" result="speckled"/>
+                  <feComposite in="speckled" in2="SourceGraphic" operator="in"/>
+                </filter>
+                <filter id="pj-shadow" x="-20%" y="-300%" width="140%" height="700%"><feGaussianBlur stdDeviation="4"/></filter>
+                <filter id="pj-text-glow" x="-20%" y="-60%" width="140%" height="220%">
+                  <feGaussianBlur stdDeviation="1.1" result="blur"/>
+                  <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+              </defs>
+              <ellipse cx="130" cy="152" rx="122" ry="6" fill="#4a4030" opacity=".32" filter="url(#pj-shadow)"/>
+              <path d="M13 128 C 2 132, -3 146, 6 156 S 30 166, 14 172" fill="none" stroke="#4a4740" stroke-width="2.4" stroke-linecap="round"/>
+              <rect x="30" y="146" width="16" height="5" rx="2" fill="#5a554c"/>
+              <rect x="214" y="146" width="16" height="5" rx="2" fill="#5a554c"/>
+
+              <!-- The case: a lid set back on top, the front with a vented bevel, a long recessed strip,
+                   and below it the keys, the display and the power light, each in its own recess. -->
+              <g filter="url(#pj-plastic)">
+                <rect x="20" y="46" width="220" height="22" rx="10" fill="url(#pj-lid)"/>
+                <rect x="12" y="57" width="236" height="91" rx="12" fill="url(#pj-body)"/>
+                <rect x="22" y="81" width="216" height="15" rx="2" fill="url(#pj-inset)"/>
+                <rect x="22" y="100" width="70" height="40" rx="2" fill="url(#pj-inset)"/>
+                <rect x="180" y="100" width="58" height="40" rx="2" fill="url(#pj-inset)"/>
+              </g>
+              <rect x="20.4" y="46.4" width="219.2" height="21.2" rx="9.6" fill="none" stroke="#a99d84" stroke-opacity=".55" stroke-width=".8"/>
+              <path d="M30 47.3 H230" stroke="#fff" stroke-opacity=".75" stroke-width=".8" stroke-linecap="round"/>
+              <rect x="12.4" y="57.4" width="235.2" height="90.2" rx="11.6" fill="none" stroke="#a99d84" stroke-opacity=".6" stroke-width=".8"/>
+              <path d="M22 58.4 H238" stroke="#fff" stroke-opacity=".85" stroke-width=".9" stroke-linecap="round"/>
+              <path d="M24 146.6 H236" stroke="#9c8f76" stroke-opacity=".55" stroke-width=".9" stroke-linecap="round"/>
+              <!-- Vent slits along the bevel. -->
+              <path d="M34 63 V70 M37.6 63 V70 M41.2 63 V70 M44.8 63 V70 M48.4 63 V70 M52 63 V70 M55.6 63 V70 M59.2 63 V70 M62.8 63 V70 M66.4 63 V70 M70 63 V70 M73.6 63 V70 M77.2 63 V70 M80.8 63 V70
+                       M179.2 63 V70 M182.8 63 V70 M186.4 63 V70 M190 63 V70 M193.6 63 V70 M197.2 63 V70 M200.8 63 V70 M204.4 63 V70 M208 63 V70 M211.6 63 V70 M215.2 63 V70 M218.8 63 V70 M222.4 63 V70 M226 63 V70"
+                stroke="#4f483b" stroke-width="1.5" stroke-linecap="round"/>
+              <!-- The seam under the bevel, and each recess shaded dark above and lit below. -->
+              <path d="M14 76.5 H246" stroke="#8f836b" stroke-opacity=".55" stroke-width=".8"/>
+              <path d="M14 77.4 H246" stroke="#fff" stroke-opacity=".7" stroke-width=".7"/>
+              <path d="M22 81.4 H238 M22.4 81 V96 M22 100.4 H92 M22.4 100 V140 M180 100.4 H238 M180.4 100 V140" stroke="#8f836b" stroke-opacity=".55" stroke-width=".8"/>
+              <path d="M22 95.6 H238 M237.6 81 V96 M22 139.6 H92 M91.6 100 V140 M180 139.6 H238 M237.6 100 V140" stroke="#fff" stroke-opacity=".75" stroke-width=".8"/>
+
+              <!-- The display: a dark window whose segment letters light up (projector.js writes them). -->
+              <rect x="96" y="100" width="80" height="40" rx="3" fill="#24251f"/>
+              <rect x="98.5" y="102.5" width="75" height="35" rx="2" fill="url(#pj-glass-dark)"/>
+              <path d="M99.5 103.6 H172.5" stroke="#000" stroke-opacity=".5" stroke-width="1.4"/>
+              <path d="M96.5 140 H175.5" stroke="#fff" stroke-opacity=".6" stroke-width=".8"/>
+              <g class="projector__readout" filter="url(#pj-text-glow)"></g>
+              <!-- The power light, in a dark ring. -->
+              <circle cx="222" cy="120" r="5.6" fill="#33312c"/>
+              <circle cx="222" cy="120" r="5.6" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width=".6"/>
+              <circle class="projector__led-glow" cx="222" cy="120" r="11" fill="url(#pj-led-glow)"/>
+              <circle class="projector__led" cx="222" cy="120" r="3.3"/>
+
+              <!-- The turntable and the round slide tray on top (projector.js draws the tray's slots). -->
+              <ellipse cx="130" cy="47" rx="98" ry="8.5" fill="#d3c9b2" filter="url(#pj-plastic)"/>
+              <ellipse cx="130" cy="47" rx="98" ry="8.5" fill="none" stroke="#a99d84" stroke-opacity=".6" stroke-width=".7"/>
+              <g class="projector__tray" filter="url(#pj-plastic)"></g>
+              <!-- Lens barrel with its ribbed focus ring; projector.js aims it at the screen. -->
+              <g class="projector__lens" transform="translate(247 116) rotate(-20)">
+                <ellipse rx="4" ry="15" fill="#c9bea6"/>
+                <rect y="-13" width="40" height="26" rx="2" fill="#2e2c28"/>
+                <rect y="-13" width="40" height="5" fill="#fff" opacity=".1"/>
+                <path d="M10 -13 V13 M13 -13 V13 M16 -13 V13 M19 -13 V13 M22 -13 V13 M25 -13 V13" stroke="#000" stroke-opacity=".5" stroke-width="1.2"/>
+                <ellipse cx="40" rx="5" ry="13" fill="#3a3834"/>
+                <ellipse cx="40.6" rx="3.6" ry="10" fill="url(#pj-glass)"/>
+                <ellipse class="projector__glow" cx="41.5" rx="10" ry="17" fill="url(#pj-glow)"/>
+              </g>
+            </svg>
+
+            <div class="projector__keys" role="group" aria-label="Slide projector">
+              <button class="projector__key" type="button" data-key="prev" aria-label="Previous slide">
+                <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M11 3.5 L4.5 8 L11 12.5 Z"/></svg>
+              </button>
+              <button class="projector__key projector__key--power" type="button" data-key="power" aria-pressed="false" aria-label="Start the slide show">
+                <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="4.2"/></svg>
+              </button>
+              <button class="projector__key" type="button" data-key="next" aria-label="Next slide">
+                <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.5 L11.5 8 L5 12.5 Z"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- The slides in the tray, in order. data-shape="tall" for portrait slides; data-tint is how
+               the film has aged (amber, rose or faded). -->
+          <ol class="projector__slides" hidden>
+            <li data-src="assets/photos/aatisha-golden-gate.jpg" data-shape="tall" data-tint="amber" data-label="Golden Gate, San Francisco">Aatisha at the Golden Gate Bridge in San Francisco</li>
+            <li data-src="assets/photos/aatisha-seattle.jpg" data-shape="tall" data-tint="rose" data-label="Waterfront, Seattle">Aatisha on the Seattle waterfront beside the Great Wheel</li>
+            <li data-src="assets/photos/polaroid-1.jpg" data-tint="amber" data-label="Sunset chaser">Sunset clouds over the sea</li>
+            <li data-src="assets/photos/polaroid-2.jpg" data-tint="faded" data-label="Paddle season">Kayakers paddling past mangroves</li>
+            <li data-src="assets/photos/polaroid-3.jpg" data-tint="rose" data-label="Cliffside views">Green headland above the ocean</li>
+            <li data-src="assets/photos/polaroid-4.jpg" data-tint="faded" data-label="Lone sail">A lone sailboat beneath distant mountains</li>
+            <li data-src="assets/photos/polaroid-5.jpg" data-tint="amber" data-label="Lakeside gold">A golden tree beside a lake</li>
+            <li data-src="assets/photos/polaroid-6.jpg" data-shape="tall" data-tint="rose" data-label="Palm tree therapy">Palm trees on a sunny beach</li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Travel -->
+      <section class="page-section" aria-labelledby="travel-title">
+        <header class="page-section__head" data-reveal>
+          <p class="mono-label">01 — Wanderlust &amp; wonder</p>
+          <h2 id="travel-title" class="page-section__title">Off the clock, I'm usually somewhere new</h2>
+          <p class="page__body">Whenever I have time and money, I pack my bags and fly. Traveling has taught me the essence of storytelling and discovery, and that fuels my creative process: it's all about creating meaningful, memorable experiences.</p>
+        </header>
+
+        <div class="print-wall" data-reveal>
+          <figure class="photo polaroid" style="--r: -4deg;"><img src="assets/photos/polaroid-1.jpg" alt="Sunset clouds over the sea" style="object-position: center 62%;"><figcaption>sunset chaser</figcaption></figure>
+          <figure class="photo polaroid" style="--r: 3deg;"><img src="assets/photos/polaroid-2.jpg" alt="Kayakers paddling past mangroves" style="object-position: center 72%;"><figcaption>paddle season</figcaption></figure>
+          <figure class="photo polaroid" style="--r: -2deg;"><img src="assets/photos/polaroid-3.jpg" alt="Green headland above the ocean" style="object-position: 40% center;"><figcaption>cliffside views</figcaption></figure>
+          <figure class="photo polaroid" style="--r: 5deg;"><img src="assets/photos/polaroid-4.jpg" alt="A lone sailboat beneath distant mountains" style="object-position: center 42%;"><figcaption>lone sail</figcaption></figure>
+          <figure class="photo polaroid" style="--r: -5deg;"><img src="assets/photos/polaroid-5.jpg" alt="A golden tree beside a lake" style="object-position: center 70%;"><figcaption>lakeside gold</figcaption></figure>
+          <figure class="photo polaroid" style="--r: 2deg;"><img src="assets/photos/palm-springs.jpg" alt="Palm trees in Palm Springs" style="object-position: right center;"><figcaption>palm springs</figcaption></figure>
+          <figure class="photo polaroid" style="--r: -3deg;"><img src="assets/photos/polaroid-6.jpg" alt="Palm trees on a sunny beach" style="object-position: center 40%;"><figcaption>palm tree therapy</figcaption></figure>
+          <figure class="photo polaroid" style="--r: 4deg;"><img src="assets/sea.webp" alt="Turquoise sea glittering in the sun"><figcaption>salt water</figcaption></figure>
+        </div>
+      </section>
+
+      <!-- Reading -->
+      <section class="page-section" aria-labelledby="books-title">
+        <header class="page-section__head" data-reveal>
+          <p class="mono-label">02 — Stories behind the screens</p>
+          <h2 id="books-title" class="page-section__title">My bookshelf</h2>
+          <p class="page__body">Reading is how I exercise empathy: stepping into other lives to better understand the human experience. It's what drives me to design with meaning, intention and emotional depth.</p>
+        </header>
+
+        <ul class="shelf" data-reveal>
+          <li><img src="assets/books/the-god-of-small-things.jpg" alt=""><span>The God of Small Things</span></li>
+          <li><img src="assets/books/eleanor-oliphant.jpg" alt=""><span>Eleanor Oliphant is Completely Fine</span></li>
+          <li><img src="assets/books/white-nights.jpg" alt=""><span>White Nights</span></li>
+          <li><img src="assets/books/to-kill-a-mockingbird.jpg" alt=""><span>To Kill a Mockingbird</span></li>
+          <li><img src="assets/books/roman-stories.jpg" alt=""><span>Roman Stories</span></li>
+          <li><img src="assets/books/wuthering-heights.jpg" alt=""><span>Wuthering Heights</span></li>
+          <li><img src="assets/books/invisible-planets.jpg" alt=""><span>Invisible Planets</span></li>
+          <li><img src="assets/books/don-norman.jpg" alt=""><span>The Design of Everyday Things</span></li>
+          <li><img src="assets/books/john-cusack.jpg" alt=""><span>Things that Can and Cannot Be Said</span></li>
+          <li><img src="assets/books/the-stranger.jpg" alt=""><span>The Stranger</span></li>
+          <li><img src="assets/books/the-lowland.jpg" alt=""><span>The Lowland</span></li>
+          <li><img src="assets/books/norwegian-woods.jpg" alt=""><span>Norwegian Wood</span></li>
+          <li><img src="assets/books/john-gribbin.jpg" alt=""><span>In Search of Schrödinger's Cat</span></li>
+          <li><img src="assets/books/the-lonely-city.jpg" alt=""><span>The Lonely City</span></li>
+          <li><img src="assets/books/less.jpg" alt=""><span>Less</span></li>
+        </ul>
+      </section>
+
+      <!-- Closing -->
+      <section class="page-close" data-reveal>
+        <h2 class="page-section__title">This is only the start.</h2>
+        <p class="page__body">I'm growing, evolving and dreaming big, and I'd be honored if you came along.</p>
+        <a class="btn-pill btn-pill--dark" href="mailto:hello@aatishacyrill.com">Say hello</a>
+      </section>
+    </main>
+  </div>
+
+  <script src="about.js"></script>
+  <script src="projector.js"></script>
+</body>
+</html>

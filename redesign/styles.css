@@ -525,7 +525,7 @@ a:hover > .photo,
   justify-content: space-between;
   width: 100%;
   max-width: 1720px;
-  min-height: clamp(440px, 72svh, 1000px);
+  min-height: clamp(450px, calc(72svh + 10px), 1010px);
   padding: var(--space-5) var(--space-6);
   background: none;
 }
@@ -542,19 +542,19 @@ a:hover > .photo,
     drop-shadow(0 24px 48px rgba(0, 35, 70, 0.22));
 }
 
-.hero__bar,
+.site-bar,
 .hero__copy {
   position: relative;
 }
 
-.hero__bar {
+.site-bar {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: var(--space-4);
 }
 
-.hero__bar .btn-pill {
+.site-bar .btn-pill {
   justify-self: end;
 }
 
@@ -592,7 +592,7 @@ a:hover > .photo,
 .hero__statement {
   margin: 0;
   font-family: var(--font-sans);
-  font-size: clamp(1.125rem, 0.95rem + 0.6vw, 1.5rem);
+  font-size: 1.25rem; /* 20px */
   font-weight: 400;
   line-height: 1.45;
   letter-spacing: -0.015em;
@@ -603,6 +603,45 @@ a:hover > .photo,
 .hero__statement b {
   font-weight: 500;
   color: var(--color-ink);
+}
+
+/* Easter egg: hovering (or focusing / tapping) a phrase pops a cut-out picture up above it. */
+.easter {
+  position: relative;
+  white-space: nowrap;
+  text-decoration: underline dotted var(--color-ink-3);
+  text-underline-offset: 4px;
+  cursor: help;
+  outline-offset: 2px;
+}
+
+.easter__pop {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 12px);
+  width: 120px;
+  height: auto;
+  max-width: none;
+  padding: 5px;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-lift);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(-50%) translateY(10px) scale(0.6) rotate(-8deg);
+  transform-origin: 50% 100%;
+  transition: opacity var(--dur-fast) ease, transform var(--dur) var(--ease-spring);
+}
+
+.easter:hover .easter__pop,
+.easter:focus .easter__pop {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0) scale(1) rotate(-3deg);
+}
+
+/* Lift the text above the polaroid layer while the picture is showing. */
+.hero__copy:has(.easter:hover, .easter:focus) {
+  z-index: 4;
 }
 
 /* Entrance (polaroids.js): while the polaroids move, each text line waits and then rises in on its
@@ -666,23 +705,42 @@ a:hover > .photo,
 .hero__foot {
   position: relative;
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  justify-items: center;
   align-items: end;
-  gap: var(--space-4);
   min-height: 34px;
-}
-
-.hero__hint {
-  margin: 0;
-  color: var(--color-ink-2);
-}
-
-.hero__hint svg {
-  transform: translateY(-6px);
 }
 
 .hero__cue {
   text-align: center;
+}
+
+/* A shell shaken out of a polaroid (polaroids.js). It slips out from behind the photo, then comes in front
+   once it has dropped clear, so it lands on the shore in view. */
+.shell {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
+  width: 44px;
+  height: 44px;
+  filter: drop-shadow(0 2px 1.5px rgba(80, 55, 30, 0.22)) drop-shadow(0 4px 6px rgba(80, 55, 30, 0.12));
+  pointer-events: none;
+  will-change: transform;
+  transition: opacity var(--dur-slow) ease;
+}
+
+.shell.is-front {
+  z-index: 60;
+}
+
+.shell svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.shell.is-leaving {
+  opacity: 0;
 }
 
 .cutout-text {
@@ -712,16 +770,16 @@ a:hover > .photo,
     margin-top: var(--space-7);
   }
 
-  .hero__bar {
+  .site-bar {
     grid-template-columns: 1fr auto;
   }
 
-  .hero__bar nav {
+  .site-bar nav {
     grid-column: 1 / -1;
     grid-row: 2;
   }
 
-  .hero__bar .nav-mono {
+  .site-bar .nav-mono {
     gap: var(--space-2) var(--space-5);
   }
 
@@ -743,15 +801,6 @@ a:hover > .photo,
   .sticker::after {
     font-size: 1rem;
   }
-
-  .hero__foot {
-    grid-template-columns: 1fr auto;
-  }
-
-  .hero__cue {
-    grid-column: 1 / -1;
-    grid-row: 2;
-  }
 }
 
 @media (min-width: 761px) and (max-width: 1180px) {
@@ -771,5 +820,648 @@ a:hover > .photo,
   .hero__window .hero__title,
   .hero__window .hero__intro > * {
     animation: none !important;
+  }
+}
+
+/* ================= Pages (About, …) ================= */
+/* A page is the home page's white window grown to fill the screen (transition.js plays that on the
+   way here), so it is plain white edge to edge. Its bar fades in as it opens. */
+
+body.page {
+  background: var(--color-surface);
+}
+
+.page__window {
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: var(--space-5) var(--space-6) var(--space-8);
+  border-radius: 0;
+}
+
+.page__window > main {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.page__window > .site-bar {
+  animation: hero-fade 900ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+/* The white sheet that grows out of the home page's window when you open another page. */
+.page-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: var(--color-surface);
+  will-change: clip-path, opacity;
+}
+
+.page__title {
+  margin: var(--space-3) 0 var(--space-5);
+  font-size: var(--text-cutout);
+  font-weight: var(--weight-cutout);
+  line-height: 1.05;
+  letter-spacing: var(--tracking-cutout);
+  color: var(--color-ink-2);
+}
+
+.page__lead {
+  margin: 0 0 var(--space-4);
+  font-size: clamp(1.125rem, 0.95rem + 0.6vw, 1.5rem);
+  line-height: 1.45;
+  letter-spacing: -0.015em;
+  color: var(--color-ink-2);
+}
+
+.page__lead b {
+  font-weight: 500;
+  color: var(--color-ink);
+}
+
+/* A quote in place of the lead: the words in the lead's size, the name underneath like a label. */
+.page-quote {
+  margin: 0 0 var(--space-5);
+}
+
+.page-quote .page__lead {
+  margin: 0 0 var(--space-3);
+  color: var(--color-ink);
+}
+
+.page__body {
+  max-width: 60ch;
+  margin: 0 0 var(--space-4);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--color-ink-2);
+}
+
+/* Intro: copy on the left, a small stack of prints and a handwritten note on the right. */
+.about-intro {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  gap: var(--space-8);
+  padding: var(--space-9) 0 var(--space-8);
+}
+
+.chips,
+.link-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chips {
+  margin: var(--space-5) 0;
+}
+
+.chips li {
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--color-tile);
+  font-size: var(--text-sm);
+}
+
+/* ---------- Slide projector (about page, projector.js) ----------
+   A 1970s carousel projector and a pull-down screen. Pressing the round key dims the room around
+   them, the lamp warms up with a flicker, the tray clunks round and the slide comes into focus. */
+
+.projector-stage {
+  position: relative;
+  aspect-ratio: 6 / 5;
+  border-radius: var(--radius-window);
+  /* A soft grey backdrop, lit from above like a product shot. */
+  background: radial-gradient(ellipse 80% 70% at 50% 38%, #fbf9f8 0%, #f1edea 60%, #e6e1dc 100%);
+  isolation: isolate;
+}
+
+/* The room going dark. */
+.projector-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background: radial-gradient(ellipse 90% 80% at 55% 40%, #24211d 0%, #161412 100%);
+  opacity: 0;
+  transition: opacity 1200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.projector-stage.is-dim::before {
+  opacity: 1;
+}
+
+/* The beam of light, from the lens to the screen. The projector stands in front of the screen, so
+   the beam crosses over it, adding light rather than covering it. */
+.projector-stage__beam {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  mix-blend-mode: screen;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 600ms ease;
+}
+
+.projector-stage__motes circle {
+  fill: #fff8e8;
+  transform-box: fill-box;
+  animation: pj-mote var(--t, 8s) var(--d, 0s) linear infinite;
+}
+
+@keyframes pj-mote {
+  0% { transform: translate(0, 0); opacity: 0; }
+  20% { opacity: 0.85; }
+  80% { opacity: 0.55; }
+  100% { transform: translate(var(--dx, 10px), var(--dy, -14px)); opacity: 0; }
+}
+
+/* The pull-down screen: a roller bar, the matte surface and a little pull tab. */
+.screen {
+  position: absolute;
+  top: 5%;
+  right: 4%;
+  z-index: 1;
+  width: 58%;
+  margin: 0;
+}
+
+.screen__roller {
+  height: 10px;
+  margin: 0 -5% -2px;
+  border-radius: 5px;
+  background:
+    linear-gradient(90deg, #8f8571 0 3%, transparent 3% 97%, #8f8571 97%),
+    linear-gradient(#f5f0e4, #ddd4c1 45%, #b9ae97);
+  box-shadow: 0 3px 6px rgba(60, 50, 30, 0.22);
+}
+
+.screen__surface {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: linear-gradient(#fbfaf7, #f1efea);
+  box-shadow: 0 0 0 1px rgba(22, 22, 22, 0.05), 0 18px 30px -18px rgba(60, 50, 30, 0.4);
+  transition: background-color 1200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.is-dim .screen__surface {
+  background: linear-gradient(#3c3934, #34312d);
+}
+
+.screen__pull {
+  display: block;
+  width: 14px;
+  height: 7px;
+  margin: 0 auto;
+  border: 1.5px solid #a69a82;
+  border-top: 0;
+  border-radius: 0 0 8px 8px;
+}
+
+/* The patch of lamp light the slide's window lets through. */
+.screen__picture {
+  position: absolute;
+  inset: 7% 6%;
+  overflow: hidden;
+  border-radius: 5px;
+  background: #fff6e0;
+  box-shadow: 0 0 1px 1px rgba(255, 244, 220, 0.6), 0 0 42px rgba(255, 210, 140, 0.45);
+  opacity: 0;
+  transition: opacity 600ms ease;
+}
+
+.screen__picture.is-tall {
+  inset: 7% 28%;
+}
+
+.is-on .projector-stage__beam,
+.is-on .screen__picture {
+  opacity: 1;
+}
+
+/* Between slides the shutter closes for a moment and the light all but goes. */
+.is-on.is-shut .projector-stage__beam,
+.is-on.is-shut .screen__picture {
+  opacity: 0.08;
+  transition-duration: 140ms;
+}
+
+/* The lamp coming up: it catches, stutters and settles. */
+.is-warming .projector-stage__beam,
+.is-warming .screen__picture {
+  animation: pj-lamp 1000ms linear both;
+}
+
+@keyframes pj-lamp {
+  0% { opacity: 0; }
+  8% { opacity: 0.55; }
+  13% { opacity: 0.12; }
+  22% { opacity: 0.7; }
+  27% { opacity: 0.38; }
+  40% { opacity: 0.88; }
+  46% { opacity: 0.74; }
+  100% { opacity: 1; }
+}
+
+/* The slide itself, aged like old film: warmer, softer colour, a tint where the dyes have shifted,
+   grain, a dark falloff at the edges, and the odd scratch. */
+.screen__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.screen__slide.is-shown {
+  opacity: 1;
+}
+
+.screen__slide.is-focusing {
+  animation: pj-focus 1300ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes pj-focus {
+  0% { filter: blur(10px); transform: scale(1.025); opacity: 0; }
+  25% { opacity: 1; }
+  100% { filter: blur(0); transform: none; opacity: 1; }
+}
+
+.screen__slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: sepia(0.34) saturate(0.82) contrast(1.06) brightness(1.06);
+}
+
+.screen__slide::before,
+.screen__slide::after,
+.screen__film {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* How the dyes have aged. */
+.screen__slide::before {
+  background: #f0b26a;
+  mix-blend-mode: multiply;
+  opacity: 0.22;
+}
+
+.screen__slide[data-tint="rose"]::before {
+  background: #e3a0c6;
+  opacity: 0.3;
+}
+
+.screen__slide[data-tint="faded"]::before {
+  background: #c6d6c4;
+  opacity: 0.3;
+}
+
+.screen__slide::after {
+  background: radial-gradient(ellipse at 50% 48%, transparent 52%, rgba(40, 20, 6, 0.5) 100%);
+}
+
+.screen__film {
+  background-image:
+    linear-gradient(90deg, transparent 31%, rgba(255, 255, 255, 0.22) 31.2%, transparent 31.5%),
+    linear-gradient(90deg, transparent 74%, rgba(60, 40, 20, 0.18) 74.15%, transparent 74.4%),
+    var(--grain);
+  background-size: 100% 100%, 100% 100%, 160px;
+  mix-blend-mode: overlay;
+  opacity: 0.6;
+}
+
+.screen__caption {
+  margin-top: var(--space-3);
+  text-align: center;
+  opacity: 0;
+  transition: opacity 500ms ease, color 1200ms ease;
+}
+
+.is-on .screen__caption {
+  opacity: 1;
+}
+
+.is-dim .screen__caption {
+  color: rgba(255, 246, 228, 0.6);
+}
+
+/* The projector. */
+.projector {
+  position: absolute;
+  left: 2%;
+  bottom: 4%;
+  z-index: 3;
+  width: 62%;
+}
+
+.projector__art {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  transition: filter 1200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* With the room lights down the projector sinks into the dark too; its display and light still glow. */
+.is-dim .projector__art,
+.is-dim .projector__key {
+  filter: brightness(0.8);
+}
+
+/* Segment letters behind dark glass: pale and softly glowing, brighter while the show runs. */
+.projector__readout {
+  fill: none;
+  stroke-linecap: round;
+  stroke-width: 1.15;
+  opacity: 0.78;
+  transition: opacity 300ms ease;
+}
+
+.projector__seg {
+  stroke: #dfe3d6;
+}
+
+.projector__seg-ghost {
+  stroke: #dfe3d6;
+  opacity: 0.07;
+}
+
+.is-dim .projector__readout {
+  opacity: 1;
+}
+
+.projector__led {
+  transition: fill 300ms ease;
+}
+
+.projector__led-glow {
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.projector__led {
+  fill: #4b4943;
+}
+
+.is-dim .projector__led {
+  fill: url(#pj-led);
+}
+
+.is-dim .projector__led-glow {
+  opacity: 1;
+}
+
+.projector__glow {
+  opacity: 0;
+  transition: opacity 700ms ease;
+}
+
+.is-on .projector__glow {
+  opacity: 1;
+}
+
+.projector__gate {
+  fill: #ffd27a;
+  opacity: 0;
+  transition: opacity 500ms ease;
+}
+
+.is-on .projector__gate {
+  opacity: 0.9;
+}
+
+/* The three keys on the front: back, start/stop and forward. */
+.projector__keys {
+  position: absolute;
+  left: 9.8%;
+  top: 66.2%;
+  display: flex;
+  justify-content: space-between;
+  width: 18.3%;
+}
+
+.projector__key {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 27.3%;
+  aspect-ratio: 1;
+  padding: 0;
+  border: 1px solid rgba(110, 96, 70, 0.35);
+  border-radius: 50%;
+  background: radial-gradient(circle at 38% 32%, #fbf8f1, #e2dac8 55%, #c9bea6);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 1.5px 2px rgba(70, 58, 36, 0.4);
+  color: #5e5647;
+  cursor: pointer;
+  transition: transform 90ms ease, box-shadow 90ms ease, color 300ms ease, filter 1200ms ease;
+}
+
+/* A bigger target than the key itself, for fingers. */
+.projector__key::before {
+  content: "";
+  position: absolute;
+  inset: -8px;
+}
+
+.projector__key:active {
+  transform: translateY(1px);
+  box-shadow: inset 0 1px 2px rgba(70, 58, 36, 0.45), 0 0.5px 1px rgba(70, 58, 36, 0.3);
+}
+
+.projector__key:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.projector__key svg {
+  width: 62%;
+  height: 62%;
+  fill: currentColor;
+}
+
+.projector__key--power svg circle {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+}
+
+.projector__key--power[aria-pressed="true"] {
+  color: #c27d16;
+}
+
+/* Until it has been pressed once, the start key breathes a soft amber ring. */
+.projector:not(.has-started) .projector__key--power::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(255, 181, 71, 0.55);
+  animation: pj-breathe 2400ms ease-out infinite;
+}
+
+@keyframes pj-breathe {
+  0% { box-shadow: 0 0 0 0 rgba(255, 181, 71, 0.5); }
+  70%, 100% { box-shadow: 0 0 0 7px rgba(255, 181, 71, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projector-stage__motes circle,
+  .projector:not(.has-started) .projector__key--power::after {
+    animation: none;
+  }
+
+  .is-warming .projector-stage__beam,
+  .is-warming .screen__picture,
+  .screen__slide.is-focusing {
+    animation: none;
+  }
+}
+
+.polaroid figcaption {
+  display: block;
+  padding: 6px 0 9px;
+}
+
+/* A print that is also a polaroid keeps its square photo and caption rather than filling the frame. */
+.photo.polaroid img {
+  height: auto;
+}
+
+/* Sections */
+.page-section {
+  padding: var(--space-8) 0;
+  border-top: 1px solid var(--color-line);
+}
+
+.page-section__head {
+  max-width: 640px;
+  margin-bottom: var(--space-7);
+}
+
+.page-section__title {
+  margin: var(--space-3) 0 var(--space-4);
+  font-size: var(--text-xl);
+  font-weight: 500;
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+}
+
+/* Travel prints, pinned up loosely: two even rows of four. */
+.print-wall {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 200px));
+  justify-content: center;
+  gap: var(--space-7) clamp(var(--space-5), 4vw, var(--space-8));
+  padding: var(--space-4);
+}
+
+/* Bookshelf: covers on a soft tile; they lift off the shelf on hover. */
+.shelf {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 150px));
+  justify-content: center;
+  gap: var(--space-6) clamp(var(--space-5), 4vw, var(--space-8));
+  margin: 0;
+  padding: var(--space-7) var(--space-6);
+  border-radius: var(--radius-lg);
+  background: var(--color-tile);
+  list-style: none;
+}
+
+.shelf li {
+  display: grid;
+  align-content: start;
+  gap: var(--space-3);
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+  color: var(--color-ink-2);
+}
+
+.shelf img {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: 3px 6px 6px 3px;
+  box-shadow: var(--shadow-photo);
+  transition: transform var(--dur) var(--ease-spring), box-shadow var(--dur) ease;
+}
+
+.shelf li:hover img {
+  transform: translateY(-6px) rotate(-1.5deg);
+  box-shadow: var(--shadow-lift);
+}
+
+.page-close {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-3);
+  padding: var(--space-9) 0 var(--space-6);
+  border-top: 1px solid var(--color-line);
+  text-align: center;
+}
+
+.page-close .page-section__title {
+  margin: 0;
+}
+
+/* Scroll reveal (about.js): the same soft drift-and-focus entrance as the home page text. */
+.has-reveal [data-reveal]:not(.is-shown) {
+  opacity: 0;
+}
+
+.has-reveal [data-reveal].is-shown {
+  animation:
+    hero-drift 1600ms cubic-bezier(0.16, 1, 0.3, 1) both,
+    hero-fade 1200ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@media (max-width: 760px) {
+  .page__window {
+    padding: var(--space-4) var(--space-4) var(--space-7);
+  }
+
+  .about-intro {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+    padding: var(--space-7) 0 var(--space-6);
+  }
+
+  /* Taller on phones, so the slide's caption clears the projector below it. */
+  .projector-stage {
+    aspect-ratio: 5 / 6;
+  }
+
+  .screen {
+    width: 68%;
+  }
+
+  .screen__caption {
+    text-align: right;
+  }
+
+  .projector {
+    width: 68%;
+  }
+
+  .print-wall {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-5) var(--space-4);
+    padding: 0;
+  }
+
+  .shelf {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-5) var(--space-3);
+    padding: var(--space-4);
   }
 }

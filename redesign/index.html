@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Geist+Mono:wght@400&family=Geist:wght@400;500;600&family=Instrument+Serif&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="tokens.css">
   <link rel="stylesheet" href="styles.css">
+  <link rel="prefetch" href="about.html">
 </head>
 <body>
   <main>
@@ -33,12 +34,12 @@
             <rect width="100%" height="100%" rx="28" fill="#fff" mask="url(#hero-cut)"/>
           </svg>
 
-          <header class="hero__bar">
+          <header class="site-bar">
             <a class="brand" href="./">Aatisha Cyrill</a>
             <nav aria-label="Primary">
               <ul class="nav-mono">
-                <li><a href="#work" aria-current="page">Work</a></li>
-                <li><a href="#about">About</a></li>
+                <li><a href="./" aria-current="page">Work</a></li>
+                <li><a href="about.html" data-expand>About</a></li>
                 <li><a href="#playground">Playground</a></li>
                 <li><a href="#contact">Contact</a></li>
               </ul>
@@ -51,7 +52,7 @@
               <h1 id="hero-title" class="hero__title"><span class="visually-hidden">Aatisha Cyrill, </span>Product Designer</h1>
 
               <div class="hero__intro">
-                <p class="hero__statement"><b>Hi, I'm Aatisha.</b> I design products and experiences bridging research, design and code with purpose, heart, sugar, spice and everything nice.</p>
+                <p class="hero__statement"><b>Hi, I'm Aatisha.</b> I design products and experiences bridging research, design and code with purpose, heart, <span class="easter" tabindex="0">sugar, spice and everything nice<img class="easter__pop" src="assets/sugar-spice.png" alt="The Powerpuff Girls" width="389" height="256"></span>.</p>
                 <p class="mono-label">Currently designing and shipping at LifeLoop</p>
               </div>
             </div>
@@ -105,10 +106,6 @@
           </div>
 
           <footer class="hero__foot">
-            <p class="annotation annotation--inline hero__hint">
-              psst, peel one off
-              <svg viewBox="0 0 40 44" aria-hidden="true"><path d="M6 38 C 10 22, 20 12, 34 8 M 26 4 L 35 8 L 29 15"/></svg>
-            </p>
             <p class="hero__cue mono-label">Scroll to explore</p>
           </footer>
         </div>
@@ -118,5 +115,6 @@
 
   <script src="hero.js"></script>
   <script src="polaroids.js"></script>
+  <script src="transition.js"></script>
 </body>
 </html>
