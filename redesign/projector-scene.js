@@ -13,7 +13,7 @@
 import * as THREE from 'three';
 import * as Sound from './projector-sound.js';
 import { photoSlide } from './projector-textures.js';
-import { buildWorld, SLOTS, ALPHA, DECK_TOP, TRAY_CX, trayAngle } from './projector-model.js';
+import { buildWorld, SLOTS, ALPHA, DECK_TOP, TRAY_CX, PROJECTOR_SCALE, trayAngle } from './projector-model.js';
 
 const { clamp, lerp, damp } = THREE.MathUtils;
 const Y = new THREE.Vector3(0, 1, 0);
@@ -263,7 +263,7 @@ export function mount(stage) {
   /* ---------- Pointer, keys and keyboard ---------- */
   const raycaster = new THREE.Raycaster();
   const ndc = new THREE.Vector2();
-  const trayPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), -(DECK_TOP + 0.7));
+  const trayPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), -(DECK_TOP + 0.7) * PROJECTOR_SCALE);
   const hit = new THREE.Vector3();
   const sway = { x: 0, y: 0, tx: 0, ty: 0 };
   let drag = null;

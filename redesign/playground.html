@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Playground — Aatisha Cyrill</title>
+  <meta name="description" content="Small experiments by Aatisha Cyrill: prototypes that start as questions about ordinary tools.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="page">
+  <div class="window page__window">
+    <header class="site-bar">
+      <a class="brand" href="./">Aatisha Cyrill</a>
+      <nav aria-label="Primary">
+        <ul class="nav-mono">
+          <li><a href="./">Work</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="playground.html" aria-current="page">Playground</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <a class="btn-pill" href="mailto:hello@aatishacyrill.com">Say hello</a>
+    </header>
+
+    <main>
+      <section class="play-intro" aria-labelledby="play-title" data-reveal>
+        <h1 id="play-title" class="mono-label">Playground</h1>
+        <p class="page__lead"><b>Welcome to my playground.</b> The projects here began as small curiosities: an interaction I wanted to feel in my hands, a weekend spent seeing what a new tool could do. I sketch and I code with AI, until an idea becomes a fun reality.</p>
+      </section>
+
+      <!-- Four projects with the caption below each: two side by side, then two across the whole row.
+           The pair's columns are in proportion to their two videos' shapes (1600:826 and 880:1102), so
+           both play whole at the same height. -->
+      <section class="play-grid" aria-label="Projects" style="--pair-a: 1.937fr; --pair-b: 0.799fr;">
+        <article class="play-card" data-reveal>
+          <!-- A screen recording: plays silently on a loop while it's on screen (about.js). -->
+          <div class="play-card__tile play-card__tile--video">
+            <div class="photo play-card__media" style="--media-ar: 1600 / 826;">
+              <video src="assets/playground/vanishing-reef.mp4" poster="assets/playground/vanishing-reef.jpg" muted loop playsinline preload="metadata" data-autoplay aria-label="The Vanishing Reef: a coral reef explorer that bleaches as the water warms"></video>
+            </div>
+          </div>
+          <div class="play-card__caption">
+            <h2 class="play-card__title">The Vanishing Reef</h2>
+            <span class="mono-label">01 · 2026</span>
+          </div>
+          <p class="play-card__desc">A line about this experiment. Placeholder for now.</p>
+        </article>
+
+        <article class="play-card" data-reveal>
+          <div class="play-card__tile play-card__tile--video">
+            <div class="photo play-card__media" style="--media-ar: 880 / 1102;">
+              <video src="assets/playground/saved-studio.mp4" poster="assets/playground/saved-studio.jpg" muted loop playsinline preload="metadata" data-autoplay aria-label="Saved Studio: Instagram saved posts turned into a trip plan with Meta AI"></video>
+            </div>
+          </div>
+          <div class="play-card__caption">
+            <h2 class="play-card__title">Saved Studio</h2>
+            <span class="mono-label">02 · 2026</span>
+          </div>
+          <p class="play-card__desc">A line about this experiment. Placeholder for now.</p>
+        </article>
+
+        <article class="play-card play-card--wide" data-reveal>
+          <div class="play-card__tile play-card__tile--video">
+            <div class="photo play-card__media" style="--media-ar: 1600 / 1000;">
+              <video src="assets/playground/reader-bookmarks.mp4" poster="assets/playground/reader-bookmarks.jpg" muted loop playsinline preload="metadata" data-autoplay aria-label="An e-reader where highlighting a passage turns it into an illustrated bookmark"></video>
+            </div>
+          </div>
+          <div class="play-card__caption">
+            <h2 class="play-card__title">Project four</h2>
+            <span class="mono-label">03 · 2025</span>
+          </div>
+          <p class="play-card__desc">A line about this experiment. Placeholder for now.</p>
+        </article>
+
+        <article class="play-card play-card--wide" data-reveal>
+          <!-- A YouTube video: the privacy-enhanced player, which only loads when scrolled near. -->
+          <div class="play-card__tile play-card__tile--video">
+            <div class="photo play-card__media">
+              <iframe src="https://www.youtube-nocookie.com/embed/OmLcyAajjA8?rel=0" title="WildWorth: an AI rating agency for living nature" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="play-card__caption">
+            <h2 class="play-card__title">WildWorth</h2>
+            <span class="mono-label">04 · 2026</span>
+          </div>
+          <p class="play-card__desc">An AI rating agency for living nature.</p>
+        </article>
+      </section>
+
+      <!-- Closing -->
+      <section class="page-close" data-reveal>
+        <h2 class="page-section__title">Thank you for looking.</h2>
+        <p class="page__body">If one of these stays with you, I would like to hear about it.</p>
+        <a class="btn-pill btn-pill--dark" href="mailto:hello@aatishacyrill.com">Say hello</a>
+      </section>
+    </main>
+  </div>
+
+  <script src="about.js"></script>
+</body>
+</html>

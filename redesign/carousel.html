@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Carousel — Aatisha Cyrill</title>
+  <meta name="description" content="A 1970s carousel slide projector in 3D. Turn the silver knob, the lights go down, and the show begins.">
+  <!-- The link preview (LinkedIn and friends read these). -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="The slide projector — Aatisha Cyrill">
+  <meta property="og:description" content="A 1970s carousel slide projector in 3D. Turn the silver knob, the lights go down, and the show begins.">
+  <meta property="og:url" content="https://aatishacyrill.com/carousel/">
+  <meta property="og:image" content="https://aatishacyrill.com/carousel/assets/carousel-preview.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="A black carousel slide projector beside its tripod screen">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <!-- Three.js for the slide projector (projector.js), from a pinned build. -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.167.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.167.0/examples/jsm/"
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Without JavaScript the projector shows one of its photos as a print. -->
+  <noscript><style>.projector-stage__still { display: grid; } .projector-stage__foot, .projector-beacon { display: none; }</style></noscript>
+</head>
+<body class="page">
+  <div class="window page__window page__window--solo">
+    <header class="site-bar">
+      <a class="brand" href="./">Aatisha Cyrill</a>
+      <a class="btn-pill" href="about.html">More about me</a>
+    </header>
+
+    <main>
+      <!-- Just the slide projector from the about page, on its own: the same scene (projector.js),
+           with the stage taking the whole window instead of a column beside the intro. -->
+      <section class="about-intro about-intro--solo" aria-labelledby="carousel-title">
+        <h1 id="carousel-title" class="visually-hidden">A carousel slide projector</h1>
+        <div class="about-intro__scene" aria-hidden="true"></div>
+        <span class="projector-beacon" aria-hidden="true"></span>
+        <span class="projector-tip" aria-hidden="true"></span>
+
+        <div class="projector-stage" data-finish="black">
+          <div class="projector-stage__foot">
+            <p class="projector-stage__hint" aria-hidden="true"><span class="on-pointer">Click</span><span class="on-touch">Tap</span> the silver knob to start the show</p>
+            <p class="projector-stage__caption mono-label" aria-hidden="true" data-projector-caption></p>
+            <p class="visually-hidden" aria-live="polite" data-projector-status></p>
+            <div class="projector-stage__keys" role="group" aria-label="Slide projector">
+              <button class="projector-stage__key" type="button" data-key="prev" aria-label="Previous slide">
+                <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10.5 3.5 L4.5 8 L10.5 12.5 Z"/></svg>
+              </button>
+              <button class="projector-stage__key projector-stage__key--power" type="button" data-key="power" aria-pressed="false" aria-label="Start the slide show">
+                <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="4.2"/></svg>
+              </button>
+              <button class="projector-stage__key" type="button" data-key="next" aria-label="Next slide">
+                <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 3.5 L11.5 8 L5.5 12.5 Z"/></svg>
+              </button>
+              <button class="projector-stage__key projector-stage__key--sound" type="button" data-key="sound" aria-pressed="true" aria-label="Sound">
+                <svg viewBox="0 0 16 16" aria-hidden="true">
+                  <path class="projector-stage__speaker" d="M2.5 6 H5 L8.5 3 V13 L5 10 H2.5 Z"/>
+                  <path class="projector-stage__waves" d="M10.6 5.6 Q12 8 10.6 10.4 M12.4 4 Q14.6 8 12.4 12"/>
+                  <path class="projector-stage__mute" d="M10.5 6 L14 9.5 M14 6 L10.5 9.5"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Shown instead where the 3D can't run. -->
+          <figure class="projector-stage__still">
+            <img src="assets/photos/aatisha-golden-gate.jpg" alt="Aatisha at the Golden Gate Bridge in San Francisco" decoding="async">
+          </figure>
+
+          <!-- The slides in the tray, in order (same list and attributes as about.html). -->
+          <ol class="projector__slides" hidden>
+            <li data-src="assets/photos/aatisha-golden-gate.jpg" data-shape="tall" data-tint="amber" data-label="Golden Gate, San Francisco">Aatisha at the Golden Gate Bridge in San Francisco</li>
+            <li data-src="assets/photos/aatisha-seattle.jpg" data-shape="tall" data-tint="rose" data-label="Waterfront, Seattle">Aatisha on the Seattle waterfront beside the Great Wheel</li>
+            <li data-src="assets/photos/polaroid-1.jpg" data-tint="amber" data-label="Sunset chaser">Sunset clouds over the sea</li>
+            <li data-src="assets/photos/polaroid-2.jpg" data-tint="faded" data-label="Paddle season">Kayakers paddling past mangroves</li>
+            <li data-src="assets/photos/polaroid-3.jpg" data-tint="rose" data-label="Cliffside views">Green headland above the ocean</li>
+            <li data-src="assets/photos/polaroid-4.jpg" data-tint="faded" data-label="Lone sail">A lone sailboat beneath distant mountains</li>
+            <li data-src="assets/photos/polaroid-5.jpg" data-tint="amber" data-label="Lakeside gold">A golden tree beside a lake</li>
+            <li data-src="assets/photos/polaroid-6.jpg" data-shape="tall" data-tint="rose" data-label="Palm tree therapy">Palm trees on a sunny beach</li>
+          </ol>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="projector.js"></script>
+</body>
+</html>

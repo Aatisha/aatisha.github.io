@@ -361,7 +361,7 @@ export function weaveTex(repeat) {
 /* ---------- Photos as old slides ---------- */
 // A 35 mm frame is 3:2. Landscape photos fill it; portrait ones sit in an upright 2:3 window, and
 // the card mount around that window stops the light, so they project tall with dark either side.
-export const SLIDE_W = 960;
+export const SLIDE_W = 1120;
 export const SLIDE_H = 640;
 
 let grainCanvas = null;

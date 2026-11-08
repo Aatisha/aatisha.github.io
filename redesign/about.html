@@ -7,7 +7,7 @@
   <meta name="description" content="Aatisha Cyrill is a product designer with a background in software and data, bridging research, design and front-end development.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Geist+Mono:wght@400&family=Geist:wght@400;500;600&family=Instrument+Serif&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Geist+Mono:wght@400&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <!-- Three.js for the slide projector (projector.js), from a pinned build. -->
   <script type="importmap">
@@ -31,7 +31,7 @@
         <ul class="nav-mono">
           <li><a href="./">Work</a></li>
           <li><a href="about.html" aria-current="page">About</a></li>
-          <li><a href="#playground">Playground</a></li>
+          <li><a href="playground.html">Playground</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
@@ -53,16 +53,9 @@
             <blockquote class="page__lead">Think of the universe as an eternal creative unfolding. Trees blossom. Cells replicate. Rivers forge new tributaries.</blockquote>
             <figcaption class="mono-label">— Rick Rubin</figcaption>
           </figure>
-          <p class="page__body">I love designing collaborative web-based systems, running usability studies and building prototypes that are both user-centred and technically sound. I've led projects across e-commerce, scientific data visualisation and sustainability, working with Figma, Angular, HTML/CSS and Agile workflows. Lately I've been enjoying the creative rhythm of vibe coding.</p>
-          <p class="page__body">Right now I'm designing and shipping at LifeLoop.</p>
-
-          <ul class="chips" aria-label="What I do">
-            <li>Product Design</li>
-            <li>User Research</li>
-            <li>UX Design</li>
-            <li>Visual Storytelling</li>
-          </ul>
-
+          <p class="page__body">I believe that most of my work is a kind of translation: taking something tangled and making it clear to the person who has to live with it.</p>
+          <p class="page__body">I build things, and I break them. Not on purpose, of course. But I’ve come to trust the breaking. It’s where a design tells me what it actually is, rather than what I hoped it would be.</p>
+          <p class="page__body">I’m a product designer at LifeLoop, where I design experiences for senior living communities, for the staff who keep those places running and the residents who call them home. Lately, much of that work has involved AI, and it has taught me that the best technology begins with paying close attention to people.</p>
           <ul class="link-row" aria-label="Elsewhere">
             <li><a class="btn-pill" href="https://www.linkedin.com/in/aatisha-cyrill/" target="_blank" rel="noopener">LinkedIn</a></li>
             <li><a class="btn-pill" href="https://github.com/Aatisha" target="_blank" rel="noopener">GitHub</a></li>
@@ -76,7 +69,6 @@
              step the tray through the slides. data-finish="beige" swaps the black plastic for beige. -->
         <div class="projector-stage" data-finish="black">
           <div class="projector-stage__foot" data-reveal>
-            <p class="projector-stage__hint" aria-hidden="true"><span class="on-pointer">Click</span><span class="on-touch">Tap</span> the silver knob to start the show</p>
             <p class="projector-stage__caption mono-label" aria-hidden="true" data-projector-caption></p>
             <p class="visually-hidden" aria-live="polite" data-projector-status></p>
             <div class="projector-stage__keys" role="group" aria-label="Slide projector">
@@ -120,51 +112,283 @@
         </div>
       </section>
 
-      <!-- Travel -->
-      <section class="page-section" aria-labelledby="travel-title">
-        <header class="page-section__head" data-reveal>
-          <p class="mono-label">01 — Wanderlust &amp; wonder</p>
-          <h2 id="travel-title" class="page-section__title">Off the clock, I'm usually somewhere new</h2>
-          <p class="page__body">Whenever I have time and money, I pack my bags and fly. Traveling has taught me the essence of storytelling and discovery, and that fuels my creative process: it's all about creating meaningful, memorable experiences.</p>
-        </header>
+      <!-- Where I've worked, with my ID badge hanging beside it. -->
+      <section class="page-section about-more" aria-label="Experience">
+        <!-- My ID badge, hung from the section's rule on a beach-print lanyard, with the sea on the
+             card behind it. Resting the pointer on it sets the cards rocking on the clip; it can
+             also be pulled and let go (about.js). To the left of the lists on wide screens, above them on narrow ones. -->
+        <div class="badge" role="img" aria-label="ID badge: Aatisha Cyrill, UI/UX Systems Designer at LifeLoop">
+          <div class="badge__swing">
+            <!-- The lanyard: two strands of printed webbing coming down from the neck in a V, into a
+                 breakaway buckle, then one strap looped through the clip's ring and stitched. Each
+                 piece is the same stack: pale aqua webbing, the print, the weave, then shading
+                 across the width so it reads as soft and slightly curved. -->
+            <svg class="badge__strap" viewBox="0 50 130 162" aria-hidden="true">
+              <defs>
+                <!-- The print, after a hand-painted coconut-and-palm wallpaper: green coconuts with
+                     their tops shaved pale and cut open, a straw and a slice of flesh on the rim, and
+                     palms whose fronds arch out and hang down. -->
+                <radialGradient id="lan-nut" cx="0.36" cy="0.5" r="0.72">
+                  <stop offset="0" stop-color="#b9d266"/>
+                  <stop offset="0.5" stop-color="#86ab3e"/>
+                  <stop offset="1" stop-color="#577f2c"/>
+                </radialGradient>
+                <linearGradient id="lan-collar" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#eef0c8"/>
+                  <stop offset="1" stop-color="#c7d784"/>
+                </linearGradient>
+                <linearGradient id="lan-trunk" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stop-color="#c39a72"/>
+                  <stop offset="0.5" stop-color="#9a6f4c"/>
+                  <stop offset="1" stop-color="#6f4c33"/>
+                </linearGradient>
+                <g id="lan-coconut">
+                  <path d="M1.6 -5 L5.4 -13.5 L8.6 -15.6" fill="none" stroke="#c99583" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                  <ellipse cx="0" cy="1" rx="8.4" ry="7.9" fill="url(#lan-nut)"/>
+                  <path d="M-7.2 -2.6 Q0 -0.4 7.2 -2.6 Q7 -6.6 0 -7 Q-7 -6.6 -7.2 -2.6Z" fill="url(#lan-collar)"/>
+                  <path d="M-5.6 4.6 q1.6 2.2 4 2.6 M2.4 6.8 q2.4 -0.8 3.8 -3 M-6.8 0.4 q0.2 1.6 1 2.6" fill="none" stroke="#45692a" stroke-opacity="0.35" stroke-width="0.5" stroke-linecap="round"/>
+                  <g fill="#d8e79a" fill-opacity="0.55"><circle cx="-3.6" cy="1.6" r="0.6"/><circle cx="-1.6" cy="3.4" r="0.45"/><circle cx="-4.6" cy="3.8" r="0.4"/><circle cx="1" cy="1.2" r="0.4"/></g>
+                  <ellipse cx="0" cy="-5.2" rx="5.6" ry="1.9" fill="#fbf7ea" stroke="#d9dca4" stroke-width="0.6"/>
+                  <ellipse cx="0" cy="-5" rx="3.6" ry="1.1" fill="#efe6cc"/>
+                  <path d="M1.6 -5 L2.6 -7.3" stroke="#c99583" stroke-width="1.3" stroke-linecap="round"/>
+                  <circle cx="-3" cy="-6.6" r="2.3" fill="#fffdf6" stroke="#e2d9bd" stroke-width="0.5"/>
+                  <circle cx="-3" cy="-6.6" r="1.2" fill="none" stroke="#efe7d0" stroke-width="0.5"/>
+                </g>
+                <g id="lan-leaf" fill="none" stroke-linecap="round">
+                  <path d="M-1.13 -1.07l-0.97 2.94M-2.21 -1.84l-1.40 4.01M-3.30 -2.39l-1.72 4.81M-4.41 -2.71l-1.90 5.39M-5.54 -2.81l-1.93 5.76M-6.68 -2.68l-1.83 5.92M-7.84 -2.33l-1.63 5.85M-9.02 -1.75l-1.38 5.54M-10.21 -0.95l-1.11 4.98M-11.43 0.08l-0.83 4.15M-12.65 1.33l-0.55 3.03M-13.90 2.81l-0.21 1.25M-15.16 4.51l-0.15 0.99" stroke="#6e9a4a" stroke-width="0.95"/>
+                  <path d="M-1.13 -1.07l-0.24 -1.53M-2.21 -1.84l-0.63 -2.03M-3.30 -2.39l-1.16 -2.27M-4.41 -2.71l-1.76 -2.25M-5.54 -2.81l-2.31 -1.98M-6.68 -2.68l-2.69 -1.53M-7.84 -2.33l-2.86 -1.02M-9.02 -1.75l-2.80 -0.55M-10.21 -0.95l-2.54 -0.18M-11.43 0.08l-2.11 0.06M-12.65 1.33l-1.53 0.17M-13.90 2.81l-0.62 0.11M-15.16 4.51l-0.49 0.12" stroke="#94bd6c" stroke-width="0.85"/>
+                  <path d="M0 0 Q-7 -7.5 -15.5 5" stroke="#557f37" stroke-width="0.7"/>
+                </g>
+                <g id="lan-crown">
+                  <use href="#lan-leaf" transform="rotate(44) scale(0.58)"/>
+                  <use href="#lan-leaf" transform="scale(-1 1) rotate(44) scale(0.58)"/>
+                  <use href="#lan-leaf" transform="rotate(16) scale(0.82)"/>
+                  <use href="#lan-leaf" transform="scale(-1 1) rotate(16) scale(0.82)"/>
+                  <use href="#lan-leaf" transform="rotate(-14) scale(0.95)"/>
+                  <use href="#lan-leaf" transform="scale(-1 1) rotate(-14) scale(0.95)"/>
+                  <circle cx="-1.3" cy="1.4" r="1.4" fill="#7c8c36"/>
+                  <circle cx="1.2" cy="1.7" r="1.3" fill="#64742a"/>
+                </g>
+                <g id="lan-palm">
+                  <path d="M0.4 1 Q-0.4 14 -4 26" fill="none" stroke="url(#lan-trunk)" stroke-width="1.8" stroke-linecap="round"/>
+                  <path d="M-1 7 h1.8 M-1.4 12.5 h1.8 M-2.2 18 h1.8 M-3.2 23 h1.8" stroke="#5f412a" stroke-opacity="0.4" stroke-width="0.5" stroke-linecap="round"/>
+                  <use href="#lan-crown" transform="scale(0.78)"/>
+                </g>
+  
+                <pattern id="lan-print" width="30" height="150" patternUnits="userSpaceOnUse" x="-15">
+                  <use href="#lan-coconut" transform="translate(14 20) rotate(-8)"/>
+                  <use href="#lan-palm" transform="translate(15 52)"/>
+                  <use href="#lan-coconut" transform="translate(16 122) rotate(8) scale(0.92)"/>
+                </pattern>
+                <!-- The webbing's weave: fine weft rows across, fainter warp threads down. -->
+                <pattern id="lan-warp" width="1.4" height="4" patternUnits="userSpaceOnUse">
+                  <rect width="0.5" height="4" fill="#0b5f63" fill-opacity="0.05"/>
+                </pattern>
+                <pattern id="lan-weave" width="4" height="1.6" patternUnits="userSpaceOnUse">
+                  <rect width="4" height="0.7" fill="#0b5f63" fill-opacity="0.09"/>
+                </pattern>
+                <linearGradient id="lan-shade" x1="0" x2="1">
+                  <stop offset="0" stop-color="#000" stop-opacity="0.16"/>
+                  <stop offset="0.16" stop-color="#000" stop-opacity="0"/>
+                  <stop offset="0.42" stop-color="#fff" stop-opacity="0.22"/>
+                  <stop offset="0.78" stop-color="#000" stop-opacity="0"/>
+                  <stop offset="1" stop-color="#000" stop-opacity="0.18"/>
+                </linearGradient>
+                <!-- Where the strap folds over the ring, it rolls away into shadow. -->
+                <linearGradient id="lan-fold" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#000" stop-opacity="0"/>
+                  <stop offset="1" stop-color="#000" stop-opacity="0.22"/>
+                </linearGradient>
+                <!-- The webbing, then its finish over whatever is printed on it: the weave, the
+                     shading across the width, the stitched edges. -->
+                <g id="lan-base"><rect x="-15" y="-140" width="30" height="300" fill="#e4f5f2"/></g>
+                <g id="lan-finish">
+                  <rect x="-15" y="-140" width="30" height="300" fill="url(#lan-warp)"/>
+                  <rect x="-15" y="-140" width="30" height="300" fill="url(#lan-weave)"/>
+                  <rect x="-15" y="-140" width="30" height="300" fill="url(#lan-shade)"/>
+                  <path d="M-12.4 -140 V160 M12.4 -140 V160" stroke="#5aa9a6" stroke-opacity="0.55" stroke-width="0.6" stroke-dasharray="2.2 1.6"/>
+                </g>
+                <g id="lan-layers">
+                  <use href="#lan-base"/>
+                  <rect x="-15" y="-140" width="30" height="300" fill="url(#lan-print)"/>
+                  <use href="#lan-finish"/>
+                </g>
+                <clipPath id="lan-strand"><rect x="-15" y="-126" width="30" height="132"/></clipPath>
+                <clipPath id="lan-tail"><path d="M-15 0 H15 V74 Q15 81 8 81 H-8 Q-15 81 -15 74Z"/></clipPath>
+              </defs>
 
-        <div class="print-wall" data-reveal>
-          <figure class="photo polaroid" style="--r: -4deg;"><img src="assets/photos/polaroid-1.jpg" alt="Sunset clouds over the sea" style="object-position: center 62%;"><figcaption>sunset chaser</figcaption></figure>
-          <figure class="photo polaroid" style="--r: 3deg;"><img src="assets/photos/polaroid-2.jpg" alt="Kayakers paddling past mangroves" style="object-position: center 72%;"><figcaption>paddle season</figcaption></figure>
-          <figure class="photo polaroid" style="--r: -2deg;"><img src="assets/photos/polaroid-3.jpg" alt="Green headland above the ocean" style="object-position: 40% center;"><figcaption>cliffside views</figcaption></figure>
-          <figure class="photo polaroid" style="--r: 5deg;"><img src="assets/photos/polaroid-4.jpg" alt="A lone sailboat beneath distant mountains" style="object-position: center 42%;"><figcaption>lone sail</figcaption></figure>
-          <figure class="photo polaroid" style="--r: -5deg;"><img src="assets/photos/polaroid-5.jpg" alt="A golden tree beside a lake" style="object-position: center 70%;"><figcaption>lakeside gold</figcaption></figure>
-          <figure class="photo polaroid" style="--r: 2deg;"><img src="assets/photos/palm-springs.jpg" alt="Palm trees in Palm Springs" style="object-position: right center;"><figcaption>palm springs</figcaption></figure>
-          <figure class="photo polaroid" style="--r: -3deg;"><img src="assets/photos/polaroid-6.jpg" alt="Palm trees on a sunny beach" style="object-position: center 40%;"><figcaption>palm tree therapy</figcaption></figure>
-          <figure class="photo polaroid" style="--r: 4deg;"><img src="assets/sea.webp" alt="Turquoise sea glittering in the sun"><figcaption>salt water</figcaption></figure>
+              <g transform="translate(65 104) rotate(-16.6)" clip-path="url(#lan-strand)"><use href="#lan-layers"/></g>
+              <g transform="translate(65 104) rotate(16.6)" clip-path="url(#lan-strand)"><use href="#lan-layers" transform="translate(0 -40)"/></g>
+
+              <g transform="translate(65 126)">
+                <!-- Its own palm, set just under the buckle so the whole crown shows. -->
+                <g clip-path="url(#lan-tail)">
+                  <use href="#lan-base"/>
+                  <use href="#lan-palm" transform="translate(1 16) scale(1.1)"/>
+                  <use href="#lan-finish"/>
+                  <rect x="-15" y="64" width="30" height="17" fill="url(#lan-fold)"/>
+                </g>
+                <path d="M-11 56 l2.75 5 l2.75 -5 l2.75 5 l2.75 -5 l2.75 5 l2.75 -5 l2.75 5 l2.75 -5" fill="none" stroke="#000" stroke-opacity="0.22" stroke-width="0.8" stroke-linejoin="round"/>
+              </g>
+
+              <!-- The breakaway buckle the two strands meet in. -->
+              <g transform="translate(45 98)">
+                <rect x="1" y="1" width="38" height="17" rx="4" fill="#1f5fa6"/>
+                <rect x="3" y="17" width="34" height="16" rx="3.5" fill="#1a5191"/>
+                <rect x="1" y="1" width="38" height="6" rx="3" fill="#fff" fill-opacity="0.12"/>
+                <path d="M8 7 H32 M8 12.5 H32" stroke="#4d86c6" stroke-width="2" stroke-linecap="round"/>
+                <path d="M11 22 V29 M29 22 V29" stroke="#3a74b4" stroke-width="2.4" stroke-linecap="round"/>
+              </g>
+            </svg>
+            <!-- The swivel clip: the strap's ring, a swivel, then a wire hook that runs down the front
+                 of the card, bends through its slot and rises behind it. The card's top edge sits at
+                 y 40 and its slot at y 51–61, so the back leg stops at the edge and the bend shows
+                 only inside the slot. -->
+            <svg class="badge__clip" viewBox="0 0 40 64" aria-hidden="true">
+              <defs>
+                <linearGradient id="badge-metal" x1="0" x2="1">
+                  <stop offset="0" stop-color="#8c8c8c"/>
+                  <stop offset="0.35" stop-color="#f4f4f2"/>
+                  <stop offset="0.6" stop-color="#b3b2ae"/>
+                  <stop offset="1" stop-color="#6f6f6c"/>
+                </linearGradient>
+              </defs>
+              <rect x="2" y="2" width="36" height="9" rx="4.5" fill="none" stroke="url(#badge-metal)" stroke-width="3"/>
+              <rect x="16" y="10.5" width="8" height="8" rx="2" fill="url(#badge-metal)"/>
+              <rect x="17.5" y="18" width="5" height="4.5" rx="1" fill="url(#badge-metal)"/>
+              <path d="M20 22 C16 24 14.6 31 15 40" fill="none" stroke="url(#badge-metal)" stroke-width="2.6"/>
+              <path d="M20 22 C25 24 26.4 31 26 40 L25.2 53 C24.8 58.6 15.8 58.6 15.4 54.5 L15.2 51" fill="none" stroke="url(#badge-metal)" stroke-width="2.6"/>
+            </svg>
+            <div class="badge__cards">
+              <div class="badge__card badge__card--back">
+                <img src="assets/sea.webp" alt="" loading="lazy" decoding="async">
+                <span>Aatisha Cyrill</span>
+              </div>
+              <div class="badge__card badge__card--front">
+                <div class="badge__photo"><img src="assets/photos/aatisha-badge.jpg" alt="" loading="lazy" decoding="async"></div>
+                <p class="badge__name">Aatisha Cyrill</p>
+                <p class="badge__role">UI/UX Systems Designer</p>
+                <div class="badge__foot">
+                  <span class="mono-label badge__no">Seattle</span>
+                  <!-- One logo per place in the Experience list (matched by data-org); pointing at a row
+                       puts its logo and role on the badge (about.js). Every logo sits in the same fixed box. -->
+                  <span class="badge__logo" data-org="lifeloop"><img src="assets/logos/lifeloop.png" alt="LifeLoop"></span>
+                  <span class="badge__logo" data-org="mercor" hidden><img src="assets/logos/mercor.png" alt="Mercor"></span>
+                  <span class="badge__logo" data-org="myworker" hidden><img src="assets/logos/myworkerai.svg" alt="MyWorker.AI"></span>
+                  <span class="badge__logo badge__logo--tall" data-org="uw" hidden><img src="assets/logos/uw-madison.png" alt="University of Wisconsin–Madison"></span>
+                  <span class="badge__logo badge__logo--tall" data-org="ssec" hidden><img src="assets/logos/ssec.png" alt="SSEC"></span>
+                  <span class="badge__logo" data-org="amazon" hidden><img src="assets/logos/amazon.png" alt="Amazon"></span>
+                  <span class="badge__logo" data-org="deloitte" style="--logo-h: 12px;" hidden><img src="assets/logos/deloitte.png" alt="Deloitte"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-more__col" data-reveal>
+          <h2 class="mono-label about-more__title">Experience</h2>
+          <!-- An index of places. Pointing at one fades the others back and puts that role and logo on
+               the ID badge (data-org, data-badge; about.js). On touch screens each row shows a small
+               print; --r is its tilt. -->
+          <ol class="exp-list">
+            <li class="exp-row" style="--r: -5deg;" data-org="lifeloop" data-badge="Seattle">
+              <figure class="photo exp-row__print"><img src="assets/photos/aatisha-seattle.jpg" alt="" loading="lazy" decoding="async" style="object-position: center 30%;"></figure>
+              <span class="exp-row__when mono-label">2026 — now</span>
+              <span class="exp-row__org">LifeLoop</span>
+              <span class="exp-row__role">UI/UX Systems Designer</span>
+            </li>
+            <li class="exp-row" style="--r: 4deg;" data-org="mercor" data-badge="Remote">
+              <figure class="photo exp-row__print"><img src="assets/photos/new-york-thumbnail.jpg" alt="" loading="lazy" decoding="async" style="object-position: center;"></figure>
+              <span class="exp-row__when mono-label">2026</span>
+              <span class="exp-row__org">Mercor</span>
+              <span class="exp-row__role">Product Design Expert</span>
+            </li>
+            <li class="exp-row" style="--r: -3deg;" data-org="myworker" data-badge="Remote">
+              <figure class="photo exp-row__print"><img src="assets/photos/san-francisco-thumbnail.jpg" alt="" loading="lazy" decoding="async" style="object-position: center;"></figure>
+              <span class="exp-row__when mono-label">2025</span>
+              <span class="exp-row__org">MyWorker.ai</span>
+              <span class="exp-row__role">Product Designer</span>
+            </li>
+            <li class="exp-row" style="--r: 6deg;" data-org="uw" data-badge="Madison">
+              <figure class="photo exp-row__print"><img src="assets/photos/polaroid-5.jpg" alt="" loading="lazy" decoding="async" style="object-position: center;"></figure>
+              <span class="exp-row__when mono-label">2024 — 25</span>
+              <span class="exp-row__org">UW–Madison</span>
+              <span class="exp-row__role">UX Designer/Researcher</span>
+            </li>
+            <li class="exp-row" style="--r: -4deg;" data-org="ssec" data-badge="Madison">
+              <figure class="photo exp-row__print"><img src="assets/photos/polaroid-4.jpg" alt="" loading="lazy" decoding="async" style="object-position: center;"></figure>
+              <span class="exp-row__when mono-label">2024</span>
+              <span class="exp-row__org">UW–Madison, SSEC</span>
+              <span class="exp-row__role">UI/UX Design Intern</span>
+            </li>
+            <li class="exp-row" style="--r: 3deg;" data-org="amazon" data-badge="Madison">
+              <figure class="photo exp-row__print"><img src="assets/photos/seattle-thumbnail.jpg" alt="" loading="lazy" decoding="async" style="object-position: center;"></figure>
+              <span class="exp-row__when mono-label">2024</span>
+              <span class="exp-row__org">Amazon</span>
+              <span class="exp-row__role">Product Designer</span>
+            </li>
+            <li class="exp-row" style="--r: -2deg;" data-org="deloitte" data-badge="Bengaluru">
+              <figure class="photo exp-row__print"><img src="assets/photos/aatisha-golden-gate.jpg" alt="" loading="lazy" decoding="async" style="object-position: center 30%;"></figure>
+              <span class="exp-row__when mono-label">2022 — 23</span>
+              <span class="exp-row__org">Deloitte</span>
+              <span class="exp-row__role">Software Engineer</span>
+            </li>
+          </ol>
         </div>
       </section>
 
-      <!-- Reading -->
-      <section class="page-section" aria-labelledby="books-title">
-        <header class="page-section__head" data-reveal>
-          <p class="mono-label">02 — Stories behind the screens</p>
-          <h2 id="books-title" class="page-section__title">My bookshelf</h2>
-          <p class="page__body">Reading is how I exercise empathy: stepping into other lives to better understand the human experience. It's what drives me to design with meaning, intention and emotional depth.</p>
-        </header>
+      <!-- Outside of design: a photo journal you travel along sideways. Each pastime is a short
+           note, then a loose cluster of polaroids with handwritten asides (--px/--py place
+           them in the cluster, --pw is the polaroid's width, --r its tilt, --ia the photo's shape if
+           not square; all scale with --k). Swipe or drag the strip, or run along the thumbnails under it (about.js builds them
+           from the prints' data-title and data-place). The photos are stand-ins for now. -->
+      <section class="page-section journal" aria-labelledby="journal-title">
+        <!-- With a mouse, the section pins in place and scrolling down moves the strip along; the
+             runway is made as tall as the strip is long (about.js). -->
+        <div class="journal__runway">
+          <div class="journal__pin">
+            <h2 id="journal-title" class="mono-label journal__title" data-reveal>Outside of design, you'll find me…</h2>
 
-        <ul class="shelf" data-reveal>
-          <li><img src="assets/books/the-god-of-small-things.jpg" alt=""><span>The God of Small Things</span></li>
-          <li><img src="assets/books/eleanor-oliphant.jpg" alt=""><span>Eleanor Oliphant is Completely Fine</span></li>
-          <li><img src="assets/books/white-nights.jpg" alt=""><span>White Nights</span></li>
-          <li><img src="assets/books/to-kill-a-mockingbird.jpg" alt=""><span>To Kill a Mockingbird</span></li>
-          <li><img src="assets/books/roman-stories.jpg" alt=""><span>Roman Stories</span></li>
-          <li><img src="assets/books/wuthering-heights.jpg" alt=""><span>Wuthering Heights</span></li>
-          <li><img src="assets/books/invisible-planets.jpg" alt=""><span>Invisible Planets</span></li>
-          <li><img src="assets/books/don-norman.jpg" alt=""><span>The Design of Everyday Things</span></li>
-          <li><img src="assets/books/john-cusack.jpg" alt=""><span>Things that Can and Cannot Be Said</span></li>
-          <li><img src="assets/books/the-stranger.jpg" alt=""><span>The Stranger</span></li>
-          <li><img src="assets/books/the-lowland.jpg" alt=""><span>The Lowland</span></li>
-          <li><img src="assets/books/norwegian-woods.jpg" alt=""><span>Norwegian Wood</span></li>
-          <li><img src="assets/books/john-gribbin.jpg" alt=""><span>In Search of Schrödinger's Cat</span></li>
-          <li><img src="assets/books/the-lonely-city.jpg" alt=""><span>The Lonely City</span></li>
-          <li><img src="assets/books/less.jpg" alt=""><span>Less</span></li>
-        </ul>
+            <div class="journal__track" tabindex="0" role="region" aria-label="Photos from outside of design" data-reveal>
+              <p class="journal__text"><b>Travelling and wandering.</b> Farmers' markets, bookshops and tiny cafés: a city reads best slowly, one side street at a time.</p>
+              <!-- Six prints in two loose rows, each bottom print overlapping the ones above it. -->
+              <div class="journal__cluster" style="--cw: 640;">
+                <p class="journal__aside" style="--px: 36; --py: 0; --r: -4deg;"><span>bookshops &amp; side streets</span><svg viewBox="0 0 48 40" aria-hidden="true"><path d="M6 3 C3 17 12 30 38 33 M30 28 L38 33 L31 38"/></svg></p>
+                <figure class="polaroid journal__print" style="--px: 20; --py: 64; --pw: 185; --ia: 4 / 5; --r: -5deg;" data-title="City of Books" data-place="Powell's, Portland"><img src="assets/photos/journal-powells.jpg" alt="Powell's Books on a sunny corner in Portland" loading="lazy" decoding="async" draggable="false" style="object-position: center 55%;"><figcaption>city of books</figcaption></figure>
+                <figure class="polaroid journal__print" style="--px: 218; --py: 40; --pw: 175; --ia: 4 / 5; --r: 4deg;" data-title="Hotel de Haro" data-place="Roche Harbor, San Juan Island"><img src="assets/photos/journal-roche-harbor.jpg" alt="Hotel de Haro below a brick house on the hill" loading="lazy" decoding="async" draggable="false" style="object-position: center 70%;"><figcaption>hotel de haro</figcaption></figure>
+                <figure class="polaroid journal__print" style="--px: 410; --py: 30; --pw: 180; --ia: 4 / 5; --r: 3deg;" data-title="Succulent season" data-place="Farmers' market"><img src="assets/photos/journal-market.jpg" alt="A farmers' market stall full of succulents" loading="lazy" decoding="async" draggable="false" style="object-position: center 60%;"><figcaption>succulent season</figcaption></figure>
+                <figure class="polaroid journal__print" style="--px: 110; --py: 258; --pw: 155; --r: 6deg;" data-title="Matcha and a croissant" data-place="Cake Meet Me"><img src="assets/photos/journal-cafe.jpg" alt="An iced matcha beside a strawberry cream croissant" loading="lazy" decoding="async" draggable="false" style="object-position: center 70%;"><figcaption>matcha break</figcaption></figure>
+                <figure class="polaroid journal__print" style="--px: 300; --py: 248; --pw: 128; --ia: 3 / 4; --r: -7deg;" data-title="A blue surprise" data-place="Red-legged honeycreeper"><img src="assets/photos/journal-honeycreeper.jpg" alt="A blue honeycreeper on a branch among green leaves" loading="lazy" decoding="async" draggable="false" style="object-position: center 48%;"><figcaption>a blue surprise</figcaption></figure>
+                <figure class="polaroid journal__print" style="--px: 455; --py: 240; --pw: 170; --r: -4deg;" data-title="Live at the Starlight Stage" data-place="Pike Place Market, Seattle"><img src="assets/photos/journal-starlight.jpg" alt="A band playing to a crowd on the Starlight Stage" loading="lazy" decoding="async" draggable="false" style="object-position: center 62%;"><figcaption>live music, always</figcaption></figure>
+              </div>
+
+              <p class="journal__text"><b>Photography.</b> My favorites to capture are sea, waters, sunsets, sails and the light just before it goes.</p>
+              <!-- Five prints in two loose rows, like the Travelling cluster: the bottom row overlaps the top. -->
+              <div class="journal__cluster">
+                <p class="journal__aside" style="--px: 6; --py: 4; --r: -5deg;"><span>36 exposures later</span><svg viewBox="0 0 48 40" aria-hidden="true"><path d="M6 3 C3 17 12 30 38 33 M30 28 L38 33 L31 38"/></svg></p>
+                <figure class="polaroid journal__print" style="--px: 10; --py: 70; --pw: 200; --ia: 4 / 3; --r: -4deg;" data-title="Sunset chase" data-place="On film"><img src="assets/photos/polaroid-1.jpg" alt="Sunset clouds over the sea" loading="lazy" decoding="async" draggable="false" style="object-position: center 62%;"><figcaption>sunset chase</figcaption></figure>
+                <figure class="polaroid journal__print" style="--px: 222; --py: 28; --pw: 175; --ia: 4 / 5; --r: 3deg;" data-title="Rainier at golden hour" data-place="Puget Sound"><img src="assets/photos/photo-rainier.jpg" alt="Mount Rainier glowing above the water at golden hour" loading="lazy" decoding="async" draggable="false" style="object-position: center 60%;"><figcaption>rainier, golden hour</figcaption></figure>
+                <figure class="polaroid journal__print" style="--px: 410; --py: 60; --pw: 215; --ia: 4 / 3; --r: 5deg;" data-title="Storm rolling in" data-place="Over the lake"><img src="assets/photos/photo-storm.jpg" alt="Storm clouds rolling over a lake dotted with sailboats" loading="lazy" decoding="async" draggable="false" style="object-position: center 55%;"><figcaption>storm rolling in</figcaption></figure>
+                <figure class="polaroid journal__print" style="--px: 70; --py: 245; --pw: 165; --r: 5deg;" data-title="Blue for miles" data-place="From the cliff top"><img src="assets/photos/twin-4.jpg" alt="Wildflowers on a cliff above a wide blue sea" loading="lazy" decoding="async" draggable="false" style="object-position: center 82%;"><figcaption>blue for miles</figcaption></figure>
+                <figure class="polaroid journal__print" style="--px: 285; --py: 222; --pw: 160; --ia: 4 / 5; --r: -5deg;" data-title="Waiting on the light" data-place="Blue hour"><img src="assets/photos/photo-blue-hour.jpg" alt="A camera with a long lens on the rocks at blue hour" loading="lazy" decoding="async" draggable="false" style="object-position: center 70%;"><figcaption>blue hour setup</figcaption></figure>
+              </div>
+
+              <p class="journal__text"><b>Reading, always.</b> Whatever's next on the shelf. Stories are how I practise empathy, stepping into other lives, and I try to design with more of it.</p>
+              <div class="journal__cluster" style="--cw: 760;">
+                <figure class="polaroid journal__print" style="--px: 50; --py: 90; --pw: 150; --ia: 2 / 3; --r: -5deg;" data-title="The God of Small Things" data-place="Arundhati Roy"><img src="assets/books/the-god-of-small-things.jpg" alt="The God of Small Things, by Arundhati Roy" loading="lazy" decoding="async" draggable="false"><figcaption>small things</figcaption></figure>
+                <figure class="polaroid journal__print" style="--px: 230; --py: 50; --pw: 155; --ia: 2 / 3; --r: 3deg;" data-title="Norwegian Wood" data-place="Haruki Murakami"><img src="assets/books/norwegian-woods.jpg" alt="Norwegian Wood, by Haruki Murakami" loading="lazy" decoding="async" draggable="false"><figcaption>norwegian wood</figcaption></figure>
+                <figure class="polaroid journal__print" style="--px: 410; --py: 120; --pw: 150; --ia: 2 / 3; --r: -3deg;" data-title="The Lonely City" data-place="Olivia Laing"><img src="assets/books/the-lonely-city.jpg" alt="The Lonely City, by Olivia Laing" loading="lazy" decoding="async" draggable="false"><figcaption>the lonely city</figcaption></figure>
+                <figure class="polaroid journal__print" style="--px: 585; --py: 60; --pw: 150; --ia: 2 / 3; --r: 4deg;" data-title="The Creative Act" data-place="Rick Rubin"><img src="assets/photos/the-creative-act.jpeg" alt="The Creative Act: A Way of Being, by Rick Rubin" loading="lazy" decoding="async" draggable="false"><figcaption>the creative act</figcaption></figure>
+                <p class="journal__aside" style="--px: 34; --py: 344; --r: -3deg;"><svg viewBox="0 0 48 40" aria-hidden="true"><path d="M8 37 C5 24 13 11 37 7 M29 3 L37 7 L30 12"/></svg><span>a re-read, always</span></p>
+              </div>
+            </div>
+
+            <div class="journal__nav" hidden>
+              <p class="journal__label" aria-live="polite"><span data-journal-title></span><em data-journal-place></em></p>
+              <div class="journal__strip" role="group" aria-label="Jump to a photo"></div>
+            </div>
+          </div>
+        </div>
       </section>
 
       <!-- Closing -->

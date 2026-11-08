@@ -21,13 +21,31 @@
   const narrow = window.matchMedia('(max-width: 760px)');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-  // The ring wants more cards than there are photos, so each photo gets a decorative twin.
+  // The ring wants more cards than there are photos, so each photo gets a decorative twin: the same
+  // card carrying a photo of its own (the twins only fly through, so these never come to rest).
+  const TWIN_PHOTOS = [
+    { src: 'assets/photos/twin-1.jpg', pos: '22% 62%', caption: 'low tide wander' },
+    { src: 'assets/photos/twin-2.jpg', pos: '38% center', caption: 'pelican flyby' },
+    { src: 'assets/photos/twin-3.jpg', pos: 'center 64%', caption: 'turquoise & pines' },
+    { src: 'assets/photos/twin-4.jpg', pos: 'center 82%', caption: 'blue for miles' },
+    { src: 'assets/photos/polaroid-1.jpg', pos: 'center 62%', caption: 'sunset chaser' },
+    { src: 'assets/photos/twin-6.jpg', pos: 'center 70%', caption: 'ibis strut' },
+    { src: 'assets/photos/twin-7.jpg', pos: 'center 64%', caption: 'sunny side up' },
+    { src: 'assets/photos/palm-springs.jpg', pos: 'right center', caption: 'palm springs' },
+  ];
   const originals = [...strip.querySelectorAll('.sticker')];
-  originals.forEach((el) => {
+  originals.forEach((el, i) => {
     const twin = el.cloneNode(true);
     twin.classList.add('sticker--twin');
     twin.setAttribute('aria-hidden', 'true');
     twin.tabIndex = -1;
+    const photo = TWIN_PHOTOS[i];
+    if (photo) {
+      const img = twin.querySelector('img');
+      img.src = photo.src;
+      img.style.objectPosition = photo.pos;
+      twin.querySelector('.polaroid span').textContent = photo.caption;
+    }
     strip.append(twin);
   });
   const all = [...strip.querySelectorAll('.sticker')];
@@ -76,13 +94,13 @@
   // Small overlapping clusters under the text, in the order the photos appear in the HTML.
   // x: share of the window width from its centre; y: card heights below the text; z: stacking.
   const CLUSTERS = [
-    { x: 0.2, y: 0.95, r: 1.5, z: 1 },    // sunset chaser
+    { x: 0.2, y: 0.95, r: 1.5, z: 1 },    // feet up, sea view
     { x: 0.023, y: 0.88, r: -1, z: 1 },   // paddle season
     { x: -0.167, y: 0.92, r: 2, z: 1 },   // cliffside views
     { x: -0.26, y: 1.04, r: -2, z: 2 },   // lone sail
     { x: -0.2, y: 1.17, r: 1, z: 3 },     // lakeside gold
     { x: 0.205, y: -0.15, r: 2, z: 1 },   // palm tree therapy, beside the text
-    { x: 0.166, y: 1.19, r: -1.5, z: 3 }, // palm springs
+    { x: 0.166, y: 1.19, r: -1.5, z: 3 }, // sailing in pairs
     { x: 0.258, y: 1.08, r: 2, z: 2 },    // salt water
   ];
   const PHONE_COLUMNS = [-0.36, -0.12, 0.12, 0.36];

@@ -8,6 +8,7 @@ import { RectAreaLightUniformsLib } from 'three/addons/lights/RectAreaLightUnifo
 import {
   TAU, rand, plasticAlbedo, surfaceMap, numberBandTex, mountTex, brushedDiscTex, brushedLinearTex,
   knurlTex, glowTex, lensEmissiveTex, labelTex, nameplateTex, screenFabricTex, weaveTex, toTex,
+  SLIDE_W, SLIDE_H,
 } from './projector-textures.js';
 
 export const SLOTS = 140;
@@ -20,6 +21,7 @@ const BODY_D = 3.6;
 const FRONT_X = BODY_W / 2;
 const SIDE_Z = BODY_D / 2;
 export const DECK_TOP = 1.24;
+export const PROJECTOR_SCALE = 0.78; // the projector is modelled at a size, then set down a little smaller beside the screen
 export const TRAY_CX = -0.05;
 const R_IN = 0.72;
 const R_OUT = 1.46;
@@ -36,8 +38,8 @@ const LENS_Z = SLIDE_RC; // the gate sits under the tray's front edge, and the l
 
 // The screen. The cloth is the picture plus a printed black border; its carry case sits on a tripod.
 const THROW = 5.8; // lens to screen
-const IMG_W = 4.0;
-const IMG_H = IMG_W / 1.5;
+const IMG_W = 5.0;
+const IMG_H = IMG_W / (SLIDE_W / SLIDE_H); // a wide screen, the picture's own shape
 const B_SIDE = 0.17;
 const B_TOP = 0.17;
 const B_BOT = 0.14;
@@ -188,6 +190,7 @@ export function buildWorld(renderer, { finish = 'black' } = {}) {
   const projector = new THREE.Group();
   projector.position.set(-1.7, 0, 1.5);
   projector.rotation.y = 0.66;
+  projector.scale.setScalar(PROJECTOR_SCALE);
   scene.add(projector);
 
   // Housing: a two-part shell with a shadow line between, a recessed deck and rubber feet.
@@ -504,12 +507,12 @@ export function buildWorld(renderer, { finish = 'black' } = {}) {
   const dirFlat = new THREE.Vector3(1, 0, 0).applyAxisAngle(Y, projector.rotation.y);
   // Picture height that puts the screen case's slot at SLOT_H once the cloth leans square to the beam.
   let picY = SLOT_H + B_BOT + IMG_H / 2;
-  for (let i = 0; i < 4; i += 1) picY = SLOT_H + (B_BOT + IMG_H / 2) * Math.cos(Math.atan2(picY - LENS_Y, THROW + 0.5));
+  for (let i = 0; i < 4; i += 1) picY = SLOT_H + (B_BOT + IMG_H / 2) * Math.cos(Math.atan2(picY - lensTip.y, THROW + 0.5));
   const screenCenter = lensTip.clone().addScaledVector(dirFlat, THROW).setY(picY);
   const apex = lensTip.clone().addScaledVector(dirFlat, -0.5);
   const uDir = screenCenter.clone().sub(apex).normalize();
 
-  const projCam = new THREE.PerspectiveCamera(1, 1.5, 0.05, 50);
+  const projCam = new THREE.PerspectiveCamera(1, IMG_W / IMG_H, 0.05, 50);
   projCam.position.copy(apex);
   projCam.lookAt(screenCenter);
   projCam.fov = THREE.MathUtils.radToDeg(2 * Math.atan(IMG_H / 2 / apex.distanceTo(screenCenter)));

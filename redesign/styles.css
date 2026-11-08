@@ -838,12 +838,18 @@ body.page {
   border-radius: 0;
 }
 
+/* On a big monitor the 1400px column leaves wide margins; the side padding gives laptops some
+   of that breathing room too, growing with the window and gone by phone widths. */
 .page__window > main {
-  max-width: 1400px;
+  --gutter: clamp(0px, 7vw - 40px, 128px);
+  max-width: calc(1400px + 2 * var(--gutter));
   margin: 0 auto;
+  padding-inline: var(--gutter);
 }
 
+/* Above the projector scene, which starts right under it, so the pill's shadow isn't cut off. */
 .page__window > .site-bar {
+  z-index: 1;
   animation: hero-fade 900ms cubic-bezier(0.4, 0, 0.2, 1) both;
 }
 
@@ -905,8 +911,8 @@ body.page {
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
   align-items: center;
   gap: var(--space-6);
-  min-height: clamp(560px, calc(100svh - 120px), 860px);
-  padding: var(--space-6) 0 var(--space-7);
+  min-height: clamp(460px, calc(100svh - 320px), 580px);
+  padding: var(--space-6) 0 calc(var(--space-7) * 2);
 }
 
 .about-intro__copy {
@@ -914,25 +920,13 @@ body.page {
   z-index: 1;
 }
 
-.chips,
 .link-row {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2);
-  margin: 0;
+  margin: var(--space-5) 0 0;
   padding: 0;
   list-style: none;
-}
-
-.chips {
-  margin: var(--space-5) 0;
-}
-
-.chips li {
-  padding: 8px 14px;
-  border-radius: var(--radius-pill);
-  background: var(--color-tile);
-  font-size: var(--text-sm);
 }
 
 /* ---------- Slide projector (about page, projector.js) ----------
@@ -975,7 +969,7 @@ body.page {
   position: relative;
   z-index: 1;
   align-self: stretch;
-  min-height: 460px;
+  min-height: 400px;
   pointer-events: none;
 }
 
@@ -1291,11 +1285,6 @@ html.is-dimming body *:not(.page__window):not(canvas) {
   padding: 6px 0 9px;
 }
 
-/* A print that is also a polaroid keeps its square photo and caption rather than filling the frame. */
-.photo.polaroid img {
-  height: auto;
-}
-
 /* Sections */
 .page-section {
   padding: var(--space-8) 0;
@@ -1315,49 +1304,575 @@ html.is-dimming body *:not(.page__window):not(canvas) {
   letter-spacing: var(--tracking-tight);
 }
 
-/* Travel prints, pinned up loosely: two even rows of four. */
-.print-wall {
+/* Experience, then life outside design underneath, in one reading column under the intro, with my
+   ID badge hanging in the space to their left. */
+.about-more {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 200px));
-  justify-content: center;
-  gap: var(--space-7) clamp(var(--space-5), 4vw, var(--space-8));
-  padding: var(--space-4);
+  grid-template-columns: minmax(260px, 1fr) minmax(0, 760px);
+  gap: var(--space-8);
+  /* More air below it, before Outside of design; the top stays put, as the badge hangs from it. */
+  padding-bottom: calc(var(--space-8) + var(--space-7));
 }
 
-/* Bookshelf: covers on a soft tile; they lift off the shelf on hover. */
-.shelf {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 150px));
-  justify-content: center;
-  gap: var(--space-6) clamp(var(--space-5), 4vw, var(--space-8));
+.about-more__col {
+  grid-column: 2;
+}
+
+/* ---------- ID badge (about page, about.js) ----------
+   A badge on a lanyard, hung from the section's top rule. Everything below the rule's line swings
+   together from the top of the strap (.badge__swing, rotated by about.js); the cards also tip and
+   turn a little on the clip as they swing. It's a physical thing, like the prints: plain white card
+   and sea photo whatever the lights are doing. */
+/* Sized to hang the length of the Experience list beside it, ending at its last row. */
+.badge {
+  --card-w: 228px;
+  --strap: 123px;
+  grid-column: 1;
+  grid-row: 1;
+  align-self: start;
+  justify-self: center;
+  width: var(--card-w);
+  margin-top: calc(-1 * var(--space-8)); /* up to the rule */
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.badge__swing {
+  position: relative;
+  display: flow-root; /* keeps the cards' top margin inside, below the strap */
+  transform-origin: 50% 0;
+}
+
+/* The lanyard (drawn in about.html), fading in just under the rule. It sits over the clip and ends
+   halfway down the ring, so the ring's top bar is hidden inside the strap's folded end, as if the
+   webbing were looped through it. */
+.badge__strap {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  left: 50%;
+  height: calc(var(--strap) + 2px);
+  aspect-ratio: 130 / 162;
+  translate: -50% 0;
+  overflow: visible;
+  filter: drop-shadow(0 1px 1.5px rgba(0, 0, 0, 0.14));
+  -webkit-mask-image: linear-gradient(transparent, #000 18%);
+  mask-image: linear-gradient(transparent, #000 18%);
+}
+
+.badge__clip {
+  position: absolute;
+  z-index: 2;
+  top: calc(var(--strap) - 10px);
+  left: 50%;
+  width: 40px;
+  height: 64px;
+  translate: -50% 0;
+  transform-origin: 50% 6px; /* turns on its ring */
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.25));
+}
+
+/* The cards hang from the clip's hook, through the slot near their top edge. They turn about the
+   clip's ring (34px above their top edge), as the clip does, so the hook stays in the slot. */
+.badge__cards {
+  position: relative;
+  margin-top: calc(var(--strap) + 30px);
+  transform-origin: 50% -34px;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.1)) drop-shadow(0 18px 26px rgba(0, 0, 0, 0.16));
+  cursor: grab;
+  touch-action: pan-y; /* sideways drags pull the badge; vertical ones still scroll */
+}
+
+.badge__cards:active {
+  cursor: grabbing;
+}
+
+.badge__card {
+  --slot: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='10'%3E%3Crect width='44' height='10' rx='5'/%3E%3C/svg%3E");
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 12px 14px;
+  border-radius: var(--radius-md);
+  background: #ffffff;
+  color: #161616;
+  -webkit-mask: var(--slot) center 11px / 44px 10px no-repeat, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: var(--slot) center 11px / 44px 10px no-repeat exclude, linear-gradient(#000 0 0);
+}
+
+/* Behind: the sea, with my name running down it, peeking out to the right. */
+.badge__card--back {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  padding: 0;
+  background: var(--color-sea);
+  transform-origin: 50% 16px;
+  rotate: -9deg;
+}
+
+.badge__card--back img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 30% center;
+}
+
+.badge__card--back span {
+  position: absolute;
+  right: 14px;
+  bottom: 18px;
+  writing-mode: vertical-rl;
+  font-size: 2.125rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.badge__photo {
+  aspect-ratio: 1; /* square, so the card reads as a wide ID card rather than a tall tag */
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background: var(--color-sea);
+}
+
+/* Me on the rocks by the sea, the whole photo. */
+.badge__photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  object-position: bottom;
+}
+
+.badge__name {
+  margin: 14px 0 2px;
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+/* Room for two lines, so a long title doesn't change the card's height. */
+.badge__role {
+  min-height: 2.8em;
   margin: 0;
-  padding: var(--space-7) var(--space-6);
-  border-radius: var(--radius-lg);
-  background: var(--color-tile);
+  font-size: var(--text-sm);
+  line-height: 1.4;
+  color: #6e6d69;
+}
+
+.badge__foot {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px;
+  height: 30px; /* fixed, so the card is the same size whichever logo is on it */
+  margin-top: 6px;
+}
+
+.badge__foot .mono-label {
+  font-size: 0.5625rem;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  color: #a5a39e;
+}
+
+/* The company's own logo, bottom right, in a fixed box: each logo is scaled to fit it, so none can
+   change the card's size. Wordmarks are kept short; logos with a crest (--tall) get the full height. */
+.badge__logo {
+  display: flex;
+  flex: none;
+  align-items: flex-end;
+  justify-content: flex-end;
+  width: 84px;
+  height: 30px;
+}
+
+.badge__logo img {
+  display: block;
+  max-width: 100%;
+  max-height: var(--logo-h, 18px); /* a heavy wordmark can set a smaller --logo-h */
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.badge__logo--tall img {
+  max-height: 100%;
+}
+
+.badge__logo[hidden] {
+  display: none;
+}
+
+/* Pointing at a place in the list re-issues the badge: the role, number and logo settle in fresh. */
+.badge__card--front.is-swapping :is(.badge__role, .badge__no, .badge__logo) {
+  animation: badge-swap 420ms var(--ease-out) both;
+}
+
+.badge__card--front.is-swapping .badge__logo {
+  animation-delay: 60ms;
+}
+
+@keyframes badge-swap {
+  from {
+    opacity: 0;
+    filter: blur(3px);
+    translate: 0 5px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .badge__card--front.is-swapping :is(.badge__role, .badge__no, .badge__logo) {
+    animation: none;
+  }
+}
+
+/* In the dark it's lit only by what spills from the screen. */
+html.lights-out .badge {
+  filter: brightness(0.72);
+}
+
+@media (max-width: 1000px) {
+  .about-more {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .about-more__col {
+    grid-column: 1;
+    max-width: 760px;
+  }
+
+  .badge {
+    --card-w: 248px;
+    --strap: 150px;
+    grid-column: 1;
+    grid-row: auto;
+  }
+}
+
+.about-more__title {
+  margin-bottom: var(--space-4);
+}
+
+/* Experience: a ruled index, quiet until you reach for a row. Then the others fade back (like the
+   mono nav) and the ID badge beside the list takes that place's role and logo (about.js). */
+.exp-list {
+  margin: 0;
+  padding: 0;
   list-style: none;
 }
 
-.shelf li {
+.exp-list {
+  position: relative;
+}
+
+.exp-row {
   display: grid;
-  align-content: start;
-  gap: var(--space-3);
-  font-size: var(--text-sm);
-  line-height: var(--leading-snug);
+  grid-template-columns: 6.5em minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: var(--space-4);
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.exp-row:first-child {
+  border-top: 1px solid var(--color-line);
+}
+
+.exp-row > * {
+  transition: color var(--dur) ease, translate var(--dur) var(--ease-out);
+}
+
+.exp-row__org {
+  font-size: var(--text-lg);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+}
+
+.exp-row__role {
+  font-size: var(--text-base);
+  color: var(--color-ink-2);
+  text-align: right;
+}
+
+.exp-row__print {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .exp-list:hover .exp-row:not(:hover) > * {
+    color: var(--color-ink-3);
+  }
+
+  .exp-row:hover .exp-row__org {
+    translate: 6px 0;
+  }
+}
+
+/* Touch screens: no pointer to follow, so each row keeps a small print of its own. */
+@media not ((hover: hover) and (pointer: fine)) {
+  .exp-row {
+    grid-template-columns: 52px minmax(0, 1fr) auto;
+    grid-template-areas: "print org when" "print role role";
+    align-items: center;
+    row-gap: 2px;
+    column-gap: var(--space-4);
+  }
+
+  .exp-row__print {
+    display: block;
+    grid-area: print;
+    width: 52px;
+    aspect-ratio: 1;
+    border-width: 3px;
+    border-radius: var(--radius-xs);
+  }
+
+  .exp-row__org { grid-area: org; }
+  .exp-row__when { grid-area: when; text-align: right; }
+  .exp-row__role { grid-area: role; text-align: left; }
+}
+
+/* ---------- Outside of design (about page, about.js) ----------
+   A photo journal you travel along sideways: a short note for each pastime (the first
+   sentence in ink, the rest softer), then a loose cluster of polaroids with handwritten asides. The
+   strip runs the full width of the window and fades out at both edges. Underneath, the print
+   nearest the middle is named, and the thumbnails jump to any print. */
+.journal__title {
+  margin-bottom: var(--space-5);
+}
+
+.journal__track {
+  --k: 1; /* the clusters' scale */
+  display: flex;
+  align-items: center;
+  gap: clamp(var(--space-7), 6vw, var(--space-9));
+  margin-inline: calc(50% - 50vw);
+  /* Starts in line with the page's column, and runs on far enough to bring the last print to
+     the middle. */
+  padding: var(--space-4) 10vw var(--space-5) calc(50vw - 50%);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  cursor: grab;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+}
+
+.journal__track::-webkit-scrollbar {
+  display: none;
+}
+
+.journal__track:focus-visible {
+  outline: none;
+}
+
+.journal__track.is-dragging {
+  cursor: grabbing;
+}
+
+/* With a mouse (about.js): the strip holds still mid-screen while the page scrolls past it, and the
+   scrolling moves it along instead, through to the last polaroid. */
+.journal.is-pinned .journal__pin {
+  position: sticky;
+}
+
+.journal.is-pinned .journal__track {
+  overflow-x: hidden;
+}
+
+/* Set like the Work page's intro (.hero__statement). */
+.journal__text {
+  flex: none;
+  width: min(20rem, 72vw);
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: -0.015em;
+  text-wrap: pretty;
   color: var(--color-ink-2);
 }
 
-.shelf img {
-  width: 100%;
-  aspect-ratio: 2 / 3;
-  object-fit: cover;
-  border-radius: 3px 6px 6px 3px;
-  box-shadow: var(--shadow-photo);
-  transition: transform var(--dur) var(--ease-spring), box-shadow var(--dur) ease;
+.journal__text b {
+  font-weight: 500;
+  color: var(--color-ink);
 }
 
-.shelf li:hover img {
-  transform: translateY(-6px) rotate(-1.5deg);
-  box-shadow: var(--shadow-lift);
+/* A cluster is laid out at 620 (or --cw) by 440 and scaled by --k; each print and aside is placed in it. */
+.journal__cluster {
+  position: relative;
+  flex: none;
+  width: calc(var(--cw, 620) * 1px * var(--k));
+  height: calc(440px * var(--k));
+}
+
+/* The polaroids are the Work page's (.polaroid, .sticker__art): the same frame, caption, warm
+   shadow and tilt, and the same lift toward straight when you point at one. */
+.journal__print {
+  position: absolute;
+  left: calc(var(--px) * 1px * var(--k));
+  top: calc(var(--py) * 1px * var(--k));
+  width: calc(var(--pw) * 1px * var(--k));
+  margin: 0;
+  /* The frame, from the polaroid's own width (a percentage would be the cluster's). */
+  padding: calc(var(--pw) * 0.07px * var(--k)) calc(var(--pw) * 0.07px * var(--k)) 0;
+  font-size: calc(0.9rem * 1.15 * max(var(--k), 0.75));
+  transform: rotate(var(--r));
+  transform-origin: 50% 60%;
+  filter: drop-shadow(0 1px 1px rgba(40, 30, 10, 0.14)) drop-shadow(0 5px 8px rgba(40, 30, 10, 0.1));
+  transition: transform var(--dur) var(--ease-spring), filter var(--dur) ease;
+}
+
+.journal__print:hover {
+  z-index: 2;
+  transform: rotate(calc(var(--r) * 0.4)) translateY(-4px) scale(1.06);
+  filter: drop-shadow(0 2px 2px rgba(40, 30, 10, 0.12)) drop-shadow(0 12px 16px rgba(40, 30, 10, 0.16));
+}
+
+.journal__print img {
+  aspect-ratio: var(--ia, 1);
+  -webkit-user-drag: none;
+}
+
+.journal__aside {
+  position: absolute;
+  z-index: 3;
+  left: calc(var(--px) * 1px * var(--k));
+  top: calc(var(--py) * 1px * var(--k));
+  margin: 0;
+  font-family: var(--font-hand);
+  font-size: calc(1.375rem * max(var(--k), 0.8));
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--color-ink);
+  rotate: var(--r);
+  pointer-events: none;
+}
+
+.journal__aside svg {
+  display: block;
+  width: calc(48px * max(var(--k), 0.7));
+  height: auto;
+  margin: 4px 0 4px 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Arrows pointing down and to the left. */
+.journal__aside--flip svg {
+  margin-left: 0;
+  scale: -1 1;
+}
+
+/* Under the strip: the print in the middle, named, over a row of thumbnails. The one showing is
+   wider and its neighbours a little wider, like a dock. */
+.journal__nav {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-8);
+}
+
+.journal__nav[hidden] {
+  display: none;
+}
+
+.journal__label {
+  min-height: 2.7em;
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: var(--color-ink);
+}
+
+.journal__label em {
+  display: block;
+  font-size: var(--text-sm);
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--color-ink-3);
+}
+
+.journal__strip {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 40px;
+}
+
+.journal__thumb {
+  flex: none;
+  width: 16px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--color-tile);
+  opacity: 0.55;
+  cursor: pointer;
+  transition: width 320ms var(--ease-out), height 320ms var(--ease-out), opacity 320ms ease;
+}
+
+.journal__thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.journal__thumb.is-near {
+  width: 24px;
+  height: 32px;
+  opacity: 0.8;
+}
+
+.journal__thumb.is-current {
+  width: 46px;
+  height: 36px;
+  opacity: 1;
+}
+
+.journal__thumb:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+@media (max-width: 760px) {
+  .journal__track {
+    --k: 0.62;
+    gap: var(--space-6);
+    padding-right: 36vw;
+  }
+
+  .journal__text {
+    font-size: 1.125rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .journal__thumb {
+    transition: none;
+  }
 }
 
 .page-close {
@@ -1371,6 +1886,174 @@ html.is-dimming body *:not(.page__window):not(canvas) {
 
 .page-close .page-section__title {
   margin: 0;
+}
+
+/* ---------- Playground (playground.html) ----------
+   A few quiet lines, then the projects: each one a white-bordered print of the screen, set straight
+   on the page, with the caption outside, below.
+   Rows alternate one wide tile, then two at 60/40. */
+.play-intro {
+  max-width: 640px;
+  padding: var(--space-7) 0 var(--space-8);
+}
+
+.play-intro .mono-label {
+  margin: 0 0 var(--space-4);
+}
+
+.play-intro .page__lead {
+  margin: 0;
+}
+
+.play-grid {
+  display: grid;
+  grid-template-columns: minmax(0, var(--pair-a, 3fr)) minmax(0, var(--pair-b, 2fr)); /* 60/40 unless set */
+  gap: var(--space-7) var(--space-5);
+  padding-bottom: var(--space-9);
+}
+
+.play-card {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.play-card--wide {
+  grid-column: 1 / -1;
+}
+
+/* The frame the print sits in, with no tile of its own: wide ones are 2:1, the 60 in a pair is 4:3,
+   and the 40 beside it fills to match. */
+.play-card__tile {
+  display: grid;
+  aspect-ratio: 4 / 3;
+}
+
+.play-card--wide .play-card__tile {
+  aspect-ratio: 2 / 1;
+}
+
+.play-card:not(.play-card--wide) + .play-card:not(.play-card--wide) .play-card__tile {
+  flex: 1;
+  aspect-ratio: auto;
+}
+
+/* The work itself: a print's rounded corners and soft shadow, without the white border. Until
+   there's a video or image, white with a faint dot grid. */
+.play-card__media {
+  display: grid;
+  place-items: center;
+  min-height: 0;
+  border: 0;
+  background:
+    radial-gradient(circle, rgba(22, 22, 22, 0.1) 1px, transparent 1.4px) 0 0 / 18px 18px,
+    #fff;
+}
+
+/* The projects stay put under the pointer: no lift from the print's own hover. */
+.play-card .play-card__media {
+  --y: 0px;
+  --s: 1;
+  box-shadow: var(--shadow-photo);
+}
+
+.play-card__media > img,
+.play-card__media > video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* A tile holding a video is as tall as the video needs: the print takes the video's shape (16:9
+   unless --media-ar says otherwise), so nothing is cropped or letterboxed. */
+.play-card__tile--video,
+.play-card .play-card__tile--video {
+  aspect-ratio: auto;
+}
+
+.play-card__tile--video .play-card__media {
+  aspect-ratio: var(--media-ar, 16 / 9); /* a recording sets its own shape */
+}
+
+/* A video that fills whatever height its row gives it, cropped to fit: --focus says which part to
+   keep in view. */
+.play-card__tile--fill,
+.play-card .play-card__tile--fill {
+  flex: 1;
+  aspect-ratio: auto;
+}
+
+.play-card__tile--fill .play-card__media {
+  position: relative;
+}
+
+.play-card__tile--fill .play-card__media > video {
+  position: absolute;
+  inset: 0;
+  object-position: var(--focus, center);
+  border-radius: var(--radius-sm);
+}
+
+.play-card__media > iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: var(--radius-sm);
+}
+
+.play-card__media .mono-label {
+  color: var(--color-ink-3);
+}
+
+.play-card__caption {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.play-card__title {
+  margin: 0;
+  font-size: var(--text-lg);
+  font-weight: 500;
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+}
+
+.play-card__desc {
+  max-width: 60ch;
+  margin: var(--space-1) 0 0;
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  color: var(--color-ink-2);
+}
+
+@media (max-width: 760px) {
+  .play-intro {
+    padding: var(--space-5) 0 var(--space-7);
+  }
+
+  .play-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-7);
+    padding-bottom: var(--space-8);
+  }
+
+  .play-card .play-card__tile,
+  .play-card:not(.play-card--wide) + .play-card:not(.play-card--wide) .play-card__tile {
+    aspect-ratio: 4 / 3;
+  }
+
+  .play-card .play-card__tile--video {
+    aspect-ratio: auto;
+  }
+
+  /* Stacked, a filling video gets its own shape back. */
+  .play-card .play-card__tile--fill {
+    aspect-ratio: var(--fill-ar, 4 / 3);
+  }
 }
 
 /* Scroll reveal (about.js): the same soft drift-and-focus entrance as the home page text. */
@@ -1392,7 +2075,7 @@ html.is-dimming body *:not(.page__window):not(canvas) {
   /* On phones the projector comes first, above the copy: the camera moves round behind it and the
      screen rises above. The scene layer covers just its part. */
   .about-intro {
-    --scene-h: min(124vw, 620px);
+    --scene-h: min(104vw, 520px);
     grid-template-columns: minmax(0, 1fr);
     gap: var(--space-5);
     min-height: 0;
@@ -1413,16 +2096,48 @@ html.is-dimming body *:not(.page__window):not(canvas) {
   .projector-stage__foot {
     gap: var(--space-3);
   }
+}
 
-  .print-wall {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--space-5) var(--space-4);
-    padding: 0;
+/* ---------- The projector on its own (carousel.html) ----------
+   The about page's stage, given the whole window: one column filling the screen under the bar, the
+   projector centred in it. Kept after the phone rules above so it wins over them. */
+
+.page__window--solo {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: var(--space-5);
+}
+
+.page__window--solo .site-bar {
+  grid-template-columns: 1fr auto;
+}
+
+.page__window--solo > main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 100%;
+}
+
+.about-intro--solo {
+  flex: 1;
+  grid-template-columns: minmax(0, 1fr);
+  min-height: 520px;
+  padding: var(--space-5) 0 0;
+}
+
+.about-intro--solo .projector-stage {
+  justify-self: center;
+  width: min(100%, 1180px);
+}
+
+@media (max-width: 760px) {
+  .about-intro--solo {
+    --scene-h: max(480px, calc(100svh - 120px));
+    padding-top: var(--space-4);
   }
 
-  .shelf {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--space-5) var(--space-3);
-    padding: var(--space-4);
+  .about-intro--solo .projector-stage {
+    order: 0;
   }
 }
