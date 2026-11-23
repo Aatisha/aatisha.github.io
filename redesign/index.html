@@ -40,11 +40,11 @@
               <ul class="nav-mono">
                 <li><a href="./" aria-current="page">Work</a></li>
                 <li><a href="about.html" data-expand>About</a></li>
+                <li><a href="about-meta.html" data-expand>About-meta</a></li>
                 <li><a href="playground.html" data-expand>Playground</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="postcard.html" data-expand>Postcard</a></li>
               </ul>
             </nav>
-            <a class="btn-pill" href="#contact">Say hello</a>
           </header>
 
           <div class="hero__body">
@@ -52,7 +52,7 @@
               <h1 id="hero-title" class="hero__title"><span class="visually-hidden">Aatisha Cyrill, </span>Product Designer</h1>
 
               <div class="hero__intro">
-                <p class="hero__statement"><b>Hi, I'm Aatisha.</b> I design products and experiences bridging research, design and code with purpose, heart, <span class="easter" tabindex="0">sugar, spice and everything nice<img class="easter__pop" src="assets/sugar-spice.png" alt="The Powerpuff Girls" width="389" height="256"></span>.</p>
+                <p class="hero__statement"><b>Hi, I'm Aatisha.</b> I design products and experiences bridging research, design and code with purpose, heart, sugar, spice and everything nice.</p>
                 <p class="mono-label">Currently designing and shipping at LifeLoop</p>
               </div>
             </div>
@@ -111,10 +111,141 @@
         </div>
       </div>
     </section>
+
+    <!-- Work: a sheet that rises over the hero as you scroll (the hero stays pinned and recedes
+         behind it). Each case study is a big moving picture, then the client, one line on what
+         changed, and what I did. Hovering, a label follows the pointer; opening one grows the
+         picture into the page (transition.js). works.js plays the clips while they're on screen. -->
+    <section class="works" id="work" aria-labelledby="works-title">
+      <header class="works__head">
+        <h2 class="works__title" id="works-title">Work.</h2>
+        <p class="works__lede">Products I’ve researched, designed and shipped, and the decisions behind them.</p>
+      </header>
+
+      <article class="case-card">
+        <a class="case-card__link" href="minds.html" data-expand>
+          <div class="case-card__media" data-expand-from>
+            <video src="assets/work/minds/hero.mp4" poster="assets/work/minds/hero.jpg" muted loop playsinline preload="metadata" data-autoplay aria-hidden="true"></video>
+            <span class="case-card__cursor" aria-hidden="true">Read case study <span>↗</span></span>
+          </div>
+          <div class="case-card__caption">
+            <div class="case-card__text">
+              <p class="case-card__org">MINDS@UW · University of Wisconsin–Madison Libraries</p>
+              <h3 class="case-card__title">Made 32,000 research papers easy to find, and easy to add to.</h3>
+            </div>
+            <ul class="case-card__tags" aria-label="What I did">
+              <li>UX research</li>
+              <li>Product design</li>
+              <li>UX writing</li>
+              <li>Shipped</li>
+            </ul>
+          </div>
+        </a>
+      </article>
+
+      <article class="case-card">
+        <a class="case-card__link" href="myworker.html" data-expand>
+          <div class="case-card__media" data-expand-from>
+            <video src="assets/work/myworker/hero.mp4" poster="assets/work/myworker/hero.jpg" muted loop playsinline preload="metadata" data-autoplay aria-hidden="true"></video>
+            <span class="case-card__cursor" aria-hidden="true">Read case study <span>↗</span></span>
+          </div>
+          <div class="case-card__caption">
+            <div class="case-card__text">
+              <p class="case-card__org">MyWorker.AI · AI sales automation for startups</p>
+              <h3 class="case-card__title">Designed an AI sales agent that lets founders try the product, not tour it.</h3>
+            </div>
+            <ul class="case-card__tags" aria-label="What I did">
+              <li>UX research</li>
+              <li>AI UX</li>
+              <li>Conversation design</li>
+              <li>Usability testing</li>
+            </ul>
+          </div>
+        </a>
+      </article>
+
+      <article class="case-card">
+        <a class="case-card__link" href="shopbop.html" data-expand>
+          <div class="case-card__media" data-expand-from>
+            <video src="assets/work/shopbop/hero.mp4" poster="assets/work/shopbop/hero.jpg" muted loop playsinline preload="metadata" data-autoplay aria-hidden="true"></video>
+            <span class="case-card__cursor" aria-hidden="true">Read case study <span>↗</span></span>
+          </div>
+          <div class="case-card__caption">
+            <div class="case-card__text">
+              <p class="case-card__org">Amazon Shopbop · Designer fashion, online</p>
+              <h3 class="case-card__title">Designed a “this or that” game that turns quick choices into trends and personal picks.</h3>
+            </div>
+            <ul class="case-card__tags" aria-label="What I did">
+              <li>UX research</li>
+              <li>Product design</li>
+              <li>Visual design</li>
+              <li>Front-end</li>
+            </ul>
+          </div>
+        </a>
+      </article>
+
+      <article class="case-card">
+        <a class="case-card__link" href="ssec.html" data-expand>
+          <div class="case-card__media" data-expand-from>
+            <video src="assets/work/ssec/hero.mp4" poster="assets/work/ssec/hero-poster.jpg" muted loop playsinline preload="metadata" data-autoplay aria-hidden="true"></video>
+            <span class="case-card__cursor" aria-hidden="true">Read case study <span>↗</span></span>
+          </div>
+          <div class="case-card__caption">
+            <div class="case-card__text">
+              <p class="case-card__org">SSEC · Space Science and Engineering Center, UW–Madison</p>
+              <h3 class="case-card__title">Took polar climate data out of server folders and into one place to study it.</h3>
+            </div>
+            <ul class="case-card__tags" aria-label="What I did">
+              <li>UX research</li>
+              <li>Information architecture</li>
+              <li>UI design</li>
+              <li>Design system</li>
+            </ul>
+          </div>
+        </a>
+      </article>
+
+      <article class="case-card">
+        <a class="case-card__link" href="sustain.html" data-expand>
+          <div class="case-card__media" data-expand-from>
+            <img src="assets/work/sustain/hero.jpg" alt="" loading="lazy" width="2000" height="1293">
+            <span class="case-card__cursor" aria-hidden="true">Read case study <span>↗</span></span>
+          </div>
+          <div class="case-card__caption">
+            <div class="case-card__text">
+              <p class="case-card__org">Sustain Dane · Sustainability nonprofit, Madison</p>
+              <h3 class="case-card__title">Designed an app that turns caring about climate change into a first step, with a friend.</h3>
+            </div>
+            <ul class="case-card__tags" aria-label="What I did">
+              <li>UX research</li>
+              <li>Product design</li>
+              <li>Paper prototyping</li>
+              <li>Mobile UI</li>
+            </ul>
+          </div>
+        </a>
+      </article>
+
+      <p class="works__more mono-label">More case studies on the way</p>
+
+      <!-- Footer: a painted beach seen from above (shore.js): the sea washing in and out over the sand,
+           a couple of umbrellas, boards, a surfer and two swimmers, each with a small interaction. -->
+      <footer class="shore" role="contentinfo">
+        <div class="shore__scene" aria-hidden="true"></div>
+        <div class="shore__bar">
+          <p class="mono-label">© 2026 Aatisha Cyrill</p>
+          <a class="mono-label" href="#">Back to top ↑</a>
+        </div>
+      </footer>
+    </section>
   </main>
 
   <script src="hero.js"></script>
   <script src="polaroids.js"></script>
   <script src="transition.js"></script>
+  <script src="works.js"></script>
+  <script src="shore.js"></script>
+  <script src="brand.js"></script>
 </body>
 </html>

@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Amazon Shopbop — Aatisha Cyrill</title>
+  <meta name="description" content="Case study: designing a this-or-that ranking game for Shopbop, an Amazon company, that turns quick choices into trending leaderboards and personal recommendations. Research, product decisions, the design and the build.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400&family=Geist:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="page">
+  <div class="window page__window">
+    <header class="site-bar">
+      <a class="brand" href="./">Aatisha Cyrill</a>
+      <nav aria-label="Primary">
+        <ul class="nav-mono">
+          <li><a href="./#work" aria-current="page">Work</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="about-meta.html">About-meta</a></li>
+          <li><a href="playground.html">Playground</a></li>
+          <li><a href="postcard.html">Postcard</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="cs">
+      <!-- A case study, told the same way as minds.html and myworker.html: the outcome first, then
+           the story. The idea at its centre is a small one: a shopper who can't choose from a
+           catalogue can always choose between two things. Each decision names the insight or test
+           it came from. The index follows along (minds.js). -->
+      <header class="cs-hero" data-reveal>
+        <p class="cs-eyebrow"><a href="./#work">← Work</a> <span aria-hidden="true">/</span> Amazon Shopbop</p>
+        <h1 class="cs-hero__title">Helping shoppers find their style, <em>one “this or that” at a time.</em></h1>
+        <p class="cs-hero__lead">Shopbop, an Amazon company, wanted shoppers to engage with its catalogue, not just scroll it. With Shopbop’s team as our partner, I designed a ranking game: pick the piece you like more, ten times, and get your own top ten, recommendations and a live leaderboard of what everyone is choosing. Then I helped build it.</p>
+
+        <dl class="cs-facts">
+          <div><dt>Role</dt><dd>UX designer, front-end developer<br>Research, UX, UI</dd></div>
+          <div><dt>Timeline</dt><dd>Sep – Dec 2024<br>4 months</dd></div>
+          <div><dt>Worked with</dt><dd>Shopbop’s team as partner, and three classmates, as a CS capstone</dd></div>
+          <div><dt>Status</dt><dd>Designed, built and deployed<br><a href="https://www.figma.com/proto/gUQnXd0BeD73IYFBeTHKTF/Portfolio?node-id=672-25078&amp;t=TGHI2XobHq5K5y7c-0&amp;scaling=scale-down&amp;content-scaling=fixed&amp;page-id=556%3A2461&amp;starting-point-node-id=672%3A25078" target="_blank" rel="noopener">Figma prototype ↗</a></dd></div>
+        </dl>
+
+        <figure class="cs-media cs-media--hero">
+          <video src="assets/work/shopbop/hero.mp4" poster="assets/work/shopbop/hero.jpg" muted loop playsinline preload="metadata" data-autoplay aria-label="Screens from the Shopbop ranking experience: the homepage, choosing a category and ranking two items"></video>
+        </figure>
+
+        <ul class="cs-stats" aria-label="At a glance">
+          <li><b>2</b><span>items per choice, instead of a catalogue of thousands</span></li>
+          <li><b>10</b><span>picks to your own top ten and recommendations</span></li>
+          <li><b>3</b><span>ways in: rank, see what’s trending, get picks for you</span></li>
+        </ul>
+      </header>
+
+      <div class="cs-body">
+        <nav class="cs-index" aria-label="Case study sections">
+          <ol>
+            <li><a href="#context">Context</a></li>
+            <li><a href="#problem">Problem</a></li>
+            <li><a href="#research">Research</a></li>
+            <li><a href="#insights">Insights</a></li>
+            <li><a href="#decisions">Decisions</a></li>
+            <li><a href="#craft">Craft</a></li>
+            <li><a href="#outcome">Outcome</a></li>
+            <li><a href="#reflection">Reflection</a></li>
+          </ol>
+        </nav>
+
+        <div class="cs-flow">
+          <section class="cs-section" id="context" aria-labelledby="context-title" data-reveal>
+            <p class="cs-label">01 · Context</p>
+            <h2 class="cs-title" id="context-title">A great catalogue doesn’t sell itself anymore.</h2>
+            <p class="cs-text">Shopbop has sold designer fashion online since 1999 and has been part of Amazon since 2006. Its catalogue was strong, but shopping it was a solitary scroll. The team wanted something social and playful that would bring shoppers back and get them talking about the brand, especially younger shoppers.</p>
+            <ol class="cs-methods" aria-label="Business goals">
+              <li><b>Engagement</b><span>Give shoppers a reason to interact with products, not just browse them.</span></li>
+              <li><b>Brand awareness</b><span>Something people would share, and come back to as fashion changes.</span></li>
+              <li><b>A younger audience</b><span>Reach Gen Z shoppers, who expect shopping to feel like play.</span></li>
+            </ol>
+          </section>
+
+          <section class="cs-section" id="problem" aria-labelledby="problem-title" data-reveal>
+            <p class="cs-label">02 · Problem</p>
+            <h2 class="cs-title" id="problem-title">Too many options, and no sense of what suits you.</h2>
+            <p class="cs-text">Mapping a shopper’s journey showed where it went wrong. The mood dropped as soon as she started filtering, stayed low while she looked for guidance, and even after buying, she wasn’t sure she’d chosen well. The catalogue wasn’t the problem. Choosing from it was.</p>
+            <figure class="cs-media cs-media--shot">
+              <img src="assets/work/shopbop/journey.jpg" alt="Journey map from starting to outcome. Mood drops while browsing categories and seeking guidance, with quotes such as: there are so many options here, I don't know where to start; I don't really know what's trending or what will look good on me" loading="lazy" width="2000" height="1170">
+              <figcaption>The lowest points: browsing categories and looking for guidance.</figcaption>
+            </figure>
+            <blockquote class="cs-quote">“There are so many options here. I don’t know where to start.”<cite>Shopper, journey mapping</cite></blockquote>
+          </section>
+
+          <section class="cs-section" id="research" aria-labelledby="research-title" data-reveal>
+            <p class="cs-label">03 · Research</p>
+            <h2 class="cs-title" id="research-title">I talked to the business and the shoppers, then looked at who else was trying.</h2>
+            <ol class="cs-methods">
+              <li><b>Stakeholder interviews</b><span>Two people from Shopbop, on goals, audience, brand fit and constraints</span></li>
+              <li><b>Shopper interviews</b><span>College students, a target group, on how they find styles and trends</span></li>
+              <li><b>Competitive review</b><span>ASOS, Zalando and Revolve, then affinity mapping to bring it together</span></li>
+            </ol>
+
+            <h3 class="cs-subtitle">The business wanted something that moves with fashion</h3>
+            <p class="cs-text">Shopbop wasn’t asking for another feed. They wanted a feature that changes as fast as fashion does, and that makes people want to talk about the products.</p>
+            <blockquote class="cs-quote">“We want to create something that will engage our customers with the constantly changing fashion industry.”<cite>Shopbop stakeholder</cite></blockquote>
+
+            <h3 class="cs-subtitle">Shoppers wanted a second opinion</h3>
+            <p class="cs-text">The students loved fashion, but didn’t trust their own styling. They wanted to know what was popular and what would suit them, in something simple enough to keep their attention.</p>
+            <blockquote class="cs-quote">“I’m not great at styling outfits, so it would be helpful to see what’s trending and get recommendations.”<cite>College student</cite></blockquote>
+
+            <h3 class="cs-subtitle">Competitors showed trends. No one let shoppers make them.</h3>
+            <ul class="cs-people">
+              <li><span class="cs-tag">ASOS</span><b>Inspiration, but overwhelming</b>Curated edits and a Gen Z look, on top of a catalogue that can feel daunting.</li>
+              <li><span class="cs-tag">Zalando</span><b>Personal, but passive</b>Strong recommendations and filters, and nothing for shoppers to actually do.</li>
+              <li><span class="cs-tag cs-tag--accent">Revolve</span><b>Trendy, but top-down</b>Trends come from influencers, not from the people shopping.</li>
+            </ul>
+            <p class="cs-text cs-text--after">None of them let shoppers interact with products or shape the trends. That was the opening: trends made by the community, and recommendations earned by playing.</p>
+          </section>
+
+          <section class="cs-section" id="insights" aria-labelledby="insights-title" data-reveal>
+            <p class="cs-label">04 · Insights</p>
+            <h2 class="cs-title" id="insights-title">People can’t pick from a thousand things. They can always pick from two.</h2>
+            <p class="cs-text">Affinity mapping the interviews and the competitive review left three insights, and they became the three parts of the product.</p>
+            <ol class="cs-insights cs-insights--3">
+              <li><b>Comparison is easier than choosing</b><p>Picking between two items is quick and confident, where a full catalogue stalls people.</p></li>
+              <li><b>People trust the crowd</b><p>Seeing what others are choosing gives shoppers the validation they were missing.</p></li>
+              <li><b>Personal beats popular</b><p>Recommendations matter most when they come from your own choices.</p></li>
+            </ol>
+            <p class="cs-hmw"><span class="cs-label">How might we</span>help shoppers discover and express their style, in a way that feels like play and still leads to the bag?</p>
+            <figure class="cs-media">
+              <img src="assets/work/shopbop/affinity.jpg" alt="Affinity map with clusters for pairwise ranking, trending leaderboards and personalised recommendations" loading="lazy" width="1800" height="1696">
+              <figcaption>Ideas clustered into three themes: ranking, trends and recommendations.</figcaption>
+            </figure>
+          </section>
+
+          <section class="cs-section" id="decisions" aria-labelledby="decisions-title" data-reveal>
+            <p class="cs-label">05 · Decisions</p>
+            <h2 class="cs-title" id="decisions-title">Five decisions that shaped the game.</h2>
+            <p class="cs-text">I sketched the main screens, mapped the flow and tested mid-fidelity wireframes with shoppers before going to high fidelity. Each decision below traces back to an insight or that test.</p>
+
+            <article class="cs-decision">
+              <p class="cs-decision__no">Decision 1 <span class="cs-from">From insight 1</span></p>
+              <h3 class="cs-decision__title">Ask “this or that?”, not “what do you like?”</h3>
+              <dl class="cs-decision__why">
+                <div><dt>Options</dt><dd>A style quiz, star ratings on products, or a swipe feed of single items.</dd></div>
+                <div><dt>Chose</dt><dd>Pairwise ranking: two items side by side, one tap to pick a favourite, ten rounds to a personal top ten.</dd></div>
+                <div><dt>Why</dt><dd>Quizzes ask people to describe a style they can’t name. Comparing two things is easy, and every pick is a clean signal for ranking and recommendations.</dd></div>
+              </dl>
+              <figure class="cs-media">
+                <video src="assets/work/shopbop/rank.mp4" poster="assets/work/shopbop/rank.jpg" muted loop playsinline preload="none" data-autoplay aria-label="Ranking: two dresses side by side, the shopper picks one, the top ten list fills in, then recommendations appear"></video>
+                <figcaption>Pick one, again and again; your top ten builds on the left, then recommendations appear.</figcaption>
+              </figure>
+            </article>
+
+            <article class="cs-decision">
+              <p class="cs-decision__no">Decision 2 <span class="cs-from">From insight 1</span></p>
+              <h3 class="cs-decision__title">Narrow the field before the first comparison.</h3>
+              <dl class="cs-decision__why">
+                <div><dt>Tension</dt><dd>Random pairs from the whole catalogue, a dress against a pair of boots, say nothing about taste.</dd></div>
+                <div><dt>Chose</dt><dd>Two quick choices before ranking: who you’re shopping for, then a category such as denim, skirts, jackets or dresses.</dd></div>
+                <div><dt>Why</dt><dd>Comparisons only mean something when like is compared with like. Two taps up front make every pick after them count.</dd></div>
+              </dl>
+              <div class="cs-gallery cs-gallery--2">
+                <figure><img src="assets/work/shopbop/wf-gender.jpg" alt="Wireframe: choose women or men before ranking" loading="lazy" width="1400" height="905"><figcaption><b>Wireframe</b> Who you’re shopping for.</figcaption></figure>
+                <figure><img src="assets/work/shopbop/wf-category.jpg" alt="Wireframe: choose a clothing category such as skirts, tops, dresses or jumpsuits" loading="lazy" width="1400" height="905"><figcaption><b>Wireframe</b> Then the category to rank.</figcaption></figure>
+              </div>
+              <figure class="cs-media">
+                <video src="assets/work/shopbop/choose.mp4" poster="assets/work/shopbop/choose.jpg" muted loop playsinline preload="none" data-autoplay aria-label="From the homepage's Start Ranking button to choosing woman or man, then a clothing category"></video>
+              </figure>
+            </article>
+
+            <article class="cs-decision">
+              <p class="cs-decision__no">Decision 3 <span class="cs-from">From testing</span></p>
+              <h3 class="cs-decision__title">Give the game rules, a finish line and a way out.</h3>
+              <dl class="cs-decision__why">
+                <div><dt>Testing showed</dt><dd>In the wireframes, shoppers weren’t sure how ranking worked, how long it would take, or what to do when they liked neither item.</dd></div>
+                <div><dt>Chose</dt><dd>Short instructions beside the game, a progress bar to ten, a <i>Pass</i> button for pairs you don’t like, and bigger product images.</dd></div>
+                <div><dt>Why</dt><dd>A game needs a visible end to be worth starting. And forcing a pick between two items you dislike gives bad data, not a preference.</dd></div>
+              </dl>
+              <div class="cs-compare" data-compare style="--split: 50%; aspect-ratio: 1400 / 905;">
+                <img src="assets/work/shopbop/ranking-crop.jpg" alt="Final ranking page: instructions on the left, a progress bar, two dresses side by side with OR between them, and a Pass button" loading="lazy" width="1400" height="905">
+                <div class="cs-compare__before"><img src="assets/work/shopbop/wf-ranking.jpg" alt="Wireframe of the ranking page: a rankings list and two items side by side" loading="lazy" width="1400" height="905"></div>
+                <span class="cs-compare__chip cs-compare__chip--before" aria-hidden="true">Wireframe</span>
+                <span class="cs-compare__chip cs-compare__chip--after" aria-hidden="true">After testing</span>
+                <input class="cs-compare__range" type="range" min="0" max="100" value="50" aria-label="Compare the ranking page wireframe with the tested design: slide left to see more of the final design">
+              </div>
+            </article>
+
+            <article class="cs-decision">
+              <p class="cs-decision__no">Decision 4 <span class="cs-from">From insight 2</span></p>
+              <h3 class="cs-decision__title">Let everyone’s picks decide what’s trending.</h3>
+              <dl class="cs-decision__why">
+                <div><dt>Tension</dt><dd>Competitors’ trends came from editors and influencers. Shoppers wanted to know what people like them were choosing.</dd></div>
+                <div><dt>Chose</dt><dd>A leaderboard per category, scored from every shopper’s picks with an Elo rating and updated as people play, top three called out.</dd></div>
+                <div><dt>Why</dt><dd>It turns each private choice into something public. The trends move with the community, which was exactly what Shopbop asked for.</dd></div>
+              </dl>
+              <figure class="cs-media">
+                <video src="assets/work/shopbop/trending.mp4" poster="assets/work/shopbop/trending.jpg" muted loop playsinline preload="none" data-autoplay aria-label="The trending page: most trending dresses with the top three ranked, filters by category and colour"></video>
+              </figure>
+            </article>
+
+            <article class="cs-decision">
+              <p class="cs-decision__no">Decision 5 <span class="cs-from">From the business goal</span></p>
+              <h3 class="cs-decision__title">End every game somewhere you can shop.</h3>
+              <dl class="cs-decision__why">
+                <div><dt>Tension</dt><dd>A game can be fun and still lead nowhere. Engagement alone wouldn’t justify the feature for Shopbop.</dd></div>
+                <div><dt>Chose</dt><dd>Every ranked item, recommendation and trend links straight to its product page, and adding to the bag suggests more pieces like it.</dd></div>
+                <div><dt>Why</dt><dd>The game is the way in, not the destination. Play builds the taste profile; the product page and bag turn it into sales.</dd></div>
+              </dl>
+              <figure class="cs-media">
+                <video src="assets/work/shopbop/shop.mp4" poster="assets/work/shopbop/shop.jpg" muted loop playsinline preload="none" data-autoplay aria-label="From a recommended dress to its product page, how to style it, and an Added to bag pop-up with checkout and more suggestions"></video>
+              </figure>
+            </article>
+          </section>
+
+          <section class="cs-section" id="craft" aria-labelledby="craft-title" data-reveal>
+            <p class="cs-label">06 · Craft</p>
+            <h2 class="cs-title" id="craft-title">New feature, familiar store.</h2>
+            <ul class="cs-craft">
+              <li>
+                <img src="assets/work/shopbop/style-guide.jpg" alt="Visual style guide: Shopbop's orange and peach palette, greys and a type scale" loading="lazy" width="1800" height="984">
+                <b>Built on Shopbop’s brand</b>
+                <p>I studied Shopbop’s site and design system and built a style guide from their palette, so the game feels like part of the store.</p>
+              </li>
+              <li>
+                <img src="assets/work/shopbop/sketches.jpg" alt="Hand sketches of the homepage, ranking, category, trending and recommendations pages" loading="lazy" width="2000" height="817">
+                <b>Sketch, flow, wireframe</b>
+                <p>Paper sketches of every main screen, a flow for each task, then mid-fidelity wireframes to test before any polish.</p>
+              </li>
+              <li>
+                <img src="assets/work/shopbop/workflow.jpg" alt="User flow from entering the site through choosing a category, ranking ten items and seeing recommendations or the leaderboard" loading="lazy" width="2000" height="947">
+                <b>Designed, then built</b>
+                <p>I also built and deployed the front end on AWS CloudFront, which kept the design honest about what the data could support.</p>
+              </li>
+            </ul>
+          </section>
+
+          <section class="cs-section" id="outcome" aria-labelledby="outcome-title" data-reveal>
+            <p class="cs-label">07 · Outcome</p>
+            <h2 class="cs-title" id="outcome-title">A working way to shop by choosing, built with Amazon’s Shopbop team.</h2>
+            <p class="cs-text">We designed, built and deployed the platform in a semester, and presented it to the Shopbop team. Shoppers can rank in any category, see a leaderboard shaped by everyone’s choices, and go from a recommendation to the bag in a couple of taps.</p>
+            <ul class="cs-results">
+              <li><b>3</b>connected features: rank, trend, recommend</li>
+              <li><b>1</b>flow from play to product page to bag</li>
+              <li><b>Live</b>front end deployed on AWS CloudFront</li>
+            </ul>
+            <figure class="cs-media">
+              <img src="assets/work/shopbop/team.jpg" alt="Aatisha and the project team standing with members of the Amazon Shopbop team" loading="lazy" width="1400" height="921">
+              <figcaption>Our team with the Amazon Shopbop team.</figcaption>
+            </figure>
+          </section>
+
+          <section class="cs-section" id="reflection" aria-labelledby="reflection-title" data-reveal>
+            <p class="cs-label">08 · Reflection</p>
+            <h2 class="cs-title" id="reflection-title">What I’d take to the next project.</h2>
+            <ol class="cs-lessons">
+              <li><b>Play has to earn its place.</b> A game is easy to make fun. Making every round useful, to the shopper and to the business, was the real design work.</li>
+              <li><b>Building it changed the design.</b> Writing the front end showed me where a screen asked for data we didn’t have, and I simplified before it became a problem.</li>
+              <li><b>Next, I’d go mobile-first and measure it.</b> This-or-that belongs on a phone. I’d test there with more shoppers, and track how many picks lead to a product page and the bag.</li>
+            </ol>
+          </section>
+
+          <footer class="cs-end">
+            <a class="cs-end__link" href="ssec.html"><span class="cs-label">Next case study</span><span>SSEC, UW–Madison <span class="cs-end__arrow" aria-hidden="true">→</span></span></a>
+          </footer>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="about.js"></script>
+  <script src="minds.js"></script>
+  <script src="brand.js"></script>
+</body>
+</html>

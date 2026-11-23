@@ -1,6 +1,6 @@
 // Opening another page (links marked data-expand) from the home page: a white sheet settles over
-// the window so its contents melt away, then the window grows to fill the screen, corners
-// straightening as it goes, and the next page (plain white) opens out of it.
+// the window (or a case study card's picture) so its contents melt away, then it grows to fill the
+// screen, corners straightening as it goes, and the next page (plain white) opens out of it.
 // With reduced motion the link just opens.
 (() => {
   const win = document.querySelector('.hero__window');
@@ -18,9 +18,11 @@
       e.preventDefault();
       if (sheet) return; // already on its way
 
-      const r = win.getBoundingClientRect();
+      // A case study card grows from its own picture (data-expand-from); the nav, from the window.
+      const origin = link.querySelector('[data-expand-from]') || win;
+      const r = origin.getBoundingClientRect();
       const { clientWidth: vw, clientHeight: vh } = document.documentElement;
-      const radius = getComputedStyle(win).borderTopLeftRadius;
+      const radius = getComputedStyle(origin).borderTopLeftRadius;
       const from = `inset(${r.top}px ${vw - r.right}px ${vh - r.bottom}px ${r.left}px round ${radius})`;
       const to = 'inset(0px 0px 0px 0px round 0px)';
 

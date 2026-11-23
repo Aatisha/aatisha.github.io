@@ -94,14 +94,14 @@
   // Small overlapping clusters under the text, in the order the photos appear in the HTML.
   // x: share of the window width from its centre; y: card heights below the text; z: stacking.
   const CLUSTERS = [
-    { x: 0.2, y: 0.95, r: 1.5, z: 1 },    // feet up, sea view
-    { x: 0.023, y: 0.88, r: -1, z: 1 },   // paddle season
-    { x: -0.167, y: 0.92, r: 2, z: 1 },   // cliffside views
-    { x: -0.26, y: 1.04, r: -2, z: 2 },   // lone sail
-    { x: -0.2, y: 1.17, r: 1, z: 3 },     // lakeside gold
+    { x: 0.2, y: 1.3, r: 1.5, z: 1 },     // feet up, sea view
+    { x: 0.023, y: 1.23, r: -1, z: 1 },   // paddle season
+    { x: -0.167, y: 1.27, r: 2, z: 1 },   // cliffside views
+    { x: -0.26, y: 1.39, r: -2, z: 2 },   // lone sail
+    { x: -0.2, y: 1.52, r: 1, z: 3 },     // lakeside gold
     { x: 0.205, y: -0.15, r: 2, z: 1 },   // palm tree therapy, beside the text
-    { x: 0.166, y: 1.19, r: -1.5, z: 3 }, // sailing in pairs
-    { x: 0.258, y: 1.08, r: 2, z: 2 },    // salt water
+    { x: 0.166, y: 1.54, r: -1.5, z: 3 }, // sailing in pairs
+    { x: 0.258, y: 1.43, r: 2, z: 2 },    // salt water
   ];
   const PHONE_COLUMNS = [-0.36, -0.12, 0.12, 0.36];
 
@@ -240,7 +240,16 @@
   };
 
   // ---------- Frame loop ----------
-  let mode = reduceMotion.matches ? 'rest' : 'intro';
+  // The intro plays once, on the first visit in a tab: coming back here from another page (or
+  // reloading) puts the photos straight into their clusters. Storage can be unavailable (private
+  // windows, blocked site data), in which case the intro just plays.
+  const SEEN = 'polaroid-intro-seen';
+  let seen = false;
+  try { seen = sessionStorage.getItem(SEEN) === '1'; } catch { /* no storage: play it */ }
+  let mode = reduceMotion.matches || seen ? 'rest' : 'intro';
+  if (mode === 'intro') {
+    try { sessionStorage.setItem(SEEN, '1'); } catch { /* fine */ }
+  }
   let t = 0;
   let revealed = false;
   let frame = 0;
@@ -717,6 +726,8 @@
     return kinds.find((k) => (roll -= SHELL_ODDS[k]) < 0) || kinds[0];
   };
   const pickOne = (list) => list[Math.floor(Math.random() * list.length)];
+  // The footer's beach (shore.js) scatters the same finds on its sand.
+  window.seaShells = { SHELLS, pickShell };
   const SHELL_SIZE = 44;
   const TO_PX = SHELL_SIZE / 48;
   const SHORE_GAP = 6;      // px above the footer where the shore is

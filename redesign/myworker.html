@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MyWorker.AI — Aatisha Cyrill</title>
+  <meta name="description" content="Case study: designing Alex, MyWorker.AI's AI sales agent, which lets founders try the product instead of touring it. Research, a pivot from testing, and the decisions behind a trustworthy AI experience.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400&family=Geist:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="page">
+  <div class="window page__window">
+    <header class="site-bar">
+      <a class="brand" href="./">Aatisha Cyrill</a>
+      <nav aria-label="Primary">
+        <ul class="nav-mono">
+          <li><a href="./#work" aria-current="page">Work</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="about-meta.html">About-meta</a></li>
+          <li><a href="playground.html">Playground</a></li>
+          <li><a href="postcard.html">Postcard</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="cs">
+      <!-- A case study, told the same way as minds.html: the outcome first, then the story. Here the
+           turn in the story is testing: the first prototype's product demo was skipped every time, so
+           the agent stopped showing the product and started doing the work with the visitor. Each
+           decision names the insight or test it came from. The index follows along (minds.js). -->
+      <header class="cs-hero" data-reveal>
+        <p class="cs-eyebrow"><a href="./#work">← Work</a> <span aria-hidden="true">/</span> MyWorker.AI</p>
+        <h1 class="cs-hero__title">An AI sales agent that lets founders try the product, <em>instead of touring it.</em></h1>
+        <p class="cs-hero__lead">MyWorker.AI automates the top of the sales funnel for startups, but its own website was losing curious visitors to long forms and silence. As product designer and research lead, I designed Alex, an AI video agent who greets each visitor, finds them real leads and drafts their outreach in about five minutes, and earns the sign-up along the way.</p>
+
+        <dl class="cs-facts">
+          <div><dt>Role</dt><dd>Product designer, research lead<br>AI and conversational UX</dd></div>
+          <div><dt>Timeline</dt><dd>Jun – Sep 2025<br>4 months, 0 to 1</dd></div>
+          <div><dt>Worked with</dt><dd>MyWorker.AI’s founders and a small design team</dd></div>
+          <div><dt>Status</dt><dd>Tested with 6 founders<br>Presented at SF Tech Week</dd></div>
+        </dl>
+
+        <figure class="cs-media cs-media--hero cs-media--natural">
+          <video src="assets/work/myworker/hero.mp4" poster="assets/work/myworker/hero.jpg" muted loop playsinline preload="metadata" data-autoplay aria-label="Alex, the AI video agent, shows the ideal customer profile it built from a visitor's website and offers to find five leads"></video>
+        </figure>
+
+        <ul class="cs-stats" aria-label="Outcomes">
+          <li><b>5 min</b><span>from hello to five qualified leads and drafted emails, inside one conversation</span></li>
+          <li><b>~6 hrs</b><span>a week saved per founder on prospecting and outreach, estimated with founders</span></li>
+          <li><b>2 rounds</b><span>of founder testing: one killed our demo, one shaped five refinements</span></li>
+        </ul>
+      </header>
+
+      <div class="cs-body">
+        <nav class="cs-index" aria-label="Case study sections">
+          <ol>
+            <li><a href="#context">Context</a></li>
+            <li><a href="#problem">Problem</a></li>
+            <li><a href="#research">Research</a></li>
+            <li><a href="#insights">Insights</a></li>
+            <li><a href="#testing">Testing</a></li>
+            <li><a href="#decisions">Decisions</a></li>
+            <li><a href="#refinements">Refinements</a></li>
+            <li><a href="#craft">Craft</a></li>
+            <li><a href="#outcome">Outcome</a></li>
+            <li><a href="#reflection">Reflection</a></li>
+          </ol>
+        </nav>
+
+        <div class="cs-flow">
+          <section class="cs-section" id="context" aria-labelledby="context-title" data-reveal>
+            <p class="cs-label">01 · Context</p>
+            <h2 class="cs-title" id="context-title">Startups can’t afford a sales team. MyWorker.AI wants to be one.</h2>
+            <p class="cs-text">MyWorker.AI researches prospects, writes personalised outreach and books meetings for small teams, so founders can spend their time closing instead of chasing. The business needed its own website to prove that promise to every visitor.</p>
+            <ol class="cs-methods" aria-label="Business goals">
+              <li><b>Convert more visitors</b><span>Turn first-time visitors into qualified leads.</span></li>
+              <li><b>Give founders time back</b><span>Take repetitive sales work off their plate.</span></li>
+              <li><b>Scale without hiring</b><span>Grow the pipeline without growing headcount.</span></li>
+            </ol>
+          </section>
+
+          <section class="cs-section" id="problem" aria-labelledby="problem-title" data-reveal>
+            <p class="cs-label">02 · Problem</p>
+            <h2 class="cs-title" id="problem-title">Curious visitors were leaving before they ever became leads.</h2>
+            <p class="cs-text">To see any value, a visitor had to fill in their company, their customer persona and their sales details across several steps. Then they waited, with no idea when or whether leads would arrive. Curiosity turned into fatigue, and nothing about it felt personal.</p>
+            <div class="cs-gallery cs-gallery--3">
+              <figure><img src="assets/work/myworker/form-1.jpg" alt="Onboarding step: a long form for company details" loading="lazy" width="1200" height="722"><figcaption><b>Step 2</b> Company details</figcaption></figure>
+              <figure><img src="assets/work/myworker/form-2.jpg" alt="Onboarding step: a form for the lead persona" loading="lazy" width="1200" height="754"><figcaption><b>Step 3</b> Lead persona</figcaption></figure>
+              <figure><img src="assets/work/myworker/form-3.jpg" alt="Onboarding step: more fields for use cases, news and competitors" loading="lazy" width="1200" height="711"><figcaption><b>And more</b> Competitors, news, use cases…</figcaption></figure>
+            </div>
+            <ol class="cs-insights cs-insights--3" aria-label="Why visitors dropped off">
+              <li><b>Effort before value</b><p>Long forms stood between a visitor and the first useful result.</p></li>
+              <li><b>Silence after</b><p>No sign of when leads would come, or what happened next.</p></li>
+              <li><b>No human touch</b><p>Nothing like the guided, personal pitch a founder would give.</p></li>
+            </ol>
+          </section>
+
+          <section class="cs-section" id="research" aria-labelledby="research-title" data-reveal>
+            <p class="cs-label">03 · Research</p>
+            <h2 class="cs-title" id="research-title">AI video agents were new ground, so I led research before we drew a screen.</h2>
+            <p class="cs-text">I planned the research around three questions: which jobs an AI sales agent is most valuable for, how comfortable people are with a lifelike AI, and what a realistic first version looks like.</p>
+            <ol class="cs-methods">
+              <li><b>Market</b><span>14 competitors, from 11x.ai, Artisan and Warmly to Drift and Ada, plus a PESTLE review of AI regulation and adoption</span></li>
+              <li><b>Literature</b><span>8 papers on human–AI collaboration, anthropomorphism, transparency and the uncanny valley</span></li>
+              <li><b>Founders</b><span>7 interviews across e-commerce, real estate, creative and service businesses; 160+ notes synthesised</span></li>
+            </ol>
+
+            <h3 class="cs-subtitle">Competitors automated the task, and ignored the feeling</h3>
+            <p class="cs-text">AI sales tools competed on how much they automate. Few considered how it feels to hand a stranger your company’s first impression, and most dropped small teams into heavy setup. No one had combined a lifelike video agent with a language model to sell with empathy. That was our gap.</p>
+
+            <h3 class="cs-subtitle">Founders wanted help, not a stand-in</h3>
+            <p class="cs-text">Every interview circled the same tension between automation and authenticity. Founders were eager for AI to research and draft for them, and wary of anything that replaced them in front of a customer.</p>
+            <blockquote class="cs-quote">“I’m not really a fan of entirely removing humans from customer support.”<cite>Founder, interview</cite></blockquote>
+
+            <figure class="cs-media cs-media--shot">
+              <img src="assets/work/myworker/persona.jpg" alt="Persona: Jordan, founder and CEO of a 13-person B2B SaaS company in Austin. Motivations, frustrations such as chatbots that feel cold and forms that get ignored, and goals such as more qualified demo bookings" loading="lazy" width="1800" height="1154">
+              <figcaption>Jordan, our persona: a scrappy founder who knows they can’t scale themselves, and is sceptical of AI that overpromises.</figcaption>
+            </figure>
+          </section>
+
+          <section class="cs-section" id="insights" aria-labelledby="insights-title" data-reveal>
+            <p class="cs-label">04 · Insights</p>
+            <h2 class="cs-title" id="insights-title">Founders didn’t want AI that pretends to be them. They wanted AI that works for them.</h2>
+            <p class="cs-text">Clustering the notes from interviews and papers left four insights. Each one became a test for the design: if a screen broke one of them, it went back.</p>
+            <ol class="cs-insights">
+              <li>
+                <b>Time is the scarcest resource</b>
+                <p>Founders judge a tool in minutes. Anything that looks like setup, or a tour, gets skipped.</p>
+              </li>
+              <li>
+                <b>Automate the mechanics, keep the voice</b>
+                <p>They want AI to do the research and drafting, while they keep the personal touch and the final say.</p>
+              </li>
+              <li>
+                <b>Human-aware, not human-like</b>
+                <p>Warmth helps; pretending hurts. People trust an agent that is clearly AI, and 58% want full transparency about AI use.</p>
+              </li>
+              <li>
+                <b>Trust is earned in the open</b>
+                <p>People trust AI more when it shows its role, its reasoning and its limits, and lets them check its sources.</p>
+              </li>
+            </ol>
+            <p class="cs-hmw"><span class="cs-label">How might we</span>earn a founder’s trust fast enough to turn a curious visit into a qualified lead?</p>
+          </section>
+
+          <section class="cs-section" id="testing" aria-labelledby="testing-title" data-reveal>
+            <p class="cs-label">05 · Testing</p>
+            <h2 class="cs-title" id="testing-title">We tested early with founders. The first round broke our plan.</h2>
+            <p class="cs-text">From Crazy 8s and storyboards we chose four use cases: a digital concierge, guided product discovery, lead qualification and booking, and AI follow-ups. Each designer mapped one end to end before we merged them into a single flow. We took it to mid-fidelity quickly, because the feel of a human-like presence mattered as much as the flow.</p>
+            <figure class="cs-media cs-media--shot">
+              <img src="assets/work/myworker/midfi.jpg" alt="Mid-fidelity screens: the avatar's first appearance, a menu of questions, the landing page with the avatar, and a full-screen product demo" loading="lazy" width="2000" height="959">
+              <figcaption>The first prototype: Alex greets you, then offers a video tour of the product.</figcaption>
+            </figure>
+
+            <div class="cs-rounds">
+              <article class="cs-round">
+                <p class="cs-label">Round 1</p>
+                <dl>
+                  <div><dt>Tested</dt><dd>Mid-fi prototype, product-demo flow</dd></div>
+                  <div><dt>With</dt><dd>2 founders, moderated</dd></div>
+                  <div><dt>Asked</dt><dd>How do founders react when the agent offers a demo?</dd></div>
+                  <div><dt>Found</dt><dd><b>Both skipped the demo.</b> And it felt like “a slightly better chatbot.”</dd></div>
+                </dl>
+              </article>
+              <article class="cs-round">
+                <p class="cs-label">Round 2</p>
+                <dl>
+                  <div><dt>Tested</dt><dd>The new hands-on flow</dd></div>
+                  <div><dt>With</dt><dd>4 founders, thinking aloud</dd></div>
+                  <div><dt>Asked</dt><dd>Is it clear? Are the leads valuable? Is sharing an email comfortable?</dd></div>
+                  <div><dt>Found</dt><dd><b>The flow worked.</b> Five frictions left, each fixed below.</dd></div>
+                </dl>
+              </article>
+            </div>
+            <blockquote class="cs-quote">“Don’t show me what it does, tell me how it helps me. I don’t have time for a tour.”<cite>Founder, round 1</cite></blockquote>
+          </section>
+
+          <section class="cs-section" id="decisions" aria-labelledby="decisions-title" data-reveal>
+            <p class="cs-label">06 · Decisions</p>
+            <h2 class="cs-title" id="decisions-title">Six decisions that shaped Alex.</h2>
+            <p class="cs-text">Each one traces back to an insight or a test. The second was the biggest call of the project.</p>
+
+            <article class="cs-decision">
+              <p class="cs-decision__no">Decision 1 <span class="cs-from">From insight 3</span></p>
+              <h3 class="cs-decision__title">Give the agent a face, and say plainly that it’s AI.</h3>
+              <dl class="cs-decision__why">
+                <div><dt>Tension</dt><dd>A lifelike avatar adds the warmth chatbots lack, but it can tip into uncanny, or feel like a trick.</dd></div>
+                <div><dt>Chose</dt><dd>A calm video agent, Alex, always labelled <i>Powered by AI</i>, with a reminder to check details and quick feedback on every reply.</dd></div>
+                <div><dt>Why</dt><dd>The research was clear: people trust an AI more when it’s honest about being one. Human-aware, not human-like.</dd></div>
+              </dl>
+              <div class="cs-gallery cs-gallery--2">
+                <figure><img src="assets/work/myworker/powered.jpg" alt="Close-up of the Powered by AI label with a tooltip: AI may be inaccurate, review important details" loading="lazy" width="1400" height="705"><figcaption><b>Labelled</b> Always marked as AI, with a nudge to check.</figcaption></figure>
+                <figure><img src="assets/work/myworker/progress.jpg" alt="Alex looks down while a status bar reads: finding your 5 qualified leads" loading="lazy" width="1400" height="924"><figcaption><b>Present</b> Alex looks busy while she works, not frozen.</figcaption></figure>
+              </div>
+            </article>
+
+            <article class="cs-decision">
+              <p class="cs-decision__no">Decision 2 <span class="cs-from">From round 1</span></p>
+              <h3 class="cs-decision__title">Kill the demo. Let them do the work instead.</h3>
+              <dl class="cs-decision__why">
+                <div><dt>First design</dt><dd>Alex greets the visitor, plays a product tour, then offers to book a meeting.</dd></div>
+                <div><dt>Chose</dt><dd>Alex says <i>let’s do it together</i>: reads the visitor’s website, finds five real leads and drafts their emails, live, inside the conversation.</dd></div>
+                <div><dt>Why</dt><dd>Founders didn’t want to be shown the value; they wanted to feel it. Their own leads are a better pitch than any tour.</dd></div>
+              </dl>
+              <div class="cs-steps" aria-label="The flow before and after">
+                <div class="cs-steps__row">
+                  <span class="cs-tag">Before</span>
+                  <ol><li>Greet</li><li class="is-cut">Watch a demo</li><li>Book a meeting</li></ol>
+                </div>
+                <div class="cs-steps__row">
+                  <span class="cs-tag cs-tag--accent">After</span>
+                  <ol><li>Greet</li><li class="is-new">Generate leads</li><li class="is-new">Draft emails</li><li>Book a meeting</li></ol>
+                </div>
+              </div>
+              <div class="cs-gallery cs-gallery--3">
+                <figure><img src="assets/work/myworker/do-1.jpg" alt="Alex introduces herself and asks for the visitor's company website" loading="lazy" width="1200" height="852"><figcaption><b>1</b> Alex asks for your website.</figcaption></figure>
+                <figure><img src="assets/work/myworker/do-2.jpg" alt="Alex presents five high-quality leads as cards with name, company and email" loading="lazy" width="1200" height="852"><figcaption><b>2</b> Five leads that fit your customer.</figcaption></figure>
+                <figure><img src="assets/work/myworker/do-3.jpg" alt="Alex shows personalised email drafts for each lead" loading="lazy" width="1200" height="854"><figcaption><b>3</b> An email drafted for each.</figcaption></figure>
+              </div>
+              <p class="cs-note">To fix the chatbot feeling too, the whole flow happens inside Alex’s frame: no side panels, no separate chat window.</p>
+            </article>
+
+            <article class="cs-decision">
+              <p class="cs-decision__no">Decision 3 <span class="cs-from">From round 2</span></p>
+              <h3 class="cs-decision__title">Show who you’re looking for before showing who you found.</h3>
+              <dl class="cs-decision__why">
+                <div><dt>Testing showed</dt><dd>Founders couldn’t judge the leads without knowing how they were matched: by company size, role or industry.</dd></div>
+                <div><dt>Chose</dt><dd>Alex first shows the Ideal Customer Profile it read from your site, with a one-tap <i>Fix ICP details</i>, before searching.</dd></div>
+                <div><dt>Why</dt><dd>A lead is only qualified if the founder agrees with the criteria. It turns an AI guess into a shared decision.</dd></div>
+              </dl>
+              <div class="cs-compare cs-compare--wide" data-compare style="--split: 50%;">
+                <img src="assets/work/myworker/icp-after.jpg" alt="After: an Ideal Customer Profile card listing industry, company size, role and primary goal, with buttons to find leads or fix the profile" loading="lazy" width="1800" height="1164">
+                <div class="cs-compare__before"><img src="assets/work/myworker/icp-before.jpg" alt="Before: lead cards appear straight away with no explanation of how they were chosen" loading="lazy" width="1800" height="1164"></div>
+                <span class="cs-compare__chip cs-compare__chip--before" aria-hidden="true">Before</span>
+                <span class="cs-compare__chip cs-compare__chip--after" aria-hidden="true">After</span>
+                <input class="cs-compare__range" type="range" min="0" max="100" value="50" aria-label="Compare the lead step before and after: slide left to see more of the new version">
+              </div>
+            </article>
+
+            <article class="cs-decision">
+              <p class="cs-decision__no">Decision 4 <span class="cs-from">From round 2</span></p>
+              <h3 class="cs-decision__title">Earn the email. Don’t ask for it up front.</h3>
+              <dl class="cs-decision__why">
+                <div><dt>Tension</dt><dd>The business needs an email to convert a visitor. Founders hesitated to hand one to an AI in the middle of a chat.</dd></div>
+                <div><dt>Chose</dt><dd>Give the value first, the leads and drafts, then ask, saying exactly what the email is for: creating an account to send them.</dd></div>
+                <div><dt>Why</dt><dd>Sharing an email felt right only when it meant signing up. Asking at that moment makes the lead capture the conversion.</dd></div>
+              </dl>
+              <figure class="cs-media">
+                <video src="assets/work/myworker/account.mp4" poster="assets/work/myworker/account.jpg" muted loop playsinline preload="none" data-autoplay aria-label="After showing the leads, Alex offers to create an account; the visitor signs in with Google and lands on their dashboard"></video>
+              </figure>
+            </article>
+
+            <article class="cs-decision">
+              <p class="cs-decision__no">Decision 5 <span class="cs-from">From insight 4</span></p>
+              <h3 class="cs-decision__title">Show the work, and admit the limits.</h3>
+              <dl class="cs-decision__why">
+                <div><dt>Tension</dt><dd>Finding leads takes time and AI can be wrong. A spinner and a confident answer both cost trust.</dd></div>
+                <div><dt>Chose</dt><dd>A thinking state that lists what Alex is checking, sources behind every finding, and a plain “I don’t have that” with an alternative.</dd></div>
+                <div><dt>Why</dt><dd>Predictability is trust. Users relax when they can see what the AI is doing, why, and where it stops.</dd></div>
+              </dl>
+              <div class="cs-gallery cs-gallery--3">
+                <figure><img src="assets/work/myworker/reasoning.jpg" alt="Thinking state: checking website tech stack, scanning LinkedIn for team and role signals, pulling company size and industry" loading="lazy" width="1200" height="611"><figcaption><b>Reasoning</b> What Alex is doing, step by step.</figcaption></figure>
+                <figure><img src="assets/work/myworker/sources.jpg" alt="Sources panel listing six sources such as TechCrunch, LinkedIn and Crunchbase" loading="lazy" width="1200" height="1000"><figcaption><b>Sources</b> Every finding can be checked.</figcaption></figure>
+                <figure><img src="assets/work/myworker/honesty.jpg" alt="Alex says she doesn't have a company's CRM information but offers to look at public signals instead" loading="lazy" width="1200" height="947"><figcaption><b>Honesty</b> No guessing; offer another way.</figcaption></figure>
+              </div>
+            </article>
+
+            <article class="cs-decision">
+              <p class="cs-decision__no">Decision 6 <span class="cs-from">From insight 2</span></p>
+              <h3 class="cs-decision__title">Measure trust, not just leads.</h3>
+              <dl class="cs-decision__why">
+                <div><dt>Tension</dt><dd>Founders handing their first impression to an AI need to know how it’s doing, not just how many leads it found.</dd></div>
+                <div><dt>Chose</dt><dd>Three dashboards: engagement and conversion, the agent’s own performance, and business outcomes.</dd></div>
+                <div><dt>Why</dt><dd>Edit rates, feedback and drop-off are trust signals. They show the team where Alex needs work, and founders when to step in.</dd></div>
+              </dl>
+              <figure class="cs-media">
+                <video src="assets/work/myworker/dash-avatar.mp4" poster="assets/work/myworker/dash-avatar.jpg" muted loop playsinline preload="none" data-autoplay aria-label="Avatar performance dashboard: email edit ratio, send-through rate, positive feedback by feature and conversation length"></video>
+                <figcaption>Avatar performance: how often founders edit Alex’s emails before sending, and which features earn praise.</figcaption>
+              </figure>
+              <div class="cs-gallery cs-gallery--2">
+                <figure><video src="assets/work/myworker/dash-engagement.mp4" poster="assets/work/myworker/dash-engagement.jpg" muted loop playsinline preload="none" data-autoplay aria-label="Engagement and conversion dashboard: conversion over time, dwell time by step and latency against drop-off"></video><figcaption><b>Engagement</b> Where conversations stall, and why.</figcaption></figure>
+                <figure><video src="assets/work/myworker/dash-business.mp4" poster="assets/work/myworker/dash-business.jpg" muted loop playsinline preload="none" data-autoplay aria-label="Business insights dashboard: conversion by industry, deal value, lead value over time and usage mode"></video><figcaption><b>Business</b> Which markets Alex sells best to.</figcaption></figure>
+              </div>
+            </article>
+          </section>
+
+          <section class="cs-section" id="refinements" aria-labelledby="refinements-title" data-reveal>
+            <p class="cs-label">07 · Refinements</p>
+            <h2 class="cs-title" id="refinements-title">Small fixes from round two, each from something founders did.</h2>
+            <ul class="cs-refine">
+              <li>
+                <p><span class="cs-label">Saw</span><span>Visitors glanced past the avatar when it first appeared.</span></p>
+                <p><span class="cs-label">Changed</span><span>An opening message that says what Alex is for: <i>unlock 5 leads for your company in 5 minutes</i>.</span></p>
+                <div class="cs-gallery cs-gallery--2">
+                  <figure><img src="assets/work/myworker/intro-before.jpg" alt="Before: a small round avatar in the corner with no message" loading="lazy" width="1600" height="1029"><figcaption><span class="cs-tag">Before</span></figcaption></figure>
+                  <figure><img src="assets/work/myworker/intro-after.jpg" alt="After: the avatar with a message, unlock 5 leads for your company in 5 minutes" loading="lazy" width="1600" height="1029"><figcaption><span class="cs-tag cs-tag--accent">After</span></figcaption></figure>
+                </div>
+              </li>
+              <li>
+                <p><span class="cs-label">Saw</span><span>Founders skimmed long replies and lost the thread.</span></p>
+                <p><span class="cs-label">Changed</span><span>Replies cut to one idea and one question, with the next step as a button.</span></p>
+                <div class="cs-gallery cs-gallery--2">
+                  <figure><img src="assets/work/myworker/copy-before.jpg" alt="Before: a long bulleted reply about what MyWorker.AI does" loading="lazy" width="1600" height="1009"><figcaption><span class="cs-tag">Before</span></figcaption></figure>
+                  <figure><img src="assets/work/myworker/copy-after.jpg" alt="After: a one-line reply offering to generate leads from the visitor's website" loading="lazy" width="1600" height="1009"><figcaption><span class="cs-tag cs-tag--accent">After</span></figcaption></figure>
+                </div>
+              </li>
+              <li>
+                <p><span class="cs-label">Saw</span><span>Founders wanted their voice in the emails before trusting them.</span></p>
+                <p><span class="cs-label">Changed</span><span>Every draft opens to edit, and can be reworked with Alex in the chat.</span></p>
+                <figure class="cs-media cs-media--shot"><img src="assets/work/myworker/email-edit.jpg" alt="An email draft open for editing beside Alex, with a note that any part can be edited" loading="lazy" width="1600" height="1035"></figure>
+              </li>
+            </ul>
+          </section>
+
+          <section class="cs-section" id="craft" aria-labelledby="craft-title" data-reveal>
+            <p class="cs-label">08 · Craft</p>
+            <h2 class="cs-title" id="craft-title">Trust lives in the in-between moments.</h2>
+            <ul class="cs-craft">
+              <li>
+                <div class="cs-prompt" aria-hidden="true"><span class="cs-label">Google Veo prompt</span>Medium shot, eye level. She raises a slight wave, smiles and says, “Hi, I’m Alex…” Her tone is soft and inviting; her body language open and welcoming.</div>
+                <b>Directing the avatar</b>
+                <p>I wrote and tuned the video prompts for every state, from listening to thinking, so Alex feels present without being uncanny.</p>
+              </li>
+              <li>
+                <img src="assets/work/myworker/no-hover.jpg" alt="The minimised avatar with its controls visible by default" loading="lazy" width="1200" height="1467">
+                <b>Nothing hidden behind hover</b>
+                <p>Key controls were getting lost behind hover states, especially on phones. Every core action is now visible by default.</p>
+              </li>
+              <li>
+                <img src="assets/work/myworker/transcripts.jpg" alt="A saved conversation transcript with downloadable artifacts" loading="lazy" width="1200" height="1290">
+                <b>Transcripts to keep</b>
+                <p>Every conversation is saved, with its leads and drafts, so a chat becomes something a team can revisit and share.</p>
+              </li>
+            </ul>
+          </section>
+
+          <section class="cs-section" id="outcome" aria-labelledby="outcome-title" data-reveal>
+            <p class="cs-label">09 · Outcome</p>
+            <h2 class="cs-title" id="outcome-title">A first conversation that delivers value before it asks for anything.</h2>
+            <p class="cs-text">In round two, founders finished the flow and described Alex as “approachable” and “efficient”. The design gave MyWorker.AI a way to show its product working on a visitor’s own business, and a way to watch, in numbers, whether people trust it.</p>
+            <ul class="cs-results">
+              <li><b>~6 hrs</b>a week saved per founder, estimated</li>
+              <li><b>0</b>forms before the first useful result</li>
+              <li><b>3</b>dashboards to watch trust, not just volume</li>
+            </ul>
+            <figure class="cs-media">
+              <img src="assets/work/myworker/talk.jpg" alt="Aatisha presenting the MyWorker.AI project to an audience at Big Design Energy during SF Tech Week" loading="lazy" width="1185" height="810">
+              <figcaption>Walking founders and designers through the project at Big Design Energy, SF Tech Week.</figcaption>
+            </figure>
+          </section>
+
+          <section class="cs-section" id="reflection" aria-labelledby="reflection-title" data-reveal>
+            <p class="cs-label">10 · Reflection</p>
+            <h2 class="cs-title" id="reflection-title">What I’d take to the next project.</h2>
+            <ol class="cs-lessons">
+              <li><b>Research is a confrontation, not a validation.</b> The demo was our favourite idea. Two founders skipping it taught us more than any amount of agreement would have.</li>
+              <li><b>I’d test the riskiest idea at lower fidelity.</b> We polished the demo flow before learning nobody wanted it. A rough clickable test in week two would have found that sooner.</li>
+              <li><b>Next, I’d measure the real funnel.</b> Visit to lead to account, and how often founders send Alex’s emails unedited. Then the next steps: a handoff to a human, and letting Alex act, not just suggest, with the founder’s approval.</li>
+            </ol>
+          </section>
+
+          <footer class="cs-end">
+            <a class="cs-end__link" href="shopbop.html"><span class="cs-label">Next case study</span><span>Amazon Shopbop <span class="cs-end__arrow" aria-hidden="true">→</span></span></a>
+          </footer>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="about.js"></script>
+  <script src="minds.js"></script>
+  <script src="brand.js"></script>
+</body>
+</html>

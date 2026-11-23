@@ -94,6 +94,29 @@ img {
   text-decoration: none;
 }
 
+/* The AC mark (brand.js). The link is as wide as what's showing, so only the mark itself is
+   hoverable; the name draws outside that box as it opens. Its SVG ends on the letters' baseline,
+   so the link's baseline is theirs and the bar can line it up with the nav labels. */
+.brand--mark {
+  display: inline-flex;
+  align-items: flex-end;
+  justify-self: start;
+  width: 22px;
+  padding-block: 6px;
+  border-radius: 4px;
+}
+
+.site-bar:has(> .brand--mark) {
+  align-items: baseline;
+}
+
+.brand--mark svg {
+  display: block;
+  flex: none;
+  overflow: visible;
+  pointer-events: none;
+}
+
 /* Pill button — white, barely-there shadow. */
 .btn-pill {
   display: inline-flex;
@@ -605,45 +628,6 @@ a:hover > .photo,
   color: var(--color-ink);
 }
 
-/* Easter egg: hovering (or focusing / tapping) a phrase pops a cut-out picture up above it. */
-.easter {
-  position: relative;
-  white-space: nowrap;
-  text-decoration: underline dotted var(--color-ink-3);
-  text-underline-offset: 4px;
-  cursor: help;
-  outline-offset: 2px;
-}
-
-.easter__pop {
-  position: absolute;
-  left: 50%;
-  bottom: calc(100% + 12px);
-  width: 120px;
-  height: auto;
-  max-width: none;
-  padding: 5px;
-  border-radius: var(--radius-sm);
-  background: var(--color-surface);
-  box-shadow: var(--shadow-lift);
-  pointer-events: none;
-  opacity: 0;
-  transform: translateX(-50%) translateY(10px) scale(0.6) rotate(-8deg);
-  transform-origin: 50% 100%;
-  transition: opacity var(--dur-fast) ease, transform var(--dur) var(--ease-spring);
-}
-
-.easter:hover .easter__pop,
-.easter:focus .easter__pop {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0) scale(1) rotate(-3deg);
-}
-
-/* Lift the text above the polaroid layer while the picture is showing. */
-.hero__copy:has(.easter:hover, .easter:focus) {
-  z-index: 4;
-}
-
 /* Entrance (polaroids.js): while the polaroids move, each text line waits and then rises in on its
    own (.is-shown) as soon as its space is clear. .is-revealed is the catch-all for any line still
    waiting when the intro ends. Without the script neither class is set and the text simply shows. */
@@ -779,8 +763,9 @@ a:hover > .photo,
     grid-row: 2;
   }
 
+  /* Five links fit on one line at phone width. */
   .site-bar .nav-mono {
-    gap: var(--space-2) var(--space-5);
+    gap: var(--space-2) var(--space-3);
   }
 
   .cutout-text,
@@ -844,6 +829,8 @@ body.page {
   --gutter: clamp(0px, 7vw - 40px, 128px);
   max-width: calc(1400px + 2 * var(--gutter));
   margin: 0 auto;
+  /* Breathing room under the bar before a page's first words: 64px on a laptop, 24px on a phone. */
+  padding-top: clamp(var(--space-5), 5vw, var(--space-8));
   padding-inline: var(--gutter);
 }
 
@@ -924,9 +911,136 @@ body.page {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2);
-  margin: var(--space-5) 0 0;
+  margin: calc(var(--space-6) + var(--space-2)) 0 0; /* room for the creatures to peep up */
   padding: 0;
   list-style: none;
+}
+
+/* Sea creatures that peep up from behind the links when you point at one. Each sits tucked
+   behind its button (the button is drawn above it) and rises over the top edge on hover. */
+.link-row li {
+  position: relative;
+}
+
+.link-row .btn-pill {
+  position: relative;
+  z-index: 1;
+}
+
+.peep {
+  position: absolute;
+  z-index: 0;
+  bottom: 4px;
+  height: 26px;
+  pointer-events: none;
+  transform: translateY(0) rotate(var(--peep-r, 0deg));
+  transition: transform 260ms var(--ease-out);
+}
+
+.link-row li:hover .peep,
+.link-row li:focus-within .peep {
+  transform: translateY(var(--peep-y)) rotate(var(--peep-up, 0deg));
+  transition: transform 520ms var(--ease-spring);
+}
+
+/* The clownfish noses up at the right, tilted, then wiggles. */
+.peep--clownfish {
+  --peep-r: 10deg;
+  --peep-up: -14deg;
+  --peep-y: -24px;
+  right: 6px;
+  transform-origin: 50% 100%;
+}
+
+.link-row li:hover .peep--clownfish {
+  animation: peep-wiggle 900ms 420ms ease-in-out infinite;
+}
+
+/* The seahorse is taller than its button, so it waits in a window that ends behind the button
+   (below that edge it's cut off): at rest it sits wholly below the edge, out of sight, and rises
+   straight up through it, then bobs. */
+.peep-clip {
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  right: 0;
+  bottom: 10px;
+  height: 72px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.peep--seahorse {
+  --peep-y: -61px;
+  top: 100%;
+  bottom: auto;
+  left: 50%;
+  margin-left: -16px;
+  height: 42px;
+}
+
+.link-row li:hover .peep--seahorse {
+  animation: peep-bob 1600ms 520ms ease-in-out infinite;
+}
+
+/* The starfish climbs up over the left of its button, out of sight until then (in a window like
+   the seahorse's). */
+.peep--starfish {
+  --peep-y: -50px;
+  top: 100%;
+  bottom: auto;
+  left: 4px;
+  height: 36px;
+}
+
+/* Bubbles rise from the clownfish's mouth, one after another, while it's out. */
+.peep--clownfish {
+  overflow: visible;
+}
+
+.peep__bubbles circle {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.link-row li:hover .peep__bubbles circle,
+.link-row li:focus-within .peep__bubbles circle {
+  animation: peep-bubble 1500ms ease-out infinite;
+}
+
+.link-row li:hover .peep__bubbles circle:nth-child(1),
+.link-row li:focus-within .peep__bubbles circle:nth-child(1) { animation-delay: 450ms; }
+.link-row li:hover .peep__bubbles circle:nth-child(2),
+.link-row li:focus-within .peep__bubbles circle:nth-child(2) { animation-delay: 950ms; }
+.link-row li:hover .peep__bubbles circle:nth-child(3),
+.link-row li:focus-within .peep__bubbles circle:nth-child(3) { animation-delay: 1450ms; }
+
+@keyframes peep-bubble {
+  0% { opacity: 0; transform: translate(0, 0) scale(0.4); }
+  15% { opacity: 1; }
+  55% { transform: translate(4px, -11px) scale(1); }
+  70% { opacity: 0.9; }
+  100% { opacity: 0; transform: translate(2px, -18px) scale(1.15); }
+}
+
+@keyframes peep-wiggle {
+  0%, 100% { rotate: 0deg; }
+  50% { rotate: 6deg; }
+}
+
+@keyframes peep-bob {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -3px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .peep,
+  .link-row li:hover .peep,
+  .link-row li:focus-within .peep {
+    transition: opacity 200ms ease;
+    animation: none !important;
+  }
 }
 
 /* ---------- Slide projector (about page, projector.js) ----------
@@ -1894,7 +2008,7 @@ html.lights-out .badge {
    Rows alternate one wide tile, then two at 60/40. */
 .play-intro {
   max-width: 640px;
-  padding: var(--space-7) 0 var(--space-8);
+  padding: var(--space-6) 0 var(--space-8);
 }
 
 .play-intro .mono-label {
@@ -1941,6 +2055,7 @@ html.lights-out .badge {
 /* The work itself: a print's rounded corners and soft shadow, without the white border. Until
    there's a video or image, white with a faint dot grid. */
 .play-card__media {
+  position: relative;
   display: grid;
   place-items: center;
   min-height: 0;
@@ -2002,6 +2117,55 @@ html.lights-out .badge {
   border-radius: var(--radius-sm);
 }
 
+/* The sound button on a video with a soundtrack: a small white circle, bottom right, showing a
+   muted speaker until it's pressed. */
+.play-card__sound {
+  position: absolute;
+  right: var(--space-4);
+  bottom: var(--space-4);
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow-pill);
+  color: var(--color-ink);
+  cursor: pointer;
+  transition: transform var(--dur-fast) var(--ease-out), background var(--dur-fast) ease;
+}
+
+.play-card__sound:hover {
+  background: #fff;
+  transform: scale(1.06);
+}
+
+.play-card__sound:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.play-card__sound svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.play-card__sound-body {
+  fill: currentColor;
+}
+
+.play-card__sound[aria-pressed="true"] .play-card__sound-off,
+.play-card__sound[aria-pressed="false"] .play-card__sound-on {
+  display: none;
+}
+
 .play-card__media .mono-label {
   color: var(--color-ink-3);
 }
@@ -2020,6 +2184,45 @@ html.lights-out .badge {
   font-weight: 500;
   line-height: var(--leading-snug);
   letter-spacing: var(--tracking-tight);
+}
+
+/* The number and year stay on one line, however long the title beside them. */
+.play-card__caption .mono-label {
+  flex: none;
+  white-space: nowrap;
+}
+
+/* Where a project was made (a hackathon, say), after its name and quieter. */
+.play-card__event {
+  font-weight: 400;
+  color: var(--color-ink-2);
+}
+
+/* A title that links out (to the project's page elsewhere): a faint underline that firms up on hover. */
+.play-card__link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: var(--color-line);
+  transition: text-decoration-color var(--dur) ease;
+}
+
+.play-card__link:hover {
+  text-decoration-color: currentColor;
+}
+
+.play-card__out {
+  display: inline-block;
+  margin-left: 0.3em;
+  font-weight: 400;
+  color: var(--color-ink-3);
+  transition: translate var(--dur) ease, color var(--dur) ease;
+}
+
+.play-card__link:hover .play-card__out {
+  translate: 2px -2px;
+  color: var(--color-ink);
 }
 
 .play-card__desc {
@@ -2053,6 +2256,842 @@ html.lights-out .badge {
   /* Stacked, a filling video gets its own shape back. */
   .play-card .play-card__tile--fill {
     aspect-ratio: var(--fill-ar, 4 / 3);
+  }
+}
+
+/* ---------- Contact details (postcard.html) ----------
+   A short note, the address large enough to be the page's headline, and three quiet facts below a
+   rule: where I am, my local time and the other places to find me. */
+.contact {
+  padding: var(--space-6) 0 var(--space-9);
+}
+
+.contact__mail-label {
+  flex-basis: 100%;
+  margin: 0;
+}
+
+.contact__intro {
+  max-width: 640px;
+}
+
+.contact__intro .mono-label {
+  margin: 0 0 var(--space-4);
+}
+
+.contact__intro .page__lead {
+  margin: 0;
+}
+
+.contact__mail {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4) var(--space-5);
+  margin: var(--space-8) 0;
+}
+
+.contact__address {
+  font-size: clamp(1.75rem, 1rem + 3.2vw, 3.5rem);
+  font-weight: 500;
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  text-decoration-color: var(--color-line);
+  overflow-wrap: anywhere;
+  transition: text-decoration-color var(--dur) ease;
+}
+
+.contact__address:hover {
+  text-decoration-color: currentColor;
+}
+
+.contact__copy {
+  flex: none;
+}
+
+.contact__copy.is-copied {
+  background: var(--color-ink);
+  color: #fff;
+}
+
+.contact__facts {
+  max-width: 920px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.6fr);
+  gap: var(--space-6);
+  margin: 0;
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-line);
+}
+
+.contact__facts dt {
+  margin: 0 0 var(--space-2);
+}
+
+.contact__facts dd {
+  margin: 0;
+  font-size: var(--text-lg);
+  line-height: var(--leading-snug);
+}
+
+/* The links sit under their label, with room above them for the creatures to peep up. */
+.contact__links {
+  margin-top: var(--space-6);
+}
+
+@media (max-width: 760px) {
+  .contact {
+    padding: var(--space-5) 0 var(--space-8);
+  }
+
+  .contact__mail {
+    margin: var(--space-7) 0;
+  }
+
+  .contact__facts {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .contact__elsewhere {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ---------- Postcard (postcard.html, postcard.js) ----------
+   A vintage postcard to write me: cream card stock printed in navy ink, a message half in
+   handwriting and an address half already made out to me, with a sheet of tropical stamps beside
+   it. It lies on a desk made of my photo of the sea from a cliff top, among travel things: a
+   chart, a luggage tag, a photo print, a ferry ticket and stickers. Sending postmarks the stamp
+   and turns the card over to its picture side. */
+.postcard-desk {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 740px) 204px;
+  justify-content: center;
+  align-items: end;
+  gap: var(--space-7);
+  margin: var(--space-8) 0 var(--space-9);
+  padding: clamp(var(--space-8), 7vw, 104px) clamp(var(--space-6), 6vw, 96px) clamp(var(--space-8), 9vw, 136px);
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+
+/* An orange grove over the bay: already a film print, so only a touch faded, with soft dark corners. */
+.postcard-desk__bg {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  background: url("assets/photos/postcard-orange-grove.jpg") center 45% / cover;
+  filter: saturate(0.92) contrast(0.97);
+}
+
+.postcard-desk__bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(120% 90% at 50% 45%, transparent 55%, rgba(10, 30, 40, 0.35)),
+    linear-gradient(rgba(8, 36, 48, 0.12), rgba(8, 36, 48, 0.06));
+}
+
+.postcard-desk__props {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+}
+
+.postcard-desk__main {
+  min-width: 0;
+}
+
+/* Everything on the desk throws the same soft shadow. */
+.pc-map,
+.pc-tag,
+.pc-print,
+.pc-ticket {
+  position: absolute;
+  filter: drop-shadow(0 2px 2px rgba(20, 20, 10, 0.18)) drop-shadow(0 14px 22px rgba(20, 20, 10, 0.22));
+}
+
+.pc-map {
+  bottom: 22px;
+  left: max(12px, calc(50% - 640px));
+  width: 440px;
+  rotate: -5deg;
+}
+
+/* A manila luggage tag on a string, with an airmail mark. */
+.pc-tag {
+  top: 26px;
+  left: max(10px, calc(50% - 640px));
+  width: 128px;
+  padding: 40px 14px 16px;
+  border-radius: 3px;
+  background:
+    radial-gradient(circle at 30% 40%, rgba(120, 90, 50, 0.08) 0.6px, transparent 1px) 0 0 / 8px 8px,
+    #efe2c4;
+  clip-path: polygon(22% 0, 78% 0, 100% 14%, 100% 100%, 0 100%, 0 14%);
+  rotate: -14deg;
+  color: #3b2f22;
+}
+
+.pc-tag__hole {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  margin-left: -7px;
+  border: 3px solid #d8c398;
+  border-radius: 50%;
+  background: rgba(10, 30, 40, 0.55);
+}
+
+.pc-tag__string {
+  position: absolute;
+  top: -58px;
+  left: 50%;
+  width: 40px;
+  margin-left: -20px;
+}
+
+.pc-tag__label {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #7a6440;
+}
+
+.pc-tag__to {
+  margin: 4px 0 8px;
+  font-family: var(--font-hand);
+  font-size: 1.375rem;
+  line-height: 1.05;
+}
+
+.pc-tag__mark {
+  display: block;
+  width: 58px;
+  color: #b4441c;
+  rotate: 10deg;
+  opacity: 0.85;
+}
+
+/* A photo print with a line written across it, tucked above the stamps. */
+.pc-print {
+  top: 34px;
+  right: max(18px, calc(50% - 600px));
+  width: 236px;
+  margin: 0;
+  padding: 9px 9px 34px;
+  background: #fbf8f1;
+  rotate: 6deg;
+}
+
+.pc-print img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 5 / 4;
+  object-fit: cover;
+  filter: saturate(0.85) sepia(0.1);
+}
+
+.pc-print figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 6px;
+  font-family: var(--font-hand);
+  font-size: 1.25rem;
+  text-align: center;
+  color: #3b2f22;
+}
+
+/* A ferry ticket with a tear-off stub. */
+.pc-ticket {
+  right: max(16px, calc(50% - 630px));
+  bottom: 48px;
+  display: flex;
+  width: 250px;
+  background: #f4dcc0;
+  color: #6b3a22;
+  rotate: -5deg;
+  -webkit-mask: radial-gradient(circle at 72% 0, #0000 7px, #000 7.5px) top / 100% 51% no-repeat, radial-gradient(circle at 72% 100%, #0000 7px, #000 7.5px) bottom / 100% 51% no-repeat;
+  mask: radial-gradient(circle at 72% 0, #0000 7px, #000 7.5px) top / 100% 51% no-repeat, radial-gradient(circle at 72% 100%, #0000 7px, #000 7.5px) bottom / 100% 51% no-repeat;
+}
+
+.pc-ticket__main {
+  display: grid;
+  gap: 2px;
+  width: 72%;
+  padding: 12px 14px;
+  border-right: 1.5px dashed rgba(107, 58, 34, 0.45);
+}
+
+.pc-ticket__kicker,
+.pc-ticket__meta,
+.pc-ticket__stub span {
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.pc-ticket__title {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.125rem;
+  letter-spacing: 0.04em;
+  color: #2d4a7a;
+}
+
+.pc-ticket__stub {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  width: 28%;
+  text-align: center;
+}
+
+.pc-ticket__stub b {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: #c0503a;
+}
+
+/* Die-cut stickers stuck down on top of things. */
+.pc-sticker {
+  position: absolute;
+  filter: drop-shadow(0 1px 1px rgba(20, 20, 10, 0.25)) drop-shadow(0 6px 10px rgba(20, 20, 10, 0.2));
+}
+
+.pc-sticker--lemon {
+  top: 220px;
+  right: max(196px, calc(50% - 400px));
+  width: 84px;
+  rotate: 18deg;
+}
+
+.postcard {
+  --ink: #2d4a7a;
+  --paper: #f8f3e8;
+  position: relative;
+  perspective: 1800px;
+}
+
+.postcard__flip {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 1000ms var(--ease-out);
+}
+
+.postcard.is-sent .postcard__flip {
+  transform: rotateY(180deg);
+}
+
+.postcard__side {
+  border-radius: 6px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  box-shadow: 0 1px 2px rgba(60, 40, 20, 0.08), 0 18px 40px rgba(60, 40, 20, 0.14);
+}
+
+/* Card stock: warm, faintly flecked, a touch darker toward the edges. */
+.postcard__back {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
+  aspect-ratio: 3 / 2;
+  background:
+    radial-gradient(circle at 30% 40%, rgba(120, 90, 50, 0.07) 0.6px, transparent 1px) 0 0 / 9px 9px,
+    radial-gradient(120% 120% at 50% 50%, transparent 60%, rgba(150, 110, 60, 0.12)),
+    var(--paper);
+  color: var(--ink);
+}
+
+.postcard__write,
+.postcard__address {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(var(--space-5), 3vw, var(--space-6));
+}
+
+.postcard__address {
+  border-left: 1px solid rgba(45, 74, 122, 0.35);
+}
+
+.postcard__print {
+  display: block;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  opacity: 0.75;
+}
+
+.postcard__dear {
+  margin: var(--space-4) 0 0;
+  font-family: var(--font-hand);
+  font-size: 1.75rem;
+  line-height: 1;
+  color: #2b2620;
+}
+
+/* The message, written by hand on faint ruled lines. */
+.postcard textarea {
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  margin-top: var(--space-2);
+  padding: 0;
+  border: 0;
+  background: repeating-linear-gradient(transparent 0 33px, rgba(45, 74, 122, 0.16) 33px 34px);
+  background-attachment: local;
+  color: #2b2620;
+  font: 500 1.5rem / 34px var(--font-hand);
+  resize: none;
+  outline: none;
+}
+
+.postcard textarea::placeholder,
+.postcard input::placeholder {
+  color: rgba(43, 38, 32, 0.35);
+}
+
+.postcard__count {
+  align-self: flex-end;
+  margin-top: var(--space-1);
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  color: var(--ink);
+  opacity: 0.6;
+}
+
+.postcard__corner {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+  min-height: 112px;
+}
+
+.postcard__title {
+  margin: 4px 0 0;
+  font-size: clamp(1.25rem, 0.9rem + 1vw, 1.75rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+/* The stamp box: a dashed outline until a stamp is stuck on. */
+.postcard__stamp {
+  flex: none;
+  width: 84px;
+  aspect-ratio: 5 / 6;
+  border: 1px dashed rgba(45, 74, 122, 0.4);
+  rotate: 2deg;
+}
+
+.postcard__stamp:has(.stamp) {
+  border-color: transparent;
+}
+
+.postcard__stamp .stamp {
+  --r: 3.4px;
+  width: 100%;
+}
+
+.postcard__stamp.is-stuck .stamp {
+  animation: stamp-stick 420ms var(--ease-spring);
+}
+
+@keyframes stamp-stick {
+  from { transform: scale(1.25) rotate(-8deg); opacity: 0; }
+}
+
+/* The postmark lands over the stamp's left edge when the card is sent. */
+.postcard__postmark {
+  position: absolute;
+  top: 34px;
+  right: 44px;
+  width: 150px;
+  color: rgba(45, 54, 86, 0.78);
+  rotate: -8deg;
+  opacity: 0;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+.postcard.is-postmarked .postcard__postmark {
+  opacity: 1;
+  animation: postmark-thump 380ms var(--ease-out);
+}
+
+@keyframes postmark-thump {
+  from { transform: scale(1.5); opacity: 0; }
+  60% { transform: scale(0.96); opacity: 1; }
+}
+
+.postcard__to {
+  margin: var(--space-5) 0 var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  line-height: 1.7;
+  color: #2b2620;
+}
+
+.postcard__to .postcard__print {
+  margin-bottom: var(--space-1);
+}
+
+.postcard__line {
+  display: grid;
+  gap: 2px;
+  margin-top: var(--space-3);
+}
+
+.postcard input {
+  width: 100%;
+  padding: 2px 0 4px;
+  border: 0;
+  border-bottom: 1px solid rgba(45, 74, 122, 0.4);
+  border-radius: 0;
+  background: transparent;
+  color: #2b2620;
+  font: 500 1.375rem / 1.2 var(--font-hand);
+  outline: none;
+}
+
+/* Writing needs no highlight; a field's underline just darkens to the card's ink. */
+.postcard input:focus-visible {
+  border-bottom-color: #2d4a7a;
+}
+
+/* The picture side: paddleboarders on a mountain lake, with a thank-you written across the forest. */
+.postcard__front {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: start center;
+  padding-top: 9%;
+  overflow: hidden;
+  border: 10px solid var(--paper);
+  background: var(--paper);
+  text-align: center;
+  transform: rotateY(180deg);
+}
+
+.postcard__front img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 85%;
+  /* A touch of old print: slightly warmed and faded. */
+  filter: sepia(0.14) saturate(0.9) contrast(0.96) brightness(1.02);
+}
+
+/* Over the photo: film grain, a warm light leak in one corner and darkened edges. */
+.postcard__front::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.5 0 0 0 0 0.42 0 0 0 0 0.3 0 0 0 0.22 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E"),
+    radial-gradient(60% 50% at 100% 0%, rgba(255, 170, 90, 0.12), transparent 70%),
+    radial-gradient(120% 95% at 50% 50%, transparent 60%, rgba(60, 35, 10, 0.18)),
+    linear-gradient(rgba(240, 200, 140, 0.05), rgba(240, 200, 140, 0.05));
+  mix-blend-mode: multiply;
+}
+
+.postcard__front::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  pointer-events: none;
+  /* Lifted blacks, as on faded film, and the warm leak glowing rather than darkening. */
+  background:
+    radial-gradient(55% 45% at 100% 0%, rgba(255, 190, 120, 0.14), transparent 70%),
+    linear-gradient(rgba(70, 60, 50, 0.06), rgba(70, 60, 50, 0.06));
+  mix-blend-mode: screen;
+}
+
+.postcard__thanks {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  font-family: var(--font-hand);
+  font-size: clamp(3rem, 2rem + 4vw, 5.5rem);
+  font-weight: 600;
+  line-height: 1;
+  color: #fff;
+  text-shadow: 0 2px 18px rgba(0, 30, 30, 0.5);
+}
+
+.postcard__sent:empty {
+  display: none;
+}
+
+.postcard__sent {
+  position: relative;
+  z-index: 2;
+  width: fit-content;
+  max-width: 88%;
+  margin: var(--space-4) auto 0;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  background: rgba(10, 50, 58, 0.42);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 1px 8px rgba(0, 50, 60, 0.5);
+}
+
+/* A field only bots fill in. */
+.postcard__trap {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+/* The sheet of stamps, lying on the desk beside the card. */
+.stamp-sheet {
+  position: relative;
+  min-width: 0;
+  margin: 0;
+  padding: 34px var(--space-3) var(--space-3);
+  border: 0;
+  border-radius: 3px;
+  background: #fbf7ee;
+  box-shadow: 0 2px 2px rgba(20, 20, 10, 0.15), 0 16px 28px rgba(20, 20, 10, 0.25);
+  rotate: 2deg;
+}
+
+.stamp-sheet legend {
+  position: absolute;
+  top: 12px;
+  left: var(--space-3);
+  padding: 0;
+  color: #7a6440;
+}
+
+.stamp-sheet__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-1);
+}
+
+.stamp-pick {
+  display: block;
+  padding: 7px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background var(--dur-fast) ease;
+}
+
+.stamp-pick .stamp {
+  transition: transform var(--dur) var(--ease-spring);
+}
+
+.stamp-pick:hover .stamp {
+  transform: translateY(-2px) rotate(-2deg);
+}
+
+.stamp-pick:has(input:checked) {
+  background: #efe6d2;
+}
+
+.stamp-pick:has(input:checked) .stamp {
+  transform: rotate(-3deg) scale(1.04);
+}
+
+.stamp-pick:has(input:focus-visible) {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 1px;
+}
+
+/* A stamp: perforated edges, a striped ground and a little picture. */
+.stamp {
+  --r: 3px;
+  position: relative;
+  display: block;
+  aspect-ratio: 5 / 6;
+  padding: calc(2 * var(--r));
+  background: #fffdf8;
+  -webkit-mask: radial-gradient(var(--r), #0000 98%, #000) round calc(-1.5 * var(--r)) calc(-1.5 * var(--r)) / calc(3 * var(--r)) calc(3 * var(--r)), linear-gradient(#000 0 0) no-repeat 50% / calc(100% - 3 * var(--r)) calc(100% - 3 * var(--r));
+  mask: radial-gradient(var(--r), #0000 98%, #000) round calc(-1.5 * var(--r)) calc(-1.5 * var(--r)) / calc(3 * var(--r)) calc(3 * var(--r)), linear-gradient(#000 0 0) no-repeat 50% / calc(100% - 3 * var(--r)) calc(100% - 3 * var(--r));
+  filter: drop-shadow(0 1px 2px rgba(60, 40, 20, 0.2));
+}
+
+.stamp__art {
+  display: block;
+  position: relative;
+  height: 100%;
+  background: repeating-linear-gradient(90deg, var(--a) 0 9%, var(--b) 9% 18%);
+  outline: 1px solid rgba(45, 74, 122, 0.25);
+}
+
+.stamp__art svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.stamp__value {
+  position: absolute;
+  top: 2px;
+  left: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 500;
+  color: #2d4a7a;
+}
+
+.postcard-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+.postcard-actions .btn-pill {
+  height: 40px;
+  padding: 0 var(--space-5);
+}
+
+.postcard-actions__error {
+  flex-basis: 100%;
+  margin: 0;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-xs);
+  background: rgba(251, 247, 238, 0.95);
+  font-size: var(--text-sm);
+  color: #b4441c;
+}
+
+.postcard-actions__error:empty {
+  display: none;
+}
+
+/* Narrower: the stamps lie in a strip above the card, and the desk keeps fewer things on it. */
+@media (max-width: 1180px) {
+  .postcard-desk {
+    grid-template-columns: minmax(0, 780px);
+    gap: var(--space-5);
+    padding-top: 150px;
+  }
+
+  .stamp-sheet {
+    order: -1;
+    justify-self: center;
+    rotate: -1deg;
+  }
+
+  .stamp-sheet__grid {
+    grid-template-columns: repeat(6, minmax(0, 84px));
+  }
+
+  .pc-print,
+  .pc-sticker--lemon {
+    display: none;
+  }
+
+  .pc-tag {
+    top: 18px;
+  }
+
+  .pc-ticket {
+    top: 36px;
+    bottom: auto;
+    rotate: 6deg;
+  }
+}
+
+@media (max-width: 760px) {
+  .postcard-desk {
+    margin: var(--space-7) calc(-1 * var(--space-2)) var(--space-8);
+    padding: var(--space-7) var(--space-3) var(--space-6);
+  }
+
+  .pc-map,
+  .pc-tag,
+  .pc-ticket {
+    display: none;
+  }
+
+  .stamp-sheet {
+    justify-self: stretch;
+    padding: 30px var(--space-2) var(--space-2);
+  }
+
+  .stamp-sheet__grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: var(--space-1);
+  }
+
+  .stamp-pick {
+    padding: 4px;
+  }
+
+  /* On a phone the card stands on end: the message on top, the address below it. */
+  .postcard__back {
+    grid-template-columns: minmax(0, 1fr);
+    aspect-ratio: auto;
+  }
+
+  .postcard textarea {
+    min-height: 210px;
+  }
+
+  .postcard__address {
+    border-left: 0;
+    border-top: 1px solid rgba(45, 74, 122, 0.35);
+  }
+
+  /* The tall picture side: keep the paddleboarders in view below the thank-you. */
+  .postcard__front {
+    padding-top: 13%;
+  }
+
+  .postcard__front img {
+    object-position: 74% center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .postcard__flip {
+    transition: none;
+  }
+
+  .postcard__stamp.is-stuck .stamp,
+  .postcard.is-postmarked .postcard__postmark {
+    animation: none;
   }
 }
 
@@ -2117,6 +3156,7 @@ html.lights-out .badge {
   flex: 1;
   flex-direction: column;
   width: 100%;
+  padding-top: 0; /* the projector fills the window right up to the bar */
 }
 
 .about-intro--solo {
@@ -2140,4 +3180,2018 @@ html.lights-out .badge {
   .about-intro--solo .projector-stage {
     order: 0;
   }
+}
+
+/* ---------- About-meta (about-meta.html) ----------
+   Me off the clock as a social profile, in white over my photo of sails on the bay: avatar and
+   numbers, the bio, three buttons, the tab icons, then a 3×3 grid of plain photo posts. */
+.ig {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  gap: var(--space-6);
+  margin: 0 0 var(--space-8);
+  padding: clamp(var(--space-6), 5vw, var(--space-8)) var(--space-5) clamp(var(--space-8), 8vw, 120px);
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  color: #fff;
+}
+
+/* The bay, with the sky a little deeper behind the white type and soft dark corners. */
+.ig__bg {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background:
+    linear-gradient(rgba(16, 48, 80, 0.32), rgba(16, 48, 80, 0.08) 45%, rgba(10, 30, 50, 0.12)),
+    radial-gradient(130% 90% at 50% 40%, transparent 55%, rgba(8, 26, 44, 0.3)),
+    url("assets/photos/about-meta-bg.jpg") center 30% / cover;
+}
+
+/* A light film grain over the photo. */
+.ig__bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--grain);
+  background-size: 220px 220px;
+  mix-blend-mode: overlay;
+  opacity: 0.32;
+}
+
+.ig__profile {
+  width: min(100%, 600px);
+  text-shadow: 0 1px 12px rgba(0, 30, 60, 0.25);
+}
+
+.ig__head {
+  display: flex;
+  align-items: center;
+  gap: clamp(var(--space-5), 5vw, var(--space-8));
+}
+
+.ig__avatar {
+  flex: none;
+  width: clamp(76px, 18vw, 116px);
+  height: auto;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.85), 0 8px 24px rgba(0, 30, 60, 0.25);
+}
+
+/* A highlight's circle: the photo with a thin white edge, like my profile picture. */
+.ig-ring {
+  display: block;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 30, 60, 0.2);
+}
+
+.ig-ring img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Highlights: a row of small circles with a name under each; it scrolls sideways if it must. */
+.ig__highlights {
+  display: flex;
+  gap: var(--space-5);
+  margin: var(--space-5) calc(-1 * var(--space-2)) 0;
+  padding: var(--space-1) var(--space-2) var(--space-1);
+  overflow-x: auto;
+  list-style: none;
+  scrollbar-width: none;
+}
+
+.ig-highlight {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  width: 68px;
+  font-size: 0.75rem;
+}
+
+.ig-highlight .ig-ring {
+  width: 68px;
+}
+
+.ig__stats {
+  display: flex;
+  flex: 1;
+  justify-content: space-around;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--text-base);
+  text-align: center;
+}
+
+.ig__stats b {
+  display: block;
+  font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+  font-weight: 600;
+}
+
+.ig__name {
+  margin: var(--space-4) 0 0;
+  font-size: var(--text-lg);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.ig__category {
+  margin: 2px 0 0;
+  font-size: var(--text-base);
+  opacity: 0.75;
+}
+
+.ig__bio {
+  display: grid;
+  margin: var(--space-1) 0 0;
+  font-size: var(--text-base);
+  line-height: 1.5;
+}
+
+/* The profile song: a small frosted pill with a note; tap to play or pause. Its bars dance while it plays. */
+.ig-song {
+  margin-top: var(--space-3);
+}
+
+.ig-song__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 5px var(--space-3) 5px 9px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(8px);
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: #fff;
+  text-shadow: none;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-out);
+}
+
+.ig-song__chip:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.ig-song__chip:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.ig-song__note {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.ig-song__bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 11px;
+}
+
+.ig-song__bars i {
+  width: 2px;
+  height: 4px;
+  border-radius: 1px;
+  background: currentColor;
+  opacity: 0.85;
+}
+
+.ig-song.is-playing .ig-song__bars i {
+  animation: ig-song-bar 900ms ease-in-out infinite alternate;
+}
+
+.ig-song.is-playing .ig-song__bars i:nth-child(2) {
+  animation-delay: -300ms;
+}
+
+.ig-song.is-playing .ig-song__bars i:nth-child(3) {
+  animation-delay: -600ms;
+}
+
+@keyframes ig-song-bar {
+  from { height: 3px; }
+  to { height: 11px; }
+}
+
+/* The link back to the song, quiet and only while it plays. */
+.ig-song__source {
+  margin-left: var(--space-2);
+  font-size: var(--text-micro);
+  color: #fff;
+  text-decoration: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--dur) var(--ease-out), visibility var(--dur);
+}
+
+.ig-song.is-playing .ig-song__source {
+  opacity: 0.75;
+  visibility: visible;
+}
+
+.ig-song__source:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ig-song.is-playing .ig-song__bars i {
+    animation: none;
+    height: 8px;
+  }
+}
+
+.ig__actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.ig__btn {
+  padding: 7px var(--space-3);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: var(--radius-xs);
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(6px);
+  font-family: inherit;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  line-height: inherit;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: none;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+}
+
+.ig__btn:hover,
+.ig__btn--primary {
+  background: #fff;
+  color: #1f4f6e;
+}
+
+.ig__btn--primary:hover {
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.ig__tabs {
+  display: flex;
+  justify-content: space-around;
+  margin-top: var(--space-5);
+}
+
+.ig__tabs svg {
+  width: 22px;
+  height: 22px;
+  padding-bottom: var(--space-2);
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+  opacity: 0.7;
+  box-sizing: content-box;
+}
+
+.ig__tabs .is-active {
+  border-bottom: 1.5px solid #fff;
+  opacity: 1;
+}
+
+.ig__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+  margin: var(--space-2) 0 0;
+  padding: 0;
+  list-style: none;
+  box-shadow: 0 12px 36px rgba(0, 30, 60, 0.18);
+}
+
+/* A post: just the photo. On hover it dims a touch and its caption shows, small, in the corner. */
+.ig-post {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: #cfdde6;
+}
+
+.ig-post__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: filter var(--dur) var(--ease-out);
+}
+
+.ig-post:hover .ig-post__photo {
+  filter: brightness(0.82);
+}
+
+.ig-post__caption {
+  position: absolute;
+  z-index: 1;
+  left: var(--space-3);
+  right: var(--space-3);
+  bottom: var(--space-3);
+  line-height: 1.3;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: #fff;
+  text-shadow: 0 1px 8px rgba(0, 20, 40, 0.5);
+  opacity: 0;
+  translate: 0 4px;
+  transition: opacity var(--dur) var(--ease-out), translate var(--dur) var(--ease-out);
+}
+
+/* A soft shade at the foot, under the caption, so it reads on busy photos. */
+.ig-post::after {
+  content: "";
+  position: absolute;
+  inset: 45% 0 0;
+  background: linear-gradient(transparent, rgba(0, 18, 34, 0.55));
+  opacity: 0;
+  transition: opacity var(--dur) var(--ease-out);
+  pointer-events: none;
+}
+
+.ig-post:hover::after,
+.ig-post:hover .ig-post__caption {
+  opacity: 1;
+}
+
+.ig-post:hover .ig-post__caption {
+  translate: 0 0;
+}
+
+.ig-post__pin {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+  width: 16px;
+  fill: #fff;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.4));
+}
+
+@media (max-width: 760px) {
+  .ig {
+    margin-inline: calc(-1 * var(--space-2));
+    padding: var(--space-5) var(--space-3) var(--space-7);
+    border-radius: var(--radius-md);
+  }
+
+  .ig__stats {
+    font-size: var(--text-sm);
+  }
+
+  .ig__grid {
+    gap: 2px;
+  }
+
+  .ig__highlights {
+    gap: var(--space-3);
+  }
+
+  .ig-highlight,
+  .ig-highlight .ig-ring {
+    width: 60px;
+  }
+}
+
+/* ================= Case study (minds.html) =================
+   An editorial read: serif headlines over plain Geist text, small mono labels, and the work shown
+   big. The outcome comes first (title, facts, the shipped product and its numbers), then the story,
+   with a quiet section index alongside on wide screens. Decisions read as tension, choice, reason. */
+.cs-eyebrow,
+.cs-label,
+.cs-facts dt,
+.cs-decision__no,
+.cs-decision__why dt,
+.cs-tag {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  font-weight: 400;
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  color: var(--color-ink-3);
+}
+
+.cs-eyebrow a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.cs-eyebrow a:hover {
+  color: var(--color-ink);
+}
+
+/* ---------- Opening ---------- */
+.cs-hero {
+  display: grid;
+  gap: var(--space-5);
+  padding-bottom: var(--space-9);
+}
+
+.cs-hero__title {
+  text-wrap: balance;
+  max-width: 17ch;
+  margin: var(--space-3) 0 0;
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 1.5rem + 3.8vw, 4.75rem);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+  color: var(--color-ink);
+}
+
+.cs-hero__title em {
+  color: var(--color-ink-2);
+}
+
+.cs-hero__lead {
+  max-width: 60ch;
+  margin: 0;
+  font-size: clamp(1.0625rem, 0.98rem + 0.35vw, 1.25rem);
+  line-height: 1.55;
+  color: var(--color-ink-2);
+}
+
+.cs-facts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-5);
+  margin: var(--space-4) 0 var(--space-3);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-line);
+}
+
+.cs-facts dd {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: var(--color-ink);
+}
+
+.cs-facts a {
+  color: var(--color-ink-2);
+  text-decoration-color: var(--color-line);
+  text-underline-offset: 0.2em;
+}
+
+.cs-facts a:hover {
+  color: var(--color-ink);
+  text-decoration-color: currentColor;
+}
+
+/* Live: a small green dot that breathes. */
+.cs-live {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 7px;
+  border-radius: 50%;
+  background: #2fa36b;
+  vertical-align: 1px;
+  box-shadow: 0 0 0 0 rgba(47, 163, 107, 0.45);
+  animation: cs-live 2.4s ease-out infinite;
+}
+
+@keyframes cs-live {
+  70%, 100% { box-shadow: 0 0 0 7px rgba(47, 163, 107, 0); }
+}
+
+.cs-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-5);
+  margin: var(--space-3) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cs-stats li,
+.cs-results li {
+  display: grid;
+  gap: var(--space-1);
+  align-content: start;
+  font-size: var(--text-sm);
+  line-height: 1.45;
+  color: var(--color-ink-2);
+}
+
+.cs-stats b,
+.cs-results b {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 1.9rem + 2vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+}
+
+/* ---------- Media ---------- */
+.cs-media {
+  margin: var(--space-6) 0 0;
+}
+
+.cs-media video,
+.cs-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  background: var(--color-tile);
+}
+
+.cs-media--hero video {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+}
+
+.cs-media--shot img {
+  border: 1px solid var(--color-line);
+}
+
+.cs-media figcaption,
+.cs-gallery figcaption {
+  margin-top: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--color-ink-3);
+}
+
+.cs-gallery figcaption b {
+  margin-right: 6px;
+  font-weight: 500;
+  color: var(--color-ink);
+}
+
+/* ---------- The story ---------- */
+.cs-body {
+  display: grid;
+  grid-template-columns: 168px minmax(0, 1fr);
+  gap: clamp(var(--space-6), 5vw, var(--space-9));
+  align-items: start;
+}
+
+.cs-index {
+  position: sticky;
+  top: var(--space-7);
+  padding-top: var(--space-9);
+}
+
+.cs-index ol {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: cs-index;
+}
+
+.cs-index li {
+  counter-increment: cs-index;
+}
+
+.cs-index a {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-ink-3);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.cs-index a::before {
+  content: counter(cs-index, decimal-leading-zero);
+  width: 2.2em;
+  opacity: 0.6;
+}
+
+.cs-index a::after {
+  content: "";
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width var(--dur) var(--ease-out);
+}
+
+.cs-index a:hover,
+.cs-index a[aria-current] {
+  color: var(--color-ink);
+}
+
+.cs-index a[aria-current]::after {
+  width: 18px;
+}
+
+.cs-flow {
+  min-width: 0;
+  max-width: 980px;
+}
+
+.cs-section {
+  padding: var(--space-9) 0 0;
+  scroll-margin-top: var(--space-5);
+}
+
+.cs-section + .cs-section {
+  margin-top: var(--space-9);
+  border-top: 1px solid var(--color-line);
+}
+
+.cs-title {
+  text-wrap: balance;
+  max-width: 24ch;
+  margin: var(--space-3) 0 var(--space-4);
+  font-family: var(--font-serif);
+  font-size: clamp(1.875rem, 1.3rem + 1.8vw, 2.75rem);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+}
+
+.cs-subtitle {
+  margin: var(--space-8) 0 var(--space-3);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+}
+
+.cs-text {
+  max-width: 62ch;
+  margin: 0;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--color-ink-2);
+}
+
+.cs-figures {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin: var(--space-6) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cs-figures li {
+  display: grid;
+  gap: 2px;
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--color-paper);
+  font-size: var(--text-sm);
+  color: var(--color-ink-2);
+}
+
+.cs-figures b {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--color-ink);
+}
+
+.cs-figures span {
+  font-size: 0.75rem;
+  color: var(--color-ink-3);
+}
+
+.cs-quote {
+  max-width: 34ch;
+  margin: var(--space-7) 0 0;
+  padding-left: var(--space-5);
+  border-left: 2px solid var(--color-accent);
+  font-family: var(--font-serif);
+  font-size: clamp(1.375rem, 1.1rem + 0.9vw, 1.75rem);
+  font-style: italic;
+  line-height: 1.3;
+  color: var(--color-ink);
+}
+
+.cs-quote cite {
+  display: block;
+  margin-top: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  font-style: normal;
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  color: var(--color-ink-3);
+}
+
+/* Research methods, numbered. */
+.cs-methods {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin: var(--space-5) 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: cs-method;
+}
+
+.cs-methods li,
+.cs-people li {
+  display: grid;
+  align-content: start;
+  gap: var(--space-1);
+  padding: var(--space-5) var(--space-4) var(--space-4);
+  border-top: 1px solid var(--color-ink);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: var(--color-ink-2);
+}
+
+.cs-methods li {
+  counter-increment: cs-method;
+}
+
+.cs-methods li::before {
+  content: counter(cs-method, decimal-leading-zero);
+  margin-bottom: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  color: var(--color-ink-3);
+}
+
+.cs-methods b,
+.cs-people b {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.cs-people {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin: var(--space-5) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cs-people li {
+  border-top: 0;
+  border-radius: var(--radius-md);
+  background: var(--color-paper);
+}
+
+.cs-tag {
+  justify-self: start;
+  margin-bottom: var(--space-2);
+  padding: 3px 7px;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+  font-size: 0.625rem;
+}
+
+.cs-tag--accent {
+  color: var(--color-accent);
+}
+
+.cs-gallery {
+  display: grid;
+  gap: var(--space-4);
+  margin: var(--space-6) 0 0;
+}
+
+.cs-gallery--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.cs-gallery--pair {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+}
+
+.cs-gallery figure {
+  margin: 0;
+}
+
+.cs-gallery img,
+.cs-gallery video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-tile);
+}
+
+.cs-gallery--pair img,
+.cs-gallery--pair video {
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: top;
+}
+
+.cs-gallery__video video {
+  object-position: center;
+}
+
+/* Insights: four cards, numbered. */
+.cs-insights {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin: var(--space-6) 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: cs-insight;
+}
+
+.cs-insights li {
+  counter-increment: cs-insight;
+  display: grid;
+  align-content: start;
+  gap: var(--space-2);
+  padding: var(--space-5);
+  border-radius: var(--radius-md);
+  background: var(--color-paper);
+}
+
+.cs-insights li::before {
+  content: counter(cs-insight);
+  font-family: var(--font-serif);
+  font-size: 2.25rem;
+  line-height: 1;
+  color: var(--color-accent);
+}
+
+.cs-insights b {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+}
+
+.cs-insights p {
+  margin: 0;
+  font-size: var(--text-base);
+  line-height: 1.55;
+  color: var(--color-ink-2);
+}
+
+.cs-insights q {
+  margin-top: var(--space-2);
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  font-style: italic;
+  line-height: 1.35;
+  color: var(--color-ink);
+}
+
+.cs-hmw {
+  display: grid;
+  gap: var(--space-3);
+  max-width: 30ch;
+  margin: var(--space-8) 0 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.625rem, 1.2rem + 1.4vw, 2.25rem);
+  line-height: 1.2;
+  color: var(--color-ink);
+}
+
+/* Decisions: the tension, the choice and the reason, then the work. */
+.cs-decision {
+  margin-top: var(--space-9);
+}
+
+.cs-decision__title {
+  text-wrap: balance;
+  max-width: 26ch;
+  margin: var(--space-2) 0 var(--space-5);
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 1.15rem + 1.1vw, 2rem);
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--color-ink);
+}
+
+.cs-decision__why {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-5);
+  margin: 0;
+}
+
+.cs-decision__why div {
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-line);
+}
+
+.cs-decision__why div:nth-child(2) {
+  border-top-color: var(--color-ink);
+}
+
+.cs-decision__why dd {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-base);
+  line-height: 1.55;
+  color: var(--color-ink-2);
+}
+
+.cs-decision__why b {
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+/* Before and after: the new page underneath, the old one on top, cut at the handle. */
+.cs-compare {
+  position: relative;
+  aspect-ratio: 1400 / 1180;
+  margin-top: var(--space-6);
+  overflow: hidden;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-tile);
+  user-select: none;
+}
+
+.cs-compare img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.cs-compare__before {
+  position: absolute;
+  inset: 0;
+  clip-path: inset(0 calc(100% - var(--split)) 0 0);
+}
+
+/* The handle: a line with a round grip. */
+.cs-compare::before,
+.cs-compare::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  left: var(--split);
+  pointer-events: none;
+}
+
+.cs-compare::before {
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  margin-left: -1px;
+  background: #fff;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.25);
+}
+
+.cs-compare::after {
+  top: 50%;
+  width: 40px;
+  height: 40px;
+  margin: -20px 0 0 -20px;
+  border-radius: 50%;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M16 14l-6 6 6 6M24 14l6 6-6 6' fill='none' stroke='%23161616' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 100% no-repeat,
+    #fff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.22);
+}
+
+.cs-compare__chip {
+  position: absolute;
+  z-index: 2;
+  top: var(--space-3);
+  padding: 4px 9px;
+  border-radius: var(--radius-pill);
+  background: rgba(22, 22, 22, 0.72);
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  color: #fff;
+  pointer-events: none;
+}
+
+.cs-compare__chip--before {
+  left: var(--space-3);
+}
+
+.cs-compare__chip--after {
+  right: var(--space-3);
+}
+
+/* The range covers the whole picture, invisible, so dragging anywhere moves the handle. */
+.cs-compare__range {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: ew-resize;
+}
+
+.cs-compare:has(.cs-compare__range:focus-visible) {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* Craft: three tiles. */
+.cs-craft {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-5);
+  margin: var(--space-6) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cs-craft li {
+  display: grid;
+  align-content: start;
+  gap: var(--space-2);
+}
+
+.cs-craft img,
+.cs-copy {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  margin-bottom: var(--space-2);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  background: var(--color-tile);
+}
+
+.cs-craft b {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.cs-craft p {
+  margin: 0;
+  font-size: var(--text-sm);
+  line-height: 1.55;
+  color: var(--color-ink-2);
+}
+
+/* The copy tile: the buttons as they read on the site, in MINDS@UW's red. */
+.cs-copy {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: var(--space-3);
+  box-sizing: border-box;
+  background: #f6efef;
+}
+
+.cs-copy__btn {
+  padding: 9px 18px;
+  border-radius: 6px;
+  background: #8e1a3a;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: #fff;
+}
+
+.cs-copy__btn--ghost {
+  border: 1px solid #8e1a3a;
+  background: #fff;
+  color: #8e1a3a;
+}
+
+.cs-results {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-5);
+  margin: var(--space-6) 0 0;
+  padding: var(--space-5) 0 0;
+  border-top: 1px solid var(--color-line);
+  list-style: none;
+}
+
+.cs-lessons {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 62ch;
+  margin: var(--space-5) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cs-lessons li {
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--color-ink-2);
+}
+
+.cs-lessons b {
+  display: block;
+  margin-bottom: var(--space-1);
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--color-ink);
+}
+
+.cs-end {
+  margin-top: var(--space-10);
+  padding: var(--space-6) 0 var(--space-4);
+  border-top: 1px solid var(--color-line);
+}
+
+.cs-end__link {
+  display: inline-grid;
+  gap: var(--space-1);
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 1.3rem + 1.4vw, 2.5rem);
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+.cs-end__arrow {
+  display: inline-block;
+  transition: translate var(--dur) var(--ease-out);
+}
+
+.cs-end__link:hover .cs-end__arrow {
+  translate: 6px 0;
+}
+
+/* ---------- Added for myworker.html ---------- */
+/* Hero clips that shouldn't be cropped to 16:9. */
+.cs-media--natural video {
+  aspect-ratio: auto;
+}
+
+.cs-insights--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.cs-insights--3 li::before {
+  font-size: 1.75rem;
+}
+
+.cs-insights--3 b {
+  font-size: var(--text-base);
+}
+
+.cs-insights--3 p {
+  font-size: var(--text-sm);
+}
+
+/* Testing rounds: the same four labels each time, so the rounds compare at a glance. */
+.cs-rounds {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+}
+
+.cs-round {
+  padding: var(--space-5);
+  border-radius: var(--radius-md);
+  background: var(--color-paper);
+}
+
+.cs-round dl {
+  display: grid;
+  gap: var(--space-3);
+  margin: var(--space-4) 0 0;
+}
+
+.cs-round dl div {
+  display: grid;
+  grid-template-columns: 5.5em minmax(0, 1fr);
+  gap: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-line);
+}
+
+.cs-round dt {
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  line-height: 1.9;
+  color: var(--color-ink-3);
+}
+
+.cs-round dd {
+  margin: 0;
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: var(--color-ink-2);
+}
+
+.cs-round b {
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+/* Where a decision came from: the insight or test, as a small accent tag. */
+.cs-from {
+  margin-left: var(--space-2);
+  padding: 2px 7px;
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+  color: var(--color-accent);
+}
+
+/* The flow before and after: steps as chips, the dropped one struck through, the new ones filled. */
+.cs-steps {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+  padding: var(--space-5);
+  border-radius: var(--radius-md);
+  background: var(--color-paper);
+}
+
+.cs-steps__row {
+  display: grid;
+  grid-template-columns: 5.5em minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.cs-steps__row .cs-tag {
+  margin: 0;
+}
+
+.cs-steps ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cs-steps li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--color-ink);
+}
+
+.cs-steps li + li::before {
+  content: "→";
+  font-weight: 400;
+  text-decoration: none;
+  color: var(--color-ink-3);
+}
+
+.cs-steps li.is-cut {
+  color: var(--color-ink-3);
+  text-decoration: line-through;
+  text-decoration-color: var(--color-accent);
+}
+
+.cs-steps li.is-new {
+  color: var(--color-accent);
+}
+
+.cs-note {
+  max-width: 62ch;
+  margin: var(--space-4) 0 0;
+  font-size: var(--text-sm);
+  line-height: 1.55;
+  color: var(--color-ink-3);
+}
+
+.cs-compare--wide {
+  aspect-ratio: 1800 / 1164;
+}
+
+.cs-gallery--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+}
+
+/* Phone screens: stills and recordings side by side, each in a rounded phone-shaped frame. */
+.cs-phones {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+  max-width: 760px;
+  margin: var(--space-6) 0 0;
+}
+
+.cs-phones--4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  max-width: none;
+}
+
+.cs-phones--2 {
+  max-width: 520px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.cs-phones figure {
+  margin: 0;
+}
+
+.cs-phones img,
+.cs-phones video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 694 / 1418;
+  object-fit: cover;
+  border: 1px solid var(--color-line);
+  border-radius: clamp(14px, 2.4vw, 26px);
+  background: var(--color-tile);
+}
+
+.cs-phones figcaption {
+  margin-top: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--color-ink-3);
+}
+
+/* A wide image with a phone screen beside it. */
+.cs-split {
+  display: grid;
+  grid-template-columns: minmax(0, 2.2fr) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-5);
+  margin-top: var(--space-6);
+}
+
+.cs-split figure {
+  margin: 0;
+}
+
+.cs-split img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+}
+
+.cs-split__phone img {
+  border-radius: clamp(14px, 2.4vw, 26px);
+}
+
+/* A single testing round, as wide as the text. */
+.cs-rounds--1 {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 720px;
+}
+
+/* A tall image cropped into a craft tile from its top edge. */
+.cs-craft img.cs-craft__top {
+  object-position: top;
+}
+
+/* A paragraph that follows a block of cards rather than a heading. */
+.cs-text--after {
+  margin-top: var(--space-5);
+}
+
+/* Refinements: what we saw, what changed, then the screens. */
+.cs-refine {
+  display: grid;
+  gap: var(--space-8);
+  margin: var(--space-6) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cs-refine > li > p {
+  display: grid;
+  grid-template-columns: 6em minmax(0, 1fr);
+  gap: var(--space-3);
+  max-width: 70ch;
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-base);
+  line-height: 1.55;
+  color: var(--color-ink-2);
+}
+
+.cs-refine > li > p .cs-label {
+  line-height: 2.1;
+}
+
+.cs-refine > li > p:nth-of-type(2) {
+  color: var(--color-ink);
+}
+
+.cs-refine .cs-gallery,
+.cs-refine .cs-media {
+  margin-top: var(--space-4);
+}
+
+/* The prompt tile: a quoted video prompt, set like a card. */
+.cs-prompt {
+  display: grid;
+  align-content: center;
+  gap: var(--space-3);
+  box-sizing: border-box;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  margin-bottom: var(--space-2);
+  padding: var(--space-5);
+  border-radius: var(--radius-sm);
+  background: #1d1d1f;
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  font-style: italic;
+  line-height: 1.35;
+  color: #f4f2ee;
+}
+
+.cs-prompt .cs-label {
+  font-style: normal;
+  color: rgba(244, 242, 238, 0.6);
+}
+
+@media (max-width: 1100px) {
+  .cs-body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cs-index {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .cs-facts,
+  .cs-figures {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cs-stats,
+  .cs-results,
+  .cs-methods,
+  .cs-people,
+  .cs-insights,
+  .cs-decision__why,
+  .cs-craft,
+  .cs-gallery--3,
+  .cs-insights--3,
+  .cs-rounds {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cs-gallery--2 {
+    gap: var(--space-2);
+  }
+
+  .cs-phones,
+  .cs-phones--4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-3);
+  }
+
+  .cs-split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cs-split__phone {
+    max-width: 240px;
+  }
+
+  .cs-steps__row,
+  .cs-refine > li > p {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-1);
+  }
+
+  .cs-steps__row {
+    gap: var(--space-2);
+  }
+
+  .cs-compare--wide {
+    aspect-ratio: 1800 / 1164;
+  }
+
+  .cs-decision__why {
+    gap: var(--space-3);
+  }
+
+  .cs-gallery--pair {
+    gap: var(--space-2);
+  }
+
+  .cs-section {
+    padding-top: var(--space-8);
+  }
+
+  .cs-section + .cs-section {
+    margin-top: var(--space-8);
+  }
+
+  .cs-compare {
+    aspect-ratio: 4 / 5;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cs-live {
+    animation: none;
+  }
+}
+
+/* ================= Work (index.html) =================
+   A warm sheet that rises over the hero as you scroll: the hero stays pinned and recedes behind
+   it. Each case study is a big moving picture, then a caption: the client, one serif line on what
+   changed, and small boxed tags for what I did. */
+.hero {
+  position: sticky;
+  top: 0;
+  z-index: 0;
+}
+
+.works {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: clamp(var(--space-7), 7vw, var(--space-10)) var(--frame-gutter) var(--space-10);
+  border-radius: var(--radius-window) var(--radius-window) 0 0;
+  background: #efede8;
+  box-shadow: 0 -24px 60px rgba(0, 35, 70, 0.18);
+}
+
+/* Frosted paper: the sheet lets the hero ghost through it, softened, so it reads as a translucent
+   page laid over the sea rather than a flat panel. */
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .works {
+    background: rgba(239, 237, 232, 0.8);
+    -webkit-backdrop-filter: blur(14px) saturate(1.15);
+    backdrop-filter: blur(14px) saturate(1.15);
+  }
+}
+
+.works__head {
+  display: grid;
+  gap: var(--space-3);
+  max-width: 1720px;
+  margin: 0 auto clamp(var(--space-7), 5vw, var(--space-9));
+}
+
+.works__title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 2rem + 4vw, 6rem);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+}
+
+.works__lede {
+  max-width: 44ch;
+  margin: 0;
+  font-size: var(--text-base);
+  color: var(--color-ink-2);
+}
+
+.works__more {
+  max-width: 1720px;
+  margin: var(--space-9) auto 0;
+}
+
+.case-card {
+  max-width: 1720px;
+  margin: 0 auto;
+}
+
+.case-card + .case-card {
+  margin-top: clamp(var(--space-8), 6vw, var(--space-10));
+}
+
+.case-card__link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.case-card__media {
+  position: relative;
+  aspect-ratio: 2 / 1;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--color-tile);
+}
+
+.case-card__media video,
+.case-card__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: scale var(--dur-slow) var(--ease-out);
+}
+
+.case-card__link:hover .case-card__media video,
+.case-card__link:hover .case-card__media img {
+  scale: 1.025;
+}
+
+/* The label: under the pointer with a mouse, otherwise resting in the corner. */
+.case-card__cursor {
+  position: absolute;
+  right: var(--space-4);
+  bottom: var(--space-4);
+  padding: 9px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--color-ink);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: #fff;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+}
+
+.case-card__cursor span {
+  display: inline-block;
+  margin-left: 2px;
+  color: var(--color-accent);
+}
+
+.case-card__media.has-cursor {
+  cursor: none;
+}
+
+.case-card__media.has-cursor .case-card__cursor {
+  top: 0;
+  left: 0;
+  right: auto;
+  bottom: auto;
+  margin: 14px 0 0 14px;
+  opacity: 0;
+  scale: 0.8;
+  transition: opacity var(--dur-fast) var(--ease-out), scale var(--dur) var(--ease-spring);
+}
+
+.case-card__media.has-cursor:hover .case-card__cursor {
+  opacity: 1;
+  scale: 1;
+}
+
+.case-card__caption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3) var(--space-6);
+  margin-top: var(--space-4);
+}
+
+.case-card__org {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--color-ink-2);
+}
+
+.case-card__title {
+  text-wrap: balance;
+  max-width: 22ch;
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 1.3rem + 1.5vw, 2.5rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--color-ink);
+}
+
+.case-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.case-card__tags li {
+  padding: 3px 8px;
+  border: 1px solid rgba(22, 22, 22, 0.28);
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  color: var(--color-ink-2);
+}
+
+.case-card__link:focus-visible {
+  outline: none;
+}
+
+.case-card__link:focus-visible .case-card__media {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+/* As the sheet comes up, the hero sinks back and dims. */
+@supports (animation-timeline: view()) {
+  main:has(> .works) {
+    timeline-scope: --works;
+  }
+
+  .works {
+    view-timeline: --works block;
+  }
+
+  .hero__pin {
+    animation: hero-recede linear both;
+    animation-timeline: --works;
+    animation-range: entry 0% entry 100%;
+  }
+}
+
+@keyframes hero-recede {
+  to {
+    scale: 0.94;
+    opacity: 0.35;
+  }
+}
+
+@media (max-width: 760px) {
+  .works {
+    padding: var(--space-7) var(--space-4) var(--space-9);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+
+  .case-card__media {
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius-md);
+  }
+
+  .case-card__cursor {
+    right: var(--space-3);
+    bottom: var(--space-3);
+    padding: 7px 12px;
+    font-size: 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__pin {
+    animation: none;
+  }
+
+  .case-card__link:hover .case-card__media video,
+  .case-card__link:hover .case-card__media img {
+    scale: none;
+  }
+}
+
+/* ================= Footer: the beach (shore.js) =================
+   A beach seen from above, painted: the sea along the top of the footer, the sand along the bottom, the
+   waves washing in and out between. The water and sand are a WebGL canvas; the umbrellas, boards and
+   people are an SVG layer over it; the footer's own line of text sits on the sand. */
+.works:has(> .shore) {
+  padding-bottom: 0;
+}
+
+.shore {
+  position: relative;
+  margin: var(--space-8) calc(-1 * var(--frame-gutter)) 0;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.shore__scene {
+  position: relative;
+  height: clamp(380px, 36vw, 600px);
+  touch-action: manipulation;
+}
+
+/* Without WebGL, a still sea and sand. */
+.shore__scene.is-flat {
+  background: linear-gradient(to bottom, rgba(239, 237, 232, 0), #1c9fab 22%, #7fd4cc 52%, #f6f3ea 56%, #e7d3b8 62%, #f4e8d8);
+}
+
+.shore__scene canvas,
+.shore__things {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.shore__things {
+  z-index: 1;
+  overflow: visible;
+}
+
+/* Where the page meets the sea: a blur that's strongest at the page and eases off into the water, so the
+   sea seems to come up out of the frosted sheet rather than start at a line. It starts a little above the
+   footer so the blur has page to blend with. The figures sit above it, sharp. */
+.shore__scene::after {
+  position: absolute;
+  top: -44px;
+  right: 0;
+  left: 0;
+  height: calc(44px + 50%);
+  pointer-events: none;
+  content: "";
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.5) 8%, #000 22%, #000 46%, rgba(0, 0, 0, 0.55) 68%, rgba(0, 0, 0, 0.18) 86%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.5) 8%, #000 22%, #000 46%, rgba(0, 0, 0, 0.55) 68%, rgba(0, 0, 0, 0.18) 86%, transparent 100%);
+}
+
+/* Small loops: the surfer paddles (each arm reaches forward, pulls back under the water, comes round
+   again), swimmers do a slow breaststroke with rings spreading round them, and the surfer's wake shows
+   while riding. */
+.shore .sh-arm {
+  animation: sh-paddle-l 2.4s cubic-bezier(.45, 0, .4, 1) infinite;
+}
+
+.shore .sh-arm--r {
+  animation-name: sh-paddle-r;
+  animation-delay: -1.2s;
+}
+
+.shore .sh-stroke {
+  animation: sh-stroke-l 3.4s ease-in-out infinite;
+}
+
+.shore .sh-stroke--r { animation-name: sh-stroke-r; }
+
+.shore .sh-swim {
+  animation: sh-bob 3.4s ease-in-out infinite;
+}
+
+.shore .sh-ring {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: sh-ring 3.4s ease-out infinite;
+}
+
+.shore .sh-ring--2 { animation-delay: -1.7s; }
+
+.shore .sh-wake {
+  opacity: 0;
+  transition: opacity 0.7s ease;
+}
+
+.shore .sh-trail {
+  transition: opacity 0.5s ease;
+}
+
+.shore .is-riding .sh-wake { opacity: 1; }
+.shore .is-riding .sh-trail { opacity: 0; }
+
+.shore .sh-lie,
+.shore .sh-stand {
+  transition: opacity 0.35s ease;
+}
+
+.shore .sh-heading {
+  transform-origin: 0 0;
+}
+
+/* People in the water are never quite still: they wander a little with the swell and turn slowly. */
+.shore .sh-drift {
+  animation: sh-drift-a 19s ease-in-out infinite;
+}
+
+.shore .sh-drift--b {
+  animation-name: sh-drift-b;
+  animation-duration: 23s;
+  animation-delay: -7s;
+}
+
+.shore .sh-drift--c {
+  animation-name: sh-drift-c;
+  animation-duration: 14s;
+}
+
+@keyframes sh-drift-a {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(6px, -4px) rotate(7deg); }
+  50% { transform: translate(11px, 1px) rotate(-3deg); }
+  75% { transform: translate(4px, 5px) rotate(-8deg); }
+}
+@keyframes sh-drift-b {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  30% { transform: translate(-8px, 3px) rotate(-6deg); }
+  60% { transform: translate(-3px, -5px) rotate(5deg); }
+  80% { transform: translate(3px, -2px) rotate(2deg); }
+}
+@keyframes sh-drift-c {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  30% { transform: translate(2px, -3px) rotate(3deg); }
+  65% { transform: translate(-3px, 2px) rotate(-3.5deg); }
+}
+
+.shore .sh-tilt,
+.shore .sh-canopy {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@keyframes sh-paddle-l {
+  0% { transform: rotate(0deg) scale(1); opacity: 1; }
+  45% { transform: rotate(-118deg) scale(0.78); opacity: 0.45; }
+  55% { transform: rotate(-124deg) scale(0.8); opacity: 0.5; }
+  100% { transform: rotate(0deg) scale(1); opacity: 1; }
+}
+@keyframes sh-paddle-r {
+  0% { transform: rotate(0deg) scale(1); opacity: 1; }
+  45% { transform: rotate(118deg) scale(0.78); opacity: 0.45; }
+  55% { transform: rotate(124deg) scale(0.8); opacity: 0.5; }
+  100% { transform: rotate(0deg) scale(1); opacity: 1; }
+}
+@keyframes sh-stroke-l { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(-62deg); } }
+@keyframes sh-stroke-r { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(62deg); } }
+@keyframes sh-bob { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(0.6px, -1.2px); } }
+@keyframes sh-ring { from { transform: scale(0.55); opacity: 0.7; } to { transform: scale(1.7); opacity: 0; } }
+
+.shore.is-idle * {
+  animation-play-state: paused !important;
+}
+
+.shore.is-still * {
+  animation: none !important;
+}
+
+/* The footer's line of text, sitting on the sand. */
+.shore__bar {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--frame-gutter) var(--space-5);
+  pointer-events: none;
+}
+
+.shore__bar > * {
+  pointer-events: auto;
+}
+
+.shore__bar .mono-label {
+  color: #7a6f5f;
+}
+
+.shore__bar a {
+  text-decoration: none;
+}
+
+.shore__bar a:hover,
+.shore__bar a:focus-visible {
+  color: var(--color-ink);
+}
+
+@media (max-width: 760px) {
+  .shore {
+    margin-inline: calc(-1 * var(--space-4));
+  }
+
+  .shore__bar {
+    padding-inline: var(--space-4);
+  }
+
 }

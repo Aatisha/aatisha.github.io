@@ -329,3 +329,68 @@
   }, { threshold: 0.25 });
   videos.forEach((video) => observer.observe(video));
 })();
+
+// Playground: the sound button on a video with a soundtrack. The video starts muted; pressing the
+// button turns the sound on, and again turns it off.
+document.querySelectorAll('[data-sound]').forEach((button) => {
+  const video = button.parentElement.querySelector('video');
+  if (!video) return;
+  button.addEventListener('click', () => {
+    video.muted = !video.muted;
+    if (!video.muted) video.play().catch(() => {});
+    button.setAttribute('aria-pressed', String(!video.muted));
+    button.setAttribute('aria-label', video.muted ? 'Sound on' : 'Sound off');
+  });
+});
+
+// Contact: the button beside my address copies it, saying so for a moment (data-copy-done, or
+// "Copied"); and my local time is kept up to date (in its own zone, whatever the visitor's).
+document.querySelectorAll('[data-copy]').forEach((button) => {
+  const label = button.querySelector('[data-copy-label]') || button;
+  const idle = label.textContent;
+  let timer = 0;
+  const copied = () => {
+    label.textContent = button.dataset.copyDone || 'Copied';
+    button.classList.add('is-copied');
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      label.textContent = idle;
+      button.classList.remove('is-copied');
+    }, 1800);
+  };
+  const fallback = (text) => {
+    const area = document.createElement('textarea');
+    area.value = text;
+    area.setAttribute('readonly', '');
+    area.style.cssText = 'position:fixed;opacity:0;';
+    document.body.append(area);
+    area.select();
+    const ok = document.execCommand('copy');
+    area.remove();
+    if (ok) copied();
+  };
+  button.addEventListener('click', () => {
+    const text = button.dataset.copy;
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(copied, () => fallback(text));
+    } else {
+      fallback(text);
+    }
+  });
+});
+
+document.querySelectorAll('[data-local-time]').forEach((el) => {
+  const format = new Intl.DateTimeFormat('en-US', {
+    hour: 'numeric',
+    minute: '2-digit',
+    timeZone: el.dataset.zone,
+    timeZoneName: 'short',
+  });
+  const tick = () => {
+    const now = new Date();
+    el.textContent = format.format(now);
+    el.dateTime = now.toISOString();
+  };
+  tick();
+  setInterval(tick, 30000);
+});
