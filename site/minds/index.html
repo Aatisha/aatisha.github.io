@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MINDS@UW — Aatisha Cyrill</title>
+  <meta name="description" content="Case study: redesigning MINDS@UW, the University of Wisconsin's open-access research repository, so 32,000 papers are easy to find and easy to add to. Research, product decisions and the shipped design.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Geist+Mono:wght@400;500&family=Geist:ital,wght@0,300..600;1,400..500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="page">
+  <div class="window page__window">
+    <header class="site-bar">
+      <a class="brand" href="/">Aatisha Cyrill</a>
+      <nav aria-label="Primary">
+        <ul class="nav-mono">
+          <li><a href="/#work" aria-current="page">Work</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/playground/">Playground</a></li>
+          <li><a href="/postcard/">Postcard</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="cs">
+      <!-- A case study: the outcome first (title, the facts, the numbers and the shipped product),
+           then the story in order: context, problem, research, insights, the decisions that shaped
+           it, the craft, the outcome and what I learned. The index on the left follows along
+           (minds.js). Each decision reads as the tension, the choice and the reason. -->
+      <header class="cs-hero" data-reveal>
+        <p class="cs-eyebrow"><a href="/#work">← Work</a> <span aria-hidden="true">/</span> MINDS@UW</p>
+        <h1 class="cs-hero__title">Making 32,000 research papers easy to find, <em>and easy to add to.</em></h1>
+        <p class="cs-hero__lead">MINDS@UW is the open-access research repository for the University of Wisconsin System. As its sole designer, I turned an archive shaped around its administrators into a front door for researchers on every UW campus, and shipped it.</p>
+
+        <dl class="cs-facts">
+          <div><dt>Role</dt><dd>Sole product designer<br>Research, UX, UI, UX writing</dd></div>
+          <div><dt>Timeline</dt><dd>Mar – Sep 2024<br>7 months</dd></div>
+          <div><dt>Worked with</dt><dd>Librarians, admins, engineers and data analysts</dd></div>
+          <div><dt>Status</dt><dd><span class="cs-live" aria-hidden="true"></span>Shipped<br><a href="https://minds.wisconsin.edu/" target="_blank" rel="noopener">minds.wisconsin.edu ↗</a></dd></div>
+        </dl>
+
+        <figure class="cs-media cs-media--hero">
+          <video src="/media/work/minds/minds-hero.mp4" width="2560" height="1440" poster="/media/work/minds/minds-hero.poster.jpg" muted loop playsinline preload="metadata" data-autoplay aria-label="The redesigned MINDS@UW homepage, with Make a deposit and Browse communities as its two main actions"></video>
+        </figure>
+
+        <ul class="cs-stats" aria-label="Outcomes">
+          <li><b>65%</b><span>faster impact reports for the library, measured after launch</span></li>
+          <li><b>~50%</b><span>fewer support requests projected, from self-serve help and access workflows</span></li>
+          <li><b>9</b><span>interviews across three user groups, 170+ notes, 4 insights</span></li>
+        </ul>
+      </header>
+
+      <div class="cs-body">
+        <nav class="cs-index" aria-label="Case study sections">
+          <ol>
+            <li><a href="#context">Context</a></li>
+            <li><a href="#problem">Problem</a></li>
+            <li><a href="#research">Research</a></li>
+            <li><a href="#insights">Insights</a></li>
+            <li><a href="#decisions">Decisions</a></li>
+            <li><a href="#craft">Craft</a></li>
+            <li><a href="#outcome">Outcome</a></li>
+            <li><a href="#reflection">Reflection</a></li>
+          </ol>
+        </nav>
+
+        <div class="cs-flow">
+          <section class="cs-section" id="context" aria-labelledby="context-title" data-reveal>
+            <p class="cs-label">01 · Context</p>
+            <h2 class="cs-title" id="context-title">A repository is only as useful as what people find in it, and put into it.</h2>
+            <p class="cs-text">Researchers across the UW System deposit their theses, datasets and papers in MINDS@UW so the world can find, cite and build on them. It held a wealth of research, but people described it as hard to navigate and harder to contribute to.</p>
+            <ul class="cs-figures" aria-label="MINDS@UW at a glance">
+              <li><b>32,000</b> items<span>Theses, papers, reports</span></li>
+              <li><b>3,000</b> users<span>Researchers, faculty, admins</span></li>
+              <li><b>500+</b> collections<span>Humanities to agriculture</span></li>
+              <li><b>UW System</b><span>Madison, Milwaukee, Eau Claire, Stout and more</span></li>
+            </ul>
+          </section>
+
+          <section class="cs-section" id="problem" aria-labelledby="problem-title" data-reveal>
+            <p class="cs-label">02 · Problem</p>
+            <h2 class="cs-title" id="problem-title">Thousands of papers, and no clear way in.</h2>
+            <p class="cs-text">The homepage was a sitemap: a long list of policies and campus links, and nothing that said what you could do here. People who came to share their work couldn't find where to start, and people who came to read it hit closed collections with no explanation.</p>
+            <figure class="cs-media">
+              <img src="/media/work/minds/problem.webp" alt="The old MINDS@UW homepage, annotated: a long sitemap of campus links, no visible way to start a submission, and extensive text with little hierarchy" loading="lazy" width="2400" height="1423">
+              <figcaption>The homepage before: every campus listed, no task in sight.</figcaption>
+            </figure>
+            <blockquote class="cs-quote">“It’s not immediately clear how to start a submission.”<cite>Researcher</cite></blockquote>
+          </section>
+
+          <section class="cs-section" id="research" aria-labelledby="research-title" data-reveal>
+            <p class="cs-label">03 · Research</p>
+            <h2 class="cs-title" id="research-title">I listened to everyone the platform served, not just the people who ran it.</h2>
+            <ol class="cs-methods">
+              <li><b>Competitive review</b><span>DukeSpace, Syracuse’s SURFACE and Cornell’s eCommons</span></li>
+              <li><b>9 interviews</b><span>Librarians, department admins, researchers and first-time users</span></li>
+              <li><b>Affinity mapping</b><span>170+ notes clustered into 7 themes and 4 insights</span></li>
+            </ol>
+
+            <h3 class="cs-subtitle">Three groups, competing needs</h3>
+            <p class="cs-text">Mapping who MINDS served showed the tension early. The platform was tuned for its power users, while its main contributors and an entire group of campuses were working around it.</p>
+            <ul class="cs-people">
+              <li><span class="cs-tag">Power users</span><b>Admins</b>Create collections, mint DOIs, edit records and pull usage reports.</li>
+              <li><span class="cs-tag">Main contributors</span><b>UW–Madison researchers</b>Librarians, department admins and researchers who deposit the work.</li>
+              <li><span class="cs-tag cs-tag--accent">Overlooked</span><b>UW System campuses</b>Library teams outside Madison who curate their own campus’s collections.</li>
+            </ul>
+
+            <h3 class="cs-subtitle">Peers polished search, and buried depositing</h3>
+            <p class="cs-text">Other repositories looked clean and put search up front. But the one job a repository exists for, adding work to it, was hidden, inconsistent or open only to some users. Only eCommons made it obvious. That set the bar: contributing had to be as easy to find as searching.</p>
+            <div class="cs-gallery cs-gallery--3" style="--ar: 1294 / 871;">
+              <figure><img src="/media/work/minds/duke-space.webp" alt="DukeSpace homepage" loading="lazy" width="1294" height="871"><figcaption><b>DukeSpace</b> Clean, but no visible way to deposit.</figcaption></figure>
+              <figure><img src="/media/work/minds/surface.webp" alt="Syracuse University SURFACE homepage" loading="lazy" width="1295" height="871"><figcaption><b>SURFACE</b> Engaging data, crowded actions.</figcaption></figure>
+              <figure><img src="/media/work/minds/ecommons.webp" alt="Cornell eCommons homepage" loading="lazy" width="1297" height="873"><figcaption><b>eCommons</b> “Submit your work” front and centre.</figcaption></figure>
+            </div>
+
+            <figure class="cs-media">
+              <video width="1920" height="1080" poster="/media/work/minds/affinity-map-timelapse.poster.jpg" muted loop playsinline preload="none" data-autoplay aria-label="Time-lapse of interview notes being clustered on a wall of sticky notes"><source src="/media/work/minds/affinity-map-timelapse.mp4" type="video/mp4"></video>
+              <figcaption>170+ notes from nine interviews, clustered on my wall.</figcaption>
+            </figure>
+          </section>
+
+          <section class="cs-section" id="insights" aria-labelledby="insights-title" data-reveal>
+            <p class="cs-label">04 · Insights</p>
+            <h2 class="cs-title" id="insights-title">MINDS was designed around the people who run it, not the people who use it.</h2>
+            <p class="cs-text">Different people were doing the same tasks through different, undocumented paths. Yet everyone wanted MINDS to succeed. It needed to grow from an administrative archive into a public space for research.</p>
+            <ol class="cs-insights">
+              <li>
+                <b>Navigation was a guessing game</b>
+                <p>Users clicked through layer after layer to reach a single item, and couldn’t see where to start a deposit.</p>
+              </li>
+              <li>
+                <b>Campuses outside Madison felt left out</b>
+                <p>System librarians saw a Madison tool with their names in a list, not a shared home for their work.</p>
+                <q>It is hard to push on our campus because it looks very Madison.</q>
+              </li>
+              <li>
+                <b>The value was invisible</b>
+                <p>Researchers couldn’t see what MINDS did for their work: who read it, and where it travelled.</p>
+              </li>
+              <li>
+                <b>Closed collections were dead ends</b>
+                <p>Access ran through library loans that no one explained, so requests turned into email chains.</p>
+              </li>
+            </ol>
+            <p class="cs-hmw"><span class="cs-label">How might we</span>make MINDS@UW feel like it belongs to every researcher in the UW System, without losing the depth its administrators rely on?</p>
+          </section>
+
+          <section class="cs-section" id="decisions" aria-labelledby="decisions-title" data-reveal>
+            <p class="cs-label">05 · Decisions</p>
+            <h2 class="cs-title" id="decisions-title">Five decisions that shaped the redesign.</h2>
+            <p class="cs-text">I had a wall of ideas and limited engineering time. I prioritised what users needed most against what the platform could support, and kept the UW visual language so the change felt like an upgrade, not a stranger.</p>
+
+            <article class="cs-decision">
+              <p class="cs-decision__no">Decision 1</p>
+              <h3 class="cs-decision__title">Lead with two jobs, not a sitemap.</h3>
+              <dl class="cs-decision__why">
+                <div><dt>First design</dt><dd>A homepage centred on search and campus identity, like most peers.</dd></div>
+                <div><dt>Chose</dt><dd>Two clear actions above the fold, <i>Make a deposit</i> and <i>Browse communities</i>, with search kept in the bar.</dd></div>
+                <div><dt>Why</dt><dd>Search already worked. Depositing was the job people couldn’t find, and the one that keeps a repository alive.</dd></div>
+              </dl>
+              <div class="cs-compare" data-compare style="aspect-ratio: 2169 / 2951; --split: 50%;">
+                <img src="/media/work/minds/homepage-final-design.webp" alt="The redesigned homepage: a hero with Make a deposit and Browse communities, then how to deposit, benefits and recent items" loading="lazy" width="2169" height="2951">
+                <div class="cs-compare__before"><img src="/media/work/minds/minds-old-homescreen.webp" alt="The old homepage: policies and a sitemap of campus links" loading="lazy" width="2400" height="2448"></div>
+                <span class="cs-compare__chip cs-compare__chip--before" aria-hidden="true">Before</span>
+                <span class="cs-compare__chip cs-compare__chip--after" aria-hidden="true">After</span>
+                <input class="cs-compare__range" type="range" min="0" max="100" value="50" aria-label="Compare the old and new homepage: slide left to see more of the new one">
+              </div>
+            </article>
+
+            <article class="cs-decision">
+              <p class="cs-decision__no">Decision 2</p>
+              <h3 class="cs-decision__title">Give every campus a face, not a line in a list.</h3>
+              <dl class="cs-decision__why">
+                <div><dt>First try</dt><dd>Campuses grouped in a cleaner sitemap.</dd></div>
+                <div><dt>Testing showed</dt><dd>System users still didn’t see themselves, or what each campus had contributed.</dd></div>
+                <div><dt>Chose</dt><dd>A communities page of campus cards: a photo, what each holds, and one step into its collections.</dd></div>
+              </dl>
+              <div class="cs-gallery cs-gallery--pair" style="--ar: 2400 / 2912;">
+                <figure><img src="/media/work/minds/communities-homescreen.webp" alt="First design: UW campuses as a list under a sitemap heading" loading="lazy" width="2400" height="2912"><figcaption><span class="cs-tag">Before testing</span></figcaption></figure>
+                <figure class="cs-gallery__video"><video src="/media/work/minds/solution-card.mp4" width="2160" height="2600" poster="/media/work/minds/solution-card.poster.jpg" muted loop playsinline preload="none" data-autoplay aria-label="A UW Stout campus card with its photo, what it holds and a Browse collections button"></video><figcaption><span class="cs-tag cs-tag--accent">Shipped</span></figcaption></figure>
+              </div>
+            </article>
+
+            <article class="cs-decision">
+              <p class="cs-decision__no">Decision 3</p>
+              <h3 class="cs-decision__title">Show where research comes from, and where it goes.</h3>
+              <dl class="cs-decision__why">
+                <div><dt>Tension</dt><dd>Item pages were walls of text. Readers needed to trust a source; authors wanted proof of reach.</dd></div>
+                <div><dt>Chose</dt><dd>Structured metadata, files up front, and usage analytics with the item’s history on every page.</dd></div>
+                <div><dt>Why</dt><dd>Provenance builds trust for readers, and visible impact is the reason authors deposit again.</dd></div>
+              </dl>
+              <figure class="cs-media">
+                <video width="2394" height="1390" poster="/media/work/minds/minds-item-page.poster.jpg" muted loop playsinline preload="none" data-autoplay aria-label="The redesigned item page with abstract, structured metadata, files and a usage chart"><source src="/media/work/minds/minds-item-page.mp4" type="video/mp4"></video>
+              </figure>
+            </article>
+
+            <article class="cs-decision">
+              <p class="cs-decision__no">Decision 4</p>
+              <h3 class="cs-decision__title">Fix the conversation, not just the screen.</h3>
+              <dl class="cs-decision__why">
+                <div><dt>Tension</dt><dd>Closed collections looked like a UI problem. The root cause was manual back-and-forth between users and librarians.</dd></div>
+                <div><dt>Chose</dt><dd>An access-management workflow for admins: one request queue, automatic responses and reusable message templates.</dd></div>
+                <div><dt>Why</dt><dd>A clearer notice alone would still end in an email chain. Designing the admin side is what made the public side work.</dd></div>
+              </dl>
+              <figure class="cs-media">
+                <video width="2396" height="1394" poster="/media/work/minds/minds-admin-page.poster.jpg" muted loop playsinline preload="none" data-autoplay aria-label="The access management tool: request queue, auto-response settings and message templates"><source src="/media/work/minds/minds-admin-page.mp4" type="video/mp4"></video>
+              </figure>
+            </article>
+
+            <article class="cs-decision">
+              <p class="cs-decision__no">Decision 5</p>
+              <h3 class="cs-decision__title">Build analytics beside the repository, not inside it.</h3>
+              <dl class="cs-decision__why">
+                <div><dt>Constraint</dt><dd>A feasibility review with engineers ruled out building the dashboards into the repository itself.</dd></div>
+                <div><dt>Chose</dt><dd>A separate, hosted analytics service, designed with data analysts and librarians around the data that existed.</dd></div>
+                <div><dt>Result</dt><dd>Impact reports now take <b>65% less time</b> to produce, and campuses can show what they contribute.</dd></div>
+              </dl>
+              <figure class="cs-media">
+                <video width="2388" height="1402" poster="/media/work/minds/solution-analytics.poster.jpg" muted loop playsinline preload="none" data-autoplay aria-label="MINDS@UW Analytics: submissions, downloads, affiliations by location and a real-time world map"><source src="/media/work/minds/solution-analytics.mp4" type="video/mp4"></video>
+              </figure>
+            </article>
+          </section>
+
+          <section class="cs-section" id="craft" aria-labelledby="craft-title" data-reveal>
+            <p class="cs-label">06 · Craft</p>
+            <h2 class="cs-title" id="craft-title">The details that hold it together.</h2>
+            <ul class="cs-craft">
+              <li>
+                <img src="/media/work/minds/design-system.webp" alt="The MINDS@UW design system: components, colour palette and type scale" loading="lazy" width="2400" height="1198">
+                <b>A design system</b>
+                <p>Reusable components, a palette and a type scale built within the UW brand, so every page reads as one product.</p>
+              </li>
+              <li>
+                <img src="/media/work/minds/accessibility.webp" alt="Accessibility checks on the homepage with a colour-blindness simulation" loading="lazy" width="2400" height="990">
+                <b>Accessible by default</b>
+                <p>Tested against WCAG with BrowserStack, from text contrast to colour-blindness simulations on key pages.</p>
+              </li>
+              <li>
+                <div class="cs-copy" aria-hidden="true">
+                  <span class="cs-copy__btn">Make a deposit</span>
+                  <span class="cs-copy__btn cs-copy__btn--ghost">Browse collections</span>
+                  <span class="cs-copy__btn cs-copy__btn--ghost">How to deposit</span>
+                </div>
+                <b>Words that point to tasks</b>
+                <p>I wrote the copy, from task-first buttons to error messages, and refined it with the team over several rounds.</p>
+              </li>
+            </ul>
+          </section>
+
+          <section class="cs-section" id="outcome" aria-labelledby="outcome-title" data-reveal>
+            <p class="cs-label">07 · Outcome</p>
+            <h2 class="cs-title" id="outcome-title">Shipped, and already doing its job.</h2>
+            <p class="cs-text">The redesign is live for the whole UW System. Usability testing shaped it before handoff, and its first measured win came from the analytics service.</p>
+            <ul class="cs-results">
+              <li><b>65%</b>faster impact reporting, measured</li>
+              <li><b>~50%</b>fewer support requests, projected</li>
+              <li><b>Every campus</b>with its own page and collections</li>
+            </ul>
+            <figure class="cs-media">
+              <video width="2390" height="1402" poster="/media/work/minds/minds-homepage-demo.poster.jpg" muted loop playsinline preload="none" data-autoplay aria-label="Scrolling through the live homepage: deposit and browse actions, how to deposit, benefits, recent items and analytics"><source src="/media/work/minds/minds-homepage-demo.mp4" type="video/mp4"></video>
+            </figure>
+          </section>
+
+          <section class="cs-section" id="reflection" aria-labelledby="reflection-title" data-reveal>
+            <p class="cs-label">08 · Reflection</p>
+            <h2 class="cs-title" id="reflection-title">What I’d take to the next project.</h2>
+            <ol class="cs-lessons">
+              <li><b>Design for the quiet users.</b> The campuses outside Madison never complained the loudest, but their absence was the clearest signal in the research.</li>
+              <li><b>Often, the fix is a workflow.</b> Much of the friction lived in emails and handoffs, not pixels. Designing for admins made the experience better for everyone.</li>
+              <li><b>Next, I’d measure the deposit.</b> With it live, the metric I’d watch is deposit completion, and how many first-time contributors come back.</li>
+            </ol>
+          </section>
+
+          <footer class="cs-end">
+            <a class="cs-end__link" href="/myworker.ai/"><span class="cs-label">Next case study</span><span>MyWorker.AI <span class="cs-end__arrow" aria-hidden="true">→</span></span></a>
+          </footer>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer: the painted beach from the home page (shore.js). -->
+    <footer class="shore" role="contentinfo">
+      <div class="shore__scene" aria-hidden="true"></div>
+      <div class="shore__bar">
+        <p class="mono-label">© 2026 Aatisha Cyrill</p>
+        <a class="mono-label" href="#">Back to top ↑</a>
+      </div>
+    </footer>
+  </div>
+
+  <script type="module" src="/js/about.js"></script>
+  <script type="module" src="/js/minds.js"></script>
+  <script type="module" src="/js/shells.js"></script>
+  <script type="module" src="/js/shore.js"></script>
+  <script type="module" src="/js/brand.js"></script>
+</body>
+</html>

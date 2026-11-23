@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About-meta — Aatisha Cyrill</title>
+  <meta name="description" content="Aatisha Cyrill off the clock, as a profile: the sea, sails, sunsets, books and the small things in between.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Geist+Mono:wght@400;500&family=Geist:ital,wght@0,300..600;1,400..500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="page">
+  <div class="window page__window">
+    <header class="site-bar">
+      <a class="brand" href="/">Aatisha Cyrill</a>
+      <nav aria-label="Primary">
+        <ul class="nav-mono">
+          <li><a href="/">Work</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/playground/">Playground</a></li>
+          <li><a href="/postcard/">Postcard</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Me off the clock, told as a social profile: the bio and its numbers, a few buttons that
+           lead somewhere real, a row of highlights, then a grid of nine
+           photos. All laid over my photo of sails on the bay. -->
+      <section class="ig" aria-labelledby="ig-title" data-reveal>
+        <div class="ig__bg" aria-hidden="true"></div>
+
+        <div class="ig__profile">
+          <div class="ig__head">
+            <img class="ig__avatar" src="/media/photos/about-meta-avatar.webp" alt="Aatisha smiling in a park on a summer evening" width="360" height="360">
+            <ul class="ig__stats">
+              <li><b>9</b> posts</li>
+              <li><b>∞</b> sunsets</li>
+              <li><b>1</b> following</li>
+            </ul>
+          </div>
+
+          <h1 id="ig-title" class="ig__name">Aatisha Cyrill <span aria-hidden="true">||</span> Off the clock</h1>
+          <p class="ig__category">Product Designer</p>
+          <p class="ig__bio">
+            <span>🌊 Happiest by the sea, chasing sails and sunsets</span>
+            <span>🛠️ Designing and shipping at LifeLoop</span>
+            <span>📍 Seattle, Washington</span>
+          </p>
+
+          <!-- My profile song: the pill plays Apple Music's 30-second preview of it, from 10 seconds in
+               (data-song-start) and looping back there, and
+               pauses on a second tap (about-meta.js). Apple asks that its previews link back to the
+               song, so a small link to it shows beside the pill while it plays. -->
+          <div class="ig-song" data-song>
+            <button class="ig-song__chip" type="button" aria-pressed="false" aria-label="Play Sailor Song by Gigi Perez" data-song-toggle>
+              <svg class="ig-song__note" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18.5V6.2l10-2.2v12.3"/><circle cx="6.6" cy="18.5" r="2.4"/><circle cx="16.6" cy="16.3" r="2.4"/></svg>
+              <span aria-hidden="true">Sailor Song · Gigi Perez</span>
+              <span class="ig-song__bars" aria-hidden="true"><i></i><i></i><i></i></span>
+            </button>
+            <a class="ig-song__source" href="https://music.apple.com/us/album/sailor-song/1770187509" target="_blank" rel="noopener">Apple Music ↗</a>
+            <audio src="https://audio-ssl.itunes.apple.com/itunes-/assets/AudioPreview211/v4/6d/fe/18/6dfe184e-7612-f171-0356-0b7a84112e9a/mzaf_9760607751711758843.plus.aac.p.m4a#t=10" preload="none" data-song-audio data-song-start="10"></audio>
+          </div>
+
+          <div class="ig__actions">
+            <a class="ig__btn ig__btn--primary" href="https://www.linkedin.com/in/aatisha-cyrill/" target="_blank" rel="noopener">Connect</a>
+            <a class="ig__btn" href="/postcard/">Message</a>
+            <button class="ig__btn" type="button" data-copy="hello@aatishacyrill.com" data-copy-done="Email copied" aria-live="polite">Email</button>
+          </div>
+
+          <!-- Highlights: just for the look, a few of the things I love, each in a circle. -->
+          <ul class="ig__highlights" aria-label="Highlights">
+            <li><span class="ig-highlight"><span class="ig-ring"><img src="/media/photos/polaroid-4.webp" alt=""></span>Sea</span></li>
+            <li><span class="ig-highlight"><span class="ig-ring"><img src="/media/photos/journal-powells.webp" alt=""></span>Shelf</span></li>
+            <li><span class="ig-highlight"><span class="ig-ring"><img src="/media/photos/journal-market.webp" alt=""></span>Wander</span></li>
+            <li><span class="ig-highlight"><span class="ig-ring"><img src="/media/photos/twin-6.webp" alt="" style="object-position: 30% center;"></span>Birds</span></li>
+            <li><span class="ig-highlight"><span class="ig-ring"><img src="/media/photos/polaroid-1.webp" alt=""></span>Light</span></li>
+          </ul>
+
+          <!-- Posts, reels, tagged: only posts here, so the tabs are just for the look. -->
+          <div class="ig__tabs" aria-hidden="true">
+            <svg class="is-active" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="1.5"/><path d="M9.2 3.5v17M14.8 3.5v17M3.5 9.2h17M3.5 14.8h17"/></svg>
+            <svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><path d="M3.5 8.5h17M9 3.5l2.5 5M14.5 3.5l2.5 5"/><path d="M10.2 11.6v5.2l4.4-2.6z"/></svg>
+            <svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="2"/><circle cx="12" cy="10.2" r="2.8"/><path d="M6.8 20.5c.8-3 2.8-4.6 5.2-4.6s4.4 1.6 5.2 4.6"/></svg>
+          </div>
+
+          <!-- Just the photos; each one's caption shows quietly on hover. -->
+          <ul class="ig__grid">
+            <li class="ig-post">
+              <img class="ig-post__photo" src="/media/photos/aatisha-badge.webp" alt="Arms out on the rocks above the sea" style="object-position: center 40%;">
+              <svg class="ig-post__pin" viewBox="0 0 24 24" aria-label="Pinned"><path d="M14.5 3.5l6 6-2.6.9-3.6 3.6.5 3.9-1.6 1.6-3.3-3.3-4.6 4.6-1-1 4.6-4.6-3.3-3.3 1.6-1.6 3.9.5 3.6-3.6z"/></svg>
+              <span class="ig-post__caption" aria-hidden="true">Orcas spotting day</span>
+            </li>
+            <li class="ig-post">
+              <img class="ig-post__photo" src="/media/photos/twin-3.webp" alt="Paddleboarding on a lake under pine hills">
+              <span class="ig-post__caption" aria-hidden="true">Paddling into the quiet</span>
+            </li>
+            <li class="ig-post">
+              <img class="ig-post__photo" src="/media/photos/photo-storm.webp" alt="A storm rolling in over calm water">
+              <span class="ig-post__caption" aria-hidden="true">Storms rolling in</span>
+            </li>
+            <li class="ig-post">
+              <img class="ig-post__photo" src="/media/photos/journal-powells.webp" alt="Outside Powell’s Books in Portland">
+              <span class="ig-post__caption" aria-hidden="true">Lost in Powell’s</span>
+            </li>
+            <li class="ig-post">
+              <img class="ig-post__photo" src="/media/photos/photo-rainier.webp" alt="Mount Rainier over the water in hazy evening light">
+              <span class="ig-post__caption" aria-hidden="true">What a delight, Rainier!</span>
+            </li>
+            <li class="ig-post">
+              <img class="ig-post__photo" src="/media/photos/journal-market.webp" alt="A plant stall at a weekend market">
+              <span class="ig-post__caption" aria-hidden="true">Search for succulents</span>
+            </li>
+            <li class="ig-post">
+              <img class="ig-post__photo" src="/media/photos/journal-starlight.webp" alt="A band playing on an outdoor stage">
+              <span class="ig-post__caption" aria-hidden="true">Summer nights, live music</span>
+            </li>
+            <li class="ig-post">
+              <img class="ig-post__photo" src="/media/photos/journal-honeycreeper.webp" alt="A blue honeycreeper on a branch">
+              <span class="ig-post__caption" aria-hidden="true">A honeycreeper said hi</span>
+            </li>
+            <li class="ig-post">
+              <img class="ig-post__photo" src="/media/photos/photo-blue-hour.webp" alt="Blue hour over the water, a lamp glowing">
+              <span class="ig-post__caption" aria-hidden="true">Blue hour by the water</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer: the painted beach from the home page (shore.js). -->
+    <footer class="shore" role="contentinfo">
+      <div class="shore__scene" aria-hidden="true"></div>
+      <div class="shore__bar">
+        <p class="mono-label">© 2026 Aatisha Cyrill</p>
+        <a class="mono-label" href="#">Back to top ↑</a>
+      </div>
+    </footer>
+  </div>
+
+  <script type="module" src="/js/about.js"></script>
+  <script type="module" src="/js/about-meta.js"></script>
+  <script type="module" src="/js/shells.js"></script>
+  <script type="module" src="/js/shore.js"></script>
+  <script type="module" src="/js/brand.js"></script>
+</body>
+</html>
