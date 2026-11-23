@@ -5,42 +5,90 @@
   (white borders, soft shadows, slight rotation, fanned stacks).
 */
 :root {
-  /* ---------- Colour ---------- */
-  --color-canvas: #e3e1dc;        /* warm grey page behind cards */
-  --color-surface: #ffffff;       /* the window */
-  --color-paper: #f7f6f3;         /* warm off-white panels */
-  --color-tile: #ecebe7;          /* bento tiles */
-  --color-tile-hover: #e5e3de;
+  /* ---------- Colour: Sea Glass ----------
+     A deep teal from the painted sea in the footer, with cool, sea-washed neutrals. Fourteen roles;
+     components ask for a role, never a raw colour. Every text pair passes WCAG AA: Ink 2 is 6.5:1 or
+     more, Ink 3 and Accent ink 4.5:1 or more on Surface, Paper and Tile. The sea, sand, postcard
+     props and client brands are content, not theme, and keep their own colours. */
+  --color-canvas: #dde5e2;        /* behind the window */
+  --color-surface: #ffffff;       /* the window and cards */
+  --color-paper: #f3f7f5;         /* raised panels */
+  --color-tile: #e6eeeb;          /* behind media, inset areas */
+  --color-tile-hover: #dbe6e2;
+  --color-sheet: #eaf0ed;         /* the Work sheet over the hero */
 
-  --color-ink: #161616;           /* primary text */
-  --color-ink-2: #6e6d69;         /* secondary text */
-  --color-ink-3: #a5a39e;         /* inactive nav, captions */
-  --color-line: rgba(22, 22, 22, 0.08);
+  --color-ink: #0f1f1e;           /* headlines and primary text */
+  --color-ink-2: #495554;         /* body text, leads, descriptions */
+  --color-ink-3: #636d6d;         /* captions, labels, meta, inactive nav */
+  --color-line: rgba(15, 31, 30, 0.1);
 
-  --color-accent: #ff5a1f;        /* used sparingly: counts, a single sticker, focus */
+  --color-accent: #0d7676;        /* fills and marks: counts, focus, the quote rule */
+  --color-accent-ink: #0d7676;    /* accent text: tags, numbers in cards */
+  --color-accent-soft: #dff1ef;   /* the tint behind accent text */
+  --color-on-accent: #ffffff;     /* text on an accent fill */
+  --color-positive: #2fa36b;      /* live and shipped */
   --color-sea: #0f8a8a;           /* hero photo fallback */
 
-  /* ---------- Type ---------- */
-  --font-sans: "Geist", "Inter", "Helvetica Neue", Arial, sans-serif;
+  /* ---------- Type: Sans + serif accent ----------
+     Geist for every headline and everything you read. One phrase per headline, the one it ends on,
+     turns to Instrument Serif italic in Ink 2; pull quotes are Instrument Serif italic too. Geist Mono
+     for labels, Caveat only for writing on objects (polaroids, postcards). Twelve roles; each is one
+     size, fluid between phone and desktop. 11px is the smallest text. */
+  --font-sans: "Geist", "Helvetica Neue", Arial, sans-serif;
+  --font-serif: "Instrument Serif", "Times New Roman", serif;  /* italic accents only */
   --font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
-  --font-serif: "Instrument Serif", "Times New Roman", serif;
   --font-hand: "Caveat", "Bradley Hand", cursive;
 
-  --text-micro: 0.6875rem;   /* 11px — mono labels, nav */
-  --text-sm: 0.8125rem;      /* 13px — captions, buttons */
-  --text-base: 0.9375rem;    /* 15px — body */
-  --text-lg: 1.125rem;       /* 18px — card titles */
-  --text-xl: clamp(1.75rem, 1.2rem + 1.6vw, 2.5rem);    /* section statements */
-  --text-display: clamp(2.5rem, 1.4rem + 3.6vw, 4.5rem); /* editorial serif */
-  --text-cutout: clamp(2rem, 3.4vw, 4rem);               /* hero paper-cut */
+  --text-display: clamp(2.5rem, 1.4rem + 3.6vw, 4.5rem);    /* 40 → 72  the page title */
+  --text-h1: clamp(1.75rem, 1.3rem + 1.5vw, 2.5rem);        /* 28 → 40  section titles */
+  --text-h2: clamp(1.375rem, 1.15rem + 0.8vw, 1.875rem);    /* 22 → 30  card and decision titles */
+  --text-h3: 1.25rem;                                        /* 20       subheads */
+  --text-lead: clamp(1.125rem, 1rem + 0.4vw, 1.3125rem);    /* 18 → 21  the paragraph under a title */
+  --text-body: 1.0625rem;                                    /* 17       prose */
+  --text-base: 0.9375rem;                                    /* 15       interface copy, descriptions */
+  --text-sm: 0.8125rem;                                      /* 13       captions, buttons */
+  --text-micro: 0.6875rem;                                   /* 11       mono labels */
+  --text-quote: clamp(1.5rem, 1.2rem + 1vw, 2rem);          /* 24 → 32  pull quotes */
+  --text-hand: 1.375rem;                                     /* 22       writing on objects */
+  --text-lg: var(--text-h3);                                 /* older name for the subhead size */
+  --text-xl: var(--text-h1);                                 /* older name for the section size */
+  --text-cutout: var(--text-display);                        /* the home hero's paper-cut title */
 
-  --leading-tight: 1.05;
-  --leading-snug: 1.25;
-  --leading-body: 1.55;
+  --leading-display: 1.04;
+  --leading-h1: 1.12;
+  --leading-h2: 1.2;
+  --leading-h3: 1.3;
+  --leading-lead: 1.5;
+  --leading-body: 1.65;
+  --leading-ui: 1.55;
+  --leading-tight: var(--leading-display);
+  --leading-snug: var(--leading-h2);
+
+  --tracking-display: -0.04em;
+  --tracking-h1: -0.03em;
+  --tracking-h2: -0.02em;
+  --tracking-h3: -0.01em;
   --tracking-mono: 0.08em;
-  --tracking-tight: -0.02em;
-  --tracking-cutout: -0.035em;
-  --weight-cutout: 600;
+  --tracking-tight: var(--tracking-h2);
+  --tracking-cutout: var(--tracking-display);
+
+  --weight-regular: 400;     /* to read */
+  --weight-medium: 500;      /* headlines and emphasis */
+  --weight-stat: 500;        /* big numbers */
+  --weight-cutout: 500;
+
+  /* The faces behind the headline roles (Display, H1, H2), stats, quotes, and the phrase a
+     headline ends on (its <em>). */
+  --font-display: var(--font-sans);
+  --weight-display: var(--weight-medium);
+  --font-stat: var(--font-sans);
+  --font-quote: var(--font-serif);
+  --font-emphasis: var(--font-serif);
+  --style-emphasis: italic;
+  --color-emphasis: var(--color-ink-2);
+  --size-emphasis: 1.12em;            /* the serif runs small next to Geist */
+  --tracking-emphasis: -0.005em;
+  --weight-emphasis: var(--weight-regular);  /* Instrument Serif has one weight */
 
   /* ---------- Space (4pt) ---------- */
   --space-1: 4px;
@@ -57,18 +105,36 @@
   /* Gap between the screen edge and the window. */
   --frame-gutter: clamp(16px, 9vw - 20px, 160px);
 
-  /* ---------- Radius ---------- */
-  --radius-xs: 6px;      /* thumbnails */
-  --radius-sm: 10px;     /* photos */
-  --radius-md: 16px;     /* panels */
-  --radius-lg: 24px;     /* bento tiles */
+  /* ---------- Radius ----------
+     Roundness grows with the size of the thing. Something inside a rounded box takes the box's
+     radius minus the gap between them, so corners stay parallel. */
+  --radius-xs: 4px;      /* paper and small marks: polaroids, postcards, tickets, tags, thumbnails */
+  --radius-sm: 10px;     /* small media: gallery images, prints, craft tiles */
+  --radius-md: 16px;     /* panels and case-study media */
+  --radius-lg: 24px;     /* hero media and big tiles */
   --radius-window: 28px; /* the big window */
-  --radius-pill: 999px;
+  --radius-pill: 999px;  /* buttons and chips */
 
-  /* ---------- Elevation ---------- */
-  --shadow-pill: 0 0 0 1px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06), 0 4px 12px rgba(0, 0, 0, 0.04);
-  --shadow-photo: 0 1px 2px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(0, 0, 0, 0.12);
-  --shadow-lift: 0 2px 4px rgba(0, 0, 0, 0.06), 0 20px 44px rgba(0, 0, 0, 0.18);
+  /* ---------- Border ----------
+     One hairline everywhere; a 2px rule only to mark something (a quote, the active step). */
+  --color-line-strong: rgba(15, 31, 30, 0.2);
+  --border-hairline: 1px solid var(--color-line);
+  --border-strong: 1px solid var(--color-line-strong);
+  --border-rule: 2px;
+
+  /* ---------- Small parts ----------
+     Shared padding so every tag, chip and pill button is the same size wherever it appears. */
+  --pad-tag: 3px 8px;    /* boxed labels: "UX research", "Power users", "From insight 2" */
+  --pad-chip: 6px 12px;  /* floating chips: "Before", "Sent", the projector tip */
+  --size-pill: 34px;     /* height of a pill button */
+
+  /* ---------- Elevation ----------
+     Five levels, from resting on the page to floating above everything. */
+  --shadow-pill: 0 0 0 1px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06), 0 4px 12px rgba(0, 0, 0, 0.04);  /* controls */
+  --shadow-photo: 0 1px 2px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(0, 0, 0, 0.12);  /* prints and objects at rest */
+  --shadow-float: 0 2px 6px rgba(0, 0, 0, 0.1), 0 8px 20px rgba(0, 0, 0, 0.16);   /* handles and labels over media */
+  --shadow-lift: 0 2px 4px rgba(0, 0, 0, 0.06), 0 20px 44px rgba(0, 0, 0, 0.18);  /* picked up, hovered, the postcard */
+  --shadow-sheet: 0 -24px 60px rgba(0, 35, 70, 0.18);                              /* the Work sheet rising over the hero */
 
   /* Photo frame: the white border that makes images feel like prints. */
   --photo-border: 5px;

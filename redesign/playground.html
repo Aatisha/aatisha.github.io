@@ -7,7 +7,7 @@
   <meta name="description" content="Small experiments by Aatisha Cyrill: prototypes that start as questions about ordinary tools.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Geist+Mono:wght@400;500&family=Geist:ital,wght@0,300..600;1,400..500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="tokens.css">
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -28,8 +28,9 @@
 
     <main>
       <section class="play-intro" aria-labelledby="play-title" data-reveal>
-        <h1 id="play-title" class="visually-hidden">Playground</h1>
-        <p class="page__lead"><b>Welcome to my playground.</b> The projects here began as small curiosities: an interaction I wanted to feel in my hands, a weekend spent seeing what a new tool could do. I sketch and I code with AI, until an idea becomes a fun reality.</p>
+        <p class="mono-label page__kicker">Playground</p>
+        <h1 id="play-title" class="page__display">Welcome to my <em>playground.</em></h1>
+        <p class="page__lead">The projects here began as small curiosities: an interaction I wanted to feel in my hands, a weekend spent seeing what a new tool could do. I sketch and I code with AI, until an idea becomes a fun reality.</p>
       </section>
 
       <!-- Four projects with the caption below each: two side by side, then two across the whole row.
@@ -97,16 +98,21 @@
           <p class="play-card__desc">A credit rating for nature: AI agents read satellite data and local news to grade living land, so communities earn more by keeping it.</p>
         </article>
       </section>
-
-      <!-- Closing -->
-      <section class="page-close" data-reveal>
-        <h2 class="page-section__title">Thank you for looking.</h2>
-        <p class="page__body">If one of these stays with you, I would like to hear about it.</p>
-      </section>
     </main>
+
+    <!-- Footer: the painted beach from the home page (shore.js). -->
+    <footer class="shore" role="contentinfo">
+      <div class="shore__scene" aria-hidden="true"></div>
+      <div class="shore__bar">
+        <p class="mono-label">© 2026 Aatisha Cyrill</p>
+        <a class="mono-label" href="#">Back to top ↑</a>
+      </div>
+    </footer>
   </div>
 
   <script src="about.js"></script>
+  <script src="shells.js"></script>
+  <script src="shore.js"></script>
   <script src="brand.js"></script>
 </body>
 </html>

@@ -7,7 +7,7 @@
   <meta name="description" content="Case study: designing a this-or-that ranking game for Shopbop, an Amazon company, that turns quick choices into trending leaderboards and personal recommendations. Research, product decisions, the design and the build.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400&family=Geist:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Geist+Mono:wght@400;500&family=Geist:ital,wght@0,300..600;1,400..500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="tokens.css">
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -44,7 +44,7 @@
         </dl>
 
         <figure class="cs-media cs-media--hero">
-          <video src="assets/work/shopbop/hero.mp4" poster="assets/work/shopbop/hero.jpg" muted loop playsinline preload="metadata" data-autoplay aria-label="Screens from the Shopbop ranking experience: the homepage, choosing a category and ranking two items"></video>
+          <video src="assets/work/shopbop/hero.mp4" width="2560" height="1712" poster="assets/work/shopbop/hero.jpg" muted loop playsinline preload="metadata" data-autoplay aria-label="Screens from the Shopbop ranking experience: the homepage, choosing a category and ranking two items"></video>
         </figure>
 
         <ul class="cs-stats" aria-label="At a glance">
@@ -84,8 +84,8 @@
             <p class="cs-label">02 · Problem</p>
             <h2 class="cs-title" id="problem-title">Too many options, and no sense of what suits you.</h2>
             <p class="cs-text">Mapping a shopper’s journey showed where it went wrong. The mood dropped as soon as she started filtering, stayed low while she looked for guidance, and even after buying, she wasn’t sure she’d chosen well. The catalogue wasn’t the problem. Choosing from it was.</p>
-            <figure class="cs-media cs-media--shot">
-              <img src="assets/work/shopbop/journey.jpg" alt="Journey map from starting to outcome. Mood drops while browsing categories and seeking guidance, with quotes such as: there are so many options here, I don't know where to start; I don't really know what's trending or what will look good on me" loading="lazy" width="2000" height="1170">
+            <figure class="cs-media">
+              <img src="assets/work/shopbop/journey.webp" alt="Journey map from starting to outcome. Mood drops while browsing categories and seeking guidance, with quotes such as: there are so many options here, I don't know where to start; I don't really know what's trending or what will look good on me" loading="lazy" width="2400" height="1404">
               <figcaption>The lowest points: browsing categories and looking for guidance.</figcaption>
             </figure>
             <blockquote class="cs-quote">“There are so many options here. I don’t know where to start.”<cite>Shopper, journey mapping</cite></blockquote>
@@ -128,7 +128,7 @@
             </ol>
             <p class="cs-hmw"><span class="cs-label">How might we</span>help shoppers discover and express their style, in a way that feels like play and still leads to the bag?</p>
             <figure class="cs-media">
-              <img src="assets/work/shopbop/affinity.jpg" alt="Affinity map with clusters for pairwise ranking, trending leaderboards and personalised recommendations" loading="lazy" width="1800" height="1696">
+              <img src="assets/work/shopbop/affinity.webp" alt="Affinity map with clusters for pairwise ranking, trending leaderboards and personalised recommendations" loading="lazy" width="2400" height="2261">
               <figcaption>Ideas clustered into three themes: ranking, trends and recommendations.</figcaption>
             </figure>
           </section>
@@ -147,7 +147,7 @@
                 <div><dt>Why</dt><dd>Quizzes ask people to describe a style they can’t name. Comparing two things is easy, and every pick is a clean signal for ranking and recommendations.</dd></div>
               </dl>
               <figure class="cs-media">
-                <video src="assets/work/shopbop/rank.mp4" poster="assets/work/shopbop/rank.jpg" muted loop playsinline preload="none" data-autoplay aria-label="Ranking: two dresses side by side, the shopper picks one, the top ten list fills in, then recommendations appear"></video>
+                <video width="2334" height="1428" poster="assets/work/shopbop/rank.jpg" muted loop playsinline preload="none" data-autoplay aria-label="Ranking: two dresses side by side, the shopper picks one, the top ten list fills in, then recommendations appear"><source src="assets/work/shopbop/rank.hevc.mp4" type='video/mp4; codecs="hvc1"'><source src="assets/work/shopbop/rank.mp4" type="video/mp4"></video>
                 <figcaption>Pick one, again and again; your top ten builds on the left, then recommendations appear.</figcaption>
               </figure>
             </article>
@@ -160,12 +160,12 @@
                 <div><dt>Chose</dt><dd>Two quick choices before ranking: who you’re shopping for, then a category such as denim, skirts, jackets or dresses.</dd></div>
                 <div><dt>Why</dt><dd>Comparisons only mean something when like is compared with like. Two taps up front make every pick after them count.</dd></div>
               </dl>
-              <div class="cs-gallery cs-gallery--2">
-                <figure><img src="assets/work/shopbop/wf-gender.jpg" alt="Wireframe: choose women or men before ranking" loading="lazy" width="1400" height="905"><figcaption><b>Wireframe</b> Who you’re shopping for.</figcaption></figure>
-                <figure><img src="assets/work/shopbop/wf-category.jpg" alt="Wireframe: choose a clothing category such as skirts, tops, dresses or jumpsuits" loading="lazy" width="1400" height="905"><figcaption><b>Wireframe</b> Then the category to rank.</figcaption></figure>
+              <div class="cs-gallery cs-gallery--2" style="--ar: 2400 / 1551;">
+                <figure><img src="assets/work/shopbop/wf-gender.webp" alt="Wireframe: choose women or men before ranking" loading="lazy" width="2400" height="1551"><figcaption><b>Wireframe</b> Who you’re shopping for.</figcaption></figure>
+                <figure><img src="assets/work/shopbop/wf-category.webp" alt="Wireframe: choose a clothing category such as skirts, tops, dresses or jumpsuits" loading="lazy" width="2400" height="1551"><figcaption><b>Wireframe</b> Then the category to rank.</figcaption></figure>
               </div>
               <figure class="cs-media">
-                <video src="assets/work/shopbop/choose.mp4" poster="assets/work/shopbop/choose.jpg" muted loop playsinline preload="none" data-autoplay aria-label="From the homepage's Start Ranking button to choosing woman or man, then a clothing category"></video>
+                <video width="2334" height="1428" poster="assets/work/shopbop/choose.jpg" muted loop playsinline preload="none" data-autoplay aria-label="From the homepage's Start Ranking button to choosing woman or man, then a clothing category"><source src="assets/work/shopbop/choose.hevc.mp4" type='video/mp4; codecs="hvc1"'><source src="assets/work/shopbop/choose.mp4" type="video/mp4"></video>
               </figure>
             </article>
 
@@ -177,9 +177,9 @@
                 <div><dt>Chose</dt><dd>Short instructions beside the game, a progress bar to ten, a <i>Pass</i> button for pairs you don’t like, and bigger product images.</dd></div>
                 <div><dt>Why</dt><dd>A game needs a visible end to be worth starting. And forcing a pick between two items you dislike gives bad data, not a preference.</dd></div>
               </dl>
-              <div class="cs-compare" data-compare style="--split: 50%; aspect-ratio: 1400 / 905;">
-                <img src="assets/work/shopbop/ranking-crop.jpg" alt="Final ranking page: instructions on the left, a progress bar, two dresses side by side with OR between them, and a Pass button" loading="lazy" width="1400" height="905">
-                <div class="cs-compare__before"><img src="assets/work/shopbop/wf-ranking.jpg" alt="Wireframe of the ranking page: a rankings list and two items side by side" loading="lazy" width="1400" height="905"></div>
+              <div class="cs-compare" data-compare style="aspect-ratio: 2432 / 1572; --split: 50%;">
+                <img src="assets/work/shopbop/ranking-crop.webp" alt="Final ranking page: instructions on the left, a progress bar, two dresses side by side with OR between them, and a Pass button" loading="lazy" width="2432" height="1572">
+                <div class="cs-compare__before"><img src="assets/work/shopbop/wf-ranking.webp" alt="Wireframe of the ranking page: a rankings list and two items side by side" loading="lazy" width="2432" height="1572"></div>
                 <span class="cs-compare__chip cs-compare__chip--before" aria-hidden="true">Wireframe</span>
                 <span class="cs-compare__chip cs-compare__chip--after" aria-hidden="true">After testing</span>
                 <input class="cs-compare__range" type="range" min="0" max="100" value="50" aria-label="Compare the ranking page wireframe with the tested design: slide left to see more of the final design">
@@ -195,7 +195,7 @@
                 <div><dt>Why</dt><dd>It turns each private choice into something public. The trends move with the community, which was exactly what Shopbop asked for.</dd></div>
               </dl>
               <figure class="cs-media">
-                <video src="assets/work/shopbop/trending.mp4" poster="assets/work/shopbop/trending.jpg" muted loop playsinline preload="none" data-autoplay aria-label="The trending page: most trending dresses with the top three ranked, filters by category and colour"></video>
+                <video width="2334" height="1428" poster="assets/work/shopbop/trending.jpg" muted loop playsinline preload="none" data-autoplay aria-label="The trending page: most trending dresses with the top three ranked, filters by category and colour"><source src="assets/work/shopbop/trending.hevc.mp4" type='video/mp4; codecs="hvc1"'><source src="assets/work/shopbop/trending.mp4" type="video/mp4"></video>
               </figure>
             </article>
 
@@ -208,7 +208,7 @@
                 <div><dt>Why</dt><dd>The game is the way in, not the destination. Play builds the taste profile; the product page and bag turn it into sales.</dd></div>
               </dl>
               <figure class="cs-media">
-                <video src="assets/work/shopbop/shop.mp4" poster="assets/work/shopbop/shop.jpg" muted loop playsinline preload="none" data-autoplay aria-label="From a recommended dress to its product page, how to style it, and an Added to bag pop-up with checkout and more suggestions"></video>
+                <video width="2334" height="1428" poster="assets/work/shopbop/shop.jpg" muted loop playsinline preload="none" data-autoplay aria-label="From a recommended dress to its product page, how to style it, and an Added to bag pop-up with checkout and more suggestions"><source src="assets/work/shopbop/shop.hevc.mp4" type='video/mp4; codecs="hvc1"'><source src="assets/work/shopbop/shop.mp4" type="video/mp4"></video>
               </figure>
             </article>
           </section>
@@ -218,17 +218,17 @@
             <h2 class="cs-title" id="craft-title">New feature, familiar store.</h2>
             <ul class="cs-craft">
               <li>
-                <img src="assets/work/shopbop/style-guide.jpg" alt="Visual style guide: Shopbop's orange and peach palette, greys and a type scale" loading="lazy" width="1800" height="984">
+                <img src="assets/work/shopbop/style-guide.webp" alt="Visual style guide: Shopbop's orange and peach palette, greys and a type scale" loading="lazy" width="2366" height="1293">
                 <b>Built on Shopbop’s brand</b>
                 <p>I studied Shopbop’s site and design system and built a style guide from their palette, so the game feels like part of the store.</p>
               </li>
               <li>
-                <img src="assets/work/shopbop/sketches.jpg" alt="Hand sketches of the homepage, ranking, category, trending and recommendations pages" loading="lazy" width="2000" height="817">
+                <img src="assets/work/shopbop/sketches.webp" alt="Hand sketches of the homepage, ranking, category, trending and recommendations pages" loading="lazy" width="2400" height="981">
                 <b>Sketch, flow, wireframe</b>
                 <p>Paper sketches of every main screen, a flow for each task, then mid-fidelity wireframes to test before any polish.</p>
               </li>
               <li>
-                <img src="assets/work/shopbop/workflow.jpg" alt="User flow from entering the site through choosing a category, ranking ten items and seeing recommendations or the leaderboard" loading="lazy" width="2000" height="947">
+                <img src="assets/work/shopbop/workflow.webp" alt="User flow from entering the site through choosing a category, ranking ten items and seeing recommendations or the leaderboard" loading="lazy" width="2400" height="1136">
                 <b>Designed, then built</b>
                 <p>I also built and deployed the front end on AWS CloudFront, which kept the design honest about what the data could support.</p>
               </li>
@@ -245,7 +245,7 @@
               <li><b>Live</b>front end deployed on AWS CloudFront</li>
             </ul>
             <figure class="cs-media">
-              <img src="assets/work/shopbop/team.jpg" alt="Aatisha and the project team standing with members of the Amazon Shopbop team" loading="lazy" width="1400" height="921">
+              <img src="assets/work/shopbop/team.webp" alt="Aatisha and the project team standing with members of the Amazon Shopbop team" loading="lazy" width="2400" height="1579">
               <figcaption>Our team with the Amazon Shopbop team.</figcaption>
             </figure>
           </section>
@@ -266,10 +266,21 @@
         </div>
       </div>
     </main>
+
+    <!-- Footer: the painted beach from the home page (shore.js). -->
+    <footer class="shore" role="contentinfo">
+      <div class="shore__scene" aria-hidden="true"></div>
+      <div class="shore__bar">
+        <p class="mono-label">© 2026 Aatisha Cyrill</p>
+        <a class="mono-label" href="#">Back to top ↑</a>
+      </div>
+    </footer>
   </div>
 
   <script src="about.js"></script>
   <script src="minds.js"></script>
+  <script src="shells.js"></script>
+  <script src="shore.js"></script>
   <script src="brand.js"></script>
 </body>
 </html>

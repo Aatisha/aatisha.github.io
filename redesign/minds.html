@@ -7,7 +7,7 @@
   <meta name="description" content="Case study: redesigning MINDS@UW, the University of Wisconsin's open-access research repository, so 32,000 papers are easy to find and easy to add to. Research, product decisions and the shipped design.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400&family=Geist:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Geist+Mono:wght@400;500&family=Geist:ital,wght@0,300..600;1,400..500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="tokens.css">
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -44,7 +44,7 @@
         </dl>
 
         <figure class="cs-media cs-media--hero">
-          <video src="assets/work/minds/hero.mp4" poster="assets/work/minds/hero.jpg" muted loop playsinline preload="metadata" data-autoplay aria-label="The redesigned MINDS@UW homepage, with Make a deposit and Browse communities as its two main actions"></video>
+          <video src="assets/work/minds/hero.mp4" width="2560" height="1440" poster="assets/work/minds/hero.jpg" muted loop playsinline preload="metadata" data-autoplay aria-label="The redesigned MINDS@UW homepage, with Make a deposit and Browse communities as its two main actions"></video>
         </figure>
 
         <ul class="cs-stats" aria-label="Outcomes">
@@ -85,8 +85,8 @@
             <p class="cs-label">02 · Problem</p>
             <h2 class="cs-title" id="problem-title">Thousands of papers, and no clear way in.</h2>
             <p class="cs-text">The homepage was a sitemap: a long list of policies and campus links, and nothing that said what you could do here. People who came to share their work couldn't find where to start, and people who came to read it hit closed collections with no explanation.</p>
-            <figure class="cs-media cs-media--shot">
-              <img src="assets/work/minds/before-annotated.jpg" alt="The old MINDS@UW homepage, annotated: a long sitemap of campus links, no visible way to start a submission, and extensive text with little hierarchy" loading="lazy" width="1600" height="949">
+            <figure class="cs-media">
+              <img src="assets/work/minds/before-annotated.webp" alt="The old MINDS@UW homepage, annotated: a long sitemap of campus links, no visible way to start a submission, and extensive text with little hierarchy" loading="lazy" width="2400" height="1423">
               <figcaption>The homepage before: every campus listed, no task in sight.</figcaption>
             </figure>
             <blockquote class="cs-quote">“It’s not immediately clear how to start a submission.”<cite>Researcher</cite></blockquote>
@@ -111,14 +111,14 @@
 
             <h3 class="cs-subtitle">Peers polished search, and buried depositing</h3>
             <p class="cs-text">Other repositories looked clean and put search up front. But the one job a repository exists for, adding work to it, was hidden, inconsistent or open only to some users. Only eCommons made it obvious. That set the bar: contributing had to be as easy to find as searching.</p>
-            <div class="cs-gallery cs-gallery--3">
-              <figure><img src="assets/work/minds/comp-duke.jpg" alt="DukeSpace homepage" loading="lazy" width="1200" height="808"><figcaption><b>DukeSpace</b> Clean, but no visible way to deposit.</figcaption></figure>
-              <figure><img src="assets/work/minds/comp-surface.jpg" alt="Syracuse University SURFACE homepage" loading="lazy" width="1200" height="807"><figcaption><b>SURFACE</b> Engaging data, crowded actions.</figcaption></figure>
-              <figure><img src="assets/work/minds/comp-ecommons.jpg" alt="Cornell eCommons homepage" loading="lazy" width="1200" height="808"><figcaption><b>eCommons</b> “Submit your work” front and centre.</figcaption></figure>
+            <div class="cs-gallery cs-gallery--3" style="--ar: 1294 / 871;">
+              <figure><img src="assets/work/minds/comp-duke.webp" alt="DukeSpace homepage" loading="lazy" width="1294" height="871"><figcaption><b>DukeSpace</b> Clean, but no visible way to deposit.</figcaption></figure>
+              <figure><img src="assets/work/minds/comp-surface.webp" alt="Syracuse University SURFACE homepage" loading="lazy" width="1295" height="871"><figcaption><b>SURFACE</b> Engaging data, crowded actions.</figcaption></figure>
+              <figure><img src="assets/work/minds/comp-ecommons.webp" alt="Cornell eCommons homepage" loading="lazy" width="1297" height="873"><figcaption><b>eCommons</b> “Submit your work” front and centre.</figcaption></figure>
             </div>
 
             <figure class="cs-media">
-              <video src="assets/work/minds/affinity.mp4" poster="assets/work/minds/affinity.jpg" muted loop playsinline preload="none" data-autoplay aria-label="Time-lapse of interview notes being clustered on a wall of sticky notes"></video>
+              <video width="1920" height="1080" poster="assets/work/minds/affinity.jpg" muted loop playsinline preload="none" data-autoplay aria-label="Time-lapse of interview notes being clustered on a wall of sticky notes"><source src="assets/work/minds/affinity.hevc.mp4" type='video/mp4; codecs="hvc1"'><source src="assets/work/minds/affinity.mp4" type="video/mp4"></video>
               <figcaption>170+ notes from nine interviews, clustered on my wall.</figcaption>
             </figure>
           </section>
@@ -162,9 +162,9 @@
                 <div><dt>Chose</dt><dd>Two clear actions above the fold, <i>Make a deposit</i> and <i>Browse communities</i>, with search kept in the bar.</dd></div>
                 <div><dt>Why</dt><dd>Search already worked. Depositing was the job people couldn’t find, and the one that keeps a repository alive.</dd></div>
               </dl>
-              <div class="cs-compare" data-compare style="--split: 50%;">
-                <img src="assets/work/minds/new-home.jpg" alt="The redesigned homepage: a hero with Make a deposit and Browse communities, then how to deposit, benefits and recent items" loading="lazy" width="1400" height="1905">
-                <div class="cs-compare__before"><img src="assets/work/minds/old-home.jpg" alt="The old homepage: policies and a sitemap of campus links" loading="lazy" width="1400" height="1428"></div>
+              <div class="cs-compare" data-compare style="aspect-ratio: 2169 / 2951; --split: 50%;">
+                <img src="assets/work/minds/new-home.webp" alt="The redesigned homepage: a hero with Make a deposit and Browse communities, then how to deposit, benefits and recent items" loading="lazy" width="2169" height="2951">
+                <div class="cs-compare__before"><img src="assets/work/minds/old-home.webp" alt="The old homepage: policies and a sitemap of campus links" loading="lazy" width="2400" height="2448"></div>
                 <span class="cs-compare__chip cs-compare__chip--before" aria-hidden="true">Before</span>
                 <span class="cs-compare__chip cs-compare__chip--after" aria-hidden="true">After</span>
                 <input class="cs-compare__range" type="range" min="0" max="100" value="50" aria-label="Compare the old and new homepage: slide left to see more of the new one">
@@ -179,9 +179,9 @@
                 <div><dt>Testing showed</dt><dd>System users still didn’t see themselves, or what each campus had contributed.</dd></div>
                 <div><dt>Chose</dt><dd>A communities page of campus cards: a photo, what each holds, and one step into its collections.</dd></div>
               </dl>
-              <div class="cs-gallery cs-gallery--pair">
-                <figure><img src="assets/work/minds/campuses-before.jpg" alt="First design: UW campuses as a list under a sitemap heading" loading="lazy" width="1400" height="1699"><figcaption><span class="cs-tag">Before testing</span></figcaption></figure>
-                <figure class="cs-gallery__video"><video src="assets/work/minds/campus-card.mp4" poster="assets/work/minds/campus-card.jpg" muted loop playsinline preload="none" data-autoplay aria-label="A UW Stout campus card with its photo, what it holds and a Browse collections button"></video><figcaption><span class="cs-tag cs-tag--accent">Shipped</span></figcaption></figure>
+              <div class="cs-gallery cs-gallery--pair" style="--ar: 2400 / 2912;">
+                <figure><img src="assets/work/minds/campuses-before.webp" alt="First design: UW campuses as a list under a sitemap heading" loading="lazy" width="2400" height="2912"><figcaption><span class="cs-tag">Before testing</span></figcaption></figure>
+                <figure class="cs-gallery__video"><video src="assets/work/minds/campus-card.mp4" width="2160" height="2600" poster="assets/work/minds/campus-card.jpg" muted loop playsinline preload="none" data-autoplay aria-label="A UW Stout campus card with its photo, what it holds and a Browse collections button"></video><figcaption><span class="cs-tag cs-tag--accent">Shipped</span></figcaption></figure>
               </div>
             </article>
 
@@ -194,7 +194,7 @@
                 <div><dt>Why</dt><dd>Provenance builds trust for readers, and visible impact is the reason authors deposit again.</dd></div>
               </dl>
               <figure class="cs-media">
-                <video src="assets/work/minds/item-page.mp4" poster="assets/work/minds/item-page.jpg" muted loop playsinline preload="none" data-autoplay aria-label="The redesigned item page with abstract, structured metadata, files and a usage chart"></video>
+                <video width="2394" height="1390" poster="assets/work/minds/item-page.jpg" muted loop playsinline preload="none" data-autoplay aria-label="The redesigned item page with abstract, structured metadata, files and a usage chart"><source src="assets/work/minds/item-page.hevc.mp4" type='video/mp4; codecs="hvc1"'><source src="assets/work/minds/item-page.mp4" type="video/mp4"></video>
               </figure>
             </article>
 
@@ -207,7 +207,7 @@
                 <div><dt>Why</dt><dd>A clearer notice alone would still end in an email chain. Designing the admin side is what made the public side work.</dd></div>
               </dl>
               <figure class="cs-media">
-                <video src="assets/work/minds/access.mp4" poster="assets/work/minds/access.jpg" muted loop playsinline preload="none" data-autoplay aria-label="The access management tool: request queue, auto-response settings and message templates"></video>
+                <video width="2396" height="1394" poster="assets/work/minds/access.jpg" muted loop playsinline preload="none" data-autoplay aria-label="The access management tool: request queue, auto-response settings and message templates"><source src="assets/work/minds/access.hevc.mp4" type='video/mp4; codecs="hvc1"'><source src="assets/work/minds/access.mp4" type="video/mp4"></video>
               </figure>
             </article>
 
@@ -220,7 +220,7 @@
                 <div><dt>Result</dt><dd>Impact reports now take <b>65% less time</b> to produce, and campuses can show what they contribute.</dd></div>
               </dl>
               <figure class="cs-media">
-                <video src="assets/work/minds/analytics.mp4" poster="assets/work/minds/analytics.jpg" muted loop playsinline preload="none" data-autoplay aria-label="MINDS@UW Analytics: submissions, downloads, affiliations by location and a real-time world map"></video>
+                <video width="2388" height="1402" poster="assets/work/minds/analytics.jpg" muted loop playsinline preload="none" data-autoplay aria-label="MINDS@UW Analytics: submissions, downloads, affiliations by location and a real-time world map"><source src="assets/work/minds/analytics.hevc.mp4" type='video/mp4; codecs="hvc1"'><source src="assets/work/minds/analytics.mp4" type="video/mp4"></video>
               </figure>
             </article>
           </section>
@@ -230,12 +230,12 @@
             <h2 class="cs-title" id="craft-title">The details that hold it together.</h2>
             <ul class="cs-craft">
               <li>
-                <img src="assets/work/minds/design-system.jpg" alt="The MINDS@UW design system: components, colour palette and type scale" loading="lazy" width="1800" height="898">
+                <img src="assets/work/minds/design-system.webp" alt="The MINDS@UW design system: components, colour palette and type scale" loading="lazy" width="2400" height="1198">
                 <b>A design system</b>
                 <p>Reusable components, a palette and a type scale built within the UW brand, so every page reads as one product.</p>
               </li>
               <li>
-                <img src="assets/work/minds/accessibility.jpg" alt="Accessibility checks on the homepage with a colour-blindness simulation" loading="lazy" width="1800" height="742">
+                <img src="assets/work/minds/accessibility.webp" alt="Accessibility checks on the homepage with a colour-blindness simulation" loading="lazy" width="2400" height="990">
                 <b>Accessible by default</b>
                 <p>Tested against WCAG with BrowserStack, from text contrast to colour-blindness simulations on key pages.</p>
               </li>
@@ -261,7 +261,7 @@
               <li><b>Every campus</b>with its own page and collections</li>
             </ul>
             <figure class="cs-media">
-              <video src="assets/work/minds/homepage.mp4" poster="assets/work/minds/homepage.jpg" muted loop playsinline preload="none" data-autoplay aria-label="Scrolling through the live homepage: deposit and browse actions, how to deposit, benefits, recent items and analytics"></video>
+              <video width="2390" height="1402" poster="assets/work/minds/homepage.jpg" muted loop playsinline preload="none" data-autoplay aria-label="Scrolling through the live homepage: deposit and browse actions, how to deposit, benefits, recent items and analytics"><source src="assets/work/minds/homepage.hevc.mp4" type='video/mp4; codecs="hvc1"'><source src="assets/work/minds/homepage.mp4" type="video/mp4"></video>
             </figure>
           </section>
 
@@ -281,10 +281,21 @@
         </div>
       </div>
     </main>
+
+    <!-- Footer: the painted beach from the home page (shore.js). -->
+    <footer class="shore" role="contentinfo">
+      <div class="shore__scene" aria-hidden="true"></div>
+      <div class="shore__bar">
+        <p class="mono-label">© 2026 Aatisha Cyrill</p>
+        <a class="mono-label" href="#">Back to top ↑</a>
+      </div>
+    </footer>
   </div>
 
   <script src="about.js"></script>
   <script src="minds.js"></script>
+  <script src="shells.js"></script>
+  <script src="shore.js"></script>
   <script src="brand.js"></script>
 </body>
 </html>

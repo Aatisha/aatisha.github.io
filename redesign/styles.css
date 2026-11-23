@@ -16,7 +16,7 @@ body {
   color: var(--color-ink);
   font-family: var(--font-sans);
   font-size: var(--text-base);
-  line-height: var(--leading-body);
+  line-height: var(--leading-ui);
   -webkit-font-smoothing: antialiased;
 }
 
@@ -103,7 +103,7 @@ img {
   justify-self: start;
   width: 22px;
   padding-block: 6px;
-  border-radius: 4px;
+  border-radius: var(--radius-xs);
 }
 
 .site-bar:has(> .brand--mark) {
@@ -122,7 +122,7 @@ img {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  height: 34px;
+  height: var(--size-pill);
   padding: 0 var(--space-4);
   border: 0;
   border-radius: var(--radius-pill);
@@ -143,7 +143,7 @@ img {
 
 .btn-pill--dark {
   background: var(--color-ink);
-  color: #fff;
+  color: var(--color-surface);
 }
 
 .btn-pill--ghost {
@@ -181,7 +181,7 @@ img {
 .count {
   font-size: 0.6em;
   vertical-align: super;
-  color: var(--color-accent);
+  color: var(--color-accent-ink);
   font-weight: 500;
 }
 
@@ -268,11 +268,11 @@ a:hover > .photo,
 /* Editorial statement — serif; the lead phrase in ink, the rest recedes. */
 .statement {
   margin: 0;
-  font-family: var(--font-serif);
-  font-weight: 400;
-  font-size: var(--text-display);
-  line-height: var(--leading-tight);
-  letter-spacing: -0.01em;
+  font-family: var(--font-display);
+  font-weight: var(--weight-display);
+  font-size: var(--text-h1);
+  line-height: var(--leading-h1);
+  letter-spacing: var(--tracking-h1);
   color: var(--color-ink-3);
 }
 
@@ -449,7 +449,7 @@ a:hover > .photo,
 /* Polaroid — a photo sticker with a handwritten caption. */
 .polaroid {
   padding: 7% 7% 0;
-  border-radius: 3px;
+  border-radius: var(--radius-xs);
   background: linear-gradient(160deg, #ffffff, #f6f3ec);
   color: var(--color-ink-2);
   font-family: var(--font-hand);
@@ -463,7 +463,7 @@ a:hover > .photo,
   width: 100%;
   aspect-ratio: 1;
   object-fit: cover;
-  border-radius: 1px;
+  border-radius: 1px; /* nested: the print corner minus the white border, rounded down */
   pointer-events: none;
 }
 
@@ -483,7 +483,7 @@ a:hover > .photo,
   width: 30px;
   height: 36px;
   object-fit: cover;
-  border-radius: 3px;
+  border-radius: var(--radius-xs);
   opacity: 0.55;
 }
 
@@ -585,7 +585,7 @@ a:hover > .photo,
    and the visible letters are the hole cut in the SVG paper on top of it. */
 .hero__title {
   margin: 0;
-  font-family: var(--font-sans);
+  font-family: var(--font-display);
   font-size: var(--text-cutout);
   font-weight: var(--weight-cutout);
   line-height: 1;
@@ -596,7 +596,7 @@ a:hover > .photo,
 
 .hero__window[data-title="solid"] .hero__title {
   position: relative;
-  color: var(--color-ink-2);
+  color: var(--color-ink); /* the Display role, the same as every page title */;
 }
 
 .hero__window[data-title="solid"] .hero__cut {
@@ -615,10 +615,9 @@ a:hover > .photo,
 .hero__statement {
   margin: 0;
   font-family: var(--font-sans);
-  font-size: 1.25rem; /* 20px */
+  font-size: var(--text-lead); /* 20px */
   font-weight: 400;
-  line-height: 1.45;
-  letter-spacing: -0.015em;
+  line-height: var(--leading-lead);
   text-wrap: balance;
   color: var(--color-ink-2);
 }
@@ -728,7 +727,7 @@ a:hover > .photo,
 }
 
 .cutout-text {
-  font-family: var(--font-sans);
+  font-family: var(--font-display);
   font-weight: var(--weight-cutout);
   font-size: var(--text-cutout);
   letter-spacing: var(--tracking-cutout);
@@ -860,15 +859,32 @@ body.page {
 
 .page__lead {
   margin: 0 0 var(--space-4);
-  font-size: clamp(1.125rem, 0.95rem + 0.6vw, 1.5rem);
-  line-height: 1.45;
-  letter-spacing: -0.015em;
+  font-size: var(--text-lead);
+  line-height: var(--leading-lead);
   color: var(--color-ink-2);
 }
 
 .page__lead b {
   font-weight: 500;
   color: var(--color-ink);
+}
+
+/* The page title (Playground, Postcard): the Display role, the same as the case studies' titles,
+   under a small label naming the page. */
+.page__kicker {
+  margin: 0 0 var(--space-4);
+}
+
+.page__display {
+  max-width: 16ch;
+  margin: 0 0 var(--space-5);
+  font-size: var(--text-display);
+  font-weight: var(--weight-display);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+  text-wrap: balance;
+  color: var(--color-ink);
+  font-family: var(--font-display);
 }
 
 /* A quote in place of the lead: the words in the lead's size, the name underneath like a label. */
@@ -884,8 +900,8 @@ body.page {
 .page__body {
   max-width: 60ch;
   margin: 0 0 var(--space-4);
-  font-size: 1.0625rem;
-  line-height: 1.6;
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
   color: var(--color-ink-2);
 }
 
@@ -1288,7 +1304,7 @@ body.page {
   z-index: 2;
   top: 0;
   left: 0;
-  padding: 4px 10px 5px;
+  padding: var(--pad-chip);
   border-radius: var(--radius-pill);
   background: var(--color-surface);
   box-shadow: var(--shadow-pill);
@@ -1402,7 +1418,7 @@ html.is-dimming body *:not(.page__window):not(canvas) {
 /* Sections */
 .page-section {
   padding: var(--space-8) 0;
-  border-top: 1px solid var(--color-line);
+  border-top: var(--border-hairline);
 }
 
 .page-section__head {
@@ -1413,9 +1429,10 @@ html.is-dimming body *:not(.page__window):not(canvas) {
 .page-section__title {
   margin: var(--space-3) 0 var(--space-4);
   font-size: var(--text-xl);
-  font-weight: 500;
-  line-height: var(--leading-snug);
-  letter-spacing: var(--tracking-tight);
+  font-weight: var(--weight-display);
+  line-height: var(--leading-h1);
+  letter-spacing: var(--tracking-h1);
+  font-family: var(--font-display);
 }
 
 /* Experience, then life outside design underneath, in one reading column under the intro, with my
@@ -1509,7 +1526,7 @@ html.is-dimming body *:not(.page__window):not(canvas) {
   padding: 30px 12px 14px;
   border-radius: var(--radius-md);
   background: #ffffff;
-  color: #161616;
+  color: var(--color-ink);
   -webkit-mask: var(--slot) center 11px / 44px 10px no-repeat, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask: var(--slot) center 11px / 44px 10px no-repeat exclude, linear-gradient(#000 0 0);
@@ -1541,7 +1558,7 @@ html.is-dimming body *:not(.page__window):not(canvas) {
   bottom: 18px;
   writing-mode: vertical-rl;
   font-size: 2.125rem;
-  font-weight: 600;
+  font-weight: var(--weight-medium);
   line-height: 1;
   letter-spacing: -0.03em;
   color: rgba(255, 255, 255, 0.92);
@@ -1566,9 +1583,9 @@ html.is-dimming body *:not(.page__window):not(canvas) {
 
 .badge__name {
   margin: 14px 0 2px;
-  font-size: 1.25rem;
+  font-size: var(--text-h3);
   font-weight: 500;
-  letter-spacing: -0.02em;
+  letter-spacing: var(--tracking-h3);
 }
 
 /* Room for two lines, so a long title doesn't change the card's height. */
@@ -1577,7 +1594,7 @@ html.is-dimming body *:not(.page__window):not(canvas) {
   margin: 0;
   font-size: var(--text-sm);
   line-height: 1.4;
-  color: #6e6d69;
+  color: var(--color-ink-2);
 }
 
 .badge__foot {
@@ -1590,10 +1607,10 @@ html.is-dimming body *:not(.page__window):not(canvas) {
 }
 
 .badge__foot .mono-label {
-  font-size: 0.5625rem;
-  letter-spacing: 0.04em;
+  font-size: var(--text-micro);
+  letter-spacing: var(--tracking-mono);
   white-space: nowrap;
-  color: #a5a39e;
+  color: var(--color-ink-3);
 }
 
 /* The company's own logo, bottom right, in a fixed box: each logo is scaled to fit it, so none can
@@ -1691,11 +1708,11 @@ html.lights-out .badge {
   align-items: baseline;
   gap: var(--space-4);
   padding: var(--space-4) 0;
-  border-bottom: 1px solid var(--color-line);
+  border-bottom: var(--border-hairline);
 }
 
 .exp-row:first-child {
-  border-top: 1px solid var(--color-line);
+  border-top: var(--border-hairline);
 }
 
 .exp-row > * {
@@ -1705,7 +1722,7 @@ html.lights-out .badge {
 .exp-row__org {
   font-size: var(--text-lg);
   font-weight: 500;
-  letter-spacing: -0.01em;
+  letter-spacing: var(--tracking-h3);
   color: var(--color-ink);
 }
 
@@ -1809,10 +1826,9 @@ html.lights-out .badge {
   width: min(20rem, 72vw);
   margin: 0;
   font-family: var(--font-sans);
-  font-size: 1.25rem;
+  font-size: var(--text-lead);
   font-weight: 400;
-  line-height: 1.45;
-  letter-spacing: -0.015em;
+  line-height: var(--leading-lead);
   text-wrap: pretty;
   color: var(--color-ink-2);
 }
@@ -1938,7 +1954,7 @@ html.lights-out .badge {
   height: 28px;
   padding: 0;
   border: 0;
-  border-radius: 4px;
+  border-radius: var(--radius-xs);
   overflow: hidden;
   background: var(--color-tile);
   opacity: 0.55;
@@ -1979,7 +1995,7 @@ html.lights-out .badge {
   }
 
   .journal__text {
-    font-size: 1.125rem;
+    font-size: var(--text-lead);
   }
 }
 
@@ -1987,19 +2003,6 @@ html.lights-out .badge {
   .journal__thumb {
     transition: none;
   }
-}
-
-.page-close {
-  display: grid;
-  justify-items: center;
-  gap: var(--space-3);
-  padding: var(--space-9) 0 var(--space-6);
-  border-top: 1px solid var(--color-line);
-  text-align: center;
-}
-
-.page-close .page-section__title {
-  margin: 0;
 }
 
 /* ---------- Playground (playground.html) ----------
@@ -2182,8 +2185,8 @@ html.lights-out .badge {
   margin: 0;
   font-size: var(--text-lg);
   font-weight: 500;
-  line-height: var(--leading-snug);
-  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-h3);
+  letter-spacing: var(--tracking-h3);
 }
 
 /* The number and year stay on one line, however long the title beside them. */
@@ -2229,7 +2232,7 @@ html.lights-out .badge {
   max-width: 60ch;
   margin: var(--space-1) 0 0;
   font-size: var(--text-base);
-  line-height: var(--leading-body);
+  line-height: var(--leading-ui);
   color: var(--color-ink-2);
 }
 
@@ -2292,10 +2295,10 @@ html.lights-out .badge {
 }
 
 .contact__address {
-  font-size: clamp(1.75rem, 1rem + 3.2vw, 3.5rem);
-  font-weight: 500;
-  line-height: var(--leading-snug);
-  letter-spacing: var(--tracking-tight);
+  font-size: var(--text-h1);
+  font-weight: var(--weight-display);
+  line-height: var(--leading-h1);
+  letter-spacing: var(--tracking-h1);
   color: var(--color-ink);
   text-decoration: underline;
   text-decoration-thickness: 1px;
@@ -2303,6 +2306,7 @@ html.lights-out .badge {
   text-decoration-color: var(--color-line);
   overflow-wrap: anywhere;
   transition: text-decoration-color var(--dur) ease;
+  font-family: var(--font-display);
 }
 
 .contact__address:hover {
@@ -2325,7 +2329,7 @@ html.lights-out .badge {
   gap: var(--space-6);
   margin: 0;
   padding-top: var(--space-6);
-  border-top: 1px solid var(--color-line);
+  border-top: var(--border-hairline);
 }
 
 .contact__facts dt {
@@ -2432,7 +2436,7 @@ html.lights-out .badge {
   left: max(10px, calc(50% - 640px));
   width: 128px;
   padding: 40px 14px 16px;
-  border-radius: 3px;
+  border-radius: var(--radius-xs);
   background:
     radial-gradient(circle at 30% 40%, rgba(120, 90, 50, 0.08) 0.6px, transparent 1px) 0 0 / 8px 8px,
     #efe2c4;
@@ -2464,8 +2468,8 @@ html.lights-out .badge {
 .pc-tag__label {
   margin: 0;
   font-family: var(--font-mono);
-  font-size: 0.5625rem;
-  letter-spacing: 0.12em;
+  font-size: var(--text-micro);
+  letter-spacing: var(--tracking-mono);
   text-transform: uppercase;
   color: #7a6440;
 }
@@ -2546,10 +2550,13 @@ html.lights-out .badge {
 }
 
 .pc-ticket__title {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--font-sans);
   font-size: 1.125rem;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   color: #2d4a7a;
+
+  font-weight: var(--weight-medium);
+
 }
 
 .pc-ticket__stub {
@@ -2561,10 +2568,13 @@ html.lights-out .badge {
 }
 
 .pc-ticket__stub b {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--font-sans);
   font-size: 1.5rem;
   line-height: 1;
   color: #c0503a;
+
+  font-weight: var(--weight-medium);
+
 }
 
 /* Die-cut stickers stuck down on top of things. */
@@ -2598,10 +2608,10 @@ html.lights-out .badge {
 }
 
 .postcard__side {
-  border-radius: 6px;
+  border-radius: var(--radius-xs);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  box-shadow: 0 1px 2px rgba(60, 40, 20, 0.08), 0 18px 40px rgba(60, 40, 20, 0.14);
+  box-shadow: var(--shadow-lift);
 }
 
 /* Card stock: warm, faintly flecked, a touch darker toward the edges. */
@@ -2632,7 +2642,7 @@ html.lights-out .badge {
   display: block;
   margin: 0;
   font-family: var(--font-mono);
-  font-size: 0.625rem;
+  font-size: var(--text-micro);
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -2673,7 +2683,7 @@ html.lights-out .badge {
   align-self: flex-end;
   margin-top: var(--space-1);
   font-family: var(--font-mono);
-  font-size: 0.625rem;
+  font-size: var(--text-micro);
   color: var(--ink);
   opacity: 0.6;
 }
@@ -2855,7 +2865,7 @@ html.lights-out .badge {
   width: fit-content;
   max-width: 88%;
   margin: var(--space-4) auto 0;
-  padding: 6px 14px;
+  padding: var(--pad-chip);
   border-radius: var(--radius-pill);
   background: rgba(10, 50, 58, 0.42);
   -webkit-backdrop-filter: blur(4px);
@@ -2884,9 +2894,9 @@ html.lights-out .badge {
   margin: 0;
   padding: 34px var(--space-3) var(--space-3);
   border: 0;
-  border-radius: 3px;
+  border-radius: var(--radius-xs);
   background: #fbf7ee;
-  box-shadow: 0 2px 2px rgba(20, 20, 10, 0.15), 0 16px 28px rgba(20, 20, 10, 0.25);
+  box-shadow: var(--shadow-photo);
   rotate: 2deg;
 }
 
@@ -3620,23 +3630,29 @@ html.lights-out .badge {
   text-wrap: balance;
   max-width: 17ch;
   margin: var(--space-3) 0 0;
-  font-family: var(--font-serif);
-  font-size: clamp(2.5rem, 1.5rem + 3.8vw, 4.75rem);
-  font-weight: 400;
-  line-height: 1.02;
-  letter-spacing: -0.015em;
+  font-family: var(--font-display);
+  font-size: var(--text-display);
+  font-weight: var(--weight-display);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
   color: var(--color-ink);
 }
 
-.cs-hero__title em {
-  color: var(--color-ink-2);
+.cs-hero__title em,
+.page__display em {
+  font-family: var(--font-emphasis);
+  font-size: var(--size-emphasis);
+  font-style: var(--style-emphasis);
+  font-weight: var(--weight-emphasis);
+  letter-spacing: var(--tracking-emphasis);
+  color: var(--color-emphasis);
 }
 
 .cs-hero__lead {
   max-width: 60ch;
   margin: 0;
-  font-size: clamp(1.0625rem, 0.98rem + 0.35vw, 1.25rem);
-  line-height: 1.55;
+  font-size: var(--text-lead);
+  line-height: var(--leading-lead);
   color: var(--color-ink-2);
 }
 
@@ -3646,7 +3662,7 @@ html.lights-out .badge {
   gap: var(--space-5);
   margin: var(--space-4) 0 var(--space-3);
   padding-top: var(--space-5);
-  border-top: 1px solid var(--color-line);
+  border-top: var(--border-hairline);
 }
 
 .cs-facts dd {
@@ -3674,7 +3690,7 @@ html.lights-out .badge {
   height: 7px;
   margin-right: 7px;
   border-radius: 50%;
-  background: #2fa36b;
+  background: var(--color-positive);
   vertical-align: 1px;
   box-shadow: 0 0 0 0 rgba(47, 163, 107, 0.45);
   animation: cs-live 2.4s ease-out infinite;
@@ -3705,11 +3721,11 @@ html.lights-out .badge {
 
 .cs-stats b,
 .cs-results b {
-  font-family: var(--font-serif);
-  font-size: clamp(2.5rem, 1.9rem + 2vw, 3.5rem);
-  font-weight: 400;
+  font-family: var(--font-stat);
+  font-size: var(--text-h1);
+  font-weight: var(--weight-stat);
   line-height: 1;
-  letter-spacing: -0.01em;
+  letter-spacing: var(--tracking-display);
   color: var(--color-ink);
 }
 
@@ -3723,18 +3739,15 @@ html.lights-out .badge {
   display: block;
   width: 100%;
   height: auto;
+  border: var(--border-hairline); /* every screenshot and clip gets the same hairline, so white UI never bleeds into the page */
   border-radius: var(--radius-md);
   background: var(--color-tile);
 }
 
-.cs-media--hero video {
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
+/* The opening picture keeps its own shape: nothing cropped. */
+.cs-media--hero video,
+.cs-media--hero img {
   border-radius: var(--radius-lg);
-}
-
-.cs-media--shot img {
-  border: 1px solid var(--color-line);
 }
 
 .cs-media figcaption,
@@ -3825,34 +3838,34 @@ html.lights-out .badge {
 
 .cs-section + .cs-section {
   margin-top: var(--space-9);
-  border-top: 1px solid var(--color-line);
+  border-top: var(--border-hairline);
 }
 
 .cs-title {
   text-wrap: balance;
   max-width: 24ch;
   margin: var(--space-3) 0 var(--space-4);
-  font-family: var(--font-serif);
-  font-size: clamp(1.875rem, 1.3rem + 1.8vw, 2.75rem);
-  font-weight: 400;
-  line-height: 1.08;
-  letter-spacing: -0.01em;
+  font-family: var(--font-display);
+  font-size: var(--text-h1);
+  font-weight: var(--weight-display);
+  line-height: var(--leading-h1);
+  letter-spacing: var(--tracking-h1);
   color: var(--color-ink);
 }
 
 .cs-subtitle {
   margin: var(--space-8) 0 var(--space-3);
-  font-size: var(--text-lg);
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  font-size: var(--text-h3);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-h3);
   color: var(--color-ink);
 }
 
 .cs-text {
   max-width: 62ch;
   margin: 0;
-  font-size: 1.0625rem;
-  line-height: 1.65;
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
   color: var(--color-ink-2);
 }
 
@@ -3876,15 +3889,18 @@ html.lights-out .badge {
 }
 
 .cs-figures b {
-  font-family: var(--font-serif);
-  font-size: 1.75rem;
-  font-weight: 400;
+  font-family: var(--font-stat);
+  font-size: var(--text-h2);
+  font-weight: var(--weight-stat);
   line-height: 1.1;
   color: var(--color-ink);
+
+  letter-spacing: var(--tracking-display);
+
 }
 
 .cs-figures span {
-  font-size: 0.75rem;
+  font-size: var(--text-sm);
   color: var(--color-ink-3);
 }
 
@@ -3892,12 +3908,15 @@ html.lights-out .badge {
   max-width: 34ch;
   margin: var(--space-7) 0 0;
   padding-left: var(--space-5);
-  border-left: 2px solid var(--color-accent);
-  font-family: var(--font-serif);
-  font-size: clamp(1.375rem, 1.1rem + 0.9vw, 1.75rem);
+  border-left: var(--border-rule) solid var(--color-accent);
+  font-family: var(--font-quote);
+  font-size: var(--text-quote);
   font-style: italic;
   line-height: 1.3;
   color: var(--color-ink);
+
+  font-weight: var(--weight-regular);
+
 }
 
 .cs-quote cite {
@@ -3949,7 +3968,7 @@ html.lights-out .badge {
 .cs-methods b,
 .cs-people b {
   font-size: var(--text-base);
-  font-weight: 600;
+  font-weight: var(--weight-medium);
   color: var(--color-ink);
 }
 
@@ -3971,14 +3990,14 @@ html.lights-out .badge {
 .cs-tag {
   justify-self: start;
   margin-bottom: var(--space-2);
-  padding: 3px 7px;
+  padding: var(--pad-tag);
   border: 1px solid currentColor;
-  border-radius: 4px;
-  font-size: 0.625rem;
+  border-radius: var(--radius-xs);
+  font-size: var(--text-micro);
 }
 
 .cs-tag--accent {
-  color: var(--color-accent);
+  color: var(--color-accent-ink);
 }
 
 .cs-gallery {
@@ -4005,20 +4024,17 @@ html.lights-out .badge {
   display: block;
   width: 100%;
   height: auto;
-  border: 1px solid var(--color-line);
+  border: var(--border-hairline);
   border-radius: var(--radius-sm);
   background: var(--color-tile);
 }
 
-.cs-gallery--pair img,
-.cs-gallery--pair video {
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  object-position: top;
-}
-
-.cs-gallery__video video {
-  object-position: center;
+/* Pictures side by side share one frame shape (--ar, set on the gallery to its tallest picture),
+   so their tops, bottoms and captions line up; each sits whole inside its frame, never cropped. */
+.cs-gallery[style*="--ar"] img,
+.cs-gallery[style*="--ar"] video {
+  aspect-ratio: var(--ar);
+  object-fit: contain;
 }
 
 /* Insights: four cards, numbered. */
@@ -4044,16 +4060,21 @@ html.lights-out .badge {
 
 .cs-insights li::before {
   content: counter(cs-insight);
-  font-family: var(--font-serif);
-  font-size: 2.25rem;
+  font-family: var(--font-stat);
+  font-size: var(--text-h1);
   line-height: 1;
-  color: var(--color-accent);
+  color: var(--color-accent-ink);
+
+  font-weight: var(--weight-stat);
+
+  letter-spacing: var(--tracking-display);
+
 }
 
 .cs-insights b {
-  font-size: var(--text-lg);
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  font-size: var(--text-h3);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-h3);
   color: var(--color-ink);
 }
 
@@ -4066,10 +4087,10 @@ html.lights-out .badge {
 
 .cs-insights q {
   margin-top: var(--space-2);
-  font-family: var(--font-serif);
-  font-size: 1.125rem;
+  font-family: var(--font-quote);
+  font-size: var(--text-base);
   font-style: italic;
-  line-height: 1.35;
+  line-height: 1.5;
   color: var(--color-ink);
 }
 
@@ -4078,10 +4099,15 @@ html.lights-out .badge {
   gap: var(--space-3);
   max-width: 30ch;
   margin: var(--space-8) 0 0;
-  font-family: var(--font-serif);
-  font-size: clamp(1.625rem, 1.2rem + 1.4vw, 2.25rem);
-  line-height: 1.2;
+  font-family: var(--font-display);
+  font-size: var(--text-h2);
+  line-height: var(--leading-h2);
   color: var(--color-ink);
+
+  font-weight: var(--weight-display);
+
+  letter-spacing: var(--tracking-h2);
+
 }
 
 /* Decisions: the tension, the choice and the reason, then the work. */
@@ -4093,11 +4119,14 @@ html.lights-out .badge {
   text-wrap: balance;
   max-width: 26ch;
   margin: var(--space-2) 0 var(--space-5);
-  font-family: var(--font-serif);
-  font-size: clamp(1.5rem, 1.15rem + 1.1vw, 2rem);
-  font-weight: 400;
-  line-height: 1.15;
+  font-family: var(--font-display);
+  font-size: var(--text-h2);
+  font-weight: var(--weight-display);
+  line-height: var(--leading-h2);
   color: var(--color-ink);
+
+  letter-spacing: var(--tracking-h2);
+
 }
 
 .cs-decision__why {
@@ -4109,7 +4138,7 @@ html.lights-out .badge {
 
 .cs-decision__why div {
   padding-top: var(--space-3);
-  border-top: 1px solid var(--color-line);
+  border-top: var(--border-hairline);
 }
 
 .cs-decision__why div:nth-child(2) {
@@ -4124,7 +4153,7 @@ html.lights-out .badge {
 }
 
 .cs-decision__why b {
-  font-weight: 600;
+  font-weight: var(--weight-medium);
   color: var(--color-ink);
 }
 
@@ -4134,7 +4163,7 @@ html.lights-out .badge {
   aspect-ratio: 1400 / 1180;
   margin-top: var(--space-6);
   overflow: hidden;
-  border: 1px solid var(--color-line);
+  border: var(--border-hairline);
   border-radius: var(--radius-md);
   background: var(--color-tile);
   user-select: none;
@@ -4145,13 +4174,14 @@ html.lights-out .badge {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: top;
 }
 
 .cs-compare__before {
   position: absolute;
   inset: 0;
+  background: var(--color-tile); /* opaque, so the other picture never shows through a transparent edge */
   clip-path: inset(0 calc(100% - var(--split)) 0 0);
 }
 
@@ -4183,18 +4213,18 @@ html.lights-out .badge {
   background:
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M16 14l-6 6 6 6M24 14l6 6-6 6' fill='none' stroke='%23161616' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 100% no-repeat,
     #fff;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.22);
+  box-shadow: var(--shadow-float);
 }
 
 .cs-compare__chip {
   position: absolute;
   z-index: 2;
   top: var(--space-3);
-  padding: 4px 9px;
+  padding: var(--pad-chip);
   border-radius: var(--radius-pill);
-  background: rgba(22, 22, 22, 0.72);
+  background: color-mix(in srgb, var(--color-ink) 72%, transparent);
   font-family: var(--font-mono);
-  font-size: 0.625rem;
+  font-size: var(--text-micro);
   letter-spacing: var(--tracking-mono);
   text-transform: uppercase;
   color: #fff;
@@ -4248,15 +4278,21 @@ html.lights-out .badge {
   height: auto;
   aspect-ratio: 4 / 3;
   margin-bottom: var(--space-2);
-  border: 1px solid var(--color-line);
+  border: var(--border-hairline);
   border-radius: var(--radius-sm);
-  object-fit: cover;
+  object-fit: contain;
   background: var(--color-tile);
+}
+
+/* Craft pictures sit whole inside their tile, with a little air around them. */
+.cs-craft img {
+  box-sizing: border-box;
+  padding: var(--space-3);
 }
 
 .cs-craft b {
   font-size: var(--text-base);
-  font-weight: 600;
+  font-weight: var(--weight-medium);
   color: var(--color-ink);
 }
 
@@ -4279,7 +4315,7 @@ html.lights-out .badge {
 
 .cs-copy__btn {
   padding: 9px 18px;
-  border-radius: 6px;
+  border-radius: 6px; /* MINDS@UW's own button, reproduced as it ships */
   background: #8e1a3a;
   font-size: var(--text-sm);
   font-weight: 500;
@@ -4298,7 +4334,7 @@ html.lights-out .badge {
   gap: var(--space-5);
   margin: var(--space-6) 0 0;
   padding: var(--space-5) 0 0;
-  border-top: 1px solid var(--color-line);
+  border-top: var(--border-hairline);
   list-style: none;
 }
 
@@ -4312,33 +4348,41 @@ html.lights-out .badge {
 }
 
 .cs-lessons li {
-  font-size: 1.0625rem;
-  line-height: 1.6;
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
   color: var(--color-ink-2);
 }
 
 .cs-lessons b {
   display: block;
   margin-bottom: var(--space-1);
-  font-family: var(--font-serif);
-  font-size: 1.5rem;
-  font-weight: 400;
+  font-family: var(--font-sans);
+  font-size: var(--text-h3);
+  font-weight: var(--weight-medium);
   color: var(--color-ink);
+
+  letter-spacing: var(--tracking-h3);
+
 }
 
 .cs-end {
   margin-top: var(--space-10);
   padding: var(--space-6) 0 var(--space-4);
-  border-top: 1px solid var(--color-line);
+  border-top: var(--border-hairline);
 }
 
 .cs-end__link {
   display: inline-grid;
   gap: var(--space-1);
-  font-family: var(--font-serif);
-  font-size: clamp(1.75rem, 1.3rem + 1.4vw, 2.5rem);
+  font-family: var(--font-display);
+  font-size: var(--text-h1);
   color: var(--color-ink);
   text-decoration: none;
+
+  font-weight: var(--weight-display);
+
+  letter-spacing: var(--tracking-h1);
+
 }
 
 .cs-end__arrow {
@@ -4351,17 +4395,12 @@ html.lights-out .badge {
 }
 
 /* ---------- Added for myworker.html ---------- */
-/* Hero clips that shouldn't be cropped to 16:9. */
-.cs-media--natural video {
-  aspect-ratio: auto;
-}
-
 .cs-insights--3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .cs-insights--3 li::before {
-  font-size: 1.75rem;
+  font-size: var(--text-h2);
 }
 
 .cs-insights--3 b {
@@ -4397,7 +4436,7 @@ html.lights-out .badge {
   grid-template-columns: 5.5em minmax(0, 1fr);
   gap: var(--space-3);
   padding-top: var(--space-3);
-  border-top: 1px solid var(--color-line);
+  border-top: var(--border-hairline);
 }
 
 .cs-round dt {
@@ -4417,17 +4456,17 @@ html.lights-out .badge {
 }
 
 .cs-round b {
-  font-weight: 600;
+  font-weight: var(--weight-medium);
   color: var(--color-ink);
 }
 
 /* Where a decision came from: the insight or test, as a small accent tag. */
 .cs-from {
   margin-left: var(--space-2);
-  padding: 2px 7px;
+  padding: var(--pad-tag);
   border-radius: var(--radius-pill);
-  background: color-mix(in srgb, var(--color-accent) 12%, transparent);
-  color: var(--color-accent);
+  background: var(--color-accent-soft);
+  color: var(--color-accent-ink);
 }
 
 /* The flow before and after: steps as chips, the dropped one struck through, the new ones filled. */
@@ -4485,7 +4524,7 @@ html.lights-out .badge {
 }
 
 .cs-steps li.is-new {
-  color: var(--color-accent);
+  color: var(--color-accent-ink);
 }
 
 .cs-note {
@@ -4496,16 +4535,13 @@ html.lights-out .badge {
   color: var(--color-ink-3);
 }
 
-.cs-compare--wide {
-  aspect-ratio: 1800 / 1164;
-}
 
 .cs-gallery--2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: start;
 }
 
-/* Phone screens: stills and recordings side by side, each in a rounded phone-shaped frame. */
+/* Phone screens: stills and recordings side by side. They carry their own device frame, so no box. */
 .cs-phones {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -4533,11 +4569,12 @@ html.lights-out .badge {
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 694 / 1418;
-  object-fit: cover;
-  border: 1px solid var(--color-line);
-  border-radius: clamp(14px, 2.4vw, 26px);
-  background: var(--color-tile);
+}
+
+/* The phone recordings stop just short of the bottom of the device; this strip, rebuilt from the
+   top of the same frame, closes it. It sits flush under its video. */
+.cs-phone-chin {
+  margin-top: -1px;
 }
 
 .cs-phones figcaption {
@@ -4563,23 +4600,19 @@ html.lights-out .badge {
   display: block;
   width: 100%;
   height: auto;
-  border: 1px solid var(--color-line);
+  border: var(--border-hairline);
   border-radius: var(--radius-sm);
 }
 
 .cs-split__phone img {
-  border-radius: clamp(14px, 2.4vw, 26px);
+  border: 0;
+  border-radius: 0;
 }
 
 /* A single testing round, as wide as the text. */
 .cs-rounds--1 {
   grid-template-columns: minmax(0, 1fr);
   max-width: 720px;
-}
-
-/* A tall image cropped into a craft tile from its top edge. */
-.cs-craft img.cs-craft__top {
-  object-position: top;
 }
 
 /* A paragraph that follows a block of cards rather than a heading. */
@@ -4631,17 +4664,17 @@ html.lights-out .badge {
   margin-bottom: var(--space-2);
   padding: var(--space-5);
   border-radius: var(--radius-sm);
-  background: #1d1d1f;
-  font-family: var(--font-serif);
-  font-size: 1.125rem;
+  background: var(--color-ink);
+  font-family: var(--font-quote);
+  font-size: var(--text-body);
   font-style: italic;
-  line-height: 1.35;
-  color: #f4f2ee;
+  line-height: 1.45;
+  color: var(--color-surface);
 }
 
 .cs-prompt .cs-label {
   font-style: normal;
-  color: rgba(244, 242, 238, 0.6);
+  color: color-mix(in srgb, var(--color-surface) 65%, transparent);
 }
 
 @media (max-width: 1100px) {
@@ -4701,10 +4734,6 @@ html.lights-out .badge {
     gap: var(--space-2);
   }
 
-  .cs-compare--wide {
-    aspect-ratio: 1800 / 1164;
-  }
-
   .cs-decision__why {
     gap: var(--space-3);
   }
@@ -4721,9 +4750,6 @@ html.lights-out .badge {
     margin-top: var(--space-8);
   }
 
-  .cs-compare {
-    aspect-ratio: 4 / 5;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -4749,15 +4775,15 @@ html.lights-out .badge {
   min-height: 100svh;
   padding: clamp(var(--space-7), 7vw, var(--space-10)) var(--frame-gutter) var(--space-10);
   border-radius: var(--radius-window) var(--radius-window) 0 0;
-  background: #efede8;
-  box-shadow: 0 -24px 60px rgba(0, 35, 70, 0.18);
+  background: var(--color-sheet);
+  box-shadow: var(--shadow-sheet);
 }
 
 /* Frosted paper: the sheet lets the hero ghost through it, softened, so it reads as a translucent
    page laid over the sea rather than a flat panel. */
 @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
   .works {
-    background: rgba(239, 237, 232, 0.8);
+    background: color-mix(in srgb, var(--color-sheet) 80%, transparent);
     -webkit-backdrop-filter: blur(14px) saturate(1.15);
     backdrop-filter: blur(14px) saturate(1.15);
   }
@@ -4772,19 +4798,22 @@ html.lights-out .badge {
 
 .works__title {
   margin: 0;
-  font-family: var(--font-serif);
-  font-size: clamp(3rem, 2rem + 4vw, 6rem);
-  font-weight: 400;
-  line-height: 0.95;
-  letter-spacing: -0.02em;
+  font-family: var(--font-display);
+  font-size: var(--text-display);
+  font-weight: var(--weight-display);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
   color: var(--color-ink);
 }
 
 .works__lede {
   max-width: 44ch;
   margin: 0;
-  font-size: var(--text-base);
+  font-size: var(--text-lead);
   color: var(--color-ink-2);
+
+  line-height: var(--leading-lead);
+
 }
 
 .works__more {
@@ -4809,7 +4838,6 @@ html.lights-out .badge {
 
 .case-card__media {
   position: relative;
-  aspect-ratio: 2 / 1;
   overflow: hidden;
   border-radius: var(--radius-lg);
   background: var(--color-tile);
@@ -4819,8 +4847,7 @@ html.lights-out .badge {
 .case-card__media img {
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
   transition: scale var(--dur-slow) var(--ease-out);
 }
 
@@ -4842,13 +4869,13 @@ html.lights-out .badge {
   color: #fff;
   white-space: nowrap;
   pointer-events: none;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+  box-shadow: var(--shadow-float);
 }
 
 .case-card__cursor span {
   display: inline-block;
   margin-left: 2px;
-  color: var(--color-accent);
+  color: var(--color-accent-ink);
 }
 
 .case-card__media.has-cursor {
@@ -4890,11 +4917,14 @@ html.lights-out .badge {
   text-wrap: balance;
   max-width: 22ch;
   margin: 0;
-  font-family: var(--font-serif);
-  font-size: clamp(1.75rem, 1.3rem + 1.5vw, 2.5rem);
-  font-weight: 400;
-  line-height: 1.1;
+  font-family: var(--font-display);
+  font-size: var(--text-h2);
+  font-weight: var(--weight-display);
+  line-height: var(--leading-h2);
   color: var(--color-ink);
+
+  letter-spacing: var(--tracking-h2);
+
 }
 
 .case-card__tags {
@@ -4907,11 +4937,11 @@ html.lights-out .badge {
 }
 
 .case-card__tags li {
-  padding: 3px 8px;
-  border: 1px solid rgba(22, 22, 22, 0.28);
-  border-radius: 3px;
+  padding: var(--pad-tag);
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-xs);
   font-family: var(--font-mono);
-  font-size: 0.625rem;
+  font-size: var(--text-micro);
   letter-spacing: var(--tracking-mono);
   text-transform: uppercase;
   color: var(--color-ink-2);
@@ -4957,7 +4987,6 @@ html.lights-out .badge {
   }
 
   .case-card__media {
-    aspect-ratio: 4 / 3;
     border-radius: var(--radius-md);
   }
 
@@ -4965,7 +4994,7 @@ html.lights-out .badge {
     right: var(--space-3);
     bottom: var(--space-3);
     padding: 7px 12px;
-    font-size: 0.75rem;
+    font-size: var(--text-sm);
   }
 }
 
@@ -5173,7 +5202,7 @@ html.lights-out .badge {
 }
 
 .shore__bar .mono-label {
-  color: #7a6f5f;
+  color: #5e5244;
 }
 
 .shore__bar a {
@@ -5185,7 +5214,17 @@ html.lights-out .badge {
   color: var(--color-ink);
 }
 
+/* On every other page the beach closes the page window: it runs out to the window's edges and down
+   to its bottom, past the window's own padding. */
+.page__window > .shore {
+  margin: var(--space-10) calc(-1 * var(--space-6)) calc(-1 * var(--space-8));
+}
+
 @media (max-width: 760px) {
+  .page__window > .shore {
+    margin: var(--space-9) calc(-1 * var(--space-4)) calc(-1 * var(--space-7));
+  }
+
   .shore {
     margin-inline: calc(-1 * var(--space-4));
   }

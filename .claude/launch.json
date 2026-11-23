@@ -2,6 +2,12 @@
   "version": "0.0.1",
   "configurations": [
     {
+      "name": "portfolio",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["http-server", "redesign", "-p", "5180", "-c-1", "-s"],
+      "port": 5180
+    },
+    {
       "name": "redesign",
       "runtimeExecutable": "npx",
       "runtimeArgs": ["http-server", "redesign", "-p", "5173", "-c-1", "-s"],

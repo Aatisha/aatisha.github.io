@@ -7,7 +7,7 @@
   <meta name="description" content="Send Aatisha Cyrill a postcard: pick a stamp, write a few lines and drop it in the post.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Geist+Mono:wght@400;500&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Geist+Mono:wght@400;500&family=Geist:ital,wght@0,300..600;1,400..500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="tokens.css">
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -32,8 +32,9 @@
            local time, kept by about.js) and the other places to find me. -->
       <section class="contact" aria-labelledby="contact-title">
         <div class="contact__intro" data-reveal>
-          <h1 id="contact-title" class="visually-hidden">Postcard</h1>
-          <p class="page__lead"><b>Send me a postcard.</b> Whether it’s a project, a role, an idea worth playing with or a book I should read next, I’d love to hear from you.</p>
+          <p class="mono-label page__kicker">Postcard</p>
+          <h1 id="contact-title" class="page__display">Send me <em>a postcard.</em></h1>
+          <p class="page__lead">Whether it’s a project, a role, an idea worth playing with or a book I should read next, I’d love to hear from you.</p>
         </div>
 
         <!-- The postcard. Postcards are kept in Supabase (set data-supabase-url and data-supabase-key,
@@ -461,10 +462,21 @@
         </dl>
       </section>
     </main>
+
+    <!-- Footer: the painted beach from the home page (shore.js). -->
+    <footer class="shore" role="contentinfo">
+      <div class="shore__scene" aria-hidden="true"></div>
+      <div class="shore__bar">
+        <p class="mono-label">© 2026 Aatisha Cyrill</p>
+        <a class="mono-label" href="#">Back to top ↑</a>
+      </div>
+    </footer>
   </div>
 
   <script src="about.js"></script>
   <script src="postcard.js"></script>
+  <script src="shells.js"></script>
+  <script src="shore.js"></script>
   <script src="brand.js"></script>
 </body>
 </html>

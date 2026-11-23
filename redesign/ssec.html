@@ -7,7 +7,7 @@
   <meta name="description" content="Case study: designing a single platform for polar satellite imagery at UW–Madison's Space Science and Engineering Center, organised by what scientists study instead of the satellites that collect it. Research, product decisions and the design system.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400&family=Geist:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Geist+Mono:wght@400;500&family=Geist:ital,wght@0,300..600;1,400..500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="tokens.css">
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -43,8 +43,8 @@
           <div><dt>Status</dt><dd>Handed off for development<br><a href="https://www.figma.com/proto/SrzhIZ8LRxsfm3IKjaOaQr/UX-2?node-id=3668-5740" target="_blank" rel="noopener">Figma prototype ↗</a></dd></div>
         </dl>
 
-        <figure class="cs-media cs-media--hero cs-media--natural">
-          <video src="assets/work/ssec/hero.mp4" poster="assets/work/ssec/hero-poster.jpg" muted loop playsinline preload="metadata" data-autoplay aria-label="The products platform: Snow, Ice and Polar Winds cards, then the Ice products view with its configuration panel and an animated sea-ice map"></video>
+        <figure class="cs-media cs-media--hero">
+          <video src="assets/work/ssec/hero.mp4" width="2520" height="1796" poster="assets/work/ssec/hero-poster.jpg" muted loop playsinline preload="metadata" data-autoplay aria-label="The products platform: Snow, Ice and Polar Winds cards, then the Ice products view with its configuration panel and an animated sea-ice map"></video>
         </figure>
 
         <ul class="cs-stats" aria-label="At a glance">
@@ -85,8 +85,8 @@
             <p class="cs-label">02 · Problem</p>
             <h2 class="cs-title" id="problem-title">The data was organised the way it was produced, not the way it was used.</h2>
             <p class="cs-text">Images landed in server directories by satellite, then instrument, then date. That mirrors the pipeline, but a scientist starts from a question about snow or ice. Every new satellite added another branch to dig through, and nothing in a folder could be compared, animated or shared without downloading it first.</p>
-            <figure class="cs-media cs-media--shot">
-              <img src="assets/work/ssec/problem.jpg" alt="Diagram: four satellites, each with instruments, feed software tools that generate images, which are stored in server folders by satellite, instrument and date" loading="lazy" width="1600" height="1380">
+            <figure class="cs-media">
+              <img src="assets/work/ssec/problem.webp" alt="Diagram: four satellites, each with instruments, feed software tools that generate images, which are stored in server folders by satellite, instrument and date" loading="lazy" width="1770" height="1527">
               <figcaption>From orbit to folder: every new satellite or instrument adds another branch.</figcaption>
             </figure>
           </section>
@@ -102,15 +102,15 @@
 
             <h3 class="cs-subtitle">Every step of the old workflow cost time</h3>
             <p class="cs-text">I mapped how a lead scientist works today. Each stage started hopeful and ended in friction: digging through folders, opening images in other software to compare them, and zipping large files to email.</p>
-            <figure class="cs-media cs-media--shot">
-              <img src="assets/work/ssec/journey.jpg" alt="Journey: starting, searching, analysing, sharing. Quotes: I hope I can find the right data quickly; this is taking too long; it's difficult to compare these files side by side; sharing large files by email takes forever" loading="lazy" width="2000" height="872">
+            <figure class="cs-media">
+              <img src="assets/work/ssec/journey.webp" alt="Journey: starting, searching, analysing, sharing. Quotes: I hope I can find the right data quickly; this is taking too long; it's difficult to compare these files side by side; sharing large files by email takes forever" loading="lazy" width="2400" height="1047">
             </figure>
             <blockquote class="cs-quote">“It’s difficult to compare these files side by side.”<cite>Scientist, workflow mapping</cite></blockquote>
 
             <h3 class="cs-subtitle">The public tools were either beautiful or rigorous</h3>
-            <div class="cs-gallery cs-gallery--2">
-              <figure><img src="assets/work/ssec/nasa.jpg" alt="NASA Eyes on the Earth: a 3D globe with satellite tracks and a featured event" loading="lazy" width="1121" height="675"><figcaption><b>NASA Eyes on the Earth</b> Engaging 3D, but slow to navigate and no filter by snow, ice or winds.</figcaption></figure>
-              <figure><img src="assets/work/ssec/nsidc.jpg" alt="NSIDC Sea Ice Today: sea-ice maps and an extent chart" loading="lazy" width="1400" height="762"><figcaption><b>NSIDC Sea Ice Today</b> Accurate and downloadable, but static, with little history to explore.</figcaption></figure>
+            <div class="cs-gallery cs-gallery--2" style="--ar: 1121 / 675;">
+              <figure><img src="assets/work/ssec/nasa.webp" alt="NASA Eyes on the Earth: a 3D globe with satellite tracks and a featured event" loading="lazy" width="1121" height="675"><figcaption><b>NASA Eyes on the Earth</b> Engaging 3D, but slow to navigate and no filter by snow, ice or winds.</figcaption></figure>
+              <figure><img src="assets/work/ssec/nsidc.webp" alt="NSIDC Sea Ice Today: sea-ice maps and an extent chart" loading="lazy" width="2400" height="1307"><figcaption><b>NSIDC Sea Ice Today</b> Accurate and downloadable, but static, with little history to explore.</figcaption></figure>
             </div>
             <p class="cs-text cs-text--after">Scientists needed both: the rigour of NSIDC and the exploration of NASA, in a tool built for daily work rather than public outreach.</p>
           </section>
@@ -153,13 +153,13 @@
                 <div><dt>Chose</dt><dd>Three doors: Snow, Ice and Polar Winds. Satellite, instrument and date become settings inside each one.</dd></div>
                 <div><dt>Why</dt><dd>It matches how scientists think, and it scales. Satellites launch and retire; snow and ice stay. A new satellite becomes an option, not a new branch.</dd></div>
               </dl>
-              <div class="cs-gallery cs-gallery--3">
-                <figure><img src="assets/work/ssec/home-a.jpg" alt="Homepage option A: an overview card and three uneven product tiles" loading="lazy" width="1400" height="995"><figcaption><span class="cs-tag">Option A</span> Overview first</figcaption></figure>
-                <figure><img src="assets/work/ssec/home-b.jpg" alt="Homepage option B: a platform intro, three products and a strip of recent images" loading="lazy" width="1400" height="996"><figcaption><span class="cs-tag">Option B</span> Recent images first</figcaption></figure>
-                <figure><img src="assets/work/ssec/home-c.jpg" alt="Homepage option C: three equal product category cards with descriptions" loading="lazy" width="1800" height="1237"><figcaption><span class="cs-tag cs-tag--accent">Chosen</span> Three equal doors</figcaption></figure>
+              <div class="cs-gallery cs-gallery--3" style="--ar: 2140 / 1522;">
+                <figure><img src="assets/work/ssec/home-a.webp" alt="Homepage option A: an overview card and three uneven product tiles" loading="lazy" width="2152" height="1530"><figcaption><span class="cs-tag">Option A</span> Overview first</figcaption></figure>
+                <figure><img src="assets/work/ssec/home-b.webp" alt="Homepage option B: a platform intro, three products and a strip of recent images" loading="lazy" width="2140" height="1522"><figcaption><span class="cs-tag">Option B</span> Recent images first</figcaption></figure>
+                <figure><img src="assets/work/ssec/home-c.webp" alt="Homepage option C: three equal product category cards with descriptions" loading="lazy" width="2400" height="1650"><figcaption><span class="cs-tag cs-tag--accent">Chosen</span> Three equal doors</figcaption></figure>
               </div>
               <figure class="cs-media">
-                <img src="assets/work/ssec/home-final.jpg" alt="The final homepage: Products Platform with Snow, Ice and Polar Winds cards, each with a photo and a line on its data sources" loading="lazy" width="1728" height="1229">
+                <img src="assets/work/ssec/home-final.webp" alt="The final homepage: Products Platform with Snow, Ice and Polar Winds cards, each with a photo and a line on its data sources" loading="lazy" width="1728" height="1229">
                 <figcaption>The chosen layout was the simplest: one equal card per variable, each saying where its data comes from.</figcaption>
               </figure>
             </article>
@@ -172,9 +172,9 @@
                 <div><dt>Chose</dt><dd>One configuration panel beside the image: instrument, version, region, parameter and date, then <i>Apply</i>. The image stays in place.</dd></div>
                 <div><dt>Why</dt><dd>Every level of the old path is still there, but as a choice you can change without starting over.</dd></div>
               </dl>
-              <div class="cs-gallery cs-gallery--2">
-                <figure><img src="assets/work/ssec/wf-display.jpg" alt="Wireframe: a configuration panel on the left, a large image area with playback controls, and notes on the toolbar" loading="lazy" width="1800" height="1125"><figcaption><span class="cs-tag">Wireframe</span></figcaption></figure>
-                <figure><img src="assets/work/ssec/config.jpg" alt="Final ice products view: configuration panel with instrument, version, region, parameter and date, an Antarctic sea-ice map, playback controls with Loop and Rock, and a last-updated note" loading="lazy" width="1728" height="1229"><figcaption><span class="cs-tag cs-tag--accent">Final</span></figcaption></figure>
+              <div class="cs-gallery cs-gallery--2" style="--ar: 1728 / 1229;">
+                <figure><img src="assets/work/ssec/wf-display.webp" alt="Wireframe: a configuration panel on the left, a large image area with playback controls, and notes on the toolbar" loading="lazy" width="2400" height="1500"><figcaption><span class="cs-tag">Wireframe</span></figcaption></figure>
+                <figure><img src="assets/work/ssec/config.webp" alt="Final ice products view: configuration panel with instrument, version, region, parameter and date, an Antarctic sea-ice map, playback controls with Loop and Rock, and a last-updated note" loading="lazy" width="1728" height="1229"><figcaption><span class="cs-tag cs-tag--accent">Final</span></figcaption></figure>
               </div>
             </article>
 
@@ -187,7 +187,7 @@
                 <div><dt>Why</dt><dd>Region across, time down: the two questions scientists ask most, answered in one screen.</dd></div>
               </dl>
               <figure class="cs-media">
-                <video src="assets/work/ssec/compare.mp4" poster="assets/work/ssec/compare-poster.jpg" muted loop playsinline preload="none" data-autoplay aria-label="Comparison view: Arctic and Antarctic snow cover side by side, with the previous day below"></video>
+                <video src="assets/work/ssec/compare.mp4" width="2520" height="1796" poster="assets/work/ssec/compare-poster.jpg" muted loop playsinline preload="none" data-autoplay aria-label="Comparison view: Arctic and Antarctic snow cover side by side, with the previous day below"></video>
               </figure>
             </article>
 
@@ -200,7 +200,7 @@
                 <div><dt>Why</dt><dd>Animation shows movement, like sea ice drifting. The grid shows the overall trend. Scientists read both.</dd></div>
               </dl>
               <figure class="cs-media">
-                <img src="assets/work/ssec/history.jpg" alt="Historical view: the configuration panel and a grid of 15 daily Arctic snow-cover maps" loading="lazy" width="1800" height="1280">
+                <img src="assets/work/ssec/history.webp" alt="Historical view: the configuration panel and a grid of 15 daily Arctic snow-cover maps" loading="lazy" width="2400" height="1707">
                 <figcaption>Fifteen days of Arctic snow cover at once.</figcaption>
               </figure>
             </article>
@@ -214,11 +214,11 @@
                 <div><dt>Why</dt><dd>The data stays as large as possible, and sharing with a colleague is a click, not a zip file and an email.</dd></div>
               </dl>
               <figure class="cs-media">
-                <video src="assets/work/ssec/zoom.mp4" poster="assets/work/ssec/zoom-poster.jpg" muted loop playsinline preload="none" data-autoplay aria-label="A sea-ice map opened large: the info tooltip, zooming in, and stepping through days"></video>
+                <video src="assets/work/ssec/zoom.mp4" width="2520" height="1796" poster="assets/work/ssec/zoom-poster.jpg" muted loop playsinline preload="none" data-autoplay aria-label="A sea-ice map opened large: the info tooltip, zooming in, and stepping through days"></video>
               </figure>
               <p class="cs-note">The same pattern carries every variable. Polar winds, from five instruments, needed no new screens at all:</p>
               <figure class="cs-media">
-                <video src="assets/work/ssec/winds.mp4" poster="assets/work/ssec/winds-poster.jpg" muted loop playsinline preload="none" data-autoplay aria-label="Polar winds: choosing an instrument and satellite in the configuration panel, then the 15-day grid"></video>
+                <video src="assets/work/ssec/winds.mp4" width="2520" height="1796" poster="assets/work/ssec/winds-poster.jpg" muted loop playsinline preload="none" data-autoplay aria-label="Polar winds: choosing an instrument and satellite in the configuration panel, then the 15-day grid"></video>
               </figure>
             </article>
           </section>
@@ -228,17 +228,17 @@
             <h2 class="cs-title" id="craft-title">Calm enough for daily work, built to grow.</h2>
             <ul class="cs-craft">
               <li>
-                <img src="assets/work/ssec/style.jpg" alt="Typography in Inter and a palette of cornflower blue, ming green and violet scales" loading="lazy" width="1800" height="733">
+                <img src="assets/work/ssec/style.webp" alt="Typography in Inter and a palette of cornflower blue, ming green and violet scales" loading="lazy" width="2400" height="977">
                 <b>A quiet palette</b>
                 <p>Cornflower blue for snow and ice, ming green and violet as accents, and Inter for legibility, so the colourful data maps stay the loudest thing on screen.</p>
               </li>
               <li>
-                <img class="cs-craft__top" src="assets/work/ssec/components.jpg" alt="Figma components: map cards, product cards, buttons, dropdowns, toggles and the playback bar" loading="lazy" width="1400" height="2233">
+                <img src="assets/work/ssec/components.webp" alt="Figma components: map cards, product cards, buttons, dropdowns, toggles and the playback bar" loading="lazy" width="2170" height="3461">
                 <b>Components and variants</b>
                 <p>Every card, control and panel built as Figma components, so a new product is assembled, not designed from scratch.</p>
               </li>
               <li>
-                <img src="assets/work/ssec/sketches.jpg" alt="Hand sketches of homepage variations, the display area, comparison and historical views" loading="lazy" width="2000" height="1027">
+                <img src="assets/work/ssec/sketches.webp" alt="Hand sketches of homepage variations, the display area, comparison and historical views" loading="lazy" width="2400" height="1233">
                 <b>Sketch to annotated handoff</b>
                 <p>Paper sketches, then wireframes annotated for the developers, explaining each panel, control and interaction.</p>
               </li>
@@ -255,7 +255,7 @@
               <li><b>Scalable</b>new satellites become settings</li>
             </ul>
             <figure class="cs-media">
-              <img src="assets/work/ssec/collage.jpg" alt="Photos from the internship: framed satellite images, SSEC's antennas and weather tower, archive photos and a team presentation" loading="lazy" width="1308" height="659">
+              <img src="assets/work/ssec/collage.webp" alt="Photos from the internship: framed satellite images, SSEC's antennas and weather tower, archive photos and a team presentation" loading="lazy" width="1308" height="659">
               <figcaption>Around SSEC during the internship, photos by me.</figcaption>
             </figure>
           </section>
@@ -276,10 +276,21 @@
         </div>
       </div>
     </main>
+
+    <!-- Footer: the painted beach from the home page (shore.js). -->
+    <footer class="shore" role="contentinfo">
+      <div class="shore__scene" aria-hidden="true"></div>
+      <div class="shore__bar">
+        <p class="mono-label">© 2026 Aatisha Cyrill</p>
+        <a class="mono-label" href="#">Back to top ↑</a>
+      </div>
+    </footer>
   </div>
 
   <script src="about.js"></script>
   <script src="minds.js"></script>
+  <script src="shells.js"></script>
+  <script src="shore.js"></script>
   <script src="brand.js"></script>
 </body>
 </html>
