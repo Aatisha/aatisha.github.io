@@ -5197,3 +5197,44 @@ html.lights-out .badge {
   }
 
 }
+
+/* ---------- A page that fits one screen (404.html) ----------
+   Nothing to scroll for: the message centres in the space under the bar, and the beach takes a share
+   of the screen's height instead of its usual width-based one. On a screen too short for both, the
+   page simply grows and scrolls. Kept after the phone rules above so it wins over them. */
+.page__window--fit {
+  display: flex;
+  flex-direction: column;
+}
+
+.page__window--fit > main {
+  display: grid;
+  flex: 1;
+  align-content: center;
+  width: 100%;
+  padding-top: var(--space-5); /* centred, so it needs no more room under the bar than this */
+}
+
+.page__window--fit .contact {
+  padding-block: 0;
+}
+
+.page__window--fit > .shore {
+  margin-top: var(--space-5);
+}
+
+.page__window--fit .shore__scene {
+  height: clamp(140px, 32svh, 420px);
+}
+
+/* Nothing to scroll back up to. */
+.page__window--fit .shore__bar a[href="#"] {
+  visibility: hidden;
+}
+
+/* Short screens (small phones): a slimmer beach, so the message still fits above it. */
+@media (max-height: 640px) {
+  .page__window--fit .shore__scene {
+    height: clamp(120px, 24svh, 180px);
+  }
+}

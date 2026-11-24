@@ -5,6 +5,7 @@
 //   - Google Analytics, in production builds only
 //   - responsive images: a 1200px version alongside each large /media image (from the media build)
 // and, in production, the sitemap and robots.txt.
+import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import config from '../site.config.mjs';
@@ -16,11 +17,27 @@ const unesc = (s) => s.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&
 // '/minds/index.html' -> 'minds', '/index.html' -> '', '/404.html' -> '404'
 const routeOf = (p) => p.replace(/^\//, '').replace(/(^|\/)index\.html$/, '').replace(/\.html$/, '').replace(/\/$/, '');
 const urlOf = (route) => `${config.url}/${route ? route + '/' : ''}`;
+const fileOf = (route) => path.resolve('site', route, 'index.html');
+
+// When a page's file was first committed and last changed, from git (full ISO dates). The deploy
+// checks out the whole history so these are real; outside git they're simply left out.
+const git = (...args) => {
+  try { return execFileSync('git', args, { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim(); } catch { return ''; }
+};
+const datesOf = (route) => {
+  const file = path.relative(process.cwd(), fileOf(route));
+  const added = git('log', '--follow', '--diff-filter=A', '--format=%cI', '--', file).split('\n').filter(Boolean).pop();
+  const changed = git('log', '-1', '--format=%cI', '--', file);
+  return { published: added || undefined, modified: changed || undefined };
+};
 
 function head(html, route, production) {
   const page = config.pages[route];
   const title = unesc(html.match(/<title>([^<]*)<\/title>/)?.[1] ?? config.name);
   const description = unesc(html.match(/<meta name="description" content="([^"]*)"/)?.[1] ?? '');
+  // A page may give its share card a longer description than search gets.
+  const ownShare = html.match(/<meta property="og:description" content="([^"]*)"/)?.[1];
+  const share = ownShare ? unesc(ownShare) : description;
   const tags = [];
   const meta = (attr, key, content) => tags.push(`<meta ${attr}="${key}" content="${esc(content)}">`);
 
@@ -39,7 +56,7 @@ function head(html, route, production) {
     meta('property', 'og:type', page.type === 'article' ? 'article' : page.type === 'profile' ? 'profile' : 'website');
     meta('property', 'og:site_name', config.name);
     meta('property', 'og:title', title);
-    meta('property', 'og:description', description);
+    if (!ownShare) meta('property', 'og:description', share);
     meta('property', 'og:url', url);
     meta('property', 'og:image', image);
     meta('property', 'og:image:width', '1200');
@@ -48,12 +65,13 @@ function head(html, route, production) {
     meta('property', 'og:locale', 'en_US');
     meta('name', 'twitter:card', 'summary_large_image');
     meta('name', 'twitter:title', title);
-    meta('name', 'twitter:description', description);
+    meta('name', 'twitter:description', share);
     meta('name', 'twitter:image', image);
 
     const person = { '@type': 'Person', name: config.name, jobTitle: config.role, url: urlOf(''), sameAs: config.sameAs };
+    const { published, modified } = page.type === 'article' ? datesOf(route) : {};
     const data = page.type === 'article'
-      ? { '@context': 'https://schema.org', '@type': 'Article', headline: title.replace(/ — .*$/, ''), description, image, url, author: person, publisher: person }
+      ? { '@context': 'https://schema.org', '@type': 'Article', headline: title.replace(/ — .*$/, ''), description, image, url, datePublished: published, dateModified: modified, author: person, publisher: person }
       : route === ''
         ? { '@context': 'https://schema.org', '@type': 'WebSite', name: config.name, url, description, author: person }
         : page.type === 'profile'
@@ -100,9 +118,12 @@ export default function site({ production }) {
     },
     closeBundle() {
       if (!production) return;
-      const today = new Date().toISOString().slice(0, 10);
-      const urls = Object.keys(config.pages)
-        .map((r) => `  <url><loc>${urlOf(r)}</loc><lastmod>${today}</lastmod><priority>${r === '' ? '1.0' : config.pages[r].type === 'article' ? '0.8' : '0.6'}</priority></url>`);
+      // Each page's own last change, so a deploy only marks the pages that really changed.
+      const urls = Object.keys(config.pages).map((r) => {
+        const day = datesOf(r).modified?.slice(0, 10);
+        const lastmod = day ? `<lastmod>${day}</lastmod>` : '';
+        return `  <url><loc>${urlOf(r)}</loc>${lastmod}<priority>${r === '' ? '1.0' : config.pages[r].type === 'article' ? '0.8' : '0.6'}</priority></url>`;
+      });
       fs.writeFileSync(path.join(outDir, 'sitemap.xml'),
         `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>\n`);
       fs.writeFileSync(path.join(outDir, 'robots.txt'),
