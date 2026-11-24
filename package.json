@@ -11,7 +11,8 @@
     "dev": "node scripts/build-media.mjs && vite",
     "build": "node scripts/build-media.mjs && vite build",
     "preview": "vite preview",
-    "og": "node scripts/og-images.mjs"
+    "og": "node scripts/og-images.mjs",
+    "icons": "node scripts/icons.mjs"
   },
   "dependencies": {
     "three": "0.167.0"
