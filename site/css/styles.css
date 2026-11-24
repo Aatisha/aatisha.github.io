@@ -693,10 +693,6 @@ a:hover > .photo,
   min-height: 34px;
 }
 
-.hero__cue {
-  text-align: center;
-}
-
 /* A shell shaken out of a polaroid (polaroids.js). It slips out from behind the photo, then comes in front
    once it has dropped clear, so it lands on the shore in view. */
 .shell {
@@ -4814,11 +4810,6 @@ html.lights-out .badge {
 
   line-height: var(--leading-lead);
 
-}
-
-.works__more {
-  max-width: 1720px;
-  margin: var(--space-9) auto 0;
 }
 
 .case-card {
