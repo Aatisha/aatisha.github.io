@@ -43,7 +43,8 @@ function head(html, route, production) {
 
   meta('name', 'theme-color', config.themeColor);
   tags.push('<link rel="icon" href="/favicon.svg" type="image/svg+xml">');
-  tags.push('<link rel="icon" href="/favicon.ico" sizes="32x32">');
+  tags.push('<link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">'); // what Google shows in results
+  tags.push('<link rel="icon" href="/favicon.ico" sizes="48x48">');
   tags.push('<link rel="apple-touch-icon" href="/apple-touch-icon.png">');
 
   if (!page) {
