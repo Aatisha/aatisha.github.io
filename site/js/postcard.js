@@ -115,6 +115,8 @@
     const bot = form.elements.website.value || (started && Date.now() - started < 2000);
     try {
       if (!bot) await send({ message: text.slice(0, MAX), name: name || null, place: place || null, email: email || null, stamp });
+      // Counted in Google Analytics as "postcard_sent" (gtag is there on the live site only).
+      if (!bot && LIVE) window.gtag?.('event', 'postcard_sent', { stamp });
       try { localStorage.setItem(LAST_SENT, String(Date.now())); } catch { /* fine */ }
     } catch {
       error.textContent = 'The postcard didn’t go through. Please try again in a moment.';
