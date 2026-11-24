@@ -1,9 +1,10 @@
 // Postcard (postcard.html): visitors write me a postcard. Picking a stamp from the sheet sticks it
 // on the card; sending postmarks it and turns the card over to its picture side, with a thank-you.
 //
-// Postcards go to a Supabase table (see supabase/postcards.sql) that anyone can add to and nobody
-// but me can read, so each one reaches only me. Until the form's data-supabase-url and
-// data-supabase-key are set, the page is a preview: it plays the whole sending, but sends nothing.
+// Postcards are sent by Web3Forms (web3forms.com, free), which emails each one to me; nothing is
+// stored and nobody else sees them. The form's data-web3forms-key is the access key, which is meant
+// to be public: it can only send to my inbox. Without it, the page is a preview: it plays the whole
+// sending, but sends nothing.
 (() => {
   const form = document.querySelector('[data-postcard]');
   if (!form) return;
@@ -18,9 +19,8 @@
   const stamps = [...document.querySelectorAll('input[name="stamp"]')];
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-  const URL_BASE = (form.dataset.supabaseUrl || '').replace(/\/$/, '');
-  const KEY = form.dataset.supabaseKey || '';
-  const LIVE = Boolean(URL_BASE && KEY);
+  const KEY = form.dataset.web3formsKey || '';
+  const LIVE = Boolean(KEY);
   const LAST_SENT = 'postcard-last-sent';
   const MAX = 500;
   const wait = (ms) => new Promise((resolve) => { setTimeout(resolve, reduceMotion.matches ? 0 : ms); });
@@ -59,19 +59,29 @@
     count.textContent = `${message.value.length} / ${MAX}`;
   });
 
+  // The email: a subject that says who it's from, a reply that goes straight back to them (when
+  // they left an address), and the card's fields in the order they're written.
   const send = async (card) => {
     if (!LIVE) return;
-    const res = await fetch(`${URL_BASE}/rest/v1/postcards`, {
+    const from = [card.name, card.place && `(${card.place})`].filter(Boolean).join(' ');
+    const res = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
-      headers: {
-        apikey: KEY,
-        Authorization: `Bearer ${KEY}`,
-        'Content-Type': 'application/json',
-        Prefer: 'return=minimal',
-      },
-      body: JSON.stringify(card),
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        access_key: KEY,
+        subject: `New postcard${from ? ` from ${from}` : ''}`,
+        from_name: 'aatishacyrill.com postcard',
+        ...(card.email && { replyto: card.email }),
+        botcheck: false,
+        Message: card.message,
+        From: card.name || '—',
+        'Writing from': card.place || '—',
+        'Reply to': card.email || '—',
+        Stamp: card.stamp,
+      }),
     });
-    if (!res.ok) throw new Error(`The postcard didn't go (${res.status})`);
+    const result = await res.json().catch(() => ({}));
+    if (!res.ok || !result.success) throw new Error(`The postcard didn't go (${res.status})`);
   };
 
   form.addEventListener('submit', async (e) => {

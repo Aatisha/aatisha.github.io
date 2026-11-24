@@ -36,9 +36,9 @@
           <p class="page__lead">Whether it’s a project, a role, an idea worth playing with or a book I should read next, I’d love to hear from you.</p>
         </div>
 
-        <!-- The postcard. Postcards are kept in Supabase (set data-supabase-url and data-supabase-key,
-             the public anon key, on the form): visitors can send one but nobody can read them back,
-             so they reach only me. Without those set, the page runs as a preview and sends nothing. -->
+        <!-- The postcard. Web3Forms emails each one to me (set data-web3forms-key, the public access
+             key, on the form); nothing is stored. Without the key, the page runs as a preview and
+             sends nothing. -->
         <div class="postcard-desk" data-reveal>
           <!-- The desk: my photo of the sea from a cliff top, with travel things scattered on it (a
                chart, a luggage tag, a photo print, a ferry ticket and a lemon sticker), all
@@ -172,7 +172,7 @@
           </div>
 
           <div class="postcard-desk__main">
-            <form class="postcard" id="postcard" data-postcard data-supabase-url="" data-supabase-key="" novalidate>
+            <form class="postcard" id="postcard" data-postcard data-web3forms-key="" novalidate>
               <div class="postcard__flip">
                 <!-- The back, for writing: my half on the right is already addressed. -->
                 <div class="postcard__side postcard__back">
