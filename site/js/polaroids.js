@@ -410,16 +410,17 @@
   };
 
   // ---------- Shells ----------
-  // Every shake of a photo drops a shell out of it. The shell tumbles down and comes to rest along
-  // the bottom of the window, piling up with the others, like shells collected on the shore. The
-  // drawings live in shells.js, shared with the beach in the footer.
+  // Every shake of a photo drops a shell out of it. The shell tumbles down and comes to rest on the
+  // bottom of the window, piling up with the others, like shells collected on the shore. The window
+  // holds them like a tray: its bottom edge is the floor, its sides are walls, and its rounded bottom
+  // corners curve from one into the other. The drawings live in shells.js, shared with the beach in
+  // the footer.
   const { SHELLS, pickShell } = window.seaShells;
   const f = (v) => v.toFixed(1);
   let shellId = 0;
   const pickOne = (list) => list[Math.floor(Math.random() * list.length)];
   const SHELL_SIZE = 44;
   const TO_PX = SHELL_SIZE / 48;
-  const SHORE_GAP = 6;      // px above the footer where the shore is
   const GRAVITY = 1800;     // px/s²
   const MAX_SHELLS = 40;
   const SHELL_STEP = 1 / 240; // physics runs in small fixed steps so stacks stay stable
@@ -428,16 +429,52 @@
   const SHELL_GRIP = 0.06;  // shell on shell is slippery, so they slide off each other
   const TIP = 0.75;         // how hard a shell perched on others tips off them (fraction of gravity)
   const TIP_SPEED = 110;    // px/s: the bumpy ride over other shells never gets faster than this
-  const SHORE_INSET = 28;   // px kept clear at each end so shells stay off the window's round corners
   const BOUNCE = 0.3;       // fraction of speed kept in a hard landing
   const SLEEP_TIME = 0.4;   // s a shell must lie still before it stops being simulated
 
-  const foot = win.querySelector('.hero__foot');
   const shells = [];
   let shellFrame = 0;
   let shellLast = 0;
+  // The radius of the window's bottom corners, as drawn.
+  const cornerRadius = () => parseFloat(getComputedStyle(strip).borderBottomLeftRadius) || 0;
 
-  const shoreY = () => foot.offsetTop - strip.offsetTop - SHORE_GAP;
+  // Keep a shell inside the window. Its underside (`foot` below its centre) rests on the floor and in
+  // the corners, its sides (`r`) against the walls. Where it presses into an edge it's pushed back
+  // out along that edge's normal and loses the speed it had into it, bouncing if it hit hard. On the
+  // floor or a corner's curve it's grounded, and `sh.ground` keeps which way is "up" there, so friction
+  // and rolling act along the surface: down a steep part of the curve it slides or rolls onto the
+  // floor; on a shallow part, friction can hold it where it is.
+  const contain = (sh, R) => {
+    const hit = (nx, ny, depth) => {
+      sh.x += nx * depth;
+      sh.y += ny * depth;
+      const vn = sh.vx * nx + sh.vy * ny;
+      if (vn < 0) {
+        const hard = vn < -200;
+        sh.vx -= (hard ? 1 + BOUNCE : 1) * vn * nx;
+        sh.vy -= (hard ? 1 + BOUNCE : 1) * vn * ny;
+        if (hard && sh.kind.rest) sh.vr += sh.vx * 1.5 + (Math.random() - 0.5) * 120;
+      }
+      if (ny < -0.3) {
+        sh.grounded = true;
+        sh.ground = { nx, ny };
+      }
+      if (Math.abs(nx) > 0.3) sh.slip = nx > 0 ? 1 : -1; // tipping into a wall or corner: go the other way
+    };
+    // Walls.
+    if (sh.x < sh.r) hit(1, 0, sh.r - sh.x);
+    if (sh.x > W - sh.r) hit(-1, 0, sh.x - (W - sh.r));
+    // Floor, curving up into the walls at the corners.
+    const cy = H - R;
+    if (sh.y > cy && (sh.x < R || sh.x > W - R)) {
+      const cx = sh.x < R ? R : W - R;
+      const room = Math.max(R - sh.foot, 0);
+      const dx = sh.x - cx;
+      const dy = sh.y - cy;
+      const d = Math.hypot(dx, dy) || 0.001;
+      if (d > room) hit(-dx / d, -dy / d, d - room);
+    } else if (sh.y > H - sh.foot) hit(0, -1, sh.y - (H - sh.foot));
+  };
 
   // Each shell is a solid disc of radius `r`. They fall, bounce, slide or roll on the sand and knock
   // into each other; one that lands on another slips off its curve unless it is cradled between two,
@@ -497,7 +534,7 @@
   };
 
   const settleStep = (h) => {
-    const shore = shoreY();
+    const R = cornerRadius();
     const awake = shells.filter((sh) => !sh.asleep);
     awake.forEach((sh) => {
       sh.vy += GRAVITY * h;
@@ -505,6 +542,7 @@
       sh.y += sh.vy * h;
       sh.rot += sh.vr * h;
       sh.grounded = false;
+      sh.ground = null;
       sh.held = false;
       sh.lean = 0;
       sh.below = Infinity;
@@ -512,26 +550,7 @@
 
     // Contacts, solved a few times over so piles settle without jitter.
     for (let pass = 0; pass < 4; pass += 1) {
-      awake.forEach((sh) => {
-        const floor = shore - sh.foot;
-        if (sh.y >= floor) {
-          sh.y = floor;
-          sh.grounded = true;
-          if (sh.vy > 0) {
-            // A hard landing bounces (and knocks the shell into a spin); a soft one stays down.
-            if (sh.vy > 200) {
-              sh.vy *= -BOUNCE;
-              if (sh.kind.rest) sh.vr += sh.vx * 1.5 + (Math.random() - 0.5) * 120;
-            } else sh.vy = 0;
-          }
-        }
-        const edge = sh.r + SHORE_INSET;
-        if (sh.x < edge || sh.x > W - edge) {
-          sh.x = clamp(sh.x, edge, W - edge);
-          sh.vx *= -0.3;
-          sh.slip = sh.x < W / 2 ? 1 : -1; // tipping into the end of the shore: go the other way
-        }
-      });
+      awake.forEach((sh) => contain(sh, R));
       for (let p = 0; p < shells.length; p += 1) {
         for (let q = p + 1; q < shells.length; q += 1) collide(shells[p], shells[q]);
       }
@@ -550,13 +569,25 @@
         sh.tipping = true;
         if (sh.vx * sh.slip < TIP_SPEED) sh.vx += sh.slip * TIP * GRAVITY * h;
       } else sh.tipping = false;
+      // Friction along the ground it's on (level on the floor, sloped in a corner), as strong as
+      // the ground presses back: full on the level, less where the corner steepens.
+      const g = sh.ground;
+      const tx = g ? -g.ny : 1;
+      const ty = g ? g.nx : 0;
+      const along = sh.vx * tx + sh.vy * ty;
+      const rub = (grip) => {
+        if (!g) return;
+        const cut = Math.sign(along) * Math.min(Math.abs(along), grip * GRAVITY * -g.ny * h);
+        sh.vx -= cut * tx;
+        sh.vy -= cut * ty;
+      };
       if (!sh.kind.rest) {
         // Round shells roll: drag is low and the spin follows the ground speed.
-        if (sh.grounded) sh.vx -= Math.sign(sh.vx) * Math.min(Math.abs(sh.vx), ROLL_DRAG * GRAVITY * h);
-        if (touching) sh.vr = (sh.vx / sh.r) * (180 / Math.PI);
+        rub(ROLL_DRAG);
+        if (touching) sh.vr = ((g ? sh.vx * tx + sh.vy * ty : sh.vx) / sh.r) * (180 / Math.PI);
       } else {
         // Flat shells slide to a stop on the sand and rock over onto their resting side.
-        if (sh.grounded) sh.vx -= Math.sign(sh.vx) * Math.min(Math.abs(sh.vx), SAND_GRIP * GRAVITY * h);
+        rub(SAND_GRIP);
         if (touching) sh.vr += ((restAngle(sh) - sh.rot) * 160 - sh.vr * 14) * h;
       }
       // Lying still for a moment: put it to sleep.
@@ -578,12 +609,11 @@
     shellLast = now;
     const steps = Math.ceil(dt / SHELL_STEP);
     for (let k = 0; k < steps; k += 1) settleStep(dt / steps);
-    const shore = shoreY();
     let moving = false;
     shells.forEach((sh) => {
-      // Once it has dropped clear of the photo's edge (or nears the shore, for photos that sit
+      // Once it has dropped clear of the photo's edge (or nears the floor, for photos that sit
       // low), it comes in front of the photos so it lands in view.
-      if (!sh.front && sh.vy > 0 && sh.y > Math.min(sh.clearY, shore - sh.foot - SHELL_SIZE)) {
+      if (!sh.front && sh.vy > 0 && sh.y > Math.min(sh.clearY, H - sh.foot - SHELL_SIZE)) {
         sh.front = true;
         sh.el.classList.add('is-front');
       }
@@ -599,7 +629,7 @@
     shellFrame = requestAnimationFrame(stepShells);
   };
 
-  // The shore moves with the window: let the shells settle onto it again.
+  // The floor moves with the window: let the shells settle onto it again.
   new ResizeObserver(() => {
     if (!shells.length) return;
     shells.forEach(wake);
