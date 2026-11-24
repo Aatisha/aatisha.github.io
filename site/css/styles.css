@@ -2792,8 +2792,7 @@ html.lights-out .badge {
   position: absolute;
   inset: 0;
   display: grid;
-  place-content: start center;
-  padding-top: 9%;
+  place-content: center;
   overflow: hidden;
   border: 10px solid var(--paper);
   background: var(--paper);
@@ -2849,29 +2848,6 @@ html.lights-out .badge {
   line-height: 1;
   color: #fff;
   text-shadow: 0 2px 18px rgba(0, 30, 30, 0.5);
-}
-
-.postcard__sent:empty {
-  display: none;
-}
-
-.postcard__sent {
-  position: relative;
-  z-index: 2;
-  width: fit-content;
-  max-width: 88%;
-  margin: var(--space-4) auto 0;
-  padding: var(--pad-chip);
-  border-radius: var(--radius-pill);
-  background: rgba(10, 50, 58, 0.42);
-  -webkit-backdrop-filter: blur(4px);
-  backdrop-filter: blur(4px);
-  font-family: var(--font-mono);
-  font-size: var(--text-micro);
-  letter-spacing: var(--tracking-mono);
-  text-transform: uppercase;
-  color: #fff;
-  text-shadow: 0 1px 8px rgba(0, 50, 60, 0.5);
 }
 
 /* A field only bots fill in. */
@@ -3080,11 +3056,7 @@ html.lights-out .badge {
     border-top: 1px solid rgba(45, 74, 122, 0.35);
   }
 
-  /* The tall picture side: keep the paddleboarders in view below the thank-you. */
-  .postcard__front {
-    padding-top: 13%;
-  }
-
+  /* The tall picture side: keep the paddleboarders in view. */
   .postcard__front img {
     object-position: 74% center;
   }
