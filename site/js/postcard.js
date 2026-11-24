@@ -1,5 +1,6 @@
 // Postcard (postcard.html): visitors write me a postcard. Picking a stamp from the sheet sticks it
-// on the card; sending postmarks it and turns the card over to its picture side, with a thank-you.
+// on the card; sending postmarks it and turns the card over to its picture side, which just says
+// "Thank you!" across the middle.
 //
 // Postcards are sent by Web3Forms (web3forms.com, free), which emails each one to me; nothing is
 // stored and nobody else sees them. The form's data-web3forms-key is the access key, which is meant
@@ -10,8 +11,6 @@
   if (!form) return;
   const slot = form.querySelector('[data-stamp-slot]');
   const count = form.querySelector('[data-pc-count]');
-  const thanks = form.querySelector('[data-pc-thanks]');
-  const sent = form.querySelector('[data-pc-sent]');
   const error = document.querySelector('[data-pc-error]');
   const status = document.querySelector('[data-pc-status]');
   const sendButton = document.querySelector('[data-pc-send]');
@@ -124,14 +123,13 @@
     }
 
     // Postmark it, then turn it over.
-    thanks.textContent = name ? `Thank you, ${name.split(/\s+/)[0]}!` : 'Thank you!';
-    sent.textContent = LIVE ? 'Your postcard is on its way to Seattle' : '';
     form.classList.add('is-postmarked');
     await wait(750);
     form.classList.add('is-sent');
     form.querySelector('.postcard__back').setAttribute('inert', '');
     form.querySelector('.postcard__front').removeAttribute('aria-hidden');
-    status.textContent = sent.textContent ? `${thanks.textContent} ${sent.textContent}.` : thanks.textContent;
+    // Screen readers hear that it went; the card itself only says thank you.
+    status.textContent = LIVE ? 'Thank you! Your postcard was sent.' : 'Thank you!';
     sendButton.hidden = true;
     againButton.hidden = false;
     sendButton.disabled = false;

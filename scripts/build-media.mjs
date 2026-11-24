@@ -28,7 +28,8 @@ const MEDIA = path.join(ROOT, 'media');
 const CACHE = path.join(ROOT, '.media-cache');
 const OUT = path.join(SITE, 'public', 'media');
 const META = path.join(CACHE, 'meta.json');
-const VERSION = 3;                        // bump to rebuild everything after changing the settings below
+// Bump to rebuild that kind of output after changing how it's made (images: 4 = turned upright).
+const VERSION = { image: 4, video: 3 };
 const IMG = { maxWidth: 2400, small: 1200, quality: 86 };
 const VID = { maxWidth: 2560, crf: 20, preset: 'slow', posterAt: 0.4 };
 
@@ -87,16 +88,20 @@ const out = (url) => path.join(OUT, url.slice('/media/'.length));
 let built = 0;
 
 async function image(job, key) {
-  const img = sharp(job.src, { limitInputPixels: false });
-  const { width, height } = await img.metadata();
+  // Phone photos often store "turn 90°" as a tag rather than in the pixels, and WebP drops the tag,
+  // so each image is turned upright first (.rotate() with no angle) and measured the way it's seen.
+  const meta = await sharp(job.src, { limitInputPixels: false }).metadata();
+  const sideways = meta.orientation >= 5;
+  const [width, height] = sideways ? [meta.height, meta.width] : [meta.width, meta.height];
   const w = Math.min(width, job.max || IMG.maxWidth);
   await fs.mkdir(path.dirname(out(job.url)), { recursive: true });
+  const upright = () => sharp(job.src, { limitInputPixels: false }).rotate();
   const enc = (s) => s.webp({ quality: IMG.quality, alphaQuality: 100, effort: 5, smartSubsample: true });
-  await enc(sharp(job.src, { limitInputPixels: false }).resize({ width: w, withoutEnlargement: true })).toFile(out(job.url));
+  await enc(upright().resize({ width: w, withoutEnlargement: true })).toFile(out(job.url));
   const entry = { key, width: w, height: Math.round((height * w) / width) };
   if (!job.max && w > IMG.small * 1.2) {
     const smallUrl = job.url.replace(/\.webp$/, `-${IMG.small}.webp`);
-    await enc(sharp(job.src, { limitInputPixels: false }).resize({ width: IMG.small })).toFile(out(smallUrl));
+    await enc(upright().resize({ width: IMG.small })).toFile(out(smallUrl));
     entry.small = { url: smallUrl, width: IMG.small };
   }
   return entry;
@@ -123,9 +128,9 @@ const order = { image: 0, video: 1, poster: 2 };
 jobs.sort((a, b) => order[a.kind] - order[b.kind]);
 const sourceKey = new Map();
 const keyFor = async (job) => {
-  if (job.kind === 'poster') return `${VERSION}:${next[job.video]?.key}`;
+  if (job.kind === 'poster') return `${VERSION.video}:${next[job.video]?.key}`;
   if (!sourceKey.has(job.src)) sourceKey.set(job.src, await hashFile(job.src));
-  return `${VERSION}:${sourceKey.get(job.src)}:${job.start ?? ''}:${job.duration ?? ''}:${JSON.stringify(job.kind === 'image' ? IMG : VID)}`;
+  return `${VERSION[job.kind]}:${sourceKey.get(job.src)}:${job.start ?? ''}:${job.duration ?? ''}:${JSON.stringify(job.kind === 'image' ? IMG : VID)}`;
 };
 const doJob = async (job) => {
   const key = await keyFor(job);
